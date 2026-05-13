@@ -554,15 +554,13 @@
   }
 
   function segmentVisible(seg, crewLot) {
-    // Whether crew (Anna) can be at the segment's destination AS.
     if (seg.crewAccess === 'all') return true;
     if (seg.crewAccess === 'none') return false;
-    if (crewLot === 'any') return true;       // unassigned: assume both crew points
-    return seg.crewAccess === crewLot;        // 'C1' or 'C2'
+    if (crewLot === 'any') return true;
+    return seg.crewAccess === crewLot;
   }
 
   function buildCourseIndex(race) {
-    // Build cumulative-mile-at-end-of-segment for quick lookup.
     let cum = 0;
     return race.segments.map(s => {
       cum += s.distance;
@@ -656,7 +654,6 @@
       status = 'onpace';
     }
 
-    // Next cutoff: smallest cumMile cutoff still ahead of runner.
     const start = new Date(race.startTime);
     let nextCutoff = null;
     for (const seg of course) {
@@ -780,7 +777,12 @@
           const pitCell = pitSec != null
             ? fmtShortDuration(pitSec) + (next ? '' : ' <span style="color: var(--accent); font-size: 9px;">●</span>')
             : '—';
-          const noteParts = [l.gearChanges, l.meds, l.issues, l.notes].filter(Boolean);
+          const markers = [];
+          if (l.markedOutBy) markers.push(`out by ${l.markedOutBy}`);
+          if (l.markedInBy) markers.push(`in by ${l.markedInBy}`);
+          if (l.intakeBy && l.intakeBy !== l.markedInBy && l.intakeBy !== l.markedOutBy) markers.push(`intake by ${l.intakeBy}`);
+          const markerTag = markers.length ? `<span style="color: var(--text-muted);">${markers.join(' · ')}</span>` : '';
+          const noteParts = [l.gearChanges, l.meds, l.issues, l.notes, markerTag].filter(Boolean);
           const isOld = ((runner.legs || []).length - 1 - i) >= 2;
           const oldCls = isOld ? ' leg-old' : '';
           const noteOldCls = isOld ? ' note-old' : '';
@@ -1009,7 +1011,6 @@
       lastFetchAt = new Date();
       const course = buildCourseIndex(raceData.race);
       const computed = raceData.runners.map(r => computeRunner(r, raceData.race, course));
-      // Course meta header
       document.getElementById('course-meta').textContent =
         `· ${course.length} legs · ${raceData.race.totalDistance} mi · +${raceData.race.totalGainFt.toLocaleString()} ft`;
       renderCutoffs(raceData.race, course, computed[0]);

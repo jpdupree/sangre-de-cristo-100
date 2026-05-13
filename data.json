@@ -1,8 +1,9 @@
 {
+  "_sim": "SIMULATED DATA · revert before real race · original startTime 2026-09-26T04:00:00-06:00",
   "race": {
     "name": "Sangre de Cristo 100",
     "location": "Music Meadows Ranch · Westcliffe, CO",
-    "startTime": "2026-09-26T04:00:00-06:00",
+    "startTime": "2026-05-13T18:00:00Z",
     "totalDistance": 101.3,
     "totalGainFt": 18897,
     "totalLossFt": 18909,
@@ -37,8 +38,14 @@
       "id": "jason",
       "name": "Jason",
       "bib": "Jason",
-      "legs": []
+      "legs": [
+        { "leg": 1, "startTime": "2026-05-13T18:00:00Z", "endTime": "2026-05-13T18:55:00Z", "calories": 200, "fluidOz": 17, "sodiumMg": 620, "markedOutBy": "Jason", "markedInBy": "Jason", "intakeBy": "Jason", "notes": "Cool morning at the pass, feeling strong" },
+        { "leg": 2, "startTime": "2026-05-13T18:55:00Z", "endTime": "2026-05-13T19:32:00Z", "calories": 100, "fluidOz": 10, "sodiumMg": 310, "markedOutBy": "Jason", "markedInBy": "Anna", "intakeBy": "Anna", "notes": "Quick down, knees holding up" },
+        { "leg": 3, "startTime": "2026-05-13T19:45:00Z", "endTime": "2026-05-13T20:55:00Z", "calories": 300, "fluidOz": 22, "sodiumMg": 720, "markedOutBy": "Anna", "markedInBy": "Anna", "intakeBy": "Anna", "notes": "Refilled both flasks at MM1, ate a Honey Stinger" },
+        { "leg": 4, "startTime": "2026-05-13T21:02:00Z", "endTime": "2026-05-13T22:45:00Z", "calories": 400, "fluidOz": 34, "sodiumMg": 1240, "markedOutBy": "Anna", "markedInBy": "JD", "intakeBy": "Anna", "issues": "Hot stretch, drank a lot", "gearChanges": "Switched to lighter cap" },
+        { "leg": 5, "startTime": "2026-05-13T23:00:00Z", "markedOutBy": "JD" }
+      ]
     }
   ],
-  "lastUpdated": "2026-05-13T23:01:00Z"
+  "lastUpdated": "2026-05-13T23:27:45Z"
 }
