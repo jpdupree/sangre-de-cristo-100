@@ -6,7 +6,7 @@
 
 # Project
 
-- Static dashboard for tracking Jasmine and Oppenheimer through a 100-mile race at Pittsfield, VT (10 × 10mi loops).
+- Static dashboard for tracking Jason through a 100-mile race at Greenhorn/Music Meadows Ranch Westcliffe, CO.
 - `index.html` — public dashboard. Reads `data.json`. Auto-refreshes every 60s.
 - `data.json` — race state. Each runner has a `laps` array; each lap entry has `lap`, `startTime` (sign-out), `endTime` (sign-in), and optional `calories`, `fluidOz`, `sodiumMg`, `gearChanges`, `meds`, `issues`, `notes`.
 - `pit.html` — private crew-chief page (not linked from the dashboard). Big sign-in/sign-out buttons that auto-commit timestamps to `data.json` via the GitHub Contents API using a PAT stored in the device's localStorage. Falls back to copy-paste when no token is set.
