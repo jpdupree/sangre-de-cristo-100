@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>100-Mile Race Command</title>
+<title>Sangre de Cristo 100 · Race Command</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -100,8 +100,7 @@
   .cutoff-item.warn .v { color: var(--yellow); }
   .cutoff-item.danger .v { color: var(--red); }
 
-  .runners { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-  @media (max-width: 1100px) { .runners { grid-template-columns: 1fr; } }
+  .runners { display: grid; grid-template-columns: 1fr; gap: 24px; }
 
   .runner {
     background: var(--bg-card); border: 1px solid var(--border);
@@ -133,6 +132,7 @@
   .status-tight { color: var(--yellow); }
   .status-offpace { color: var(--red); }
   .status-notstarted { color: var(--text-muted); }
+  .status-finished { color: var(--blue); }
 
   .stats {
     display: grid; grid-template-columns: repeat(8, 1fr);
@@ -192,81 +192,84 @@
     color: var(--text-muted); min-width: 60px; text-align: right;
   }
 
-  .laps { padding: 20px 28px 28px; }
-  .laps-head {
+  .legs { padding: 20px 28px 28px; }
+  .legs-head {
     display: flex; justify-content: space-between;
     align-items: center; margin-bottom: 14px;
   }
-  .laps-title {
+  .legs-title {
     font-family: 'JetBrains Mono', monospace; font-size: 10px;
     letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted);
   }
-  .laps-grid {
-    display: grid; grid-template-columns: repeat(10, 1fr);
+  .legs-grid {
+    display: grid; grid-template-columns: repeat(16, 1fr);
     gap: 6px; margin-bottom: 16px;
   }
-  .lap-cell {
+  .leg-cell {
     aspect-ratio: 1; background: var(--bg-elevated);
     border: 1px solid var(--border); border-radius: 3px;
     display: flex; flex-direction: column;
     justify-content: center; align-items: center;
     font-family: 'JetBrains Mono', monospace; cursor: default;
+    padding: 2px;
   }
-  .lap-cell .n { font-size: 10px; color: var(--text-muted); margin-bottom: 2px; }
-  .lap-cell .t { font-size: 11px; font-weight: 700; }
-  .lap-cell.done { background: rgba(110, 231, 168, 0.08); border-color: rgba(110, 231, 168, 0.4); }
-  .lap-cell.done .t { color: var(--green); }
-  .lap-cell.slow { background: rgba(245, 196, 81, 0.08); border-color: rgba(245, 196, 81, 0.4); }
-  .lap-cell.slow .t { color: var(--yellow); }
-  .lap-cell.danger { background: rgba(255, 89, 89, 0.08); border-color: rgba(255, 89, 89, 0.4); }
-  .lap-cell.danger .t { color: var(--red); }
-  .lap-cell.current {
+  .leg-cell .n { font-size: 9px; color: var(--text-muted); margin-bottom: 2px; }
+  .leg-cell .t { font-size: 10px; font-weight: 700; }
+  .leg-cell.done { background: rgba(110, 231, 168, 0.08); border-color: rgba(110, 231, 168, 0.4); }
+  .leg-cell.done .t { color: var(--green); }
+  .leg-cell.slow { background: rgba(245, 196, 81, 0.08); border-color: rgba(245, 196, 81, 0.4); }
+  .leg-cell.slow .t { color: var(--yellow); }
+  .leg-cell.danger { background: rgba(255, 89, 89, 0.08); border-color: rgba(255, 89, 89, 0.4); }
+  .leg-cell.danger .t { color: var(--red); }
+  .leg-cell.current {
     background: var(--accent-glow); border-color: var(--accent);
     animation: currentPulse 2s ease-in-out infinite;
   }
-  .lap-cell.current .t { color: var(--accent); }
+  .leg-cell.current .t { color: var(--accent); }
   @keyframes currentPulse {
     0%, 100% { box-shadow: 0 0 0 0 var(--accent-glow); }
     50% { box-shadow: 0 0 0 4px transparent; }
   }
 
-  .laplog { border-top: 1px solid var(--border); margin-top: 8px; }
-  .laplog-head {
+  .leglog { border-top: 1px solid var(--border); margin-top: 8px; }
+  .leglog-head {
     display: flex; justify-content: space-between; align-items: center;
     padding: 14px 2px 6px;
     cursor: pointer; user-select: none;
   }
-  .laplog-head:hover .laplog-head-toggle { color: var(--accent); }
-  .laplog-head-title { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); font-weight: 600; }
-  .laplog-head-toggle { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--text-muted); }
-  .laplog-head-toggle::before { content: '▼ '; }
-  .laplog.collapsed .laplog-head-toggle::before { content: '▶ '; }
-  .laplog.collapsed tr.lap-old, .laplog.collapsed tr.note-old { display: none; }
-  .laplog.collapsed .when-expanded, .laplog:not(.collapsed) .when-collapsed { display: none; }
-  .laplog table { width: 100%; border-collapse: collapse; font-size: 12px; }
-  .laplog th {
+  .leglog-head:hover .leglog-head-toggle { color: var(--accent); }
+  .leglog-head-title { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); font-weight: 600; }
+  .leglog-head-toggle { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--text-muted); }
+  .leglog-head-toggle::before { content: '▼ '; }
+  .leglog.collapsed .leglog-head-toggle::before { content: '▶ '; }
+  .leglog.collapsed tr.leg-old, .leglog.collapsed tr.note-old { display: none; }
+  .leglog.collapsed .when-expanded, .leglog:not(.collapsed) .when-collapsed { display: none; }
+  .leglog table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  .leglog th {
     font-family: 'JetBrains Mono', monospace; font-size: 9px;
     letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted);
     text-align: left; padding: 14px 8px 10px; font-weight: 500;
     border-bottom: 1px solid var(--border);
   }
-  .laplog th:first-child { padding-left: 0; }
-  .laplog th.num, .laplog td.num { text-align: right; font-family: 'JetBrains Mono', monospace; }
-  .laplog td { padding: 12px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
-  .laplog td:first-child { padding-left: 0; }
-  .laplog tr:last-child td { border-bottom: none; }
-  .laplog .lap-num {
+  .leglog th:first-child { padding-left: 0; }
+  .leglog th.num, .leglog td.num { text-align: right; font-family: 'JetBrains Mono', monospace; }
+  .leglog td { padding: 12px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .leglog td:first-child { padding-left: 0; }
+  .leglog tr:last-child td { border-bottom: none; }
+  .leglog .leg-num {
     font-family: 'Fraunces', serif; font-size: 18px; font-weight: 600;
     color: var(--accent); width: 30px;
   }
-  .laplog tr.lap-row:has(+ tr.note-row) td { border-bottom: none; padding-bottom: 6px; }
-  .laplog tr.note-row td {
+  .leglog .leg-route { font-size: 11px; color: var(--text); }
+  .leglog .leg-route .sep { color: var(--text-muted); margin: 0 4px; }
+  .leglog tr.leg-row:has(+ tr.note-row) td { border-bottom: none; padding-bottom: 6px; }
+  .leglog tr.note-row td {
     padding: 0 8px 12px 8px; padding-left: 38px;
     font-size: 11px; color: var(--text-dim); line-height: 1.5;
     border-bottom: 1px solid var(--border);
   }
-  .laplog tr.note-row:last-child td { border-bottom: none; }
-  .laplog tr.empty td { color: var(--text-muted); font-style: italic; }
+  .leglog tr.note-row:last-child td { border-bottom: none; }
+  .leglog tr.empty td { color: var(--text-muted); font-style: italic; }
 
   footer {
     margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--border);
@@ -335,6 +338,7 @@
     .stat { border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
     .stat:nth-child(4n) { border-right: none; }
     .stat:nth-last-child(-n+4) { border-bottom: none; }
+    .legs-grid { grid-template-columns: repeat(8, 1fr); }
   }
   @media (max-width: 800px) {
     .stats { grid-template-columns: repeat(3, 1fr); }
@@ -351,88 +355,59 @@
     .stat:nth-child(2n) { border-right: none; }
     .stat:nth-last-child(-n+2) { border-bottom: none; }
     .cutoffs { grid-template-columns: 1fr 1fr; gap: 16px; }
-    .laps-grid { grid-template-columns: repeat(5, 1fr); }
-    .laplog table { font-size: 11px; }
-    .laplog th, .laplog td { padding: 8px 4px; }
+    .legs-grid { grid-template-columns: repeat(4, 1fr); }
+    .leglog table { font-size: 11px; }
+    .leglog th, .leglog td { padding: 8px 4px; }
   }
 
   @media print {
     @page { size: letter portrait; margin: 0.5in; }
-
     *, *::before, *::after {
       -webkit-print-color-adjust: exact;
       print-color-adjust: exact;
       animation: none !important;
       transition: none !important;
     }
-
     html, body {
-      background: white !important;
-      background-image: none !important;
-      color: #111 !important;
-      font-size: 10.5pt;
+      background: white !important; background-image: none !important;
+      color: #111 !important; font-size: 10.5pt;
     }
     body { padding: 0 !important; }
-
-    /* Strip interactive / animated chrome */
-    a.map-link, .pulse, .laplog-head-toggle { display: none !important; }
-    .laplog-head { cursor: default !important; padding: 12px 2px 6px; }
-
-    /* Header */
-    header {
-      border-bottom: 1px solid #999;
-      padding-bottom: 12pt; margin-bottom: 14pt;
-    }
+    a.map-link, .pulse, .leglog-head-toggle { display: none !important; }
+    .leglog-head { cursor: default !important; padding: 12px 2px 6px; }
+    header { border-bottom: 1px solid #999; padding-bottom: 12pt; margin-bottom: 14pt; }
     h1 { color: #111 !important; font-size: 24pt; }
     h1 em { color: #c44a18 !important; }
     .brand-meta { color: #555 !important; }
     .race-clock .label { color: #555 !important; }
     .race-clock .time { color: #111 !important; font-size: 18pt; }
-
-    /* Cutoffs */
     .cutoffs {
-      background: #f6f6f6 !important;
-      border: 1px solid #bbb !important;
-      padding: 12pt 16pt; margin-bottom: 14pt;
-      page-break-inside: avoid;
+      background: #f6f6f6 !important; border: 1px solid #bbb !important;
+      padding: 12pt 16pt; margin-bottom: 14pt; page-break-inside: avoid;
     }
     .cutoffs-label { color: #555 !important; }
     .cutoff-item .v { color: #111 !important; }
     .cutoff-item .l { color: #555 !important; }
     .cutoff-item.warn .v { color: #8a6700 !important; }
     .cutoff-item.danger .v { color: #a82626 !important; }
-
-    /* Runners — stacked, no split across pages */
     .runners { display: block !important; }
     .runner {
-      background: white !important;
-      border: 1px solid #999 !important;
-      page-break-inside: avoid;
-      margin-bottom: 16pt;
+      background: white !important; border: 1px solid #999 !important;
+      page-break-inside: avoid; margin-bottom: 16pt;
     }
     .runner::before { display: none; }
-    .runner-head {
-      padding: 14pt 16pt 10pt;
-      border-bottom: 1px solid #ddd !important;
-    }
+    .runner-head { padding: 14pt 16pt 10pt; border-bottom: 1px solid #ddd !important; }
     .runner-name { color: #111 !important; font-size: 22pt; }
     .runner-bib { color: #555 !important; }
-
-    /* Status pills (recolor for paper) */
     .status-onpace { color: #1f6e3a !important; border-color: #1f6e3a !important; }
     .status-tight { color: #8a6700 !important; border-color: #8a6700 !important; }
     .status-offpace { color: #a82626 !important; border-color: #a82626 !important; }
     .status-notstarted { color: #555 !important; border-color: #555 !important; }
-
-    /* Stat grid */
-    .stats {
-      grid-template-columns: repeat(4, 1fr) !important;
-      border-bottom: 1px solid #ddd !important;
-    }
+    .status-finished { color: #234a8a !important; border-color: #234a8a !important; }
+    .stats { grid-template-columns: repeat(4, 1fr) !important; border-bottom: 1px solid #ddd !important; }
     .stat {
       padding: 10pt 12pt;
-      border-right: 1px solid #ddd !important;
-      border-bottom: 1px solid #ddd !important;
+      border-right: 1px solid #ddd !important; border-bottom: 1px solid #ddd !important;
     }
     .stat:nth-child(4n) { border-right: none !important; }
     .stat:nth-last-child(-n+4) { border-bottom: none !important; }
@@ -440,8 +415,6 @@
     .stat .value, .stat.live .value, .stat.live-course .value { color: #111 !important; }
     .stat.live-pit .value { color: #1f6e3a !important; }
     .stat .sub { color: #777 !important; }
-
-    /* Intake bars */
     .intake { padding: 12pt 16pt 14pt; border-bottom: 1px solid #ddd !important; }
     .intake-title { color: #555 !important; }
     .intake-row .name { color: #111 !important; }
@@ -451,40 +424,32 @@
     .bar-fill.good { background: #1f6e3a !important; }
     .bar-fill.warn { background: #8a6700 !important; }
     .bar-fill.low { background: #a82626 !important; }
-
-    /* Lap pills */
-    .laps { padding: 12pt 16pt 14pt; }
-    .laps-title { color: #555 !important; }
-    .laps-grid { grid-template-columns: repeat(10, 1fr) !important; gap: 4pt; margin-bottom: 12pt; }
-    .lap-cell { background: white !important; border: 1px solid #999 !important; }
-    .lap-cell .n { color: #555 !important; }
-    .lap-cell .t { color: #111 !important; }
-    .lap-cell.done { background: #e1f4e7 !important; border-color: #1f6e3a !important; }
-    .lap-cell.done .t { color: #1f6e3a !important; }
-    .lap-cell.slow { background: #fbf3d4 !important; border-color: #8a6700 !important; }
-    .lap-cell.slow .t { color: #8a6700 !important; }
-    .lap-cell.danger { background: #fadbdb !important; border-color: #a82626 !important; }
-    .lap-cell.danger .t { color: #a82626 !important; }
-    .lap-cell.current { background: #fce6da !important; border-color: #c44a18 !important; }
-    .lap-cell.current .t { color: #c44a18 !important; }
-
-    /* Lap log — force expanded, show every row */
-    .laplog { border-top: 1px solid #ddd !important; }
-    .laplog.collapsed tr.lap-old,
-    .laplog.collapsed tr.note-old { display: table-row !important; }
-    .laplog-head-title { color: #555 !important; }
-    .laplog th { color: #555 !important; border-bottom: 1px solid #999 !important; }
-    .laplog td { border-bottom: 1px solid #eee !important; }
-    .laplog tr.note-row td { color: #555 !important; }
-    .laplog .lap-num { color: #c44a18 !important; }
-
-    /* Race in Numbers — new page, no split */
+    .legs { padding: 12pt 16pt 14pt; }
+    .legs-title { color: #555 !important; }
+    .legs-grid { grid-template-columns: repeat(16, 1fr) !important; gap: 3pt; margin-bottom: 12pt; }
+    .leg-cell { background: white !important; border: 1px solid #999 !important; }
+    .leg-cell .n { color: #555 !important; }
+    .leg-cell .t { color: #111 !important; }
+    .leg-cell.done { background: #e1f4e7 !important; border-color: #1f6e3a !important; }
+    .leg-cell.done .t { color: #1f6e3a !important; }
+    .leg-cell.slow { background: #fbf3d4 !important; border-color: #8a6700 !important; }
+    .leg-cell.slow .t { color: #8a6700 !important; }
+    .leg-cell.danger { background: #fadbdb !important; border-color: #a82626 !important; }
+    .leg-cell.danger .t { color: #a82626 !important; }
+    .leg-cell.current { background: #fce6da !important; border-color: #c44a18 !important; }
+    .leg-cell.current .t { color: #c44a18 !important; }
+    .leglog { border-top: 1px solid #ddd !important; }
+    .leglog.collapsed tr.leg-old,
+    .leglog.collapsed tr.note-old { display: table-row !important; }
+    .leglog-head-title { color: #555 !important; }
+    .leglog th { color: #555 !important; border-bottom: 1px solid #999 !important; }
+    .leglog td { border-bottom: 1px solid #eee !important; }
+    .leglog tr.note-row td { color: #555 !important; }
+    .leglog .leg-num { color: #c44a18 !important; }
+    .leglog .leg-route { color: #111 !important; }
     .race-stats {
-      background: white !important;
-      border: 1px solid #999 !important;
-      page-break-before: always;
-      page-break-inside: avoid;
-      margin-top: 0;
+      background: white !important; border: 1px solid #999 !important;
+      page-break-before: always; page-break-inside: avoid; margin-top: 0;
     }
     .race-stats::before { display: none; }
     .race-stats h2 { color: #111 !important; font-size: 22pt; }
@@ -493,12 +458,9 @@
     .race-stats li { color: #333 !important; border-bottom: 1px solid #eee !important; }
     .race-stats li strong { color: #111 !important; }
     .race-stats li em { color: #c44a18 !important; }
-
-    /* Footer */
     footer {
       margin-top: 14pt; padding-top: 10pt;
-      border-top: 1px solid #999 !important;
-      color: #555 !important;
+      border-top: 1px solid #999 !important; color: #555 !important;
     }
     .legend, .legend-item, #last-updated { color: #555 !important; }
     .print-trigger { display: none !important; }
@@ -512,9 +474,9 @@
     <div class="brand-meta">
       <span class="pulse"></span>
       <span>Live Race Command</span>
-      <span>· 10 × 10mi loops</span>
+      <span id="course-meta">· 16 legs · 101.3 mi</span>
     </div>
-    <h1>One Hundred <em>Miles</em></h1>
+    <h1>Sangre de <em>Cristo</em> 100</h1>
   </div>
   <div style="display: flex; align-items: center; gap: 18px;">
     <div class="race-clock">
@@ -541,7 +503,7 @@
     <span class="legend-item"><span class="swatch" style="background: var(--green);"></span>On pace</span>
     <span class="legend-item"><span class="swatch" style="background: var(--yellow);"></span>Tight</span>
     <span class="legend-item"><span class="swatch" style="background: var(--red);"></span>Off pace</span>
-    <span class="legend-item"><span class="swatch" style="background: var(--accent);"></span>Current lap</span>
+    <span class="legend-item"><span class="swatch" style="background: var(--accent);"></span>Current leg</span>
   </div>
   <div id="last-updated">—</div>
 </footer>
@@ -558,123 +520,185 @@
     const s = Math.floor(seconds % 60);
     return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
   }
-
+  function fmtShortDuration(seconds) {
+    if (seconds == null || isNaN(seconds) || seconds < 0) return '—';
+    const h = Math.floor(seconds / 3600);
+    const m = Math.floor((seconds % 3600) / 60);
+    const s = Math.floor(seconds % 60);
+    if (h) return `${h}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+    return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+  }
   function fmtPace(secondsPerMile) {
     if (secondsPerMile == null || isNaN(secondsPerMile)) return '—';
     const m = Math.floor(secondsPerMile / 60);
     const s = Math.floor(secondsPerMile % 60);
     return `${m}:${String(s).padStart(2, '0')}`;
   }
-
   function fmtClockTime(iso) {
     if (!iso) return '—';
     const d = new Date(iso);
     return d.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
   }
+  function fmtClockTimeWithDay(iso, raceStartIso) {
+    if (!iso) return '—';
+    const d = new Date(iso);
+    const start = raceStartIso ? new Date(raceStartIso) : null;
+    const time = d.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+    if (!start) return time;
+    const startDay = new Date(start); startDay.setHours(0, 0, 0, 0);
+    const day = new Date(d); day.setHours(0, 0, 0, 0);
+    const dayDiff = Math.round((day - startDay) / 86400000);
+    if (dayDiff <= 0) return time;
+    if (dayDiff === 1) return time + ' D2';
+    return time + ` D${dayDiff + 1}`;
+  }
 
-  function computeRunner(runner, race) {
-    const laps = runner.laps || [];
+  function segmentVisible(seg, crewLot) {
+    // Whether crew (Anna) can be at the segment's destination AS.
+    if (seg.crewAccess === 'all') return true;
+    if (seg.crewAccess === 'none') return false;
+    if (crewLot === 'any') return true;       // unassigned: assume both crew points
+    return seg.crewAccess === crewLot;        // 'C1' or 'C2'
+  }
+
+  function buildCourseIndex(race) {
+    // Build cumulative-mile-at-end-of-segment for quick lookup.
+    let cum = 0;
+    return race.segments.map(s => {
+      cum += s.distance;
+      return { ...s, cumMile: +cum.toFixed(2) };
+    });
+  }
+
+  function computeRunner(runner, race, course) {
+    const legs = runner.legs || [];
     const now = new Date();
+    const totalLegs = race.segments.length;
 
-    const lapDurations = [];
+    const legDurations = [];
     const pitDurations = [];
-    for (let i = 0; i < laps.length; i++) {
-      const l = laps[i];
+    const completedDistance = [];
+    for (let i = 0; i < legs.length; i++) {
+      const l = legs[i];
+      const seg = course[l.leg - 1];
       if (l.startTime && l.endTime) {
-        lapDurations.push((new Date(l.endTime) - new Date(l.startTime)) / 1000);
+        legDurations.push((new Date(l.endTime) - new Date(l.startTime)) / 1000);
+        completedDistance.push(seg ? seg.distance : 0);
       }
-      const next = laps[i + 1];
+      const next = legs[i + 1];
       if (l.endTime && next && next.startTime) {
         pitDurations.push((new Date(next.startTime) - new Date(l.endTime)) / 1000);
       }
     }
 
-    const inProgressLap = laps.find(l => l.startTime && !l.endTime);
-    const currentLapSeconds = inProgressLap
-      ? Math.max(0, (now - new Date(inProgressLap.startTime)) / 1000)
+    const inProgressLeg = legs.find(l => l.startTime && !l.endTime);
+    const currentLegSeconds = inProgressLeg
+      ? Math.max(0, (now - new Date(inProgressLeg.startTime)) / 1000)
       : 0;
-    const lastCompleted = [...laps].reverse().find(l => l.startTime && l.endTime);
+    const lastCompleted = [...legs].reverse().find(l => l.startTime && l.endTime);
     const nextStarted = lastCompleted
-      ? laps.some(l => l.startTime && new Date(l.startTime) > new Date(lastCompleted.endTime))
+      ? legs.some(l => l.startTime && new Date(l.startTime) > new Date(lastCompleted.endTime))
       : false;
-    const inPit = !!lastCompleted && !nextStarted && lapDurations.length < race.totalLoops;
+    const legsDone = legDurations.length;
+    const finished = legsDone >= totalLegs;
+    const inPit = !!lastCompleted && !nextStarted && !finished;
     const currentPitSeconds = inPit
       ? Math.max(0, (now - new Date(lastCompleted.endTime)) / 1000)
       : 0;
 
-    const completedCourseSeconds = lapDurations.reduce((a, b) => a + b, 0);
+    const completedCourseSeconds = legDurations.reduce((a, b) => a + b, 0);
     const completedPitSeconds = pitDurations.reduce((a, b) => a + b, 0);
     const completedRaceSeconds = completedCourseSeconds + completedPitSeconds;
-    const totalCourseSeconds = completedCourseSeconds + currentLapSeconds;
+    const totalCourseSeconds = completedCourseSeconds + currentLegSeconds;
     const totalPitSeconds = completedPitSeconds + currentPitSeconds;
     const raceSeconds = totalCourseSeconds + totalPitSeconds;
 
-    const lapHours = lapDurations.reduce((a, b) => a + b, 0) / 3600;
-    const avgLap = lapDurations.length ? lapDurations.reduce((a, b) => a + b, 0) / lapDurations.length : null;
-    const lastLap = lapDurations.length ? lapDurations[lapDurations.length - 1] : null;
+    const milesDone = completedDistance.reduce((a, b) => a + b, 0);
+    const milesTotal = race.totalDistance;
+    const avgPaceSecPerMile = milesDone > 0 ? completedCourseSeconds / milesDone : null;
+
+    let lastLegPace = null, lastLegSec = null, lastLegDistance = null;
+    if (legDurations.length > 0) {
+      lastLegSec = legDurations[legDurations.length - 1];
+      lastLegDistance = completedDistance[completedDistance.length - 1];
+      lastLegPace = lastLegDistance > 0 ? lastLegSec / lastLegDistance : null;
+    }
     const avgPit = pitDurations.length ? pitDurations.reduce((a, b) => a + b, 0) / pitDurations.length : null;
     const lastPit = pitDurations.length ? pitDurations[pitDurations.length - 1] : null;
-    const paceSecPerMile = avgLap ? avgLap / race.loopDistance : null;
 
-    const completedEntries = laps.filter(l => l.startTime && l.endTime);
+    const completedEntries = legs.filter(l => l.startTime && l.endTime);
     const totalCal = completedEntries.reduce((a, l) => a + (l.calories || 0), 0);
     const totalFluid = completedEntries.reduce((a, l) => a + (l.fluidOz || 0), 0);
     const totalSodium = completedEntries.reduce((a, l) => a + (l.sodiumMg || 0), 0);
-    const calPerHr = lapHours > 0 ? totalCal / lapHours : 0;
-    const fluidPerHr = lapHours > 0 ? totalFluid / lapHours : 0;
-    const sodiumPerHr = lapHours > 0 ? totalSodium / lapHours : 0;
+    const courseHours = completedCourseSeconds / 3600;
+    const calPerHr = courseHours > 0 ? totalCal / courseHours : 0;
+    const fluidPerHr = courseHours > 0 ? totalFluid / courseHours : 0;
+    const sodiumPerHr = courseHours > 0 ? totalSodium / courseHours : 0;
+
+    const cutoffSec = race.totalCutoffHours * 3600;
+    let projectedFinishSec = null;
+    if (avgPaceSecPerMile != null) {
+      const milesLeft = Math.max(0, milesTotal - milesDone);
+      const stopsLeft = Math.max(0, totalLegs - legsDone - 1);
+      const pitForProjection = avgPit != null ? avgPit : 0;
+      projectedFinishSec = completedRaceSeconds + milesLeft * avgPaceSecPerMile + stopsLeft * pitForProjection;
+    }
 
     let status = 'notstarted';
-    if (lapDurations.length > 0 && avgLap) {
-      const avgPitForProjection = avgPit != null ? avgPit : 0;
-      const projected = (avgLap + avgPitForProjection) * race.totalLoops;
-      const cutoffSec = race.totalCutoffHours * 3600;
-      // "Tight" = projected finish within 2.5% of the cutoff (~57min at a 38h cutoff).
-      // The 35h last-lap-start gate is still shown in the cutoffs bar but isn't what
-      // drives the lap-color status anymore — overall buffer to the final cutoff does.
+    if (finished) {
+      status = 'finished';
+    } else if (avgPaceSecPerMile != null) {
       const tightThreshold = cutoffSec * (1 - 0.025);
-      if (projected > cutoffSec) status = 'offpace';
-      else if (projected > tightThreshold) status = 'tight';
+      if (projectedFinishSec > cutoffSec) status = 'offpace';
+      else if (projectedFinishSec > tightThreshold) status = 'tight';
       else status = 'onpace';
-    } else if (inProgressLap) {
+    } else if (inProgressLeg) {
       status = 'onpace';
     }
 
-    const projectedFinish = avgLap ? (avgLap + (avgPit || 0)) * race.totalLoops : null;
+    // Next cutoff: smallest cumMile cutoff still ahead of runner.
+    const start = new Date(race.startTime);
+    let nextCutoff = null;
+    for (const seg of course) {
+      if (seg.cutoffHoursFromStart == null) continue;
+      if (seg.cumMile <= milesDone + 0.0001) continue;
+      nextCutoff = {
+        seg, atIso: new Date(start.getTime() + seg.cutoffHoursFromStart * 3600 * 1000).toISOString()
+      };
+      break;
+    }
 
-    let liveSince = null, liveLapNumber = null;
-    if (inProgressLap) {
-      liveSince = inProgressLap.startTime;
-      liveLapNumber = inProgressLap.lap;
+    let liveSince = null, liveLegNumber = null;
+    if (inProgressLeg) {
+      liveSince = inProgressLeg.startTime;
+      liveLegNumber = inProgressLeg.leg;
     } else if (inPit && lastCompleted) {
       liveSince = lastCompleted.endTime;
-      liveLapNumber = lastCompleted.lap;
+      liveLegNumber = lastCompleted.leg;
     }
 
     return {
-      lapsDone: lapDurations.length,
-      milesDone: lapDurations.length * race.loopDistance,
+      legsDone, milesDone, milesTotal,
       raceSeconds, totalCourseSeconds, totalPitSeconds,
       completedRaceSeconds, completedCourseSeconds, completedPitSeconds,
-      currentLapSeconds, currentPitSeconds,
-      avgLap, lastLap, avgPit, lastPit, paceSecPerMile,
-      totalCal, totalFluid, totalSodium,
-      calPerHr, fluidPerHr, sodiumPerHr,
-      status, projectedFinish,
-      lapDurations, pitDurations,
-      inPit, inProgressLap: !!inProgressLap,
-      liveSince, liveLapNumber
+      currentLegSeconds, currentPitSeconds,
+      avgPaceSecPerMile, lastLegPace, lastLegSec, lastLegDistance,
+      avgPit, lastPit,
+      totalCal, totalFluid, totalSodium, calPerHr, fluidPerHr, sodiumPerHr,
+      status, projectedFinishSec, nextCutoff,
+      legDurations, completedDistance, pitDurations,
+      inPit, inProgressLeg: !!inProgressLeg, finished,
+      liveSince, liveLegNumber
     };
   }
 
-  function lapClass(durationSec, runnerStatus) {
-    if (durationSec == null) return '';
-    // Lap colors mirror the runner's overall projected status. A slow lap only
-    // earns a yellow/red badge if the projection actually shows tight/off-pace.
-    if (runnerStatus === 'onpace') return 'done';
-    if (durationSec < 3.83 * 3600) return 'done';   // < 3:50 — fine given banked buffer
-    if (durationSec < 4.17 * 3600) return 'slow';   // 3:50 - 4:10 — eating into buffer
-    return 'danger';                                // > 4:10 — over with no margin
+  function legClass(durationSec, distanceMi, runnerStatus, cutoffPaceSecPerMile) {
+    if (durationSec == null || distanceMi == null || distanceMi <= 0) return '';
+    if (runnerStatus === 'onpace' || runnerStatus === 'finished') return 'done';
+    const pace = durationSec / distanceMi;
+    if (pace < cutoffPaceSecPerMile * 0.95) return 'done';
+    if (pace < cutoffPaceSecPerMile) return 'slow';
+    return 'danger';
   }
 
   function intakeClass(actual, target) {
@@ -686,76 +710,108 @@
   }
 
   function statusLabel(s) {
-    return { onpace: 'On Pace', tight: 'Tight', offpace: 'Off Pace', notstarted: 'Not Started' }[s];
+    return {
+      onpace: 'On Pace', tight: 'Tight', offpace: 'Off Pace',
+      notstarted: 'Not Started', finished: 'Finished'
+    }[s];
   }
 
-  function renderCutoffs(race) {
+  function renderCutoffs(race, course, runnerComputed) {
     const start = new Date(race.startTime);
-    const tight = new Date(start.getTime() + race.lastLapStartCutoffHours * 3600 * 1000);
     const final = new Date(start.getTime() + race.totalCutoffHours * 3600 * 1000);
-    const fmt = d => d.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' }) +
-      (d.toDateString() !== start.toDateString() ? ' D2' : '');
+    const next = runnerComputed && runnerComputed.nextCutoff;
+    const startTxt = fmtClockTimeWithDay(start.toISOString(), race.startTime);
+    const finalTxt = fmtClockTimeWithDay(final.toISOString(), race.startTime);
+    const nextHtml = next
+      ? `<div class="cutoff-item warn">
+           <span class="v">${fmtClockTimeWithDay(next.atIso, race.startTime)}</span>
+           <span class="l">${next.seg.to} · M${next.seg.cumMile} · ${next.seg.cutoffHoursFromStart}h</span>
+         </div>`
+      : `<div class="cutoff-item"><span class="v">—</span><span class="l">No upcoming cutoff</span></div>`;
     document.getElementById('cutoffs').innerHTML = `
       <span class="cutoffs-label">Cutoffs</span>
       <div></div>
-      <div class="cutoff-item"><span class="v">${fmt(start)}</span><span class="l">Start</span></div>
-      <div class="cutoff-item warn"><span class="v">${fmt(tight)}</span><span class="l">Last lap start · ${race.lastLapStartCutoffHours}h</span></div>
-      <div class="cutoff-item danger"><span class="v">${fmt(final)}</span><span class="l">Final · ${race.totalCutoffHours}h</span></div>
+      <div class="cutoff-item"><span class="v">${startTxt}</span><span class="l">Start</span></div>
+      ${nextHtml}
+      <div class="cutoff-item danger"><span class="v">${finalTxt}</span><span class="l">Final · ${race.totalCutoffHours}h</span></div>
     `;
   }
 
-  function renderRunner(runner, race) {
-    const c = computeRunner(runner, race);
+  function renderRunner(runner, race, course) {
+    const c = computeRunner(runner, race, course);
     const t = race.targets;
+    const totalLegs = course.length;
+    const cutoffPaceSecPerMile = (race.totalCutoffHours * 3600) / race.totalDistance;
 
-    const lapCells = Array.from({ length: race.totalLoops }, (_, i) => {
-      const idx = i;
-      const dur = c.lapDurations[idx];
-      const isCurrent = idx === c.lapsDone && c.status !== 'notstarted' && c.lapsDone < race.totalLoops;
+    const legCells = course.map((seg, i) => {
+      const legEntry = (runner.legs || []).find(l => l.leg === seg.leg);
+      const dur = (legEntry && legEntry.startTime && legEntry.endTime)
+        ? (new Date(legEntry.endTime) - new Date(legEntry.startTime)) / 1000 : null;
+      const isCurrent = i === c.legsDone && c.status !== 'notstarted' && !c.finished;
       let cls = '';
-      if (dur != null) cls = lapClass(dur, c.status);
+      if (dur != null) cls = legClass(dur, seg.distance, c.status, cutoffPaceSecPerMile);
       if (isCurrent) cls = 'current';
       const text = dur != null
-        ? fmtDuration(dur).replace(/^00:/, '')
+        ? fmtShortDuration(dur)
         : (isCurrent ? '···' : '—');
-      return `<div class="lap-cell ${cls}"><span class="n">L${idx + 1}</span><span class="t">${text}</span></div>`;
+      return `<div class="leg-cell ${cls}" title="L${seg.leg}: ${seg.from} → ${seg.to} (${seg.distance} mi)"><span class="n">L${seg.leg}</span><span class="t">${text}</span></div>`;
     }).join('');
 
-    const lapRows = runner.laps.length === 0
-      ? `<tr class="empty"><td colspan="7" style="text-align:center; padding: 24px;">Awaiting first lap</td></tr>`
-      : runner.laps.map((l, i) => {
+    const legRows = (runner.legs || []).length === 0
+      ? `<tr class="empty"><td colspan="9" style="text-align:center; padding: 24px;">Awaiting first leg</td></tr>`
+      : (runner.legs || []).map((l, i) => {
+          const seg = course[l.leg - 1];
           const dur = (l.startTime && l.endTime)
             ? (new Date(l.endTime) - new Date(l.startTime)) / 1000 : null;
-          const next = runner.laps[i + 1];
+          const pace = (dur != null && seg && seg.distance > 0) ? dur / seg.distance : null;
+          const next = (runner.legs || [])[i + 1];
           let pitSec = null;
           if (l.endTime && next && next.startTime) {
             pitSec = (new Date(next.startTime) - new Date(l.endTime)) / 1000;
-          } else if (l.endTime && !next && c.inPit && i === runner.laps.length - 1) {
+          } else if (l.endTime && !next && c.inPit && i === runner.legs.length - 1) {
             pitSec = c.currentPitSeconds;
           }
           const pitCell = pitSec != null
-            ? fmtDuration(pitSec).replace(/^00:/, '') + (next ? '' : ' <span style="color: var(--accent); font-size: 9px;">●</span>')
+            ? fmtShortDuration(pitSec) + (next ? '' : ' <span style="color: var(--accent); font-size: 9px;">●</span>')
             : '—';
           const noteParts = [l.gearChanges, l.meds, l.issues, l.notes].filter(Boolean);
-          const isOld = (runner.laps.length - 1 - i) >= 2;
-          const oldCls = isOld ? ' lap-old' : '';
+          const isOld = ((runner.legs || []).length - 1 - i) >= 2;
+          const oldCls = isOld ? ' leg-old' : '';
           const noteOldCls = isOld ? ' note-old' : '';
           const noteRow = noteParts.length
-            ? `<tr class="note-row${noteOldCls}"><td colspan="7">${noteParts.join(' · ')}</td></tr>`
+            ? `<tr class="note-row${noteOldCls}"><td colspan="9">${noteParts.join(' · ')}</td></tr>`
             : '';
+          const route = seg
+            ? `<span class="leg-route">${seg.from}<span class="sep">→</span>${seg.to}</span>`
+            : '—';
           return `
-            <tr class="lap-row${oldCls}">
-              <td class="lap-num">${l.lap}</td>
+            <tr class="leg-row${oldCls}">
+              <td class="leg-num">${l.leg}</td>
+              <td>${route}</td>
+              <td class="num">${seg ? seg.distance : '—'}</td>
               <td class="num">${fmtClockTime(l.endTime)}</td>
-              <td class="num">${dur ? fmtDuration(dur).replace(/^00:/, '') : '—'}</td>
+              <td class="num">${dur ? fmtShortDuration(dur) : '—'}</td>
+              <td class="num">${fmtPace(pace)}</td>
               <td class="num">${pitCell}</td>
               <td class="num">${l.calories || 0}</td>
               <td class="num">${l.fluidOz || 0}oz</td>
-              <td class="num">${l.sodiumMg || 0}</td>
             </tr>
             ${noteRow}
           `;
         }).join('');
+
+    const lastLegRouteTxt = c.lastLegSec != null
+      ? (course[(runner.legs || []).filter(l => l.startTime && l.endTime).slice(-1)[0].leg - 1] || {}).to
+      : null;
+
+    const nextCutoffSub = c.nextCutoff
+      ? `${c.nextCutoff.seg.to} · ${fmtClockTimeWithDay(c.nextCutoff.atIso, race.startTime)}`
+      : 'none ahead';
+    const cutoffSec = race.totalCutoffHours * 3600;
+    const bufferSec = c.projectedFinishSec != null ? cutoffSec - c.projectedFinishSec : null;
+    const bufferTxt = bufferSec != null
+      ? (bufferSec >= 0 ? '+' : '−') + fmtShortDuration(Math.abs(bufferSec))
+      : '—';
 
     return `
       <article class="runner">
@@ -769,39 +825,41 @@
 
         <div class="stats">
           <div class="stat">
-            <span class="label">Laps</span>
-            <span class="value">${c.lapsDone}<span style="color: var(--text-muted); font-size: 14px;">/${race.totalLoops}</span></span>
-            <span class="sub">${c.milesDone} mi done</span>
+            <span class="label">Legs</span>
+            <span class="value">${c.legsDone}<span style="color: var(--text-muted); font-size: 14px;">/${totalLegs}</span></span>
+            <span class="sub">${c.milesDone.toFixed(1)} / ${c.milesTotal} mi</span>
           </div>
           <div class="stat">
             <span class="label">Race Time</span>
             <span class="value live-timer" data-base="${c.completedRaceSeconds}" data-since="${c.liveSince || ''}">${fmtDuration(c.raceSeconds)}</span>
             <span class="sub">of ${race.totalCutoffHours}:00:00</span>
           </div>
-          <div class="stat${c.inProgressLap ? ' live' : ''}">
+          <div class="stat${c.inProgressLeg ? ' live' : ''}">
             <span class="label">Course Total</span>
-            <span class="value live-timer" data-base="${c.completedCourseSeconds}" data-since="${c.inProgressLap ? (c.liveSince || '') : ''}">${fmtDuration(c.totalCourseSeconds)}</span>
-            <span class="sub">${c.inProgressLap ? 'on course' : 'running total'}</span>
+            <span class="value live-timer" data-base="${c.completedCourseSeconds}" data-since="${c.inProgressLeg ? (c.liveSince || '') : ''}">${fmtDuration(c.totalCourseSeconds)}</span>
+            <span class="sub">${c.inProgressLeg ? 'on course' : 'running total'}</span>
           </div>
           <div class="stat${c.inPit ? ' live' : ''}">
-            <span class="label">Pit Total</span>
+            <span class="label">Aid Total</span>
             <span class="value live-timer" data-base="${c.completedPitSeconds}" data-since="${c.inPit ? (c.liveSince || '') : ''}">${fmtDuration(c.totalPitSeconds)}</span>
-            <span class="sub">${c.inPit ? 'in pit now' : (c.avgPit != null ? 'avg ' + fmtDuration(c.avgPit) : 'no pit yet')}</span>
+            <span class="sub">${c.inPit ? 'at aid now' : (c.avgPit != null ? 'avg ' + fmtShortDuration(c.avgPit) : 'no stops yet')}</span>
           </div>
           ${(() => {
             let liveCls = '', liveValue = '—', liveSub;
-            if (c.inProgressLap) {
+            if (c.inProgressLeg) {
               liveCls = ' live-course';
-              liveValue = fmtDuration(c.currentLapSeconds);
-              liveSub = `Lap ${c.liveLapNumber} on course`;
+              liveValue = fmtDuration(c.currentLegSeconds);
+              const seg = course[c.liveLegNumber - 1];
+              liveSub = seg ? `Leg ${seg.leg} · → ${seg.to}` : `Leg ${c.liveLegNumber} on course`;
             } else if (c.inPit) {
               liveCls = ' live-pit';
               liveValue = fmtDuration(c.currentPitSeconds);
-              liveSub = `In pit · after lap ${c.liveLapNumber}`;
-            } else if (c.lapsDone >= race.totalLoops && c.lapsDone > 0) {
+              const seg = course[c.liveLegNumber - 1];
+              liveSub = seg ? `At ${seg.to}` : `At aid · after leg ${c.liveLegNumber}`;
+            } else if (c.finished) {
               liveSub = 'finished';
             } else {
-              liveSub = c.lapsDone === 0 ? 'not started' : 'idle';
+              liveSub = c.legsDone === 0 ? 'not started' : 'idle';
             }
             return `
               <div class="stat${liveCls}">
@@ -812,23 +870,23 @@
           })()}
           <div class="stat">
             <span class="label">Pace</span>
-            <span class="value">${fmtPace(c.paceSecPerMile)}</span>
-            <span class="sub">min/mi</span>
+            <span class="value">${fmtPace(c.avgPaceSecPerMile)}</span>
+            <span class="sub">min/mi avg</span>
           </div>
           <div class="stat">
-            <span class="label">Avg Lap</span>
-            <span class="value">${fmtDuration(c.avgLap)}</span>
-            <span class="sub">last: ${fmtDuration(c.lastLap)}</span>
+            <span class="label">Last Leg</span>
+            <span class="value">${fmtPace(c.lastLegPace)}</span>
+            <span class="sub">${c.lastLegSec != null ? fmtShortDuration(c.lastLegSec) + ' · ' + (c.lastLegDistance || '—') + 'mi' : '—'}</span>
           </div>
           <div class="stat">
-            <span class="label">Avg Pit</span>
-            <span class="value">${fmtDuration(c.avgPit)}</span>
-            <span class="sub">last: ${fmtDuration(c.lastPit)}</span>
+            <span class="label">Cutoff Buffer</span>
+            <span class="value">${bufferTxt}</span>
+            <span class="sub">${nextCutoffSub}</span>
           </div>
         </div>
 
         <div class="intake">
-          <div class="intake-title">Intake / Hour</div>
+          <div class="intake-title">Intake / Hour (on course)</div>
           <div class="intake-row">
             <span class="name">Calories</span>
             <div class="bar-track"><div class="bar-fill ${intakeClass(c.calPerHr, t.caloriesPerHour)}" style="width: ${Math.min(100, (c.calPerHr / t.caloriesPerHour) * 100)}%"></div></div>
@@ -849,20 +907,20 @@
           </div>
         </div>
 
-        <div class="laps">
-          <div class="laps-head">
-            <span class="laps-title">Lap Status</span>
+        <div class="legs">
+          <div class="legs-head">
+            <span class="legs-title">Leg Status</span>
             <span style="font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--text-muted);">
-              ${c.lapsDone} done · ${race.totalLoops - c.lapsDone} to go
+              ${c.legsDone} done · ${totalLegs - c.legsDone} to go
             </span>
           </div>
-          <div class="laps-grid">${lapCells}</div>
-          <div class="laplog ${laplogCollapsed(runner.id, (runner.laps || []).length) ? 'collapsed' : ''}" data-runner="${runner.id}">
-            ${(runner.laps || []).length > 2 ? `
-              <div class="laplog-head" data-action="toggle-laplog" data-runner="${runner.id}">
-                <span class="laplog-head-title">Lap Log</span>
-                <span class="laplog-head-toggle">
-                  <span class="when-collapsed">Show all ${runner.laps.length}</span>
+          <div class="legs-grid">${legCells}</div>
+          <div class="leglog ${leglogCollapsed(runner.id, (runner.legs || []).length) ? 'collapsed' : ''}" data-runner="${runner.id}">
+            ${(runner.legs || []).length > 2 ? `
+              <div class="leglog-head" data-action="toggle-leglog" data-runner="${runner.id}">
+                <span class="leglog-head-title">Leg Log</span>
+                <span class="leglog-head-toggle">
+                  <span class="when-collapsed">Show all ${runner.legs.length}</span>
                   <span class="when-expanded">Show recent 2</span>
                 </span>
               </div>
@@ -870,11 +928,12 @@
             <table>
               <thead>
                 <tr>
-                  <th>#</th><th>Done</th><th class="num">Lap</th><th class="num">Pit</th>
-                  <th class="num">Cal</th><th class="num">Fluid</th><th class="num">Na</th>
+                  <th>#</th><th>Route</th><th class="num">Mi</th><th class="num">Done</th>
+                  <th class="num">Time</th><th class="num">Pace</th><th class="num">Aid</th>
+                  <th class="num">Cal</th><th class="num">Fluid</th>
                 </tr>
               </thead>
-              <tbody>${lapRows}</tbody>
+              <tbody>${legRows}</tbody>
             </table>
           </div>
         </div>
@@ -916,10 +975,15 @@
       if (!res.ok) throw new Error('Failed to load data.json');
       raceData = await res.json();
       lastFetchAt = new Date();
-      renderCutoffs(raceData.race);
+      const course = buildCourseIndex(raceData.race);
+      const computed = raceData.runners.map(r => computeRunner(r, raceData.race, course));
+      // Course meta header
+      document.getElementById('course-meta').textContent =
+        `· ${course.length} legs · ${raceData.race.totalDistance} mi · +${raceData.race.totalGainFt.toLocaleString()} ft`;
+      renderCutoffs(raceData.race, course, computed[0]);
       document.getElementById('runners').innerHTML =
-        raceData.runners.map(r => renderRunner(r, raceData.race)).join('');
-      renderRaceStats(raceData.race);
+        raceData.runners.map(r => renderRunner(r, raceData.race, course)).join('');
+      renderRaceStats(raceData.race, course);
       document.getElementById('error').style.display = 'none';
       updateLastUpdatedLabel();
       tick();
@@ -943,52 +1007,30 @@
     document.getElementById('last-updated').textContent = lu + live;
   }
 
-  function renderRaceStats(race) {
+  function renderRaceStats(race, course) {
     const el = document.getElementById('race-stats');
     if (!raceData || !raceData.runners || raceData.runners.length === 0) { el.hidden = true; return; }
+    const totalLegs = course.length;
     const allFinished = raceData.runners.every(r => {
-      const done = (r.laps || []).filter(l => l.startTime && l.endTime).length;
-      return done >= race.totalLoops;
+      const done = (r.legs || []).filter(l => l.startTime && l.endTime).length;
+      return done >= totalLegs;
     });
     if (!allFinished) { el.hidden = true; return; }
     el.hidden = false;
 
     const stats = raceData.runners.map(r => {
-      const completed = (r.laps || []).filter(l => l.startTime && l.endTime);
-      const allLaps = r.laps || [];
+      const completed = (r.legs || []).filter(l => l.startTime && l.endTime);
       const cal = completed.reduce((a, l) => a + (l.calories || 0), 0);
       const fluidOz = completed.reduce((a, l) => a + (l.fluidOz || 0), 0);
       const sodium = completed.reduce((a, l) => a + (l.sodiumMg || 0), 0);
-      const start = new Date(allLaps[0].startTime);
+      const start = new Date(completed[0].startTime);
       const end = new Date(completed[completed.length - 1].endTime);
       const totalSec = (end - start) / 1000;
       const courseSec = completed.reduce((a, l) =>
         a + (new Date(l.endTime) - new Date(l.startTime)) / 1000, 0);
       const pitSec = totalSec - courseSec;
-      let tailwindMl = 0;
-      for (const l of completed) {
-        const text = l.notes || '';
-        for (const m of text.matchAll(/(\d+(?:\.\d+)?)\s*mL\s+Tailwind/gi)) {
-          tailwindMl += parseFloat(m[1]);
-        }
-        for (const m of text.matchAll(/(\d+(?:\.\d+)?)\s*(?:x|×)?\s*flasks?\s+Tailwind/gi)) {
-          tailwindMl += parseFloat(m[1]) * 500;
-        }
-        for (const m of text.matchAll(/(\d+(?:\.\d+)?)\s*(?:x|×)?\s*Tailwind\s+flasks?/gi)) {
-          tailwindMl += parseFloat(m[1]) * 500;
-        }
-        for (const m of text.matchAll(/(\d+(?:\.\d+)?)\s*(?:x|×)?\s*flasks?\s*\+\s*\d+\s*mL\s+Tailwind/gi)) {
-          tailwindMl += parseFloat(m[1]) * 500;
-        }
-      }
-      const tailwindScoops = tailwindMl / 500;
-      const tailwindCal = tailwindScoops * 200;
-      const tailwindNa = tailwindScoops * 620;
-      return { runner: r, cal, fluidOz, sodium, totalSec, courseSec, pitSec,
-               tailwindScoops, tailwindMl, tailwindCal, tailwindNa };
+      return { runner: r, cal, fluidOz, sodium, totalSec, courseSec, pitSec };
     });
-
-    const tw = stats.reduce((a, b) => b.tailwindScoops > a.tailwindScoops ? b : a, stats[0]);
 
     const fmtH = sec => {
       const h = Math.floor(sec / 3600);
@@ -996,61 +1038,45 @@
       return `${h}h ${m}m`;
     };
     const ozToL = oz => (oz * 0.0295735).toFixed(1);
-    const ozToGal = oz => (oz / 128).toFixed(1);
 
-    const calLines = stats.map(s =>
-      `<strong>${s.cal.toLocaleString()}</strong> cal (${s.runner.name})`
-    ).join(' / ');
-    const fluidLines = stats.map(s =>
-      `<strong>${ozToL(s.fluidOz)} L</strong> (${s.runner.name})`
-    ).join(' / ');
-    const sodiumLines = stats.map(s =>
-      `<strong>${(s.sodium/1000).toFixed(1)} g</strong> (${s.runner.name})`
-    ).join(' / ');
-
-    const totalSec = stats[0].totalSec;
-    const courseSec = stats[0].courseSec;
-    const pitSec = stats[0].pitSec;
-
+    const s = stats[0];
     el.innerHTML = `
-      <div class="subtitle">Finished · 100 miles · both runners</div>
+      <div class="subtitle">Finished · ${race.totalDistance} mi · ${course.length} legs · +${race.totalGainFt.toLocaleString()} ft</div>
       <h2>The Race · in <em>Numbers</em></h2>
       <ul>
-        <li>${calLines} — more than <strong>4× a normal day's intake</strong>. Estimated burn ~12,000-13,000 cal each, so a 3-4k cal deficit per runner. Par for an ultra.</li>
-        <li>${fluidLines} of fluid consumed. That's a <strong>~${ozToGal(Math.max(...stats.map(s=>s.fluidOz)))}-gallon</strong> water jug for the higher-volume runner.</li>
-        <li>${sodiumLines} cumulative sodium. Daily adult recommendation is ~1.5 g — they each hit <strong>5-7×</strong> that on their own.</li>
-        <li><strong>${fmtH(totalSec)}</strong> total race time — <strong>${fmtH(courseSec)}</strong> on course, <strong>${fmtH(pitSec)}</strong> in pit. Lap 10 was the slowest at <strong>~3:53</strong> for both, but they crossed within <strong>1 second</strong> of each other.</li>
-        <li><strong>${tw.runner.name}</strong> ran on a Tailwind drip: <strong>~${tw.tailwindScoops.toFixed(1)} scoops</strong>, ~${(tw.tailwindMl/1000).toFixed(1)} L of mixed drink, ~${tw.tailwindCal.toLocaleString()} cal (<strong>${Math.round(tw.tailwindCal/tw.cal*100)}%</strong> of total cal), ~${(tw.tailwindNa/1000).toFixed(1)} g sodium (<strong>${Math.round(tw.tailwindNa/tw.sodium*100)}%</strong> of total sodium).</li>
-        <li>Cumulative ibuprofen: Jasmine ~14-15 doses, Oppenheimer ~16-17 (with one Tylenol detour at pit 8). Hydration stayed strong throughout — the urine-color check held.</li>
+        <li><strong>${s.cal.toLocaleString()} cal</strong> consumed over ${course.length} legs. Estimated burn for a 100-miler with ~19k ft of climbing is around <strong>14,000–16,000 cal</strong> — a real deficit, eaten back in the days after.</li>
+        <li><strong>${ozToL(s.fluidOz)} L</strong> of fluid through aid stations. High-altitude air is dry — fluid loss runs higher than it feels.</li>
+        <li><strong>${(s.sodium/1000).toFixed(1)} g</strong> cumulative sodium. Adult daily recommendation is ~1.5 g — this is many days' worth in one effort.</li>
+        <li><strong>${fmtH(s.totalSec)}</strong> total race time — <strong>${fmtH(s.courseSec)}</strong> moving, <strong>${fmtH(s.pitSec)}</strong> at aid stations.</li>
       </ul>
     `;
   }
 
-  const LAPLOG_KEY = 'dashboard-laplog-collapsed-v1';
-  function loadLaplogState() {
-    try { return JSON.parse(localStorage.getItem(LAPLOG_KEY) || '{}'); }
+  const LEGLOG_KEY = 'dashboard-leglog-collapsed-v1';
+  function loadLeglogState() {
+    try { return JSON.parse(localStorage.getItem(LEGLOG_KEY) || '{}'); }
     catch (e) { return {}; }
   }
-  function saveLaplogState(s) {
-    try { localStorage.setItem(LAPLOG_KEY, JSON.stringify(s)); } catch (e) {}
+  function saveLeglogState(s) {
+    try { localStorage.setItem(LEGLOG_KEY, JSON.stringify(s)); } catch (e) {}
   }
-  function laplogCollapsed(runnerId, lapCount) {
-    if (lapCount <= 2) return false;
-    const s = loadLaplogState();
+  function leglogCollapsed(runnerId, legCount) {
+    if (legCount <= 2) return false;
+    const s = loadLeglogState();
     return s[runnerId] !== false;
   }
 
   document.addEventListener('click', (e) => {
-    const t = e.target.closest('[data-action="toggle-laplog"]');
+    const t = e.target.closest('[data-action="toggle-leglog"]');
     if (!t) return;
     const id = t.dataset.runner;
-    const log = t.closest('.laplog');
+    const log = t.closest('.leglog');
     if (!log) return;
     const nowCollapsed = !log.classList.contains('collapsed');
     log.classList.toggle('collapsed', nowCollapsed);
-    const s = loadLaplogState();
+    const s = loadLeglogState();
     s[id] = nowCollapsed;
-    saveLaplogState(s);
+    saveLeglogState(s);
   });
 
   document.getElementById('print-btn').addEventListener('click', () => {

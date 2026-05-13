@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="theme-color" content="#0c0d10" />
-<title>Pit Board · 100-Mile Race</title>
+<title>Pit Board · Sangre de Cristo 100</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -63,10 +63,9 @@
   a.nav-link:hover, a.nav-link:active { color: var(--text); border-color: var(--border-bright); }
 
   #runners {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    display: grid; grid-template-columns: 1fr; gap: 16px;
     margin-bottom: 24px;
   }
-  @media (max-width: 760px) { #runners { grid-template-columns: 1fr; } }
 
   .runner {
     background: var(--bg-card); border: 1px solid var(--border);
@@ -100,6 +99,7 @@
   .state-course { color: var(--accent); }
   .state-pit { color: var(--green); }
   .state-idle { color: var(--text-muted); }
+  .state-done  { color: var(--blue); }
 
   .state-timer {
     padding: 14px 20px; display: flex; justify-content: space-between;
@@ -117,19 +117,30 @@
   .runner.course .state-timer .value { color: var(--accent); }
   .runner.pit .state-timer .value { color: var(--green); }
 
+  .where {
+    padding: 12px 20px; border-bottom: 1px solid var(--border);
+    font-family: 'JetBrains Mono', monospace; font-size: 12px;
+    color: var(--text-dim);
+    display: flex; gap: 10px; align-items: center; flex-wrap: wrap;
+  }
+  .where strong { color: var(--text); font-weight: 600; }
+  .where .arrow { color: var(--text-muted); }
+
   .big-btn {
     display: block; width: 100%;
     padding: 28px 16px;
     background: var(--bg-elevated);
     color: var(--text); border: none; border-bottom: 1px solid var(--border);
     font-family: 'JetBrains Mono', monospace;
-    font-size: 18px; font-weight: 700;
+    font-size: 16px; font-weight: 700;
     letter-spacing: 0.05em; text-transform: uppercase;
     cursor: pointer; user-select: none;
     transition: background 0.15s ease, transform 0.05s ease;
+    line-height: 1.4;
   }
   .big-btn:hover { background: #1f222a; }
   .big-btn:active { transform: scale(0.98); background: #2a2e38; }
+  .big-btn:disabled { opacity: 0.5; cursor: not-allowed; }
   .big-btn.out {
     background: linear-gradient(180deg, rgba(255, 107, 61, 0.18), rgba(255, 107, 61, 0.06));
     color: var(--accent); border-top: 1px solid rgba(255, 107, 61, 0.3);
@@ -291,7 +302,7 @@
       <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">github.com/settings/personal-access-tokens/new</a>
       with <strong>Repository access → Only select repositories</strong> (this repo) and <strong>Repository permissions → Contents: Read and write</strong>.
       Set expiration to a few weeks. Revoke after the race.
-      The token is stored in this device's localStorage and used only to commit lap times via the GitHub API.
+      The token is stored in this device's localStorage and used only to commit leg times via the GitHub API.
     </div>
     <div class="row"><label>Token</label><input type="password" id="cfg-token" placeholder="github_pat_..." autocomplete="off" spellcheck="false" /></div>
     <div class="row"><label>Owner</label><input type="text" id="cfg-owner" autocomplete="off" spellcheck="false" /></div>
@@ -323,10 +334,9 @@
 
 <script>
   const RUNNERS = [
-    { id: 'jasmine', name: 'Jasmine' },
-    { id: 'oppenheimer', name: 'Oppenheimer' }
+    { id: 'jason', name: 'Jason' }
   ];
-  const STORAGE_KEY = 'pit-board-events-v1';
+  const STORAGE_KEY = 'pit-board-events-v2';
   const CONFIG_KEY = 'pit-board-config-v1';
   let raceData = null;
 
@@ -353,30 +363,67 @@
     } catch (e) { return false; }
   }
 
-  function deriveStateFromLaps(laps) {
-    if (!laps || laps.length === 0) {
-      return { currentState: 'idle', currentLap: 0, nextAction: 'out', nextLap: 1, lastTs: null };
+  function getSegments() {
+    return (raceData && raceData.race && raceData.race.segments) || [];
+  }
+
+  function deriveStateFromLegs(legs, segments) {
+    const totalLegs = segments.length;
+    if (!legs || legs.length === 0) {
+      const first = segments[0];
+      return {
+        currentState: 'idle', currentLeg: 0,
+        nextAction: 'out', nextLeg: 1,
+        nextSeg: first || null, lastTs: null
+      };
     }
-    let bestTs = null, bestAction = null, bestLap = null;
-    for (const l of laps) {
+    let bestTs = null, bestAction = null, bestLeg = null;
+    for (const l of legs) {
       if (l.startTime && (!bestTs || new Date(l.startTime) > new Date(bestTs))) {
-        bestTs = l.startTime; bestAction = 'out'; bestLap = l.lap;
+        bestTs = l.startTime; bestAction = 'out'; bestLeg = l.leg;
       }
       if (l.endTime && (!bestTs || new Date(l.endTime) > new Date(bestTs))) {
-        bestTs = l.endTime; bestAction = 'in'; bestLap = l.lap;
+        bestTs = l.endTime; bestAction = 'in'; bestLeg = l.leg;
       }
     }
-    if (!bestTs) return { currentState: 'idle', currentLap: 0, nextAction: 'out', nextLap: 1, lastTs: null };
-    if (bestAction === 'out') {
-      return { currentState: 'on-course', currentLap: bestLap, nextAction: 'in', nextLap: bestLap, lastTs: bestTs };
+    if (!bestTs) {
+      return {
+        currentState: 'idle', currentLeg: 0,
+        nextAction: 'out', nextLeg: 1,
+        nextSeg: segments[0] || null, lastTs: null
+      };
     }
-    return { currentState: 'in-pit', currentLap: bestLap, nextAction: 'out', nextLap: bestLap + 1, lastTs: bestTs };
+    if (bestAction === 'out') {
+      // Runner is on leg `bestLeg`, going toward segment.to.
+      const seg = segments[bestLeg - 1];
+      return {
+        currentState: 'on-course', currentLeg: bestLeg,
+        nextAction: 'in', nextLeg: bestLeg,
+        nextSeg: seg, lastTs: bestTs
+      };
+    }
+    // bestAction === 'in' → runner just finished leg `bestLeg` and is at segment.to.
+    if (bestLeg >= totalLegs) {
+      return {
+        currentState: 'finished', currentLeg: bestLeg,
+        nextAction: null, nextLeg: null,
+        nextSeg: null, lastTs: bestTs
+      };
+    }
+    const justFinished = segments[bestLeg - 1];
+    const nextLeg = bestLeg + 1;
+    const nextSeg = segments[nextLeg - 1];
+    return {
+      currentState: 'in-pit', currentLeg: bestLeg,
+      nextAction: 'out', nextLeg: nextLeg,
+      nextSeg: nextSeg, currentSeg: justFinished, lastTs: bestTs
+    };
   }
 
   function getRunnerStateRemote(runnerId) {
     if (!raceData) return null;
     const runner = (raceData.runners || []).find(r => r.id === runnerId);
-    return deriveStateFromLaps((runner && runner.laps) || []);
+    return deriveStateFromLegs((runner && runner.legs) || [], getSegments());
   }
 
   async function syncFromDataJson() {
@@ -390,19 +437,19 @@
         if (!store[r.id]) store[r.id] = { events: [] };
         const events = store[r.id].events;
         const remoteRunner = (data.runners || []).find(x => x.id === r.id);
-        const remoteLaps = (remoteRunner && remoteRunner.laps) || [];
-        for (const lap of remoteLaps) {
-          if (lap.startTime) {
-            const id = `seed-${r.id}-${lap.lap}-out`;
+        const remoteLegs = (remoteRunner && remoteRunner.legs) || [];
+        for (const leg of remoteLegs) {
+          if (leg.startTime) {
+            const id = `seed-${r.id}-${leg.leg}-out`;
             if (!events.some(e => e.id === id)) {
-              events.push({ id, ts: lap.startTime, action: 'out', lap: lap.lap, sent: true, syncStatus: 'synced' });
+              events.push({ id, ts: leg.startTime, action: 'out', leg: leg.leg, sent: true, syncStatus: 'synced' });
               changed = true;
             }
           }
-          if (lap.endTime) {
-            const id = `seed-${r.id}-${lap.lap}-in`;
+          if (leg.endTime) {
+            const id = `seed-${r.id}-${leg.leg}-in`;
             if (!events.some(e => e.id === id)) {
-              events.push({ id, ts: lap.endTime, action: 'in', lap: lap.lap, sent: true, syncStatus: 'synced' });
+              events.push({ id, ts: leg.endTime, action: 'in', leg: leg.leg, sent: true, syncStatus: 'synced' });
               changed = true;
             }
           }
@@ -416,7 +463,7 @@
 
   function detectDefaults() {
     const host = location.hostname;
-    let owner = 'jpdupree', repo = 'BloodRoot';
+    let owner = 'jpdupree', repo = 'sangre-de-cristo-100';
     if (host.endsWith('.github.io')) {
       owner = host.split('.')[0];
       const parts = location.pathname.split('/').filter(Boolean);
@@ -472,26 +519,31 @@
     const config = loadConfig();
     if (!config || !config.token) throw new Error('Not connected');
     const runnerName = (RUNNERS.find(r => r.id === runnerId) || {}).name || runnerId;
+    const segments = getSegments();
+    const seg = segments[ev.leg - 1];
+    const segLabel = seg ? `${seg.from} → ${seg.to}` : `leg ${ev.leg}`;
 
     for (let attempt = 0; attempt < 4; attempt++) {
       const { sha, content } = await ghGetData(config);
       const runner = (content.runners || []).find(r => r.id === runnerId);
       if (!runner) throw new Error(`Runner "${runnerId}" not found in data.json`);
-      if (!runner.laps) runner.laps = [];
+      if (!runner.legs) runner.legs = [];
 
-      let lap = runner.laps.find(l => l.lap === ev.lap);
-      if (!lap) {
-        lap = { lap: ev.lap };
-        runner.laps.push(lap);
-        runner.laps.sort((a, b) => a.lap - b.lap);
+      let leg = runner.legs.find(l => l.leg === ev.leg);
+      if (!leg) {
+        leg = { leg: ev.leg };
+        runner.legs.push(leg);
+        runner.legs.sort((a, b) => a.leg - b.leg);
       }
       const field = ev.action === 'out' ? 'startTime' : 'endTime';
-      if (lap[field] === ev.ts) return; // already applied
-      lap[field] = ev.ts;
+      if (leg[field] === ev.ts) return; // already applied
+      leg[field] = ev.ts;
       content.lastUpdated = new Date().toISOString();
 
       const time = new Date(ev.ts).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit', second: '2-digit' });
-      const action = ev.action === 'out' ? `signed out for lap ${ev.lap}` : `signed in (lap ${ev.lap} done)`;
+      const action = ev.action === 'out'
+        ? `departed for leg ${ev.leg} (${segLabel})`
+        : `arrived at ${seg ? seg.to : 'leg ' + ev.leg}`;
       const message = `pit-board: ${runnerName} ${action} at ${time}`;
 
       try {
@@ -543,25 +595,18 @@
     return (store[id] && store[id].events) || [];
   }
 
-  function getRunnerState(id) {
-    const events = getRunnerEvents(id);
-    if (events.length === 0) return { events: [], lastAction: null, currentLap: 0, lastTs: null };
-    const last = events[events.length - 1];
-    const outCount = events.filter(e => e.action === 'out').length;
-    return { events, lastAction: last.action, currentLap: outCount, lastTs: last.ts };
-  }
-
   async function press(runnerId) {
     await loadRaceData();
     const remote = getRunnerStateRemote(runnerId);
     if (!remote) { alert('Could not load race data — check connection and try again.'); return; }
+    if (!remote.nextAction) { alert('Already finished.'); return; }
     const action = remote.nextAction;
-    const lap = remote.nextLap;
+    const leg = remote.nextLeg;
     const now = new Date();
     const ev = {
       id: now.getTime() + '-' + Math.random().toString(36).slice(2, 6),
       ts: now.toISOString(),
-      action, lap, sent: false,
+      action, leg, sent: false,
       syncStatus: hasToken() ? 'syncing' : 'queued'
     };
     const store = loadStore();
@@ -571,14 +616,14 @@
     if (raceData) {
       const runner = (raceData.runners || []).find(r => r.id === runnerId);
       if (runner) {
-        if (!runner.laps) runner.laps = [];
-        let lapEntry = runner.laps.find(l => l.lap === lap);
-        if (!lapEntry) {
-          lapEntry = { lap };
-          runner.laps.push(lapEntry);
-          runner.laps.sort((a, b) => a.lap - b.lap);
+        if (!runner.legs) runner.legs = [];
+        let legEntry = runner.legs.find(l => l.leg === leg);
+        if (!legEntry) {
+          legEntry = { leg };
+          runner.legs.push(legEntry);
+          runner.legs.sort((a, b) => a.leg - b.leg);
         }
-        lapEntry[action === 'out' ? 'startTime' : 'endTime'] = ev.ts;
+        legEntry[action === 'out' ? 'startTime' : 'endTime'] = ev.ts;
       }
     }
     render();
@@ -652,9 +697,15 @@
   }
 
   function eventMessage(runnerName, ev) {
+    const segments = getSegments();
+    const seg = segments[ev.leg - 1];
     const time = fmtClock(ev.ts);
-    if (ev.action === 'out') return `${runnerName} signed out for lap ${ev.lap} at ${time}`;
-    return `${runnerName} signed in (lap ${ev.lap} done) at ${time}`;
+    if (ev.action === 'out') {
+      const dest = seg ? ` (leg ${ev.leg}: ${seg.from} → ${seg.to})` : ` for leg ${ev.leg}`;
+      return `${runnerName} departed${dest} at ${time}`;
+    }
+    const at = seg ? seg.to : `leg ${ev.leg}`;
+    return `${runnerName} arrived at ${at} (leg ${ev.leg} done) at ${time}`;
   }
 
   function getUnsentText() {
@@ -744,32 +795,61 @@
   function renderRunner(runner) {
     const remote = getRunnerStateRemote(runner.id);
     const localEvents = getRunnerEvents(runner.id);
+    const segments = getSegments();
 
-    let onCourse = false, inPit = false, idle = true;
-    let stateLabel = 'Loading…', stateClass = 'idle';
+    let stateClass = 'idle';
+    let stateLabel = 'Loading…';
     let buttonLabel = 'Loading…', buttonAction = '', buttonDisabled = true;
     let lastTs = null, timerLabel = 'Time in current state';
+    let whereHtml = '';
 
     if (remote) {
       buttonDisabled = false;
       if (remote.currentState === 'on-course') {
-        onCourse = true; idle = false;
-        stateLabel = 'On Course'; stateClass = 'course';
-        buttonLabel = `Sign In · End Lap ${remote.nextLap}`;
+        stateClass = 'course';
+        stateLabel = 'On Course';
+        const seg = remote.nextSeg;
+        buttonLabel = seg
+          ? `Sign In · Arrived at ${seg.to} (leg ${remote.nextLeg})`
+          : `Sign In · End Leg ${remote.nextLeg}`;
         buttonAction = 'in';
         lastTs = remote.lastTs;
         timerLabel = 'On course for';
+        whereHtml = seg
+          ? `<span>Leg <strong>${remote.nextLeg}</strong></span><span class="arrow">·</span><span>${seg.from}<span class="arrow"> → </span><strong>${seg.to}</strong></span><span class="arrow">·</span><span>${seg.distance} mi</span>`
+          : '';
       } else if (remote.currentState === 'in-pit') {
-        inPit = true; idle = false;
-        stateLabel = 'In Pit'; stateClass = 'pit';
-        buttonLabel = `Sign Out · Start Lap ${remote.nextLap}`;
+        stateClass = 'pit';
+        stateLabel = 'At Aid';
+        const at = remote.currentSeg ? remote.currentSeg.to : `AS after leg ${remote.currentLeg}`;
+        const nextSeg = remote.nextSeg;
+        buttonLabel = nextSeg
+          ? `Sign Out · Depart ${at}, start leg ${remote.nextLeg} → ${nextSeg.to}`
+          : `Sign Out · Start leg ${remote.nextLeg}`;
         buttonAction = 'out';
         lastTs = remote.lastTs;
-        timerLabel = 'In pit for';
+        timerLabel = `At ${at}`;
+        whereHtml = `<span>At <strong>${at}</strong></span>` +
+          (nextSeg ? `<span class="arrow">·</span><span>Next: leg <strong>${remote.nextLeg}</strong> → <strong>${nextSeg.to}</strong> · ${nextSeg.distance} mi</span>` : '');
+      } else if (remote.currentState === 'finished') {
+        stateClass = 'done';
+        stateLabel = 'Finished';
+        buttonLabel = 'Finished';
+        buttonDisabled = true;
+        lastTs = remote.lastTs;
+        timerLabel = 'Finished';
+        whereHtml = `<span><strong>Finished</strong></span><span class="arrow">·</span><span>after leg ${remote.currentLeg}</span>`;
       } else {
-        stateLabel = 'Not Started'; stateClass = 'idle';
-        buttonLabel = `Sign Out · Start Lap ${remote.nextLap}`;
+        stateClass = 'idle';
+        stateLabel = 'Not Started';
+        const nextSeg = remote.nextSeg;
+        buttonLabel = nextSeg
+          ? `Sign Out · Start leg 1 → ${nextSeg.to}`
+          : `Sign Out · Start leg 1`;
         buttonAction = 'out';
+        whereHtml = nextSeg
+          ? `<span>Waiting at <strong>${nextSeg.from}</strong></span><span class="arrow">·</span><span>First leg → <strong>${nextSeg.to}</strong> · ${nextSeg.distance} mi</span>`
+          : '';
       }
     }
 
@@ -783,13 +863,19 @@
     };
     const recentHtml = recent.length === 0
       ? '<div class="empty">No events yet</div>'
-      : recent.map(e => `
-          <div class="event ${e.sent ? 'sent' : ''}">
-            <span class="event-action ${e.action}">${e.action === 'out' ? '→ Out, lap ' + e.lap : '← In, lap ' + e.lap}${statusBadge(e)}</span>
-            <span class="event-time" data-action="edit" data-runner="${runner.id}" data-event="${e.id}">${fmtClock(e.ts)}</span>
-            <button class="event-del" data-action="del" data-runner="${runner.id}" data-event="${e.id}" aria-label="Delete">×</button>
-          </div>
-        `).join('');
+      : recent.map(e => {
+          const seg = segments[e.leg - 1];
+          const label = e.action === 'out'
+            ? `→ Depart, leg ${e.leg}${seg ? ' → ' + seg.to : ''}`
+            : `← Arrive, leg ${e.leg}${seg ? ' at ' + seg.to : ''}`;
+          return `
+            <div class="event ${e.sent ? 'sent' : ''}">
+              <span class="event-action ${e.action}">${label}${statusBadge(e)}</span>
+              <span class="event-time" data-action="edit" data-runner="${runner.id}" data-event="${e.id}">${fmtClock(e.ts)}</span>
+              <button class="event-del" data-action="del" data-runner="${runner.id}" data-event="${e.id}" aria-label="Delete">×</button>
+            </div>
+          `;
+        }).join('');
 
     return `
       <article class="runner ${stateClass}">
@@ -801,6 +887,7 @@
           <span class="label">${timerLabel}</span>
           <span class="value runner-timer">—</span>
         </div>
+        ${whereHtml ? `<div class="where">${whereHtml}</div>` : ''}
         <button class="big-btn ${buttonAction}" data-action="press" data-runner="${runner.id}"${buttonDisabled ? ' disabled' : ''}>
           ${buttonLabel}
         </button>

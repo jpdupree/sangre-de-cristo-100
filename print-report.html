@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Race Report · Bloodroot 100</title>
+<title>Race Report · Sangre de Cristo 100</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -11,7 +11,6 @@
       integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
       crossorigin="" />
 <style>
-  /* Paper-first styling: looks like the printed PDF on screen too */
   :root {
     --ink: #111;
     --ink-soft: #333;
@@ -24,8 +23,6 @@
     --green: #1f6e3a;
     --yellow: #8a6700;
     --red: #a82626;
-    --jasmine: #c44a18;
-    --oppenheimer: #1f5e8a;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body {
@@ -38,7 +35,6 @@
   }
   body { padding: 20px 0; }
 
-  /* On-screen "page" preview frame */
   .page {
     background: var(--paper);
     width: 8.5in;
@@ -73,7 +69,6 @@
   .controls .status { color: #555; font-weight: 500; }
   .controls .status.ready { color: var(--green); }
 
-  /* Header */
   .report-head {
     border-bottom: 1px solid #999;
     padding-bottom: 12pt; margin-bottom: 14pt;
@@ -96,7 +91,6 @@
     margin-bottom: 4pt;
   }
 
-  /* Cutoffs */
   .cutoffs {
     background: var(--paper-soft);
     border: 1px solid #bbb;
@@ -115,7 +109,6 @@
   .cutoff-item.warn .v { color: var(--yellow); }
   .cutoff-item.danger .v { color: var(--red); }
 
-  /* Runner cards */
   .runner {
     border: 1px solid #999; border-radius: 4px;
     margin-bottom: 14pt;
@@ -143,6 +136,8 @@
   .status-onpace { color: var(--green); }
   .status-tight { color: var(--yellow); }
   .status-offpace { color: var(--red); }
+  .status-finished { color: #1f5e8a; }
+  .status-notstarted { color: var(--ink-mute); }
 
   .stats {
     display: grid; grid-template-columns: repeat(4, 1fr);
@@ -190,57 +185,59 @@
     color: var(--ink-mute); text-align: right;
   }
 
-  .laps { padding: 10pt 14pt; }
-  .laps-head {
+  .legs { padding: 10pt 14pt; }
+  .legs-head {
     display: flex; justify-content: space-between; align-items: center;
     margin-bottom: 8pt;
   }
-  .laps-title {
+  .legs-title {
     font-family: 'JetBrains Mono', monospace; font-size: 9pt;
     letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-mute);
   }
-  .laps-grid {
-    display: grid; grid-template-columns: repeat(10, 1fr);
-    gap: 4pt; margin-bottom: 10pt;
+  .legs-grid {
+    display: grid; grid-template-columns: repeat(16, 1fr);
+    gap: 3pt; margin-bottom: 10pt;
   }
-  .lap-cell {
+  .leg-cell {
     aspect-ratio: 1; background: white;
     border: 1px solid #999; border-radius: 2pt;
     display: flex; flex-direction: column;
     justify-content: center; align-items: center;
     font-family: 'JetBrains Mono', monospace;
+    padding: 1pt;
   }
-  .lap-cell .n { font-size: 8pt; color: var(--ink-mute); }
-  .lap-cell .t { font-size: 9pt; font-weight: 700; color: var(--ink); }
-  .lap-cell.done   { background: #e1f4e7; border-color: var(--green); }
-  .lap-cell.done   .t { color: var(--green); }
-  .lap-cell.slow   { background: #fbf3d4; border-color: var(--yellow); }
-  .lap-cell.slow   .t { color: var(--yellow); }
-  .lap-cell.danger { background: #fadbdb; border-color: var(--red); }
-  .lap-cell.danger .t { color: var(--red); }
+  .leg-cell .n { font-size: 7pt; color: var(--ink-mute); }
+  .leg-cell .t { font-size: 7.5pt; font-weight: 700; color: var(--ink); }
+  .leg-cell.done   { background: #e1f4e7; border-color: var(--green); }
+  .leg-cell.done   .t { color: var(--green); }
+  .leg-cell.slow   { background: #fbf3d4; border-color: var(--yellow); }
+  .leg-cell.slow   .t { color: var(--yellow); }
+  .leg-cell.danger { background: #fadbdb; border-color: var(--red); }
+  .leg-cell.danger .t { color: var(--red); }
 
-  .laplog table { width: 100%; border-collapse: collapse; font-size: 10pt; }
-  .laplog th {
+  .leglog table { width: 100%; border-collapse: collapse; font-size: 9.5pt; }
+  .leglog th {
     font-family: 'JetBrains Mono', monospace; font-size: 8pt;
     letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-mute);
-    text-align: left; padding: 8pt 6pt 6pt; font-weight: 500;
+    text-align: left; padding: 8pt 4pt 6pt; font-weight: 500;
     border-bottom: 1px solid #999;
   }
-  .laplog th:first-child { padding-left: 0; }
-  .laplog th.num, .laplog td.num { text-align: right; font-family: 'JetBrains Mono', monospace; }
-  .laplog td { padding: 6pt; border-bottom: 1px solid #eee; vertical-align: top; }
-  .laplog td:first-child { padding-left: 0; }
-  .laplog .lap-num {
-    font-family: 'Fraunces', serif; font-size: 13pt; font-weight: 600;
-    color: var(--accent); width: 24pt;
+  .leglog th:first-child { padding-left: 0; }
+  .leglog th.num, .leglog td.num { text-align: right; font-family: 'JetBrains Mono', monospace; }
+  .leglog td { padding: 5pt 4pt; border-bottom: 1px solid #eee; vertical-align: top; }
+  .leglog td:first-child { padding-left: 0; }
+  .leglog .leg-num {
+    font-family: 'Fraunces', serif; font-size: 12pt; font-weight: 600;
+    color: var(--accent); width: 22pt;
   }
-  .laplog tr.lap-row:has(+ tr.note-row) td { border-bottom: none; padding-bottom: 3pt; }
-  .laplog tr.note-row td {
-    padding: 0 6pt 8pt 32pt;
-    font-size: 9pt; color: var(--ink-mute); line-height: 1.5;
+  .leglog .leg-route { font-size: 9pt; color: var(--ink); }
+  .leglog .leg-route .sep { color: var(--ink-mute); margin: 0 3pt; }
+  .leglog tr.leg-row:has(+ tr.note-row) td { border-bottom: none; padding-bottom: 2pt; }
+  .leglog tr.note-row td {
+    padding: 0 4pt 6pt 28pt;
+    font-size: 8.5pt; color: var(--ink-mute); line-height: 1.5;
   }
 
-  /* Course section */
   .section-title {
     font-family: 'Fraunces', serif; font-weight: 600;
     font-size: 20pt; letter-spacing: -0.02em;
@@ -253,39 +250,56 @@
   }
 
   #map {
-    width: 100%; height: 6in;
+    width: 100%; height: 5.5in;
     border: 1px solid #999; border-radius: 4px;
     margin-bottom: 14pt;
     background: #f0f0f0;
   }
   .leaflet-container { background: #f0f0f0; font-family: 'Inter', sans-serif !important; }
 
-  .elev-section {
+  .course-stats {
     border: 1px solid #999; border-radius: 4px; padding: 12pt 14pt;
     page-break-inside: avoid;
+    margin-bottom: 12pt;
   }
-  .elev-head {
+  .course-stats-head {
     display: flex; justify-content: space-between; align-items: baseline;
     margin-bottom: 8pt; flex-wrap: wrap; gap: 8pt;
   }
-  .elev-title {
+  .course-stats-title {
     font-family: 'JetBrains Mono', monospace; font-size: 10pt;
     letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-mute);
   }
-  .elev-stats {
-    font-family: 'JetBrains Mono', monospace; font-size: 10pt;
-    color: var(--ink-soft);
+  .course-stats-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 14pt;
   }
-  .elev-stats strong { color: var(--ink); }
-  #elevation { width: 100%; height: 1.5in; display: block; }
-  .elev-axis {
-    display: flex; justify-content: space-between;
-    font-family: 'JetBrains Mono', monospace; font-size: 8pt;
-    color: var(--ink-mute); letter-spacing: 0.1em;
-    text-transform: uppercase; margin-top: 4pt;
+  .course-stats-grid .item .v {
+    font-family: 'JetBrains Mono', monospace; font-size: 16pt; font-weight: 700;
+  }
+  .course-stats-grid .item .l {
+    font-family: 'JetBrains Mono', monospace; font-size: 9pt;
+    color: var(--ink-mute); letter-spacing: 0.1em; text-transform: uppercase;
   }
 
-  /* Charts */
+  .seg-table { width: 100%; border-collapse: collapse; font-size: 9.5pt; margin-top: 4pt; }
+  .seg-table th {
+    font-family: 'JetBrains Mono', monospace; font-size: 8pt;
+    letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-mute);
+    text-align: left; padding: 8pt 4pt 6pt; font-weight: 500;
+    border-bottom: 1px solid #999;
+  }
+  .seg-table td { padding: 5pt 4pt; border-bottom: 1px solid #eee; vertical-align: top; }
+  .seg-table td.num, .seg-table th.num { text-align: right; font-family: 'JetBrains Mono', monospace; }
+  .seg-table .leg-num {
+    font-family: 'Fraunces', serif; font-size: 11pt; font-weight: 600;
+    color: var(--accent); width: 20pt;
+  }
+  .seg-table .crew-flag {
+    display: inline-block; font-size: 8pt; font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.1em; padding: 1pt 4pt; border-radius: 2pt;
+    color: var(--green); border: 1px solid var(--green);
+  }
+
   .legend {
     display: flex; gap: 16pt; flex-wrap: wrap;
     margin-bottom: 12pt;
@@ -322,7 +336,6 @@
   .target-line { stroke: var(--ink-mute); stroke-width: 1; stroke-dasharray: 4,4; }
   .row-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10pt; }
 
-  /* Race in Numbers */
   .race-stats {
     border: 1px solid #999; border-radius: 4px;
     padding: 14pt 18pt;
@@ -387,12 +400,12 @@
 
 <div class="error" id="error" hidden></div>
 
-<!-- Page 1: Header + cutoffs + runner cards -->
+<!-- Page 1: Header + cutoffs + runner card -->
 <div class="page" id="page-summary">
   <div class="report-head">
     <div>
-      <div class="sub">Race Report · Bloodroot 100 · 10 × 10 mi loops</div>
-      <h1>One Hundred <em>Miles</em></h1>
+      <div class="sub" id="head-sub">Race Report · Sangre de Cristo 100</div>
+      <h1>Sangre de <em>Cristo</em> 100</h1>
     </div>
     <div class="meta" id="head-meta">—</div>
   </div>
@@ -400,63 +413,55 @@
   <div id="runners"></div>
 </div>
 
-<!-- Page 2: Map + elevation -->
+<!-- Page 2: Course map + segment table -->
 <div class="page" id="page-course">
-  <div class="section-title">Course · <em style="color:var(--accent)">Map &amp; Profile</em></div>
-  <div class="section-sub">Pittsfield, VT · 10-mile loop</div>
+  <div class="section-title">Course · <em style="color:var(--accent)">Map &amp; Segments</em></div>
+  <div class="section-sub" id="course-sub">Music Meadows Ranch · Westcliffe, CO</div>
   <div id="map"></div>
-  <section class="elev-section">
-    <div class="elev-head">
-      <span class="elev-title">Elevation Profile · per loop</span>
-      <span class="elev-stats" id="elev-stats">—</span>
+  <section class="course-stats">
+    <div class="course-stats-head">
+      <span class="course-stats-title">Course Stats</span>
     </div>
-    <svg id="elevation" preserveAspectRatio="none" viewBox="0 0 1000 160"></svg>
-    <div class="elev-axis">
-      <span>0 mi · start</span>
-      <span>2.5 mi</span>
-      <span>5 mi · halfway</span>
-      <span>7.5 mi</span>
-      <span>10 mi · finish</span>
+    <div class="course-stats-grid" id="course-stats-grid"></div>
+  </section>
+  <section class="course-stats">
+    <div class="course-stats-head">
+      <span class="course-stats-title">Segment Table</span>
     </div>
+    <table class="seg-table" id="seg-table"></table>
   </section>
 </div>
 
 <!-- Page 3+: Charts -->
 <div class="page" id="page-charts-1">
   <div class="section-title">Race · <em style="color:var(--accent)">Charts</em></div>
-  <div class="section-sub">Pace, deltas, pit times, intake, cumulative progress</div>
+  <div class="section-sub">Pace per leg · deltas · aid holds · intake · progress vs cutoffs</div>
   <div class="legend" id="legend"></div>
 
   <section class="chart-card">
-    <h2>1. Lap Time Trend</h2>
-    <p class="explainer">Each completed lap's time as a solid line. The meta below shows projected finish vs the 38h cutoff using lap+pit cycle time.</p>
-    <svg id="chart-lap-time" class="chart-svg" viewBox="0 0 1000 360"></svg>
-    <div class="meta" id="chart-lap-time-meta">—</div>
+    <h2>1. Leg Pace</h2>
+    <p class="explainer">Each completed leg's pace (min/mi). The meta below shows projected finish vs the 38h cutoff using recent-2-leg average pace + average aid hold.</p>
+    <svg id="chart-leg-pace" class="chart-svg" viewBox="0 0 1000 320"></svg>
+    <div class="meta" id="chart-leg-pace-meta">—</div>
   </section>
 
   <section class="chart-card">
-    <h2>2. Mile Pace</h2>
-    <p class="explainer">Same data as #1 expressed in min/mile — the unit runners actually think in.</p>
-    <svg id="chart-mile-pace" class="chart-svg" viewBox="0 0 1000 280"></svg>
+    <h2>2. Leg-to-Leg Pace Delta</h2>
+    <p class="explainer">How much slower (red, above zero) or faster (green, below) each leg's pace was vs the previous. In min/mi. Big positive numbers signal fade.</p>
+    <svg id="chart-leg-delta" class="chart-svg" viewBox="0 0 1000 220"></svg>
   </section>
 </div>
 
 <div class="page" id="page-charts-2">
   <section class="chart-card">
-    <h2>3. Lap-to-Lap Delta</h2>
-    <p class="explainer">How much slower (red, above zero) or faster (green, below) each lap was vs the previous. Yellow = within ±1 min. Big positive numbers signal fade.</p>
-    <svg id="chart-lap-delta" class="chart-svg" viewBox="0 0 1000 240"></svg>
+    <h2>3. Aid Station Holds</h2>
+    <p class="explainer">Time at each aid station. Green ≤ 5 min, yellow 5–15 min, red &gt; 15 min.</p>
+    <svg id="chart-aid-time" class="chart-svg" viewBox="0 0 1000 260"></svg>
   </section>
 
   <section class="chart-card">
-    <h2>4. Pit Times</h2>
-    <p class="explainer">Time at each pit stop. Color-coded: green ≤ 15 min, yellow 15–25 min, red &gt; 25 min.</p>
-    <svg id="chart-pit-time" class="chart-svg" viewBox="0 0 1000 240"></svg>
-  </section>
-
-  <section class="chart-card">
-    <h2>5. Intake Rate (per lap+pit cycle)</h2>
-    <p class="explainer">Per-hour calorie, fluid, and sodium intake by lap, treating each lap+pit as one cycle. Dashed line is the target.</p>
+    <h2>4. Intake Rate (per leg+aid cycle)</h2>
+    <p class="explainer">Per-hour calorie, fluid, and sodium intake by leg. Dashed line is the target.</p>
     <div class="row-3">
       <div><svg id="chart-intake-cal" class="chart-svg" viewBox="0 0 320 220"></svg></div>
       <div><svg id="chart-intake-fluid" class="chart-svg" viewBox="0 0 320 220"></svg></div>
@@ -467,8 +472,8 @@
 
 <div class="page" id="page-charts-3">
   <section class="chart-card">
-    <h2>6. Cumulative Progress vs Cutoffs</h2>
-    <p class="explainer">Miles done over race-clock elapsed. The diagonal is the constant pace that lands at the 38h cutoff; the yellow line is the 35h "lap 10 must start" gate; the red line is the 38h finish cutoff.</p>
+    <h2>5. Cumulative Progress vs Cutoffs</h2>
+    <p class="explainer">Miles done over race-clock elapsed. Dashed diagonal is the constant pace that lands at the final cutoff; yellow dots mark each intermediate AS cutoff; the red vertical is the 38h finish cutoff.</p>
     <svg id="chart-cumulative" class="chart-svg" viewBox="0 0 1000 360"></svg>
   </section>
 
@@ -479,18 +484,27 @@
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
         crossorigin=""></script>
 <script>
-  const RUNNER_COLORS = { jasmine: '#c44a18', oppenheimer: '#1f5e8a' };
+  const RUNNER_COLOR = '#c44a18';
   let raceData = null;
-  let gpxPoints = [];
-  let totalDistance = 0;
+  let gpxTrack = [];
+  let gpxWaypoints = [];
+  let totalDistanceMeters = 0;
 
-  // ---------- shared helpers ----------
+  // ---------- helpers ----------
   function fmtDuration(sec) {
     if (sec == null || isNaN(sec) || sec < 0) return '—';
     const h = Math.floor(sec / 3600);
     const m = Math.floor((sec % 3600) / 60);
     const s = Math.floor(sec % 60);
     return `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+  }
+  function fmtShortDuration(sec) {
+    if (sec == null || isNaN(sec) || sec < 0) return '—';
+    const h = Math.floor(sec / 3600);
+    const m = Math.floor((sec % 3600) / 60);
+    const s = Math.floor(sec % 60);
+    if (h) return `${h}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+    return `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
   }
   function fmtPace(secPerMile) {
     if (secPerMile == null || isNaN(secPerMile)) return '—';
@@ -511,20 +525,39 @@
     if (!iso) return '—';
     return new Date(iso).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
   }
-  function lapDurationSec(lap) {
-    if (!lap || !lap.startTime || !lap.endTime) return null;
-    return (new Date(lap.endTime) - new Date(lap.startTime)) / 1000;
+  function fmtClockTimeWithDay(iso, raceStartIso) {
+    if (!iso) return '—';
+    const d = new Date(iso);
+    const start = raceStartIso ? new Date(raceStartIso) : null;
+    const time = d.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+    if (!start) return time;
+    const sd = new Date(start); sd.setHours(0,0,0,0);
+    const dd = new Date(d); dd.setHours(0,0,0,0);
+    const dayDiff = Math.round((dd - sd) / 86400000);
+    if (dayDiff <= 0) return time;
+    if (dayDiff === 1) return time + ' D2';
+    return time + ` D${dayDiff + 1}`;
   }
-  function pitDurationSec(thisLap, nextLap) {
-    if (!thisLap || !thisLap.endTime || !nextLap || !nextLap.startTime) return null;
-    return (new Date(nextLap.startTime) - new Date(thisLap.endTime)) / 1000;
+  function legDurationSec(leg) {
+    if (!leg || !leg.startTime || !leg.endTime) return null;
+    return (new Date(leg.endTime) - new Date(leg.startTime)) / 1000;
+  }
+  function aidDurationSec(thisLeg, nextLeg) {
+    if (!thisLeg || !thisLeg.endTime || !nextLeg || !nextLeg.startTime) return null;
+    return (new Date(nextLeg.startTime) - new Date(thisLeg.endTime)) / 1000;
   }
   function recentAvg(arr, n) {
     const tail = arr.slice(-n);
     return tail.length ? tail.reduce((a,b)=>a+b,0) / tail.length : null;
   }
+  function buildCourseIndex(race) {
+    let cum = 0;
+    return race.segments.map(s => {
+      cum += s.distance;
+      return { ...s, cumMile: +cum.toFixed(2) };
+    });
+  }
   function metersToMiles(m) { return m / 1609.344; }
-  function metersToFeet(m) { return m * 3.28084; }
   function haversine(lat1, lon1, lat2, lon2) {
     const R = 6371000;
     const toRad = d => d * Math.PI / 180;
@@ -533,7 +566,6 @@
     const a = Math.sin(dLat/2)**2 + Math.cos(toRad(lat1))*Math.cos(toRad(lat2))*Math.sin(dLon/2)**2;
     return 2 * R * Math.asin(Math.sqrt(a));
   }
-
   function setStatus(text, ready) {
     const s = document.getElementById('status');
     s.textContent = text;
@@ -546,65 +578,82 @@
   }
 
   // ---------- runner card ----------
-  function computeRunner(runner, race) {
-    const laps = runner.laps || [];
-    const lapDurations = [];
+  function computeRunner(runner, race, course) {
+    const legs = runner.legs || [];
+    const totalLegs = course.length;
+    const legDurations = [];
+    const completedDist = [];
     const pitDurations = [];
-    for (let i = 0; i < laps.length; i++) {
-      const l = laps[i];
-      if (l.startTime && l.endTime) lapDurations.push((new Date(l.endTime) - new Date(l.startTime)) / 1000);
-      const next = laps[i+1];
-      if (l.endTime && next && next.startTime) pitDurations.push((new Date(next.startTime) - new Date(l.endTime)) / 1000);
+    for (let i = 0; i < legs.length; i++) {
+      const l = legs[i];
+      const seg = course[l.leg - 1];
+      if (l.startTime && l.endTime) {
+        legDurations.push(legDurationSec(l));
+        completedDist.push(seg ? seg.distance : 0);
+      }
+      const next = legs[i+1];
+      if (l.endTime && next && next.startTime) {
+        pitDurations.push(aidDurationSec(l, next));
+      }
     }
-    const completed = laps.filter(l => l.startTime && l.endTime);
+    const completed = legs.filter(l => l.startTime && l.endTime);
     const totalCal = completed.reduce((a,l)=>a+(l.calories||0),0);
     const totalFluid = completed.reduce((a,l)=>a+(l.fluidOz||0),0);
     const totalSodium = completed.reduce((a,l)=>a+(l.sodiumMg||0),0);
-    const lapHours = lapDurations.reduce((a,b)=>a+b,0) / 3600;
-    const calPerHr = lapHours > 0 ? totalCal/lapHours : 0;
-    const fluidPerHr = lapHours > 0 ? totalFluid/lapHours : 0;
-    const sodiumPerHr = lapHours > 0 ? totalSodium/lapHours : 0;
-    const avgLap = lapDurations.length ? lapDurations.reduce((a,b)=>a+b,0)/lapDurations.length : null;
-    const avgPit = pitDurations.length ? pitDurations.reduce((a,b)=>a+b,0)/pitDurations.length : null;
-    const lastLap = lapDurations.length ? lapDurations[lapDurations.length-1] : null;
-    const lastPit = pitDurations.length ? pitDurations[pitDurations.length-1] : null;
-    const paceSecPerMile = avgLap ? avgLap/race.loopDistance : null;
+    const courseHours = legDurations.reduce((a,b)=>a+b,0) / 3600;
+    const calPerHr = courseHours > 0 ? totalCal/courseHours : 0;
+    const fluidPerHr = courseHours > 0 ? totalFluid/courseHours : 0;
+    const sodiumPerHr = courseHours > 0 ? totalSodium/courseHours : 0;
+    const milesDone = completedDist.reduce((a,b)=>a+b,0);
+    const avgPaceSecPerMile = milesDone > 0 ? legDurations.reduce((a,b)=>a+b,0) / milesDone : null;
+    const lastLegSec = legDurations.length ? legDurations[legDurations.length-1] : null;
+    const lastLegDist = completedDist.length ? completedDist[completedDist.length-1] : null;
+    const lastLegPace = (lastLegSec != null && lastLegDist > 0) ? lastLegSec / lastLegDist : null;
+    const avgAid = pitDurations.length ? pitDurations.reduce((a,b)=>a+b,0)/pitDurations.length : null;
+    const lastAid = pitDurations.length ? pitDurations[pitDurations.length-1] : null;
 
-    let status = 'onpace';
-    if (lapDurations.length > 0 && avgLap) {
-      const proj = (avgLap + (avgPit||0)) * race.totalLoops;
-      const cutoffSec = race.totalCutoffHours * 3600;
-      // "Tight" = projected finish within 2.5% of the cutoff (~57min at 38h).
+    let status = 'notstarted';
+    const cutoffSec = race.totalCutoffHours * 3600;
+    let projectedFinishSec = null;
+    if (legDurations.length >= totalLegs) {
+      status = 'finished';
+    } else if (avgPaceSecPerMile != null) {
+      const milesLeft = Math.max(0, race.totalDistance - milesDone);
+      const stopsLeft = Math.max(0, totalLegs - legDurations.length - 1);
+      const aidForProj = avgAid != null ? avgAid : 0;
+      projectedFinishSec = legDurations.reduce((a,b)=>a+b,0) + pitDurations.reduce((a,b)=>a+b,0)
+        + milesLeft * avgPaceSecPerMile + stopsLeft * aidForProj;
       const tightThreshold = cutoffSec * (1 - 0.025);
-      if (proj > cutoffSec) status = 'offpace';
-      else if (proj > tightThreshold) status = 'tight';
+      if (projectedFinishSec > cutoffSec) status = 'offpace';
+      else if (projectedFinishSec > tightThreshold) status = 'tight';
+      else status = 'onpace';
     }
 
     let totalSec = null, courseSec = null, pitSec = null;
-    if (laps[0]?.startTime && completed.length === race.totalLoops) {
-      const start = new Date(laps[0].startTime);
+    if (legs[0]?.startTime && completed.length === totalLegs) {
+      const start = new Date(legs[0].startTime);
       const end = new Date(completed[completed.length-1].endTime);
       totalSec = (end - start) / 1000;
-      courseSec = lapDurations.reduce((a,b)=>a+b,0);
+      courseSec = legDurations.reduce((a,b)=>a+b,0);
       pitSec = totalSec - courseSec;
     }
 
     return {
-      lapsDone: lapDurations.length,
-      milesDone: lapDurations.length * race.loopDistance,
-      avgLap, lastLap, avgPit, lastPit, paceSecPerMile,
-      totalCal, totalFluid, totalSodium,
-      calPerHr, fluidPerHr, sodiumPerHr,
-      status, totalSec, courseSec, pitSec,
-      lapDurations
+      legsDone: legDurations.length, milesDone, milesTotal: race.totalDistance,
+      avgPaceSecPerMile, lastLegPace, lastLegSec, lastLegDist,
+      avgAid, lastAid,
+      totalCal, totalFluid, totalSodium, calPerHr, fluidPerHr, sodiumPerHr,
+      status, totalSec, courseSec, pitSec, projectedFinishSec,
+      legDurations, completedDist, pitDurations
     };
   }
 
-  function lapClass(durSec, runnerStatus) {
-    if (durSec == null) return '';
-    if (runnerStatus === 'onpace') return 'done';
-    if (durSec < 3.83 * 3600) return 'done';
-    if (durSec < 4.17 * 3600) return 'slow';
+  function legClass(durationSec, distMi, runnerStatus, cutoffPaceSecPerMile) {
+    if (durationSec == null || distMi == null || distMi <= 0) return '';
+    if (runnerStatus === 'onpace' || runnerStatus === 'finished') return 'done';
+    const pace = durationSec / distMi;
+    if (pace < cutoffPaceSecPerMile * 0.95) return 'done';
+    if (pace < cutoffPaceSecPerMile) return 'slow';
     return 'danger';
   }
   function intakeClass(actual, target) {
@@ -615,39 +664,53 @@
     return 'low';
   }
   function statusLabel(s) {
-    return { onpace: 'On Pace', tight: 'Tight', offpace: 'Off Pace' }[s] || s;
+    return { onpace: 'On Pace', tight: 'Tight', offpace: 'Off Pace',
+             notstarted: 'Not Started', finished: 'Finished' }[s] || s;
   }
 
-  function renderRunner(runner, race) {
-    const c = computeRunner(runner, race);
+  function renderRunner(runner, race, course) {
+    const c = computeRunner(runner, race, course);
     const t = race.targets;
+    const totalLegs = course.length;
+    const cutoffPace = (race.totalCutoffHours * 3600) / race.totalDistance;
 
-    const lapCells = Array.from({ length: race.totalLoops }, (_, i) => {
-      const dur = c.lapDurations[i];
-      const cls = dur != null ? lapClass(dur, c.status) : '';
-      const text = dur != null ? fmtDuration(dur).replace(/^00:/, '') : '—';
-      return `<div class="lap-cell ${cls}"><span class="n">L${i+1}</span><span class="t">${text}</span></div>`;
+    const legCells = course.map((seg) => {
+      const entry = (runner.legs || []).find(l => l.leg === seg.leg);
+      const dur = entry ? legDurationSec(entry) : null;
+      const cls = dur != null ? legClass(dur, seg.distance, c.status, cutoffPace) : '';
+      const text = dur != null ? fmtShortDuration(dur) : '—';
+      return `<div class="leg-cell ${cls}"><span class="n">L${seg.leg}</span><span class="t">${text}</span></div>`;
     }).join('');
 
-    const lapRows = (runner.laps || []).map((l, i) => {
-      const dur = (l.startTime && l.endTime) ? (new Date(l.endTime) - new Date(l.startTime)) / 1000 : null;
-      const next = runner.laps[i+1];
-      const pitSec = (l.endTime && next && next.startTime) ? (new Date(next.startTime) - new Date(l.endTime)) / 1000 : null;
+    const legRows = (runner.legs || []).map((l, i) => {
+      const seg = course[l.leg - 1];
+      const dur = legDurationSec(l);
+      const pace = (dur != null && seg && seg.distance > 0) ? dur / seg.distance : null;
+      const next = (runner.legs || [])[i+1];
+      const aid = (l.endTime && next && next.startTime) ? aidDurationSec(l, next) : null;
       const noteParts = [l.gearChanges, l.meds, l.issues, l.notes].filter(Boolean);
       const noteRow = noteParts.length
-        ? `<tr class="note-row"><td colspan="7">${noteParts.join(' · ')}</td></tr>`
+        ? `<tr class="note-row"><td colspan="9">${noteParts.join(' · ')}</td></tr>`
         : '';
+      const route = seg
+        ? `<span class="leg-route">${seg.from}<span class="sep">→</span>${seg.to}</span>`
+        : '—';
       return `
-        <tr class="lap-row">
-          <td class="lap-num">${l.lap}</td>
+        <tr class="leg-row">
+          <td class="leg-num">${l.leg}</td>
+          <td>${route}</td>
+          <td class="num">${seg ? seg.distance : '—'}</td>
           <td class="num">${fmtClockTime(l.endTime)}</td>
-          <td class="num">${dur ? fmtDuration(dur).replace(/^00:/, '') : '—'}</td>
-          <td class="num">${pitSec != null ? fmtDuration(pitSec).replace(/^00:/, '') : '—'}</td>
+          <td class="num">${dur ? fmtShortDuration(dur) : '—'}</td>
+          <td class="num">${fmtPace(pace)}</td>
+          <td class="num">${aid != null ? fmtShortDuration(aid) : '—'}</td>
           <td class="num">${l.calories || 0}</td>
           <td class="num">${l.fluidOz || 0}oz</td>
-          <td class="num">${l.sodiumMg || 0}</td>
         </tr>${noteRow}`;
     }).join('');
+
+    const lastLegSub = c.lastLegSec != null
+      ? `${fmtShortDuration(c.lastLegSec)} · ${c.lastLegDist || '—'}mi` : '—';
 
     return `
       <article class="runner">
@@ -660,9 +723,9 @@
         </div>
         <div class="stats">
           <div class="stat">
-            <span class="label">Laps</span>
-            <span class="value">${c.lapsDone}<span style="color:var(--ink-mute); font-size: 10pt;">/${race.totalLoops}</span></span>
-            <span class="sub">${c.milesDone} mi done</span>
+            <span class="label">Legs</span>
+            <span class="value">${c.legsDone}<span style="color:var(--ink-mute); font-size: 10pt;">/${totalLegs}</span></span>
+            <span class="sub">${c.milesDone.toFixed(1)} / ${c.milesTotal} mi</span>
           </div>
           <div class="stat">
             <span class="label">Total Time</span>
@@ -672,27 +735,27 @@
           <div class="stat">
             <span class="label">Course Time</span>
             <span class="value">${c.courseSec != null ? fmtDuration(c.courseSec) : '—'}</span>
-            <span class="sub">running on course</span>
+            <span class="sub">moving</span>
           </div>
           <div class="stat">
-            <span class="label">Pit Time</span>
+            <span class="label">Aid Time</span>
             <span class="value">${c.pitSec != null ? fmtDuration(c.pitSec) : '—'}</span>
-            <span class="sub">${c.avgPit != null ? 'avg ' + fmtDuration(c.avgPit) : '—'}</span>
+            <span class="sub">${c.avgAid != null ? 'avg ' + fmtShortDuration(c.avgAid) : '—'}</span>
           </div>
           <div class="stat">
             <span class="label">Pace</span>
-            <span class="value">${fmtPace(c.paceSecPerMile)}</span>
-            <span class="sub">min/mi</span>
+            <span class="value">${fmtPace(c.avgPaceSecPerMile)}</span>
+            <span class="sub">min/mi avg</span>
           </div>
           <div class="stat">
-            <span class="label">Avg Lap</span>
-            <span class="value">${fmtDuration(c.avgLap)}</span>
-            <span class="sub">last: ${fmtDuration(c.lastLap)}</span>
+            <span class="label">Last Leg</span>
+            <span class="value">${fmtPace(c.lastLegPace)}</span>
+            <span class="sub">${lastLegSub}</span>
           </div>
           <div class="stat">
-            <span class="label">Avg Pit</span>
-            <span class="value">${fmtDuration(c.avgPit)}</span>
-            <span class="sub">last: ${fmtDuration(c.lastPit)}</span>
+            <span class="label">Last Aid</span>
+            <span class="value">${fmtShortDuration(c.lastAid)}</span>
+            <span class="sub">${c.avgAid != null ? 'avg ' + fmtShortDuration(c.avgAid) : '—'}</span>
           </div>
           <div class="stat">
             <span class="label">Calories</span>
@@ -701,7 +764,7 @@
           </div>
         </div>
         <div class="intake">
-          <div class="intake-title">Intake / Hour</div>
+          <div class="intake-title">Intake / Hour (on course)</div>
           <div class="intake-row">
             <span class="name">Calories</span>
             <div class="bar-track"><div class="bar-fill ${intakeClass(c.calPerHr, t.caloriesPerHour)}" style="width:${Math.min(100,(c.calPerHr/t.caloriesPerHour)*100)}%"></div></div>
@@ -721,23 +784,24 @@
             <span class="target">/ ${t.sodiumMgPerHour} mg</span>
           </div>
         </div>
-        <div class="laps">
-          <div class="laps-head">
-            <span class="laps-title">Lap Status</span>
+        <div class="legs">
+          <div class="legs-head">
+            <span class="legs-title">Leg Status</span>
             <span style="font-family:'JetBrains Mono',monospace; font-size: 9pt; color: var(--ink-mute);">
-              ${c.lapsDone} done · ${race.totalLoops - c.lapsDone} to go
+              ${c.legsDone} done · ${totalLegs - c.legsDone} to go
             </span>
           </div>
-          <div class="laps-grid">${lapCells}</div>
-          <div class="laplog">
+          <div class="legs-grid">${legCells}</div>
+          <div class="leglog">
             <table>
               <thead>
                 <tr>
-                  <th>#</th><th>Done</th><th class="num">Lap</th><th class="num">Pit</th>
-                  <th class="num">Cal</th><th class="num">Fluid</th><th class="num">Na</th>
+                  <th>#</th><th>Route</th><th class="num">Mi</th><th class="num">Done</th>
+                  <th class="num">Time</th><th class="num">Pace</th><th class="num">Aid</th>
+                  <th class="num">Cal</th><th class="num">Fluid</th>
                 </tr>
               </thead>
-              <tbody>${lapRows}</tbody>
+              <tbody>${legRows}</tbody>
             </table>
           </div>
         </div>
@@ -745,40 +809,49 @@
   }
 
   function renderHeadMeta(race) {
-    const start = new Date(race.startTime);
+    const runner = raceData.runners[0];
+    const completed = (runner.legs||[]).filter(l => l.startTime && l.endTime);
     let totalSec = null;
-    raceData.runners.forEach(r => {
-      const completed = (r.laps||[]).filter(l => l.startTime && l.endTime);
-      if (completed.length === race.totalLoops && r.laps[0]?.startTime) {
-        const s = new Date(r.laps[0].startTime);
-        const e = new Date(completed[completed.length-1].endTime);
-        const t = (e - s) / 1000;
-        if (totalSec == null || t < totalSec) totalSec = t;
-      }
-    });
+    if (completed.length === race.segments.length && runner.legs[0]?.startTime) {
+      const s = new Date(runner.legs[0].startTime);
+      const e = new Date(completed[completed.length-1].endTime);
+      totalSec = (e - s) / 1000;
+    }
+    const start = new Date(race.startTime);
     const dateStr = start.toLocaleDateString([], { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' });
     const timeStr = totalSec != null ? fmtDuration(totalSec) : 'In progress';
     document.getElementById('head-meta').innerHTML =
       `<div class="big">${timeStr}</div>` +
-      `<div>${dateStr} · Pittsfield, VT</div>`;
+      `<div>${dateStr} · Westcliffe, CO</div>`;
+    document.getElementById('head-sub').textContent =
+      `Race Report · Sangre de Cristo 100 · ${race.segments.length} legs · ${race.totalDistance} mi`;
   }
 
-  function renderCutoffs(race) {
+  function renderCutoffs(race, course, computed) {
     const start = new Date(race.startTime);
-    const tight = new Date(start.getTime() + race.lastLapStartCutoffHours*3600*1000);
-    const final = new Date(start.getTime() + race.totalCutoffHours*3600*1000);
-    const fmt = d => d.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' }) +
-      (d.toDateString() !== start.toDateString() ? ' D2' : '');
+    const final = new Date(start.getTime() + race.totalCutoffHours * 3600 * 1000);
+    let next = null;
+    for (const seg of course) {
+      if (seg.cutoffHoursFromStart == null) continue;
+      if (seg.cumMile <= computed.milesDone + 0.0001) continue;
+      next = { seg, atIso: new Date(start.getTime() + seg.cutoffHoursFromStart * 3600 * 1000).toISOString() };
+      break;
+    }
+    const startTxt = fmtClockTimeWithDay(start.toISOString(), race.startTime);
+    const finalTxt = fmtClockTimeWithDay(final.toISOString(), race.startTime);
+    const nextHtml = next
+      ? `<div class="cutoff-item warn"><span class="v">${fmtClockTimeWithDay(next.atIso, race.startTime)}</span><span class="l">${next.seg.to} · M${next.seg.cumMile} · ${next.seg.cutoffHoursFromStart}h</span></div>`
+      : `<div class="cutoff-item"><span class="v">—</span><span class="l">No upcoming cutoff</span></div>`;
     document.getElementById('cutoffs').innerHTML = `
       <span class="cutoffs-label">Cutoffs</span>
       <div></div>
-      <div class="cutoff-item"><span class="v">${fmt(start)}</span><span class="l">Start</span></div>
-      <div class="cutoff-item warn"><span class="v">${fmt(tight)}</span><span class="l">Last lap start · ${race.lastLapStartCutoffHours}h</span></div>
-      <div class="cutoff-item danger"><span class="v">${fmt(final)}</span><span class="l">Final · ${race.totalCutoffHours}h</span></div>
+      <div class="cutoff-item"><span class="v">${startTxt}</span><span class="l">Start</span></div>
+      ${nextHtml}
+      <div class="cutoff-item danger"><span class="v">${finalTxt}</span><span class="l">Final · ${race.totalCutoffHours}h</span></div>
     `;
   }
 
-  // ---------- map + elevation ----------
+  // ---------- map ----------
   async function loadGPX() {
     const res = await fetch('course.gpx?_=' + Date.now(), { cache: 'no-store' });
     if (!res.ok) throw new Error('Failed to load course.gpx');
@@ -786,288 +859,286 @@
     const xml = new DOMParser().parseFromString(text, 'text/xml');
     if (xml.querySelector('parsererror')) throw new Error('Invalid GPX');
     const trkpts = Array.from(xml.querySelectorAll('trkpt'));
-    const pts = trkpts.map(p => {
-      const eleEl = p.querySelector('ele');
-      return {
-        lat: parseFloat(p.getAttribute('lat')),
-        lon: parseFloat(p.getAttribute('lon')),
-        ele: eleEl ? parseFloat(eleEl.textContent) : 0
-      };
-    });
-    let cum = 0; pts[0].dist = 0;
+    const pts = trkpts.map(p => ({
+      lat: parseFloat(p.getAttribute('lat')),
+      lon: parseFloat(p.getAttribute('lon'))
+    }));
+    let cum = 0; if (pts.length) pts[0].dist = 0;
     for (let i = 1; i < pts.length; i++) {
       cum += haversine(pts[i-1].lat, pts[i-1].lon, pts[i].lat, pts[i].lon);
       pts[i].dist = cum;
     }
-    return pts;
+    const wpts = Array.from(xml.querySelectorAll('wpt')).map(w => ({
+      lat: parseFloat(w.getAttribute('lat')),
+      lon: parseFloat(w.getAttribute('lon')),
+      name: (w.querySelector('name')?.textContent) || ''
+    }));
+    return { track: pts, waypoints: wpts };
   }
 
   function setupMap() {
     const map = L.map('map', { zoomControl: false, attributionControl: true, scrollWheelZoom: false })
-      .setView([gpxPoints[0].lat, gpxPoints[0].lon], 14);
-
-    // Light-paper friendly tiles
+      .setView([gpxTrack[0].lat, gpxTrack[0].lon], 12);
     const tiles = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png', {
       attribution: '&copy; OpenStreetMap &copy; CARTO',
       subdomains: 'abcd', maxZoom: 19
     }).addTo(map);
+    const latlngs = gpxTrack.map(p => [p.lat, p.lon]);
+    L.polyline(latlngs, { color: '#c44a18', weight: 3.5, opacity: 0.95 }).addTo(map);
 
-    const latlngs = gpxPoints.map(p => [p.lat, p.lon]);
-    L.polyline(latlngs, { color: '#c44a18', weight: 4, opacity: 0.95 }).addTo(map);
-    L.circleMarker([gpxPoints[0].lat, gpxPoints[0].lon], {
-      radius: 8, color: '#111', weight: 2, fillColor: '#f5c451', fillOpacity: 1
-    }).addTo(map).bindTooltip('Start / Finish · Pit', { direction: 'top', offset: [0,-10], permanent: false });
+    gpxWaypoints.forEach(w => {
+      const isMM = /Music Meadows/i.test(w.name);
+      const fill = isMM ? '#1f6e3a' : '#f5c451';
+      const stroke = isMM ? '#0f3d20' : '#7a5e00';
+      L.circleMarker([w.lat, w.lon], {
+        radius: 6, color: stroke, weight: 1.5, fillColor: fill, fillOpacity: 1
+      }).addTo(map).bindTooltip(w.name, { direction: 'top', offset: [0,-8], permanent: false });
+    });
 
     const bounds = L.latLngBounds(latlngs);
-    map.fitBounds(bounds, { padding: [30, 30] });
-
+    map.fitBounds(bounds, { padding: [24, 24] });
     return new Promise(resolve => {
-      let resolved = false;
-      const done = () => { if (!resolved) { resolved = true; resolve(); } };
-      tiles.on('load', done);
-      // Safety timeout in case tile load event doesn't fire
-      setTimeout(done, 6000);
+      let done = false;
+      const ok = () => { if (!done) { done = true; resolve(); } };
+      tiles.on('load', ok);
+      setTimeout(ok, 6000);
     });
   }
 
-  function setupElevation() {
-    const eles = gpxPoints.map(p => p.ele);
-    const elevMin = Math.min(...eles);
-    const elevMax = Math.max(...eles);
-    const range = Math.max(1, elevMax - elevMin);
-    const W = 1000, H = 160, padTop = 8, padBot = 8;
-    const usableH = H - padTop - padBot;
+  function renderCourseStats(race) {
+    const totalMi = metersToMiles(totalDistanceMeters);
+    const items = [
+      { v: race.totalDistance, l: 'miles (chart)' },
+      { v: totalMi.toFixed(1), l: 'miles (GPX)' },
+      { v: '+' + race.totalGainFt.toLocaleString() + ' ft', l: 'climbing' },
+      { v: '−' + race.totalLossFt.toLocaleString() + ' ft', l: 'descent' }
+    ];
+    document.getElementById('course-stats-grid').innerHTML =
+      items.map(i => `<div class="item"><div class="v">${i.v}</div><div class="l">${i.l}</div></div>`).join('');
+  }
 
-    let gainM = 0;
-    for (let i = 1; i < gpxPoints.length; i++) {
-      const dz = gpxPoints[i].ele - gpxPoints[i-1].ele;
-      if (dz > 0) gainM += dz;
+  function renderSegmentTable(race, course) {
+    let html = `
+      <thead>
+        <tr>
+          <th>#</th><th>From</th><th>To</th>
+          <th class="num">Mi</th><th class="num">Cum</th>
+          <th class="num">Crew</th><th class="num">Cutoff</th>
+        </tr>
+      </thead><tbody>`;
+    const start = new Date(race.startTime);
+    for (const seg of course) {
+      const crewLabel = seg.crewAccess === 'all' ? '✓' :
+                       (seg.crewAccess === 'C1' || seg.crewAccess === 'C2') ? seg.crewAccess :
+                       '';
+      const crewCell = crewLabel ? `<span class="crew-flag">${crewLabel}</span>` : '';
+      const cutoffCell = seg.cutoffHoursFromStart != null
+        ? fmtClockTimeWithDay(new Date(start.getTime() + seg.cutoffHoursFromStart * 3600 * 1000).toISOString(), race.startTime)
+        : '—';
+      html += `
+        <tr>
+          <td class="leg-num">${seg.leg}</td>
+          <td>${seg.from}</td>
+          <td>${seg.to}</td>
+          <td class="num">${seg.distance}</td>
+          <td class="num">${seg.cumMile}</td>
+          <td class="num">${crewCell}</td>
+          <td class="num">${cutoffCell}</td>
+        </tr>`;
     }
-    const gainPerLapFt = Math.round(metersToFeet(gainM));
-
-    const points = gpxPoints.map(p => {
-      const x = (p.dist / totalDistance) * W;
-      const y = padTop + usableH - ((p.ele - elevMin) / range) * usableH;
-      return [x, y];
-    });
-    const lineD = points.map((p,i)=>(i===0?'M':'L')+p[0].toFixed(1)+','+p[1].toFixed(1)).join(' ');
-    const fillD = lineD + ` L${W},${H} L0,${H} Z`;
-
-    document.getElementById('elevation').innerHTML = `
-      <defs>
-        <linearGradient id="elev-grad" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="rgba(196, 74, 24, 0.32)" />
-          <stop offset="100%" stop-color="rgba(196, 74, 24, 0.04)" />
-        </linearGradient>
-      </defs>
-      <path d="${fillD}" fill="url(#elev-grad)" />
-      <path d="${lineD}" stroke="#c44a18" stroke-width="1.5" fill="none" />
-    `;
-
-    document.getElementById('elev-stats').innerHTML =
-      `<strong>${metersToMiles(totalDistance).toFixed(2)} mi</strong> loop · ` +
-      `<strong>${gainPerLapFt.toLocaleString()} ft</strong> gain / lap · ` +
-      `<strong>${(gainPerLapFt * 10).toLocaleString()} ft</strong> over 10 laps`;
+    html += `</tbody>`;
+    document.getElementById('seg-table').innerHTML = html;
   }
 
-  // ---------- charts (adapted from charts.html, paper colors) ----------
+  // ---------- charts ----------
   function renderLegend() {
-    const html = raceData.runners.map(r => {
-      const color = RUNNER_COLORS[r.id] || '#111';
-      return `<span class="legend-item"><span class="legend-dot" style="background:${color}"></span>${r.name}</span>`;
-    }).join('');
+    const html =
+      `<span class="legend-item"><span class="legend-dot" style="background:${RUNNER_COLOR}"></span>${raceData.runners[0].name}</span>` +
+      `<span class="legend-item" style="color:var(--ink-mute)">— actual</span>` +
+      `<span class="legend-item" style="color:var(--ink-mute)">- - projected (recent-2 avg)</span>` +
+      `<span class="legend-item" style="color:var(--yellow)">● AS cutoff</span>`;
     document.getElementById('legend').innerHTML = html;
   }
 
-  function renderLapTimeChart() {
-    const svg = document.getElementById('chart-lap-time');
-    const W = 1000, H = 360;
-    const m = { left: 60, right: 30, top: 24, bottom: 36 };
+  function renderLegPaceChart() {
+    const svg = document.getElementById('chart-leg-pace');
+    const W = 1000, H = 320;
+    const m = { left: 70, right: 30, top: 22, bottom: 36 };
     const innerW = W - m.left - m.right, innerH = H - m.top - m.bottom;
-    const totalLoops = raceData.race.totalLoops;
-    const runners = raceData.runners.map(r => ({ runner: r, durations: (r.laps||[]).map(lapDurationSec) }));
-    const allDurs = runners.flatMap(r => r.durations).filter(d => d != null);
-    if (!allDurs.length) { svg.innerHTML = ''; return; }
-    const yMin = Math.floor(Math.min(...allDurs) * 0.9 / 600) * 600;
-    const yMax = Math.ceil(Math.max(...allDurs) * 1.18 / 600) * 600;
-    const xScale = i => m.left + (i/(totalLoops-1)) * innerW;
-    const yScale = sec => m.top + innerH - ((sec - yMin)/(yMax - yMin)) * innerH;
+    const course = buildCourseIndex(raceData.race);
+    const totalLegs = course.length;
+    const cutoffPace = (raceData.race.totalCutoffHours * 3600) / raceData.race.totalDistance;
+    const runner = raceData.runners[0];
+
+    const paces = course.map(seg => {
+      const e = (runner.legs||[]).find(l => l.leg === seg.leg);
+      const s = e ? legDurationSec(e) : null;
+      return (s != null && seg.distance > 0) ? s / seg.distance : null;
+    });
+    const completed = paces.filter(p => p != null);
+    if (!completed.length) {
+      svg.innerHTML = `<text class="axis-label" x="${W/2}" y="${H/2}" text-anchor="middle">Awaiting first leg</text>`;
+      document.getElementById('chart-leg-pace-meta').textContent = '—';
+      return;
+    }
+    const yMinData = Math.min(...completed);
+    const yMaxData = Math.max(...completed, cutoffPace);
+    const yMin = Math.floor(Math.min(yMinData, cutoffPace * 0.5) / 120) * 120;
+    const yMax = Math.ceil(yMaxData * 1.15 / 120) * 120;
+    const xScale = i => m.left + (i / (totalLegs - 1)) * innerW;
+    const yScale = p => m.top + innerH - ((p - yMin) / (yMax - yMin)) * innerH;
+
     let html = '';
-    for (let t = yMin; t <= yMax; t += 1800) {
+    for (let t = yMin; t <= yMax; t += 120) {
       const y = yScale(t);
       html += `<line class="grid-line" x1="${m.left}" y1="${y}" x2="${m.left+innerW}" y2="${y}" />`;
-      html += `<text class="axis-label" x="${m.left-8}" y="${y+3}" text-anchor="end">${Math.floor(t/3600)}:${String(Math.floor((t%3600)/60)).padStart(2,'0')}</text>`;
+      html += `<text class="axis-label" x="${m.left-8}" y="${y+3}" text-anchor="end">${fmtPace(t)}/mi</text>`;
     }
-    for (let i = 0; i < totalLoops; i++) {
+    for (let i = 0; i < totalLegs; i++) {
       html += `<text class="axis-label" x="${xScale(i)}" y="${m.top+innerH+18}" text-anchor="middle">L${i+1}</text>`;
     }
-    runners.forEach(({ runner, durations }) => {
-      const color = RUNNER_COLORS[runner.id] || '#111';
-      const points = durations.map((d,i)=> d!=null ? [xScale(i), yScale(d)] : null).filter(Boolean);
-      if (!points.length) return;
-      const pathD = points.map((p,i)=>(i===0?'M':'L')+p[0].toFixed(1)+','+p[1].toFixed(1)).join(' ');
-      html += `<path d="${pathD}" stroke="${color}" stroke-width="2" fill="none" />`;
-      points.forEach(p => { html += `<circle cx="${p[0]}" cy="${p[1]}" r="4" fill="${color}" />`; });
-    });
+    const cutY = yScale(cutoffPace);
+    html += `<line class="target-line" x1="${m.left}" y1="${cutY}" x2="${m.left+innerW}" y2="${cutY}" />`;
+    html += `<text class="axis-label" x="${m.left+innerW-4}" y="${cutY-4}" text-anchor="end" fill="var(--red)">cutoff pace ${fmtPace(cutoffPace)}/mi</text>`;
+
+    const points = paces.map((p, i) => p != null ? [xScale(i), yScale(p)] : null).filter(Boolean);
+    const pathD = points.map((p, i) => (i===0?'M':'L')+p[0].toFixed(1)+','+p[1].toFixed(1)).join(' ');
+    html += `<path d="${pathD}" stroke="${RUNNER_COLOR}" stroke-width="2" fill="none" />`;
+    points.forEach(p => { html += `<circle cx="${p[0]}" cy="${p[1]}" r="3.5" fill="${RUNNER_COLOR}" />`; });
+
+    if (completed.length < totalLegs) {
+      const projPace = recentAvg(completed, 2);
+      const lastIdx = paces.findIndex(p => p === completed[completed.length-1]);
+      const projPts = [[xScale(lastIdx), yScale(completed[completed.length-1])]];
+      for (let i = lastIdx + 1; i < totalLegs; i++) projPts.push([xScale(i), yScale(projPace)]);
+      const projD = projPts.map((p, i) => (i===0?'M':'L')+p[0].toFixed(1)+','+p[1].toFixed(1)).join(' ');
+      html += `<path d="${projD}" stroke="${RUNNER_COLOR}" stroke-width="1.4" fill="none" stroke-dasharray="6,4" opacity="0.55" />`;
+    }
     html += `<line class="axis-line" x1="${m.left}" y1="${m.top+innerH}" x2="${m.left+innerW}" y2="${m.top+innerH}" />`;
     html += `<line class="axis-line" x1="${m.left}" y1="${m.top}" x2="${m.left}" y2="${m.top+innerH}" />`;
     svg.innerHTML = html;
 
+    // Meta
     const cutoffSec = raceData.race.totalCutoffHours * 3600;
     const startMs = new Date(raceData.race.startTime).getTime();
-    const metaParts = runners.map(({ runner, durations }) => {
-      const completed = durations.filter(d => d != null);
-      if (!completed.length) return `<strong>${runner.name}:</strong> not started`;
-      const lapAvg = recentAvg(completed, 2);
-      const completedLaps = (runner.laps||[]).filter(l => l.startTime && l.endTime);
-      const allLaps = runner.laps || [];
-      const pits = [];
-      for (let i = 0; i < allLaps.length-1; i++) {
-        const p = pitDurationSec(allLaps[i], allLaps[i+1]);
-        if (p != null) pits.push(p);
-      }
-      const pitAvg = pits.length ? recentAvg(pits, 2) : 0;
-      const cycle = lapAvg + pitAvg;
-      const lastEnd = completedLaps[completedLaps.length-1].endTime;
-      const elapsedAtLastEnd = (new Date(lastEnd) - startMs) / 1000;
-      const lapsRemaining = raceData.race.totalLoops - completed.length;
-      const projected = elapsedAtLastEnd + lapsRemaining * cycle;
-      const buffer = cutoffSec - projected;
-      const bufStr = buffer >= 0 ? `+${fmtClock(buffer)} buffer` : `OVER by ${fmtClock(-buffer)}`;
-      const bufColor = buffer >= 0 ? 'var(--green)' : 'var(--red)';
-      return `<strong>${runner.name}:</strong> finish ${fmtClock(projected)} <span style="color:${bufColor}">(${bufStr})</span>`;
-    });
-    document.getElementById('chart-lap-time-meta').innerHTML =
-      metaParts.join(' &nbsp;·&nbsp; ') + ` &nbsp;·&nbsp; cutoff <strong>${raceData.race.totalCutoffHours}:00:00</strong>`;
+    const milesDone = course.reduce((a, s, i) => paces[i] != null ? a + s.distance : a, 0);
+    const milesLeft = raceData.race.totalDistance - milesDone;
+    const lastIdx = paces.findIndex(p => p === completed[completed.length-1]);
+    const lastLegEntry = (runner.legs||[]).find(l => l.leg === course[lastIdx].leg);
+    const elapsedAtLastEnd = (new Date(lastLegEntry.endTime).getTime() - startMs) / 1000;
+    const projPace = recentAvg(completed, 2);
+    const aidTimes = [];
+    const sortedLegs = (runner.legs||[]).slice().sort((a,b)=>a.leg-b.leg);
+    for (let i = 0; i < sortedLegs.length - 1; i++) {
+      const a = aidDurationSec(sortedLegs[i], sortedLegs[i+1]);
+      if (a != null) aidTimes.push(a);
+    }
+    const aidAvg = aidTimes.length ? recentAvg(aidTimes, 2) : 0;
+    const stopsLeft = Math.max(0, totalLegs - completed.length - 1);
+    const projectedFinishSec = elapsedAtLastEnd + milesLeft * projPace + stopsLeft * aidAvg;
+    const buffer = cutoffSec - projectedFinishSec;
+    const bufColor = buffer >= 0 ? 'var(--green)' : 'var(--red)';
+    const bufStr = buffer >= 0 ? `+${fmtClock(buffer)} buffer` : `OVER by ${fmtClock(-buffer)}`;
+    document.getElementById('chart-leg-pace-meta').innerHTML =
+      `<strong>${runner.name}:</strong> recent-2 pace <strong>${fmtPace(projPace)}/mi</strong> ` +
+      `· projected <strong>${fmtClock(projectedFinishSec)}</strong> <span style="color:${bufColor}">(${bufStr})</span> ` +
+      `· cutoff <strong>${raceData.race.totalCutoffHours}:00:00</strong>`;
   }
 
-  function renderMilePaceChart() {
-    const svg = document.getElementById('chart-mile-pace');
-    const W = 1000, H = 280;
-    const m = { left: 60, right: 30, top: 22, bottom: 36 };
+  function renderLegDeltaChart() {
+    const svg = document.getElementById('chart-leg-delta');
+    const W = 1000, H = 220;
+    const m = { left: 70, right: 30, top: 22, bottom: 36 };
     const innerW = W - m.left - m.right, innerH = H - m.top - m.bottom;
-    const totalLoops = raceData.race.totalLoops;
-    const loopMi = raceData.race.loopDistance;
-    const runners = raceData.runners.map(r => ({
-      runner: r,
-      paces: (r.laps||[]).map(l => { const s = lapDurationSec(l); return s!=null ? (s/60)/loopMi : null; })
-    }));
-    const allPaces = runners.flatMap(r => r.paces).filter(p => p != null);
-    if (!allPaces.length) { svg.innerHTML = ''; return; }
-    const yMin = Math.floor(Math.min(...allPaces) - 1);
-    const yMax = Math.ceil(Math.max(...allPaces) + 1);
-    const xScale = i => m.left + (i/(totalLoops-1)) * innerW;
-    const yScale = p => m.top + innerH - ((p - yMin)/(yMax - yMin)) * innerH;
-    let html = '';
-    for (let t = yMin; t <= yMax; t += 2) {
-      const y = yScale(t);
-      html += `<line class="grid-line" x1="${m.left}" y1="${y}" x2="${m.left+innerW}" y2="${y}" />`;
-      html += `<text class="axis-label" x="${m.left-8}" y="${y+3}" text-anchor="end">${t}:00</text>`;
-    }
-    for (let i = 0; i < totalLoops; i++) {
-      html += `<text class="axis-label" x="${xScale(i)}" y="${m.top+innerH+18}" text-anchor="middle">L${i+1}</text>`;
-    }
-    runners.forEach(({ runner, paces }) => {
-      const color = RUNNER_COLORS[runner.id] || '#111';
-      const points = paces.map((p,i)=> p!=null ? [xScale(i), yScale(p)] : null).filter(Boolean);
-      const pathD = points.map((p,i)=>(i===0?'M':'L')+p[0].toFixed(1)+','+p[1].toFixed(1)).join(' ');
-      html += `<path d="${pathD}" stroke="${color}" stroke-width="2" fill="none" />`;
-      points.forEach(p => { html += `<circle cx="${p[0]}" cy="${p[1]}" r="4" fill="${color}" />`; });
+    const course = buildCourseIndex(raceData.race);
+    const totalLegs = course.length;
+    const runner = raceData.runners[0];
+    const paces = course.map(seg => {
+      const e = (runner.legs||[]).find(l => l.leg === seg.leg);
+      const s = e ? legDurationSec(e) : null;
+      return (s != null && seg.distance > 0) ? s / seg.distance : null;
     });
-    html += `<line class="axis-line" x1="${m.left}" y1="${m.top+innerH}" x2="${m.left+innerW}" y2="${m.top+innerH}" />`;
-    html += `<line class="axis-line" x1="${m.left}" y1="${m.top}" x2="${m.left}" y2="${m.top+innerH}" />`;
-    html += `<text class="axis-label" transform="translate(${m.left-44},${m.top+innerH/2}) rotate(-90)" text-anchor="middle">min/mi</text>`;
-    svg.innerHTML = html;
-  }
-
-  function renderLapDeltaChart() {
-    const svg = document.getElementById('chart-lap-delta');
-    const W = 1000, H = 240;
-    const m = { left: 60, right: 30, top: 22, bottom: 36 };
-    const innerW = W - m.left - m.right, innerH = H - m.top - m.bottom;
-    const totalLoops = raceData.race.totalLoops;
-    const runners = raceData.runners.map(r => ({
-      runner: r,
-      deltas: (r.laps||[]).map((l,i,arr) => {
-        if (i === 0) return null;
-        const cur = lapDurationSec(l), prev = lapDurationSec(arr[i-1]);
-        return (cur != null && prev != null) ? cur - prev : null;
-      })
-    }));
-    const allDeltas = runners.flatMap(r => r.deltas).filter(d => d != null);
-    if (!allDeltas.length) { svg.innerHTML = ''; return; }
-    const maxAbs = Math.max(120, ...allDeltas.map(Math.abs)) * 1.15;
-    const xScale = i => m.left + ((i-1)/(totalLoops-2)) * innerW;
-    const yScale = v => m.top + innerH/2 - (v/maxAbs)*(innerH/2);
+    const deltas = paces.map((p, i) => i === 0 ? null : (p != null && paces[i-1] != null) ? p - paces[i-1] : null);
+    const all = deltas.filter(d => d != null);
+    if (!all.length) {
+      svg.innerHTML = `<text class="axis-label" x="${W/2}" y="${H/2}" text-anchor="middle">Waiting for leg 2</text>`;
+      return;
+    }
+    const maxAbs = Math.max(120, ...all.map(Math.abs)) * 1.15;
+    const xScale = i => m.left + ((i - 1) / (totalLegs - 2)) * innerW;
+    const yScale = v => m.top + innerH/2 - (v / maxAbs) * (innerH/2);
     let html = '';
     html += `<line class="axis-line" x1="${m.left}" y1="${m.top+innerH/2}" x2="${m.left+innerW}" y2="${m.top+innerH/2}" />`;
-    for (let i = 1; i < totalLoops; i++) {
+    for (let i = 1; i < totalLegs; i++) {
       html += `<text class="axis-label" x="${xScale(i)}" y="${m.top+innerH+18}" text-anchor="middle">L${i+1}</text>`;
     }
-    const barWidth = (innerW/(totalLoops-1)) * 0.32;
-    runners.forEach(({ runner, deltas }, idx) => {
-      const color = RUNNER_COLORS[runner.id] || '#111';
-      deltas.forEach((d,i) => {
-        if (d == null) return;
-        const x = xScale(i);
-        const xOff = (idx === 0 ? -1 : 1) * (barWidth/2 + 2);
-        const y0 = m.top + innerH/2;
-        const y1 = yScale(d);
-        const barColor = d > 60 ? 'var(--red)' : d < -60 ? 'var(--green)' : 'var(--yellow)';
-        html += `<rect x="${x+xOff-barWidth/2}" y="${Math.min(y0,y1)}" width="${barWidth}" height="${Math.abs(y1-y0)}" fill="${barColor}" opacity="0.55" stroke="${color}" stroke-width="1.5" />`;
-        const sign = d >= 0 ? '+' : '−';
-        const absMin = Math.floor(Math.abs(d)/60);
-        const absSec = Math.floor(Math.abs(d)%60);
-        const valStr = absMin ? `${sign}${absMin}:${String(absSec).padStart(2,'0')}` : `${sign}${absSec}s`;
-        const labelY = d > 0 ? y1 - 4 : y1 + 12;
-        html += `<text class="axis-label" x="${x+xOff}" y="${labelY}" text-anchor="middle" fill="${color}" font-weight="700">${valStr}</text>`;
-      });
+    const barWidth = (innerW / (totalLegs - 1)) * 0.55;
+    deltas.forEach((d, i) => {
+      if (d == null) return;
+      const x = xScale(i);
+      const y0 = m.top + innerH/2;
+      const y1 = yScale(d);
+      const barColor = d > 30 ? 'var(--red)' : d < -30 ? 'var(--green)' : 'var(--yellow)';
+      html += `<rect x="${x-barWidth/2}" y="${Math.min(y0,y1)}" width="${barWidth}" height="${Math.abs(y1-y0)}" fill="${barColor}" opacity="0.55" stroke="${RUNNER_COLOR}" stroke-width="1" />`;
+      const sign = d >= 0 ? '+' : '−';
+      const absMin = Math.floor(Math.abs(d) / 60);
+      const absSec = Math.floor(Math.abs(d) % 60);
+      const valStr = absMin ? `${sign}${absMin}:${String(absSec).padStart(2,'0')}` : `${sign}${absSec}s`;
+      const labelY = d > 0 ? y1 - 4 : y1 + 12;
+      html += `<text class="axis-label" x="${x}" y="${labelY}" text-anchor="middle" fill="${RUNNER_COLOR}" font-weight="700">${valStr}</text>`;
     });
     html += `<text class="axis-label" x="${m.left-8}" y="${m.top+8}" text-anchor="end">slower</text>`;
     html += `<text class="axis-label" x="${m.left-8}" y="${m.top+innerH-4}" text-anchor="end">faster</text>`;
     svg.innerHTML = html;
   }
 
-  function renderPitTimeChart() {
-    const svg = document.getElementById('chart-pit-time');
-    const W = 1000, H = 240;
-    const m = { left: 60, right: 30, top: 22, bottom: 36 };
+  function renderAidTimeChart() {
+    const svg = document.getElementById('chart-aid-time');
+    const W = 1000, H = 260;
+    const m = { left: 60, right: 30, top: 28, bottom: 60 };
     const innerW = W - m.left - m.right, innerH = H - m.top - m.bottom;
-    const totalLoops = raceData.race.totalLoops;
-    const runners = raceData.runners.map(r => ({
-      runner: r,
-      pits: (r.laps||[]).map((l,i,arr) => arr[i+1] ? pitDurationSec(l, arr[i+1]) : null)
-    }));
-    const allPits = runners.flatMap(r => r.pits).filter(p => p != null);
-    if (!allPits.length) { svg.innerHTML = ''; return; }
-    const yMaxMin = Math.max(30, Math.ceil(Math.max(...allPits)/60 * 1.2 / 5) * 5);
-    const xScale = i => m.left + (i/(totalLoops-1)) * innerW;
-    const yScale = v => m.top + innerH - (v/yMaxMin) * innerH;
+    const course = buildCourseIndex(raceData.race);
+    const totalLegs = course.length;
+    const runner = raceData.runners[0];
+    const sortedLegs = (runner.legs||[]).slice().sort((a,b)=>a.leg-b.leg);
+    const aidStops = [];
+    for (let i = 0; i < totalLegs - 1; i++) {
+      const cur = sortedLegs.find(l => l.leg === course[i].leg);
+      const nxt = sortedLegs.find(l => l.leg === course[i+1].leg);
+      const sec = (cur && nxt) ? aidDurationSec(cur, nxt) : null;
+      aidStops.push({ atIdx: i, name: course[i].to, sec });
+    }
+    const all = aidStops.map(s => s.sec).filter(v => v != null);
+    if (!all.length) {
+      svg.innerHTML = `<text class="axis-label" x="${W/2}" y="${H/2}" text-anchor="middle">Waiting for first aid hold</text>`;
+      return;
+    }
+    const yMaxMin = Math.max(15, Math.ceil(Math.max(...all) / 60 * 1.2 / 5) * 5);
+    const xScale = i => m.left + (i / (totalLegs - 2)) * innerW;
+    const yScale = v => m.top + innerH - (v / yMaxMin) * innerH;
     let html = '';
     for (let t = 0; t <= yMaxMin; t += 5) {
       const y = yScale(t);
       html += `<line class="grid-line" x1="${m.left}" y1="${y}" x2="${m.left+innerW}" y2="${y}" />`;
       html += `<text class="axis-label" x="${m.left-8}" y="${y+3}" text-anchor="end">${t}m</text>`;
     }
-    for (let i = 0; i < totalLoops-1; i++) {
-      html += `<text class="axis-label" x="${xScale(i)}" y="${m.top+innerH+18}" text-anchor="middle">P${i+1}</text>`;
-    }
-    const barWidth = (innerW/(totalLoops-1)) * 0.32;
-    runners.forEach(({ runner, pits }, idx) => {
-      const color = RUNNER_COLORS[runner.id] || '#111';
-      pits.forEach((p,i) => {
-        if (p == null) return;
-        const pMin = p/60;
-        const x = xScale(i);
-        const xOff = (idx === 0 ? -1 : 1) * (barWidth/2 + 2);
-        const barX = x + xOff - barWidth/2;
-        const barY = yScale(pMin);
-        const barH = innerH - (barY - m.top);
-        const barColor = pMin <= 15 ? 'var(--green)' : (pMin <= 25 ? 'var(--yellow)' : 'var(--red)');
-        html += `<rect x="${barX}" y="${barY}" width="${barWidth}" height="${barH}" fill="${barColor}" opacity="0.45" stroke="${color}" stroke-width="1.5" />`;
-        const labelStr = `${Math.floor(pMin)}:${String(Math.floor(p%60)).padStart(2,'0')}`;
-        html += `<text class="axis-label" x="${x+xOff}" y="${barY-4}" text-anchor="middle" fill="${color}" font-weight="700">${labelStr}</text>`;
-      });
+    aidStops.forEach((stop, i) => {
+      const x = xScale(i);
+      const shortName = stop.name.replace(/Music Meadows/, 'MM').replace(/Colony Creek/, 'CC').replace(/Horn Creek/, 'HC').replace(/Venable/, 'V').replace(/Music Pass/, 'MP');
+      html += `<text class="axis-label" x="${x}" y="${m.top+innerH+14}" text-anchor="middle" transform="rotate(-35, ${x}, ${m.top+innerH+14})">${shortName}</text>`;
+    });
+    const barWidth = (innerW / (totalLegs - 1)) * 0.6;
+    aidStops.forEach(stop => {
+      if (stop.sec == null) return;
+      const pMin = stop.sec / 60;
+      const x = xScale(stop.atIdx);
+      const barX = x - barWidth/2;
+      const barY = yScale(pMin);
+      const barH = innerH - (barY - m.top);
+      const barColor = pMin <= 5 ? 'var(--green)' : pMin <= 15 ? 'var(--yellow)' : 'var(--red)';
+      html += `<rect x="${barX}" y="${barY}" width="${barWidth}" height="${barH}" fill="${barColor}" opacity="0.45" stroke="${RUNNER_COLOR}" stroke-width="1" />`;
+      const labelStr = `${Math.floor(pMin)}:${String(Math.floor(stop.sec % 60)).padStart(2,'0')}`;
+      html += `<text class="axis-label" x="${x}" y="${barY-4}" text-anchor="middle" fill="${RUNNER_COLOR}" font-weight="700">${labelStr}</text>`;
     });
     html += `<line class="axis-line" x1="${m.left}" y1="${m.top+innerH}" x2="${m.left+innerW}" y2="${m.top+innerH}" />`;
     html += `<line class="axis-line" x1="${m.left}" y1="${m.top}" x2="${m.left}" y2="${m.top+innerH}" />`;
@@ -1079,49 +1150,48 @@
     const W = 320, H = 220;
     const m = { left: 46, right: 14, top: 24, bottom: 30 };
     const innerW = W - m.left - m.right, innerH = H - m.top - m.bottom;
-    const totalLoops = raceData.race.totalLoops;
-    const runners = raceData.runners.map(r => ({
-      runner: r,
-      rates: (r.laps||[]).map((l,i,arr) => {
-        const lapSec = lapDurationSec(l);
-        if (lapSec == null) return null;
-        const next = arr[i+1];
-        const pitSec = next ? pitDurationSec(l, next) : 0;
-        const cycleHours = (lapSec + (pitSec || 0)) / 3600;
-        const v = valueExtractor(l);
-        return v != null && cycleHours > 0 ? v/cycleHours : null;
-      })
-    }));
-    const allRates = runners.flatMap(r => r.rates).filter(v => v != null);
+    const course = buildCourseIndex(raceData.race);
+    const totalLegs = course.length;
+    const runner = raceData.runners[0];
+    const sortedLegs = (runner.legs||[]).slice().sort((a,b)=>a.leg-b.leg);
+    const rates = course.map(seg => {
+      const cur = sortedLegs.find(l => l.leg === seg.leg);
+      const nxt = sortedLegs.find(l => l.leg === seg.leg + 1);
+      const legSec = cur ? legDurationSec(cur) : null;
+      if (legSec == null) return null;
+      const aidSec = nxt ? (aidDurationSec(cur, nxt) || 0) : 0;
+      const cycleHours = (legSec + aidSec) / 3600;
+      const v = valueExtractor(cur);
+      return (v != null && cycleHours > 0) ? v / cycleHours : null;
+    });
+    const all = rates.filter(v => v != null);
     let html = `<text class="axis-label" x="${W/2}" y="14" text-anchor="middle" font-weight="700" fill="var(--ink)">${label}</text>`;
-    if (!allRates.length) {
+    if (!all.length) {
       html += `<text class="axis-label" x="${W/2}" y="${H/2}" text-anchor="middle">No data</text>`;
       svg.innerHTML = html; return;
     }
-    const yMaxData = Math.max(...allRates, target * 1.2);
+    const yMaxData = Math.max(...all, target * 1.2);
     const yStep = yMaxData > 1500 ? 500 : yMaxData > 500 ? 200 : yMaxData > 100 ? 50 : yMaxData > 30 ? 10 : 5;
     const yMax = Math.ceil(yMaxData * 1.05 / yStep) * yStep;
-    const xScale = i => m.left + (i/(totalLoops-1)) * innerW;
-    const yScale = v => m.top + innerH - (v/yMax) * innerH;
+    const xScale = i => m.left + (i / (totalLegs - 1)) * innerW;
+    const yScale = v => m.top + innerH - (v / yMax) * innerH;
     for (let t = 0; t <= yMax; t += yStep) {
       const y = yScale(t);
       html += `<line class="grid-line" x1="${m.left}" y1="${y}" x2="${m.left+innerW}" y2="${y}" />`;
       html += `<text class="axis-label" x="${m.left-4}" y="${y+3}" text-anchor="end">${t}</text>`;
     }
-    for (let i = 0; i < totalLoops; i += 2) {
+    for (let i = 0; i < totalLegs; i += 2) {
       html += `<text class="axis-label" x="${xScale(i)}" y="${m.top+innerH+14}" text-anchor="middle">L${i+1}</text>`;
     }
     const targetY = yScale(target);
     html += `<line class="target-line" x1="${m.left}" y1="${targetY}" x2="${m.left+innerW}" y2="${targetY}" />`;
     html += `<text class="axis-label" x="${m.left+innerW-2}" y="${targetY-3}" text-anchor="end">target ${target}</text>`;
-    runners.forEach(({ runner, rates }) => {
-      const color = RUNNER_COLORS[runner.id] || '#111';
-      const points = rates.map((v,i)=> v!=null ? [xScale(i), yScale(v)] : null).filter(Boolean);
-      if (!points.length) return;
-      const pathD = points.map((p,i)=>(i===0?'M':'L')+p[0].toFixed(1)+','+p[1].toFixed(1)).join(' ');
-      html += `<path d="${pathD}" stroke="${color}" stroke-width="1.8" fill="none" />`;
-      points.forEach(p => { html += `<circle cx="${p[0]}" cy="${p[1]}" r="3" fill="${color}" />`; });
-    });
+    const points = rates.map((v, i) => v != null ? [xScale(i), yScale(v)] : null).filter(Boolean);
+    if (points.length) {
+      const pathD = points.map((p, i) => (i===0?'M':'L')+p[0].toFixed(1)+','+p[1].toFixed(1)).join(' ');
+      html += `<path d="${pathD}" stroke="${RUNNER_COLOR}" stroke-width="1.6" fill="none" />`;
+      points.forEach(p => { html += `<circle cx="${p[0]}" cy="${p[1]}" r="2.8" fill="${RUNNER_COLOR}" />`; });
+    }
     html += `<line class="axis-line" x1="${m.left}" y1="${m.top+innerH}" x2="${m.left+innerW}" y2="${m.top+innerH}" />`;
     html += `<line class="axis-line" x1="${m.left}" y1="${m.top}" x2="${m.left}" y2="${m.top+innerH}" />`;
     svg.innerHTML = html;
@@ -1132,15 +1202,15 @@
     const W = 1000, H = 360;
     const m = { left: 60, right: 30, top: 24, bottom: 36 };
     const innerW = W - m.left - m.right, innerH = H - m.top - m.bottom;
+    const course = buildCourseIndex(raceData.race);
     const cutoffH = raceData.race.totalCutoffHours;
-    const lastLapStartH = raceData.race.lastLapStartCutoffHours;
-    const totalMi = raceData.race.totalLoops * raceData.race.loopDistance;
+    const totalMi = raceData.race.totalDistance;
     const startMs = new Date(raceData.race.startTime).getTime();
     const xMax = cutoffH;
-    const xScale = h => m.left + (h/xMax) * innerW;
-    const yScale = mi => m.top + innerH - (mi/totalMi) * innerH;
+    const xScale = h => m.left + (h / xMax) * innerW;
+    const yScale = mi => m.top + innerH - (mi / totalMi) * innerH;
     let html = '';
-    for (let h = 0; h <= xMax; h += 5) {
+    for (let h = 0; h <= xMax; h += 4) {
       const x = xScale(h);
       html += `<line class="grid-line" x1="${x}" y1="${m.top}" x2="${x}" y2="${m.top+innerH}" />`;
       html += `<text class="axis-label" x="${x}" y="${m.top+innerH+18}" text-anchor="middle">${h}h</text>`;
@@ -1151,93 +1221,79 @@
       html += `<text class="axis-label" x="${m.left-8}" y="${y+3}" text-anchor="end">${mi}mi</text>`;
     }
     html += `<line stroke="var(--ink-mute)" stroke-width="1" stroke-dasharray="4,4" x1="${xScale(0)}" y1="${yScale(0)}" x2="${xScale(xMax)}" y2="${yScale(totalMi)}" />`;
-    const gateX = xScale(lastLapStartH);
-    html += `<line stroke="var(--yellow)" stroke-width="1.5" stroke-dasharray="4,4" x1="${gateX}" y1="${m.top}" x2="${gateX}" y2="${m.top+innerH}" />`;
-    html += `<text class="axis-label" x="${gateX+4}" y="${m.top+12}" fill="var(--yellow)">35h: lap 10 must start</text>`;
+    course.forEach(seg => {
+      if (seg.cutoffHoursFromStart == null) return;
+      const x = xScale(seg.cutoffHoursFromStart);
+      const y = yScale(seg.cumMile);
+      html += `<circle cx="${x}" cy="${y}" r="5" fill="var(--yellow)" />`;
+      html += `<text class="axis-label" x="${x+8}" y="${y-6}" fill="var(--yellow)">${seg.to} · ${seg.cutoffHoursFromStart}h</text>`;
+    });
     const cutX = xScale(cutoffH);
     html += `<line stroke="var(--red)" stroke-width="1.5" stroke-dasharray="4,4" x1="${cutX}" y1="${m.top}" x2="${cutX}" y2="${m.top+innerH}" />`;
-    html += `<text class="axis-label" x="${cutX-4}" y="${m.top+12}" text-anchor="end" fill="var(--red)">38h cutoff</text>`;
+    html += `<text class="axis-label" x="${cutX-4}" y="${m.top+12}" text-anchor="end" fill="var(--red)">${cutoffH}h cutoff</text>`;
     html += `<line stroke="var(--green)" stroke-width="1" stroke-dasharray="4,4" x1="${m.left}" y1="${yScale(totalMi)}" x2="${m.left+innerW}" y2="${yScale(totalMi)}" />`;
     html += `<text class="axis-label" x="${m.left+4}" y="${yScale(totalMi)-3}" fill="var(--green)">${totalMi} mi</text>`;
-    raceData.runners.forEach(r => {
-      const color = RUNNER_COLORS[r.id] || '#111';
-      const completed = (r.laps||[]).filter(l => l.startTime && l.endTime);
-      const points = [[0, 0]];
-      let cum = 0;
-      completed.forEach(l => {
-        cum += raceData.race.loopDistance;
-        const h = (new Date(l.endTime) - startMs) / 3600000;
-        points.push([h, cum]);
-      });
-      const pathD = points.map((p,i)=>(i===0?'M':'L')+xScale(p[0]).toFixed(1)+','+yScale(p[1]).toFixed(1)).join(' ');
-      html += `<path d="${pathD}" stroke="${color}" stroke-width="2" fill="none" />`;
-      points.forEach(p => { html += `<circle cx="${xScale(p[0])}" cy="${yScale(p[1])}" r="3" fill="${color}" />`; });
+
+    const runner = raceData.runners[0];
+    const sortedLegs = (runner.legs||[]).slice().sort((a,b)=>a.leg-b.leg);
+    const points = [[0, 0]];
+    let cum = 0;
+    sortedLegs.forEach(l => {
+      const seg = course[l.leg - 1];
+      if (!seg || !l.endTime) return;
+      cum += seg.distance;
+      const hElapsed = (new Date(l.endTime) - startMs) / 3600000;
+      points.push([hElapsed, cum]);
     });
+    const pathD = points.map((p, i) => (i===0?'M':'L')+xScale(p[0]).toFixed(1)+','+yScale(p[1]).toFixed(1)).join(' ');
+    html += `<path d="${pathD}" stroke="${RUNNER_COLOR}" stroke-width="2" fill="none" />`;
+    points.forEach(p => { html += `<circle cx="${xScale(p[0])}" cy="${yScale(p[1])}" r="3" fill="${RUNNER_COLOR}" />`; });
     html += `<line class="axis-line" x1="${m.left}" y1="${m.top+innerH}" x2="${m.left+innerW}" y2="${m.top+innerH}" />`;
     html += `<line class="axis-line" x1="${m.left}" y1="${m.top}" x2="${m.left}" y2="${m.top+innerH}" />`;
     svg.innerHTML = html;
   }
 
-  // ---------- race in numbers ----------
-  function renderRaceStats(race) {
+  function renderRaceStats(race, course) {
     const el = document.getElementById('race-stats');
     if (!raceData?.runners?.length) { el.hidden = true; return; }
-    const allFinished = raceData.runners.every(r => {
-      const done = (r.laps||[]).filter(l => l.startTime && l.endTime).length;
-      return done >= race.totalLoops;
-    });
+    const totalLegs = course.length;
+    const allFinished = raceData.runners.every(r =>
+      (r.legs||[]).filter(l => l.startTime && l.endTime).length >= totalLegs);
     if (!allFinished) { el.hidden = true; return; }
     el.hidden = false;
 
     const stats = raceData.runners.map(r => {
-      const completed = (r.laps||[]).filter(l => l.startTime && l.endTime);
-      const allLaps = r.laps || [];
+      const completed = (r.legs||[]).filter(l => l.startTime && l.endTime);
+      const allLegs = r.legs || [];
       const cal = completed.reduce((a,l)=>a+(l.calories||0),0);
       const fluidOz = completed.reduce((a,l)=>a+(l.fluidOz||0),0);
       const sodium = completed.reduce((a,l)=>a+(l.sodiumMg||0),0);
-      const start = new Date(allLaps[0].startTime);
+      const start = new Date(allLegs[0].startTime);
       const end = new Date(completed[completed.length-1].endTime);
       const totalSec = (end - start) / 1000;
-      const courseSec = completed.reduce((a,l)=>a+(new Date(l.endTime)-new Date(l.startTime))/1000, 0);
+      const courseSec = completed.reduce((a,l)=>a+(new Date(l.endTime)-new Date(l.startTime))/1000,0);
       const pitSec = totalSec - courseSec;
-      let tailwindMl = 0;
-      for (const l of completed) {
-        const text = l.notes || '';
-        for (const m of text.matchAll(/(\d+(?:\.\d+)?)\s*mL\s+Tailwind/gi)) tailwindMl += parseFloat(m[1]);
-        for (const m of text.matchAll(/(\d+(?:\.\d+)?)\s*(?:x|×)?\s*flasks?\s+Tailwind/gi)) tailwindMl += parseFloat(m[1]) * 500;
-        for (const m of text.matchAll(/(\d+(?:\.\d+)?)\s*(?:x|×)?\s*Tailwind\s+flasks?/gi)) tailwindMl += parseFloat(m[1]) * 500;
-        for (const m of text.matchAll(/(\d+(?:\.\d+)?)\s*(?:x|×)?\s*flasks?\s*\+\s*\d+\s*mL\s+Tailwind/gi)) tailwindMl += parseFloat(m[1]) * 500;
-      }
-      const tailwindScoops = tailwindMl / 500;
-      return { runner: r, cal, fluidOz, sodium, totalSec, courseSec, pitSec,
-               tailwindScoops, tailwindMl, tailwindCal: tailwindScoops*200, tailwindNa: tailwindScoops*620 };
+      return { runner: r, cal, fluidOz, sodium, totalSec, courseSec, pitSec };
     });
-    const tw = stats.reduce((a,b)=> b.tailwindScoops > a.tailwindScoops ? b : a, stats[0]);
     const fmtH = sec => {
       const h = Math.floor(sec/3600);
       const m = Math.floor((sec%3600)/60);
       return `${h}h ${m}m`;
     };
     const ozToL = oz => (oz * 0.0295735).toFixed(1);
-    const ozToGal = oz => (oz / 128).toFixed(1);
-    const calLines = stats.map(s => `<strong>${s.cal.toLocaleString()}</strong> cal (${s.runner.name})`).join(' / ');
-    const fluidLines = stats.map(s => `<strong>${ozToL(s.fluidOz)} L</strong> (${s.runner.name})`).join(' / ');
-    const sodiumLines = stats.map(s => `<strong>${(s.sodium/1000).toFixed(1)} g</strong> (${s.runner.name})`).join(' / ');
-    const totalSec = stats[0].totalSec, courseSec = stats[0].courseSec, pitSec = stats[0].pitSec;
+
+    const s = stats[0];
     el.innerHTML = `
-      <div class="subtitle">Finished · 100 miles · both runners</div>
+      <div class="subtitle">Finished · ${race.totalDistance} mi · ${totalLegs} legs · +${race.totalGainFt.toLocaleString()} ft</div>
       <h2>The Race · in <em>Numbers</em></h2>
       <ul>
-        <li>${calLines} — more than <strong>4× a normal day's intake</strong>. Estimated burn ~12,000-13,000 cal each, so a 3-4k cal deficit per runner. Par for an ultra.</li>
-        <li>${fluidLines} of fluid consumed. That's a <strong>~${ozToGal(Math.max(...stats.map(s=>s.fluidOz)))}-gallon</strong> water jug for the higher-volume runner.</li>
-        <li>${sodiumLines} cumulative sodium. Daily adult recommendation is ~1.5 g — they each hit <strong>5-7×</strong> that on their own.</li>
-        <li><strong>${fmtH(totalSec)}</strong> total race time — <strong>${fmtH(courseSec)}</strong> on course, <strong>${fmtH(pitSec)}</strong> in pit. Lap 10 was the slowest at <strong>~3:53</strong> for both, but they crossed within <strong>1 second</strong> of each other.</li>
-        <li><strong>${tw.runner.name}</strong> ran on a Tailwind drip: <strong>~${tw.tailwindScoops.toFixed(1)} scoops</strong>, ~${(tw.tailwindMl/1000).toFixed(1)} L of mixed drink, ~${tw.tailwindCal.toLocaleString()} cal (<strong>${Math.round(tw.tailwindCal/tw.cal*100)}%</strong> of total cal), ~${(tw.tailwindNa/1000).toFixed(1)} g sodium (<strong>${Math.round(tw.tailwindNa/tw.sodium*100)}%</strong> of total sodium).</li>
-        <li>Cumulative ibuprofen: Jasmine ~14-15 doses, Oppenheimer ~16-17 (with one Tylenol detour at pit 8). Hydration stayed strong throughout — the urine-color check held.</li>
+        <li><strong>${s.cal.toLocaleString()} cal</strong> consumed over ${totalLegs} legs. Estimated burn for a 100-miler with ~19k ft of climbing is around <strong>14,000–16,000 cal</strong> — a real deficit, eaten back in the days after.</li>
+        <li><strong>${ozToL(s.fluidOz)} L</strong> of fluid through aid stations. High-altitude air is dry — fluid loss runs higher than it feels.</li>
+        <li><strong>${(s.sodium/1000).toFixed(1)} g</strong> cumulative sodium. Adult daily recommendation is ~1.5 g — this is many days' worth in one effort.</li>
+        <li><strong>${fmtH(s.totalSec)}</strong> total race time — <strong>${fmtH(s.courseSec)}</strong> moving, <strong>${fmtH(s.pitSec)}</strong> at aid stations.</li>
       </ul>`;
   }
 
-  // ---------- bootstrap ----------
   async function init() {
     setStatus('Loading data…');
     try {
@@ -1249,40 +1305,41 @@
       setStatus('Error');
       return;
     }
-
     setStatus('Loading course…');
     try {
-      gpxPoints = await loadGPX();
-      totalDistance = gpxPoints[gpxPoints.length-1].dist;
+      const gpx = await loadGPX();
+      gpxTrack = gpx.track;
+      gpxWaypoints = gpx.waypoints;
+      totalDistanceMeters = gpxTrack.length ? gpxTrack[gpxTrack.length-1].dist : 0;
     } catch (e) {
       showError('Failed to load course.gpx: ' + e.message);
       setStatus('Error');
       return;
     }
 
-    // Render summary + runners
-    renderHeadMeta(raceData.race);
-    renderCutoffs(raceData.race);
-    document.getElementById('runners').innerHTML =
-      raceData.runners.map(r => renderRunner(r, raceData.race)).join('');
+    const course = buildCourseIndex(raceData.race);
+    const computed = computeRunner(raceData.runners[0], raceData.race, course);
 
-    // Render charts + race stats
+    renderHeadMeta(raceData.race);
+    renderCutoffs(raceData.race, course, computed);
+    document.getElementById('runners').innerHTML =
+      raceData.runners.map(r => renderRunner(r, raceData.race, course)).join('');
+
+    renderCourseStats(raceData.race);
+    renderSegmentTable(raceData.race, course);
+
     renderLegend();
-    renderLapTimeChart();
-    renderMilePaceChart();
-    renderLapDeltaChart();
-    renderPitTimeChart();
+    renderLegPaceChart();
+    renderLegDeltaChart();
+    renderAidTimeChart();
     renderIntakeChart('chart-intake-cal', l => l.calories, raceData.race.targets.caloriesPerHour, 'Calories / hour');
     renderIntakeChart('chart-intake-fluid', l => l.fluidOz, raceData.race.targets.fluidOzPerHour, 'Fluid (oz) / hour');
     renderIntakeChart('chart-intake-sodium', l => l.sodiumMg, raceData.race.targets.sodiumMgPerHour, 'Sodium (mg) / hour');
     renderCumulativeChart();
-    renderRaceStats(raceData.race);
+    renderRaceStats(raceData.race, course);
 
-    // Map last (async tile load)
     setStatus('Loading map tiles…');
     await setupMap();
-    setupElevation();
-
     setStatus('Ready · click Print', true);
   }
 
