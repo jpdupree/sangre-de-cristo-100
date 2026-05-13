@@ -11,10 +11,10 @@
     "targets": {
       "caloriesPerHour": 250,
       "fluidOzPerHour": 20,
-      "sodiumMgPerHour": 500
+      "sodiumMgPerHour": 1200
     },
     "segments": [
-      { "leg": 1,  "from": "Music Meadows (Start)", "to": "Music Pass",       "distance": 4.3, "crewAccess": "none" },
+      { "leg": 1,  "from": "Music Meadows (Start)", "to": "Music Pass",       "distance": 4.3, "crewAccess": "none", "checkpoint": true },
       { "leg": 2,  "from": "Music Pass",            "to": "Music Meadows 1",  "distance": 4.3, "crewAccess": "all" },
       { "leg": 3,  "from": "Music Meadows 1",       "to": "Colony Creek 1",   "distance": 6.6, "crewAccess": "none" },
       { "leg": 4,  "from": "Colony Creek 1",        "to": "Horn Creek 1",     "distance": 8.8, "crewAccess": "C1" },
@@ -28,7 +28,7 @@
       { "leg": 12, "from": "Venable 2",             "to": "Horn Creek 4",     "distance": 5.7, "crewAccess": "C2", "cutoffHoursFromStart": 28.75, "pacerEligible": true },
       { "leg": 13, "from": "Horn Creek 4",          "to": "Colony Creek 4",   "distance": 8.7, "crewAccess": "none" },
       { "leg": 14, "from": "Colony Creek 4",        "to": "Music Meadows 3",  "distance": 6.6, "crewAccess": "all", "cutoffHoursFromStart": 34,    "pacerEligible": true },
-      { "leg": 15, "from": "Music Meadows 3",       "to": "Music Pass 2",     "distance": 4.3, "crewAccess": "none" },
+      { "leg": 15, "from": "Music Meadows 3",       "to": "Music Pass 2",     "distance": 4.3, "crewAccess": "none", "checkpoint": true },
       { "leg": 16, "from": "Music Pass 2",          "to": "Finish",           "distance": 4.4, "crewAccess": "all", "cutoffHoursFromStart": 38 }
     ]
   },
@@ -40,5 +40,5 @@
       "legs": []
     }
   ],
-  "lastUpdated": "2026-05-13T00:00:00Z"
+  "lastUpdated": "2026-05-13T23:01:00Z"
 }
