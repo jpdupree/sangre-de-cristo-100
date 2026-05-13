@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="theme-color" content="#0c0d10" />
+<title>Pit Board · 100-Mile Race</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0c0d10;
+    --bg-elevated: #14161b;
+    --bg-card: #1a1d24;
+    --border: #262932;
+    --border-bright: #353946;
+    --text: #e8e6e1;
+    --text-dim: #8a8a8a;
+    --text-muted: #5a5a60;
+    --accent: #ff6b3d;
+    --accent-glow: rgba(255, 107, 61, 0.18);
+    --green: #6ee7a8;
+    --green-glow: rgba(110, 231, 168, 0.18);
+    --yellow: #f5c451;
+    --red: #ff5959;
+    --blue: #5ec8ff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  html, body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+  body { padding: 20px 16px 32px; }
+
+  header {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 20px; padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .brand { display: flex; flex-direction: column; gap: 4px; }
+  .brand-meta {
+    display: flex; gap: 10px; align-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; text-transform: uppercase; letter-spacing: 0.18em;
+    color: var(--text-muted);
+  }
+  h1 {
+    font-family: 'Fraunces', serif; font-weight: 800;
+    font-size: 28px; line-height: 1; letter-spacing: -0.025em;
+  }
+  h1 em { font-style: italic; color: var(--accent); font-weight: 600; }
+  a.nav-link {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--text-dim); text-decoration: none;
+    border: 1px solid var(--border); padding: 8px 12px; border-radius: 4px;
+  }
+  a.nav-link:hover, a.nav-link:active { color: var(--text); border-color: var(--border-bright); }
+
+  #runners {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    margin-bottom: 24px;
+  }
+  @media (max-width: 760px) { #runners { grid-template-columns: 1fr; } }
+
+  .runner {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 6px; overflow: hidden; position: relative;
+    transition: border-color 0.3s ease;
+  }
+  .runner.course { border-color: rgba(255, 107, 61, 0.5); }
+  .runner.pit { border-color: rgba(110, 231, 168, 0.4); }
+  .runner::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: var(--border);
+    transition: background 0.3s ease;
+  }
+  .runner.course::before { background: linear-gradient(90deg, var(--accent), transparent); }
+  .runner.pit::before { background: linear-gradient(90deg, var(--green), transparent); }
+
+  .runner-head {
+    padding: 18px 20px 14px; display: flex;
+    justify-content: space-between; align-items: center; gap: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .runner-name {
+    font-family: 'Fraunces', serif; font-size: 26px;
+    font-weight: 600; letter-spacing: -0.02em;
+  }
+  .state-badge {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    padding: 6px 10px; border-radius: 2px; border: 1px solid currentColor;
+  }
+  .state-course { color: var(--accent); }
+  .state-pit { color: var(--green); }
+  .state-idle { color: var(--text-muted); }
+
+  .state-timer {
+    padding: 14px 20px; display: flex; justify-content: space-between;
+    align-items: baseline; border-bottom: 1px solid var(--border);
+    background: var(--bg-elevated);
+  }
+  .state-timer .label {
+    font-family: 'JetBrains Mono', monospace; font-size: 9px;
+    text-transform: uppercase; letter-spacing: 0.2em; color: var(--text-muted);
+  }
+  .state-timer .value {
+    font-family: 'JetBrains Mono', monospace; font-size: 22px;
+    font-weight: 700; letter-spacing: -0.02em;
+  }
+  .runner.course .state-timer .value { color: var(--accent); }
+  .runner.pit .state-timer .value { color: var(--green); }
+
+  .big-btn {
+    display: block; width: 100%;
+    padding: 28px 16px;
+    background: var(--bg-elevated);
+    color: var(--text); border: none; border-bottom: 1px solid var(--border);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 18px; font-weight: 700;
+    letter-spacing: 0.05em; text-transform: uppercase;
+    cursor: pointer; user-select: none;
+    transition: background 0.15s ease, transform 0.05s ease;
+  }
+  .big-btn:hover { background: #1f222a; }
+  .big-btn:active { transform: scale(0.98); background: #2a2e38; }
+  .big-btn.out {
+    background: linear-gradient(180deg, rgba(255, 107, 61, 0.18), rgba(255, 107, 61, 0.06));
+    color: var(--accent); border-top: 1px solid rgba(255, 107, 61, 0.3);
+  }
+  .big-btn.out:hover { background: linear-gradient(180deg, rgba(255, 107, 61, 0.28), rgba(255, 107, 61, 0.12)); }
+  .big-btn.in {
+    background: linear-gradient(180deg, rgba(110, 231, 168, 0.18), rgba(110, 231, 168, 0.06));
+    color: var(--green); border-top: 1px solid rgba(110, 231, 168, 0.3);
+  }
+  .big-btn.in:hover { background: linear-gradient(180deg, rgba(110, 231, 168, 0.28), rgba(110, 231, 168, 0.12)); }
+
+  .event-list { padding: 12px 20px 18px; }
+  .event-list-title {
+    font-family: 'JetBrains Mono', monospace; font-size: 9px;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--text-muted); margin-bottom: 10px;
+  }
+  .event {
+    display: grid; grid-template-columns: 1fr auto auto;
+    gap: 10px; align-items: center;
+    padding: 8px 0; border-bottom: 1px solid var(--border);
+    font-family: 'JetBrains Mono', monospace; font-size: 12px;
+  }
+  .event:last-child { border-bottom: none; }
+  .event.sent { opacity: 0.45; }
+  .event-action.out { color: var(--accent); }
+  .event-action.in { color: var(--green); }
+  .event-time {
+    color: var(--text-dim); cursor: pointer;
+    padding: 4px 6px; border-radius: 3px;
+    border: 1px solid transparent;
+  }
+  .event-time:hover { color: var(--text); border-color: var(--border-bright); }
+  .event-del {
+    background: transparent; border: 1px solid var(--border);
+    color: var(--text-muted); cursor: pointer;
+    width: 26px; height: 26px; border-radius: 3px;
+    font-size: 14px; line-height: 1;
+  }
+  .event-del:hover { color: var(--red); border-color: var(--red); }
+  .empty {
+    color: var(--text-muted); font-style: italic;
+    font-size: 12px; padding: 8px 0;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .unsent {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 6px; padding: 18px 20px;
+  }
+  .unsent-head {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 12px; flex-wrap: wrap; gap: 10px;
+  }
+  .unsent-title {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted);
+  }
+  .unsent-actions { display: flex; gap: 8px; }
+  .ctrl-btn {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600;
+    padding: 10px 14px; border-radius: 4px; cursor: pointer;
+    background: var(--bg-elevated); color: var(--text);
+    border: 1px solid var(--border-bright);
+  }
+  .ctrl-btn:hover:not(:disabled) { background: #22262e; }
+  .ctrl-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+  .ctrl-btn.primary { background: var(--accent); color: #1a0a04; border-color: var(--accent); }
+  .ctrl-btn.primary:hover:not(:disabled) { background: #ff7d54; }
+  pre#unsent-text {
+    background: var(--bg-elevated); border: 1px solid var(--border);
+    border-radius: 4px; padding: 14px;
+    font-family: 'JetBrains Mono', monospace; font-size: 13px;
+    color: var(--text-dim); white-space: pre-wrap; word-break: break-word;
+    max-height: 200px; overflow-y: auto;
+  }
+
+  footer {
+    margin-top: 24px;
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted);
+    text-align: center;
+  }
+
+  .config {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 6px; padding: 14px 18px; margin-bottom: 18px;
+  }
+  .config-status {
+    display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+  }
+  .status-dot {
+    width: 8px; height: 8px; border-radius: 50%; flex: none;
+    background: var(--text-muted);
+  }
+  .status-dot.connected { background: var(--green); box-shadow: 0 0 8px var(--green); }
+  .status-dot.error { background: var(--red); box-shadow: 0 0 8px var(--red); }
+  .status-text {
+    flex: 1 1 auto; min-width: 200px;
+    font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text-dim);
+  }
+  .status-text strong { color: var(--text); font-weight: 600; }
+  .config-form { margin-top: 14px; display: grid; gap: 10px; }
+  .config-form[hidden] { display: none; }
+  .config-form .row { display: grid; grid-template-columns: 110px 1fr; gap: 10px; align-items: center; }
+  @media (max-width: 480px) { .config-form .row { grid-template-columns: 1fr; gap: 4px; } }
+  .config-form label {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted);
+  }
+  .config-form input {
+    background: var(--bg-elevated); color: var(--text);
+    border: 1px solid var(--border-bright); border-radius: 4px;
+    padding: 10px 12px; font-family: 'JetBrains Mono', monospace; font-size: 13px;
+    width: 100%;
+  }
+  .config-form input:focus { outline: none; border-color: var(--accent); }
+  .config-help {
+    font-size: 11px; color: var(--text-dim); line-height: 1.5;
+    background: var(--bg-elevated); padding: 12px; border-radius: 4px;
+    border-left: 2px solid var(--accent);
+  }
+  .config-help a { color: var(--accent); }
+  .config-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+
+  .event-status {
+    font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase;
+    margin-left: 6px; padding: 2px 5px; border-radius: 2px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .event-status.syncing { color: var(--blue); border: 1px solid var(--blue); }
+  .event-status.synced { color: var(--green); border: 1px solid rgba(110, 231, 168, 0.4); }
+  .event-status.queued { color: var(--text-muted); border: 1px solid var(--border); }
+  .event-status.error { color: var(--red); border: 1px solid var(--red); cursor: pointer; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <div class="brand-meta">
+      <span>Pit Board</span><span>· Crew Chief</span>
+    </div>
+    <h1>Sign <em>In/Out</em></h1>
+  </div>
+  <a class="nav-link" href="index.html">Dashboard →</a>
+</header>
+
+<section class="config" id="config">
+  <div class="config-status">
+    <span class="status-dot" id="config-dot"></span>
+    <span class="status-text" id="config-text">Not connected · button presses will be queued for copy-paste.</span>
+    <button class="ctrl-btn" id="config-toggle">Setup</button>
+  </div>
+  <div class="config-form" id="config-form" hidden>
+    <div class="config-help">
+      Generate a <strong>fine-grained</strong> personal access token at
+      <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">github.com/settings/personal-access-tokens/new</a>
+      with <strong>Repository access → Only select repositories</strong> (this repo) and <strong>Repository permissions → Contents: Read and write</strong>.
+      Set expiration to a few weeks. Revoke after the race.
+      The token is stored in this device's localStorage and used only to commit lap times via the GitHub API.
+    </div>
+    <div class="row"><label>Token</label><input type="password" id="cfg-token" placeholder="github_pat_..." autocomplete="off" spellcheck="false" /></div>
+    <div class="row"><label>Owner</label><input type="text" id="cfg-owner" autocomplete="off" spellcheck="false" /></div>
+    <div class="row"><label>Repo</label><input type="text" id="cfg-repo" autocomplete="off" spellcheck="false" /></div>
+    <div class="row"><label>Branch</label><input type="text" id="cfg-branch" autocomplete="off" spellcheck="false" /></div>
+    <div class="row"><label>Path</label><input type="text" id="cfg-path" autocomplete="off" spellcheck="false" /></div>
+    <div class="config-actions">
+      <button class="ctrl-btn primary" id="cfg-save">Connect</button>
+      <button class="ctrl-btn" id="cfg-disconnect">Disconnect</button>
+    </div>
+  </div>
+</section>
+
+<section id="runners"></section>
+
+<section class="unsent">
+  <div class="unsent-head">
+    <span class="unsent-title">Manual fallback · Copy + paste to Claude</span>
+    <div class="unsent-actions">
+      <button id="sync-queued" class="ctrl-btn">Retry sync</button>
+      <button id="copy-all" class="ctrl-btn primary">Copy</button>
+      <button id="mark-sent" class="ctrl-btn">Mark all sent</button>
+    </div>
+  </div>
+  <pre id="unsent-text">(no unsent events)</pre>
+</section>
+
+<footer>Times stored on this device only · clear button: <a href="#" id="reset" style="color: var(--text-muted); text-decoration: underline;">reset all</a></footer>
+
+<script>
+  const RUNNERS = [
+    { id: 'jasmine', name: 'Jasmine' },
+    { id: 'oppenheimer', name: 'Oppenheimer' }
+  ];
+  const STORAGE_KEY = 'pit-board-events-v1';
+  const CONFIG_KEY = 'pit-board-config-v1';
+  let raceData = null;
+
+  function loadStore() {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
+    catch (e) { return {}; }
+  }
+  function saveStore(s) { localStorage.setItem(STORAGE_KEY, JSON.stringify(s)); }
+
+  function loadConfig() {
+    try { return JSON.parse(localStorage.getItem(CONFIG_KEY)) || null; }
+    catch (e) { return null; }
+  }
+  function saveConfig(c) { localStorage.setItem(CONFIG_KEY, JSON.stringify(c)); }
+  function clearConfig() { localStorage.removeItem(CONFIG_KEY); }
+  function hasToken() { const c = loadConfig(); return !!(c && c.token && c.owner && c.repo && c.branch && c.path); }
+
+  async function loadRaceData() {
+    try {
+      const res = await fetch('data.json?_=' + Date.now(), { cache: 'no-store' });
+      if (!res.ok) return false;
+      raceData = await res.json();
+      return true;
+    } catch (e) { return false; }
+  }
+
+  function deriveStateFromLaps(laps) {
+    if (!laps || laps.length === 0) {
+      return { currentState: 'idle', currentLap: 0, nextAction: 'out', nextLap: 1, lastTs: null };
+    }
+    let bestTs = null, bestAction = null, bestLap = null;
+    for (const l of laps) {
+      if (l.startTime && (!bestTs || new Date(l.startTime) > new Date(bestTs))) {
+        bestTs = l.startTime; bestAction = 'out'; bestLap = l.lap;
+      }
+      if (l.endTime && (!bestTs || new Date(l.endTime) > new Date(bestTs))) {
+        bestTs = l.endTime; bestAction = 'in'; bestLap = l.lap;
+      }
+    }
+    if (!bestTs) return { currentState: 'idle', currentLap: 0, nextAction: 'out', nextLap: 1, lastTs: null };
+    if (bestAction === 'out') {
+      return { currentState: 'on-course', currentLap: bestLap, nextAction: 'in', nextLap: bestLap, lastTs: bestTs };
+    }
+    return { currentState: 'in-pit', currentLap: bestLap, nextAction: 'out', nextLap: bestLap + 1, lastTs: bestTs };
+  }
+
+  function getRunnerStateRemote(runnerId) {
+    if (!raceData) return null;
+    const runner = (raceData.runners || []).find(r => r.id === runnerId);
+    return deriveStateFromLaps((runner && runner.laps) || []);
+  }
+
+  async function syncFromDataJson() {
+    try {
+      const res = await fetch('data.json?_=' + Date.now(), { cache: 'no-store' });
+      if (!res.ok) return false;
+      const data = await res.json();
+      const store = loadStore();
+      let changed = false;
+      for (const r of RUNNERS) {
+        if (!store[r.id]) store[r.id] = { events: [] };
+        const events = store[r.id].events;
+        const remoteRunner = (data.runners || []).find(x => x.id === r.id);
+        const remoteLaps = (remoteRunner && remoteRunner.laps) || [];
+        for (const lap of remoteLaps) {
+          if (lap.startTime) {
+            const id = `seed-${r.id}-${lap.lap}-out`;
+            if (!events.some(e => e.id === id)) {
+              events.push({ id, ts: lap.startTime, action: 'out', lap: lap.lap, sent: true, syncStatus: 'synced' });
+              changed = true;
+            }
+          }
+          if (lap.endTime) {
+            const id = `seed-${r.id}-${lap.lap}-in`;
+            if (!events.some(e => e.id === id)) {
+              events.push({ id, ts: lap.endTime, action: 'in', lap: lap.lap, sent: true, syncStatus: 'synced' });
+              changed = true;
+            }
+          }
+        }
+        events.sort((a, b) => new Date(a.ts) - new Date(b.ts));
+      }
+      if (changed) saveStore(store);
+      return true;
+    } catch (e) { return false; }
+  }
+
+  function detectDefaults() {
+    const host = location.hostname;
+    let owner = 'jpdupree', repo = 'BloodRoot';
+    if (host.endsWith('.github.io')) {
+      owner = host.split('.')[0];
+      const parts = location.pathname.split('/').filter(Boolean);
+      if (parts.length && !parts[0].endsWith('.html')) repo = parts[0];
+    }
+    return { owner, repo, branch: 'main', path: 'data.json', token: '' };
+  }
+
+  function utf8ToBase64(s) { return btoa(unescape(encodeURIComponent(s))); }
+  function base64ToUtf8(b) { return decodeURIComponent(escape(atob(b.replace(/\s/g, '')))); }
+
+  async function ghGetData(config) {
+    const url = `https://api.github.com/repos/${config.owner}/${config.repo}/contents/${encodeURIComponent(config.path)}?ref=${encodeURIComponent(config.branch)}`;
+    const res = await fetch(url, {
+      headers: { Authorization: `token ${config.token}`, Accept: 'application/vnd.github.v3+json' },
+      cache: 'no-store'
+    });
+    if (!res.ok) {
+      const text = await res.text();
+      const err = new Error(`GET ${res.status}: ${text.slice(0, 200)}`);
+      err.status = res.status;
+      throw err;
+    }
+    const json = await res.json();
+    return { sha: json.sha, content: JSON.parse(base64ToUtf8(json.content)) };
+  }
+
+  async function ghPutData(config, data, sha, message) {
+    const url = `https://api.github.com/repos/${config.owner}/${config.repo}/contents/${encodeURIComponent(config.path)}`;
+    const body = {
+      message, sha, branch: config.branch,
+      content: utf8ToBase64(JSON.stringify(data, null, 2) + '\n')
+    };
+    const res = await fetch(url, {
+      method: 'PUT',
+      headers: {
+        Authorization: `token ${config.token}`,
+        Accept: 'application/vnd.github.v3+json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(body)
+    });
+    if (!res.ok) {
+      const text = await res.text();
+      const err = new Error(`PUT ${res.status}: ${text.slice(0, 200)}`);
+      err.status = res.status;
+      throw err;
+    }
+    return res.json();
+  }
+
+  async function commitEvent(runnerId, ev) {
+    const config = loadConfig();
+    if (!config || !config.token) throw new Error('Not connected');
+    const runnerName = (RUNNERS.find(r => r.id === runnerId) || {}).name || runnerId;
+
+    for (let attempt = 0; attempt < 4; attempt++) {
+      const { sha, content } = await ghGetData(config);
+      const runner = (content.runners || []).find(r => r.id === runnerId);
+      if (!runner) throw new Error(`Runner "${runnerId}" not found in data.json`);
+      if (!runner.laps) runner.laps = [];
+
+      let lap = runner.laps.find(l => l.lap === ev.lap);
+      if (!lap) {
+        lap = { lap: ev.lap };
+        runner.laps.push(lap);
+        runner.laps.sort((a, b) => a.lap - b.lap);
+      }
+      const field = ev.action === 'out' ? 'startTime' : 'endTime';
+      if (lap[field] === ev.ts) return; // already applied
+      lap[field] = ev.ts;
+      content.lastUpdated = new Date().toISOString();
+
+      const time = new Date(ev.ts).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit', second: '2-digit' });
+      const action = ev.action === 'out' ? `signed out for lap ${ev.lap}` : `signed in (lap ${ev.lap} done)`;
+      const message = `pit-board: ${runnerName} ${action} at ${time}`;
+
+      try {
+        await ghPutData(config, content, sha, message);
+        return;
+      } catch (err) {
+        if (err.status === 409 && attempt < 3) continue;
+        throw err;
+      }
+    }
+    throw new Error('Too many sha conflicts');
+  }
+
+  async function syncEvent(runnerId, eventId) {
+    const store = loadStore();
+    const ev = (store[runnerId]?.events || []).find(e => e.id === eventId);
+    if (!ev) return;
+    ev.syncStatus = 'syncing'; ev.error = null;
+    saveStore(store); render();
+    try {
+      await commitEvent(runnerId, ev);
+      const s2 = loadStore();
+      const e2 = (s2[runnerId]?.events || []).find(e => e.id === eventId);
+      if (e2) { e2.syncStatus = 'synced'; e2.sent = true; e2.error = null; }
+      saveStore(s2);
+    } catch (err) {
+      const s2 = loadStore();
+      const e2 = (s2[runnerId]?.events || []).find(e => e.id === eventId);
+      if (e2) { e2.syncStatus = 'error'; e2.error = String(err.message || err); }
+      saveStore(s2);
+    }
+    render();
+  }
+
+  async function syncAllQueued() {
+    const store = loadStore();
+    const tasks = [];
+    for (const r of RUNNERS) {
+      const events = (store[r.id]?.events || []);
+      for (const e of events) {
+        if (e.syncStatus === 'queued' || e.syncStatus === 'error') tasks.push([r.id, e.id]);
+      }
+    }
+    for (const [rid, eid] of tasks) await syncEvent(rid, eid);
+  }
+
+  function getRunnerEvents(id) {
+    const store = loadStore();
+    return (store[id] && store[id].events) || [];
+  }
+
+  function getRunnerState(id) {
+    const events = getRunnerEvents(id);
+    if (events.length === 0) return { events: [], lastAction: null, currentLap: 0, lastTs: null };
+    const last = events[events.length - 1];
+    const outCount = events.filter(e => e.action === 'out').length;
+    return { events, lastAction: last.action, currentLap: outCount, lastTs: last.ts };
+  }
+
+  async function press(runnerId) {
+    await loadRaceData();
+    const remote = getRunnerStateRemote(runnerId);
+    if (!remote) { alert('Could not load race data — check connection and try again.'); return; }
+    const action = remote.nextAction;
+    const lap = remote.nextLap;
+    const now = new Date();
+    const ev = {
+      id: now.getTime() + '-' + Math.random().toString(36).slice(2, 6),
+      ts: now.toISOString(),
+      action, lap, sent: false,
+      syncStatus: hasToken() ? 'syncing' : 'queued'
+    };
+    const store = loadStore();
+    if (!store[runnerId]) store[runnerId] = { events: [] };
+    store[runnerId].events.push(ev);
+    saveStore(store);
+    if (raceData) {
+      const runner = (raceData.runners || []).find(r => r.id === runnerId);
+      if (runner) {
+        if (!runner.laps) runner.laps = [];
+        let lapEntry = runner.laps.find(l => l.lap === lap);
+        if (!lapEntry) {
+          lapEntry = { lap };
+          runner.laps.push(lapEntry);
+          runner.laps.sort((a, b) => a.lap - b.lap);
+        }
+        lapEntry[action === 'out' ? 'startTime' : 'endTime'] = ev.ts;
+      }
+    }
+    render();
+    if (ev.syncStatus === 'syncing') {
+      await syncEvent(runnerId, ev.id);
+      await loadRaceData();
+      render();
+    }
+  }
+
+  function deleteEvent(runnerId, eventId) {
+    if (!confirm('Delete this event?')) return;
+    const store = loadStore();
+    if (!store[runnerId]) return;
+    store[runnerId].events = store[runnerId].events.filter(e => e.id !== eventId);
+    saveStore(store);
+    render();
+  }
+
+  function editEventTime(runnerId, eventId) {
+    const store = loadStore();
+    const event = (store[runnerId]?.events || []).find(e => e.id === eventId);
+    if (!event) return;
+    const cur = new Date(event.ts);
+    const pad = n => String(n).padStart(2, '0');
+    const input = prompt(
+      'Edit time (24h, HH:MM or HH:MM:SS):',
+      `${pad(cur.getHours())}:${pad(cur.getMinutes())}:${pad(cur.getSeconds())}`
+    );
+    if (!input) return;
+    const m = input.trim().match(/^(\d{1,2}):(\d{2})(?::(\d{2}))?$/);
+    if (!m) { alert('Bad format. Use HH:MM or HH:MM:SS.'); return; }
+    const next = new Date(cur);
+    next.setHours(+m[1], +m[2], +(m[3] || 0), 0);
+    event.ts = next.toISOString();
+    if (hasToken() && event.syncStatus !== 'queued') {
+      event.syncStatus = 'syncing'; event.error = null;
+    }
+    saveStore(store);
+    render();
+    if (hasToken() && event.syncStatus === 'syncing') syncEvent(runnerId, eventId);
+  }
+
+  function markAllSent() {
+    const store = loadStore();
+    for (const r of RUNNERS) {
+      if (store[r.id]) store[r.id].events.forEach(e => e.sent = true);
+    }
+    saveStore(store);
+    render();
+  }
+
+  function resetAll() {
+    if (!confirm('Erase ALL recorded pit events on this device? This cannot be undone.')) return;
+    localStorage.removeItem(STORAGE_KEY);
+    render();
+  }
+
+  function fmtClock(iso) {
+    return new Date(iso).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit', second: '2-digit' });
+  }
+
+  function fmtElapsed(seconds) {
+    if (seconds < 0 || isNaN(seconds)) return '—';
+    const h = Math.floor(seconds / 3600);
+    const m = Math.floor((seconds % 3600) / 60);
+    const s = Math.floor(seconds % 60);
+    const pad = n => String(n).padStart(2, '0');
+    if (h) return `${h}:${pad(m)}:${pad(s)}`;
+    return `${pad(m)}:${pad(s)}`;
+  }
+
+  function eventMessage(runnerName, ev) {
+    const time = fmtClock(ev.ts);
+    if (ev.action === 'out') return `${runnerName} signed out for lap ${ev.lap} at ${time}`;
+    return `${runnerName} signed in (lap ${ev.lap} done) at ${time}`;
+  }
+
+  function getUnsentText() {
+    const store = loadStore();
+    const all = [];
+    for (const r of RUNNERS) {
+      const events = ((store[r.id] || {}).events || [])
+        .filter(e => !e.sent && e.syncStatus !== 'synced');
+      for (const e of events) all.push({ name: r.name, ev: e });
+    }
+    all.sort((a, b) => new Date(a.ev.ts) - new Date(b.ev.ts));
+    return all.map(x => eventMessage(x.name, x.ev)).join('\n');
+  }
+
+  function hasQueuedOrError() {
+    const store = loadStore();
+    for (const r of RUNNERS) {
+      const events = (store[r.id]?.events || []);
+      if (events.some(e => e.syncStatus === 'queued' || e.syncStatus === 'error')) return true;
+    }
+    return false;
+  }
+
+  function renderConfigStatus() {
+    const c = loadConfig();
+    const dot = document.getElementById('config-dot');
+    const text = document.getElementById('config-text');
+    if (c && c.token) {
+      const masked = c.token.length > 8 ? c.token.slice(0, 4) + '…' + c.token.slice(-4) : '••••';
+      dot.className = 'status-dot connected';
+      text.innerHTML = `Connected · <strong>${c.owner}/${c.repo}</strong> @ <strong>${c.branch}</strong> · token ${masked}`;
+    } else {
+      dot.className = 'status-dot';
+      text.textContent = 'Not connected · button presses will be queued for copy-paste.';
+    }
+  }
+
+  function openConfigForm() {
+    const form = document.getElementById('config-form');
+    const c = loadConfig() || detectDefaults();
+    document.getElementById('cfg-token').value = c.token || '';
+    document.getElementById('cfg-owner').value = c.owner || '';
+    document.getElementById('cfg-repo').value = c.repo || '';
+    document.getElementById('cfg-branch').value = c.branch || 'main';
+    document.getElementById('cfg-path').value = c.path || 'data.json';
+    form.hidden = false;
+  }
+
+  async function saveConfigFromForm() {
+    const c = {
+      token: document.getElementById('cfg-token').value.trim(),
+      owner: document.getElementById('cfg-owner').value.trim(),
+      repo: document.getElementById('cfg-repo').value.trim(),
+      branch: document.getElementById('cfg-branch').value.trim() || 'main',
+      path: document.getElementById('cfg-path').value.trim() || 'data.json'
+    };
+    if (!c.token || !c.owner || !c.repo) {
+      alert('Token, owner, and repo are required.');
+      return;
+    }
+    const btn = document.getElementById('cfg-save');
+    const orig = btn.textContent;
+    btn.textContent = 'Testing…'; btn.disabled = true;
+    try {
+      await ghGetData(c);
+      saveConfig(c);
+      btn.textContent = 'Connected ✓';
+      document.getElementById('config-form').hidden = true;
+      renderConfigStatus();
+      if (hasQueuedOrError()) await syncAllQueued();
+      render();
+    } catch (err) {
+      alert(`Could not connect:\n${err.message}\n\nCheck token scope (Contents: Read and write) and that owner/repo/branch/path are correct.`);
+    } finally {
+      btn.disabled = false;
+      setTimeout(() => { btn.textContent = orig; }, 2000);
+    }
+  }
+
+  function disconnectConfig() {
+    if (!confirm('Disconnect and remove the stored token from this device?')) return;
+    clearConfig();
+    renderConfigStatus();
+    render();
+  }
+
+  function renderRunner(runner) {
+    const remote = getRunnerStateRemote(runner.id);
+    const localEvents = getRunnerEvents(runner.id);
+
+    let onCourse = false, inPit = false, idle = true;
+    let stateLabel = 'Loading…', stateClass = 'idle';
+    let buttonLabel = 'Loading…', buttonAction = '', buttonDisabled = true;
+    let lastTs = null, timerLabel = 'Time in current state';
+
+    if (remote) {
+      buttonDisabled = false;
+      if (remote.currentState === 'on-course') {
+        onCourse = true; idle = false;
+        stateLabel = 'On Course'; stateClass = 'course';
+        buttonLabel = `Sign In · End Lap ${remote.nextLap}`;
+        buttonAction = 'in';
+        lastTs = remote.lastTs;
+        timerLabel = 'On course for';
+      } else if (remote.currentState === 'in-pit') {
+        inPit = true; idle = false;
+        stateLabel = 'In Pit'; stateClass = 'pit';
+        buttonLabel = `Sign Out · Start Lap ${remote.nextLap}`;
+        buttonAction = 'out';
+        lastTs = remote.lastTs;
+        timerLabel = 'In pit for';
+      } else {
+        stateLabel = 'Not Started'; stateClass = 'idle';
+        buttonLabel = `Sign Out · Start Lap ${remote.nextLap}`;
+        buttonAction = 'out';
+      }
+    }
+
+    const recent = localEvents.slice(-2).reverse();
+    const statusBadge = (e) => {
+      const st = e.syncStatus || (e.sent ? 'synced' : 'queued');
+      if (st === 'syncing') return '<span class="event-status syncing">sync…</span>';
+      if (st === 'synced') return '<span class="event-status synced">synced</span>';
+      if (st === 'error') return `<span class="event-status error" data-action="resync" data-runner="${runner.id}" data-event="${e.id}" title="${(e.error || '').replace(/"/g, '&quot;')}">retry</span>`;
+      return '<span class="event-status queued">queued</span>';
+    };
+    const recentHtml = recent.length === 0
+      ? '<div class="empty">No events yet</div>'
+      : recent.map(e => `
+          <div class="event ${e.sent ? 'sent' : ''}">
+            <span class="event-action ${e.action}">${e.action === 'out' ? '→ Out, lap ' + e.lap : '← In, lap ' + e.lap}${statusBadge(e)}</span>
+            <span class="event-time" data-action="edit" data-runner="${runner.id}" data-event="${e.id}">${fmtClock(e.ts)}</span>
+            <button class="event-del" data-action="del" data-runner="${runner.id}" data-event="${e.id}" aria-label="Delete">×</button>
+          </div>
+        `).join('');
+
+    return `
+      <article class="runner ${stateClass}">
+        <div class="runner-head">
+          <div class="runner-name">${runner.name}</div>
+          <div class="state-badge state-${stateClass}">${stateLabel}</div>
+        </div>
+        <div class="state-timer" data-since="${lastTs || ''}">
+          <span class="label">${timerLabel}</span>
+          <span class="value runner-timer">—</span>
+        </div>
+        <button class="big-btn ${buttonAction}" data-action="press" data-runner="${runner.id}"${buttonDisabled ? ' disabled' : ''}>
+          ${buttonLabel}
+        </button>
+        <div class="event-list">
+          <div class="event-list-title">Recent (tap time to edit, × to delete)</div>
+          ${recentHtml}
+        </div>
+      </article>
+    `;
+  }
+
+  function render() {
+    document.getElementById('runners').innerHTML = RUNNERS.map(renderRunner).join('');
+    const unsent = getUnsentText();
+    document.getElementById('unsent-text').textContent = unsent || '(no unsent events)';
+    document.getElementById('copy-all').disabled = !unsent;
+    document.getElementById('mark-sent').disabled = !unsent;
+    document.getElementById('sync-queued').disabled = !hasToken() || !hasQueuedOrError();
+    renderConfigStatus();
+    tick();
+  }
+
+  function tick() {
+    document.querySelectorAll('.runner').forEach(card => {
+      const timerEl = card.querySelector('.state-timer');
+      const valueEl = card.querySelector('.runner-timer');
+      const since = timerEl?.dataset.since;
+      if (!since) { if (valueEl) valueEl.textContent = '—'; return; }
+      const seconds = (Date.now() - new Date(since).getTime()) / 1000;
+      if (valueEl) valueEl.textContent = fmtElapsed(seconds);
+    });
+  }
+
+  async function copyAll() {
+    const text = getUnsentText();
+    if (!text) return;
+    const btn = document.getElementById('copy-all');
+    const orig = btn.textContent;
+    try {
+      await navigator.clipboard.writeText(text);
+      btn.textContent = 'Copied ✓';
+    } catch (e) {
+      const ta = document.createElement('textarea');
+      ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); btn.textContent = 'Copied ✓'; }
+      catch (_) { btn.textContent = 'Copy failed'; }
+      document.body.removeChild(ta);
+    }
+    setTimeout(() => { btn.textContent = orig; }, 1500);
+  }
+
+  document.body.addEventListener('click', (e) => {
+    const t = e.target.closest('[data-action]');
+    if (!t) return;
+    const action = t.dataset.action;
+    if (action === 'press') press(t.dataset.runner);
+    else if (action === 'edit') editEventTime(t.dataset.runner, t.dataset.event);
+    else if (action === 'del') deleteEvent(t.dataset.runner, t.dataset.event);
+    else if (action === 'resync') syncEvent(t.dataset.runner, t.dataset.event);
+  });
+
+  document.getElementById('copy-all').addEventListener('click', copyAll);
+  document.getElementById('mark-sent').addEventListener('click', () => {
+    if (confirm('Mark all events as sent? They\'ll be hidden from the unsent list.')) markAllSent();
+  });
+  document.getElementById('sync-queued').addEventListener('click', () => { syncAllQueued(); });
+  document.getElementById('reset').addEventListener('click', (e) => {
+    e.preventDefault(); resetAll();
+  });
+  document.getElementById('config-toggle').addEventListener('click', () => {
+    const f = document.getElementById('config-form');
+    if (f.hidden) openConfigForm();
+    else f.hidden = true;
+  });
+  document.getElementById('cfg-save').addEventListener('click', saveConfigFromForm);
+  document.getElementById('cfg-disconnect').addEventListener('click', disconnectConfig);
+
+  if (!hasToken()) openConfigForm();
+
+  render();
+  (async () => {
+    await loadRaceData();
+    await syncFromDataJson();
+    render();
+  })();
+  setInterval(async () => { await loadRaceData(); render(); }, 15000);
+  setInterval(tick, 1000);
+</script>
+
+</body>
+</html>

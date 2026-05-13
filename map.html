@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#0c0d10" />
+<title>Course Map · Bloodroot 100</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin="" />
+<style>
+  :root {
+    --bg: #0c0d10;
+    --bg-elevated: #14161b;
+    --bg-card: #1a1d24;
+    --border: #262932;
+    --border-bright: #353946;
+    --text: #e8e6e1;
+    --text-dim: #8a8a8a;
+    --text-muted: #5a5a60;
+    --accent: #ff6b3d;
+    --accent-glow: rgba(255, 107, 61, 0.18);
+    --green: #6ee7a8;
+    --yellow: #f5c451;
+    --red: #ff5959;
+    --blue: #5ec8ff;
+    --jasmine: #ff6b3d;
+    --oppenheimer: #5ec8ff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+  body { padding: 24px 32px 48px; }
+
+  header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 18px; margin-bottom: 24px;
+    flex-wrap: wrap; gap: 18px;
+  }
+  .brand { display: flex; flex-direction: column; gap: 4px; }
+  .brand-meta {
+    display: flex; gap: 12px; align-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.18em;
+    color: var(--text-muted);
+  }
+  .pulse {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--accent); box-shadow: 0 0 12px var(--accent);
+    animation: pulse 1.6s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.85); }
+  }
+  h1 {
+    font-family: 'Fraunces', serif; font-weight: 800;
+    font-size: 36px; line-height: 1; letter-spacing: -0.025em;
+  }
+  h1 em { font-style: italic; color: var(--accent); font-weight: 600; }
+  a.dash-link {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--text-dim); text-decoration: none;
+    border: 1px solid var(--border); padding: 8px 12px; border-radius: 4px;
+  }
+  a.dash-link:hover { color: var(--accent); border-color: var(--accent); }
+  .race-clock { text-align: right; display: flex; flex-direction: column; gap: 4px; }
+  .race-clock .label {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted);
+  }
+  .race-clock .time {
+    font-family: 'JetBrains Mono', monospace; font-size: 24px; font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .runners-bar {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    margin-bottom: 20px;
+  }
+  @media (max-width: 760px) { .runners-bar { grid-template-columns: 1fr; } }
+  .runner-card {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 6px; padding: 16px 18px;
+    display: grid; grid-template-columns: auto 1fr auto auto; gap: 14px;
+    align-items: center;
+  }
+  .swatch {
+    width: 14px; height: 14px; border-radius: 50%;
+    box-shadow: 0 0 12px currentColor;
+  }
+  .runner-card .name {
+    font-family: 'Fraunces', serif; font-size: 22px; font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+  .runner-card .state {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    padding: 5px 9px; border-radius: 2px; border: 1px solid currentColor;
+  }
+  .state.course { color: var(--accent); }
+  .state.pit { color: var(--green); }
+  .state.idle, .state.done { color: var(--text-muted); }
+  .runner-card .meta {
+    font-family: 'JetBrains Mono', monospace; font-size: 12px;
+    color: var(--text-dim); text-align: right;
+  }
+  .runner-card .meta strong { color: var(--text); }
+
+  #map {
+    height: 60vh; min-height: 420px;
+    border: 1px solid var(--border); border-radius: 6px;
+    background: #0c0d10;
+    margin-bottom: 22px;
+  }
+  .leaflet-container { background: #0c0d10; }
+  .leaflet-control-attribution {
+    background: rgba(20, 22, 27, 0.9) !important;
+    color: var(--text-muted) !important;
+    font-size: 10px !important;
+  }
+  .leaflet-control-attribution a { color: var(--text-dim) !important; }
+  .leaflet-control-zoom a {
+    background: var(--bg-elevated) !important;
+    color: var(--text) !important;
+    border-color: var(--border-bright) !important;
+  }
+  .leaflet-tooltip {
+    background: var(--bg-card); color: var(--text);
+    border: 1px solid var(--border-bright); border-radius: 4px;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+  }
+  .leaflet-tooltip-top:before, .leaflet-tooltip-bottom:before,
+  .leaflet-tooltip-left:before, .leaflet-tooltip-right:before { border-top-color: var(--border-bright); }
+
+  .runner-pin .pin {
+    width: 28px; height: 28px; border-radius: 50%;
+    border: 2px solid currentColor;
+    background: var(--bg-card);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Fraunces', serif; font-weight: 800;
+    font-size: 16px; line-height: 1;
+    box-shadow: 0 0 14px currentColor, 0 4px 8px rgba(0, 0, 0, 0.6);
+    transform: translate(-50%, -50%);
+    animation: runnerPulse 2.5s ease-in-out infinite;
+  }
+  @keyframes runnerPulse {
+    0%, 100% { box-shadow: 0 0 8px currentColor, 0 4px 8px rgba(0, 0, 0, 0.6); }
+    50% { box-shadow: 0 0 20px currentColor, 0 4px 8px rgba(0, 0, 0, 0.6); }
+  }
+
+  .elev-section {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 6px; padding: 18px 20px;
+  }
+  .elev-head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-bottom: 10px; flex-wrap: wrap; gap: 10px;
+  }
+  .elev-title {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted);
+  }
+  .elev-stats {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    color: var(--text-dim);
+  }
+  .elev-stats strong { color: var(--text); }
+  #elevation {
+    width: 100%; height: 160px; display: block;
+  }
+  .elev-axis {
+    display: flex; justify-content: space-between;
+    font-family: 'JetBrains Mono', monospace; font-size: 9px;
+    color: var(--text-muted); letter-spacing: 0.1em;
+    text-transform: uppercase; margin-top: 4px;
+  }
+
+  .error-banner {
+    background: rgba(255, 89, 89, 0.1); border: 1px solid var(--red);
+    color: var(--red); padding: 14px; border-radius: 4px; margin-bottom: 18px;
+    font-family: 'JetBrains Mono', monospace; font-size: 12px;
+  }
+  .error-banner[hidden] { display: none; }
+
+  footer {
+    margin-top: 32px; padding-top: 18px; border-top: 1px solid var(--border);
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted);
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+  }
+  footer .note { color: var(--text-muted); font-style: italic; text-transform: none; letter-spacing: 0.05em; }
+
+  @media (max-width: 640px) {
+    body { padding: 18px 14px 40px; }
+    h1 { font-size: 28px; }
+    #map { height: 50vh; min-height: 320px; }
+    .runner-card { grid-template-columns: auto 1fr; row-gap: 10px; }
+    .runner-card .state { grid-column: 2; justify-self: end; }
+    .runner-card .meta { grid-column: 1 / -1; text-align: left; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <div class="brand-meta">
+      <span class="pulse"></span>
+      <span>Course Map</span>
+      <span>· 10 × 10mi loops</span>
+    </div>
+    <h1>Bloodroot <em>100</em></h1>
+  </div>
+  <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 10px;">
+    <a class="dash-link" href="index.html">← Dashboard</a>
+    <div class="race-clock">
+      <span class="label">Race Time Elapsed</span>
+      <span class="time" id="elapsed">--:--:--</span>
+    </div>
+  </div>
+</header>
+
+<div class="error-banner" id="error" hidden></div>
+
+<section class="runners-bar" id="runners-bar"></section>
+
+<div id="map"></div>
+
+<section class="elev-section">
+  <div class="elev-head">
+    <span class="elev-title">Elevation Profile · per loop</span>
+    <span class="elev-stats" id="elev-stats">—</span>
+  </div>
+  <svg id="elevation" preserveAspectRatio="none" viewBox="0 0 1000 160"></svg>
+  <div class="elev-axis">
+    <span>0 mi · start</span>
+    <span>2.5 mi</span>
+    <span>5 mi · halfway</span>
+    <span>7.5 mi</span>
+    <span>10 mi · finish</span>
+  </div>
+</section>
+
+<footer>
+  <div>Markers are estimated from the last 2 laps' average pace · positions tick every second</div>
+  <div id="last-updated" class="note">—</div>
+</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+        crossorigin=""></script>
+<script>
+  const RUNNER_COLORS = { jasmine: '#ff6b3d', oppenheimer: '#5ec8ff' };
+  const RUNNER_LAT_OFFSETS = { jasmine: 0.00007, oppenheimer: -0.00007 };
+  // When a runner is sticking with another, mirror the target's computed position
+  // (own color/marker preserved). Set to null/empty to compute solo.
+  const RUNNER_FOLLOWS = { oppenheimer: 'jasmine' };
+  const REFRESH_MS = 15000;
+
+  let gpxPoints = [];        // [{ lat, lon, ele, dist }]
+  let totalDistance = 0;     // meters
+  let map = null;
+  let trackLayer = null;
+  let runnerMarkers = {};    // id -> Leaflet marker
+  let raceData = null;
+  let lastFetchAt = null;
+  let elevMin = 0, elevMax = 0;
+
+  function haversine(lat1, lon1, lat2, lon2) {
+    const R = 6371000;
+    const toRad = d => d * Math.PI / 180;
+    const dLat = toRad(lat2 - lat1);
+    const dLon = toRad(lon2 - lon1);
+    const a = Math.sin(dLat / 2) ** 2 +
+      Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon / 2) ** 2;
+    return 2 * R * Math.asin(Math.sqrt(a));
+  }
+
+  function fmtDuration(seconds) {
+    if (seconds == null || isNaN(seconds) || seconds < 0) return '—';
+    const h = Math.floor(seconds / 3600);
+    const m = Math.floor((seconds % 3600) / 60);
+    const s = Math.floor(seconds % 60);
+    return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+  }
+
+  function metersToMiles(m) { return m / 1609.344; }
+  function metersToFeet(m) { return m * 3.28084; }
+
+  async function loadGPX() {
+    const res = await fetch('course.gpx?_=' + Date.now(), { cache: 'no-store' });
+    if (!res.ok) throw new Error('Failed to load course.gpx');
+    const text = await res.text();
+    const xml = new DOMParser().parseFromString(text, 'text/xml');
+    if (xml.querySelector('parsererror')) throw new Error('Invalid GPX');
+    const trkpts = Array.from(xml.querySelectorAll('trkpt'));
+    if (!trkpts.length) throw new Error('No trkpt elements in GPX');
+    const pts = trkpts.map(p => {
+      const eleEl = p.querySelector('ele');
+      return {
+        lat: parseFloat(p.getAttribute('lat')),
+        lon: parseFloat(p.getAttribute('lon')),
+        ele: eleEl ? parseFloat(eleEl.textContent) : 0
+      };
+    });
+    let cum = 0; pts[0].dist = 0;
+    for (let i = 1; i < pts.length; i++) {
+      cum += haversine(pts[i - 1].lat, pts[i - 1].lon, pts[i].lat, pts[i].lon);
+      pts[i].dist = cum;
+    }
+    return pts;
+  }
+
+  function pointAtDistance(meters) {
+    if (gpxPoints.length === 0) return null;
+    if (meters <= 0) return gpxPoints[0];
+    if (meters >= totalDistance) return gpxPoints[gpxPoints.length - 1];
+    let lo = 0, hi = gpxPoints.length - 1;
+    while (hi - lo > 1) {
+      const mid = (lo + hi) >> 1;
+      if (gpxPoints[mid].dist <= meters) lo = mid; else hi = mid;
+    }
+    const a = gpxPoints[lo], b = gpxPoints[hi];
+    const t = (meters - a.dist) / (b.dist - a.dist);
+    return {
+      lat: a.lat + t * (b.lat - a.lat),
+      lon: a.lon + t * (b.lon - a.lon),
+      ele: a.ele + t * (b.ele - a.ele),
+      dist: meters
+    };
+  }
+
+  function setupMap() {
+    map = L.map('map', { zoomControl: true, attributionControl: true })
+      .setView([gpxPoints[0].lat, gpxPoints[0].lon], 14);
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+      subdomains: 'abcd', maxZoom: 19
+    }).addTo(map);
+
+    const latlngs = gpxPoints.map(p => [p.lat, p.lon]);
+    trackLayer = L.polyline(latlngs, { color: '#ff6b3d', weight: 4, opacity: 0.85 }).addTo(map);
+    map.fitBounds(trackLayer.getBounds(), { padding: [40, 40] });
+
+    L.circleMarker([gpxPoints[0].lat, gpxPoints[0].lon], {
+      radius: 7, color: '#0c0d10', weight: 2,
+      fillColor: '#f5c451', fillOpacity: 1
+    }).addTo(map).bindTooltip('Start / Finish · Pit', { direction: 'top', offset: [0, -8] });
+  }
+
+  function setupElevation() {
+    const eles = gpxPoints.map(p => p.ele);
+    elevMin = Math.min(...eles);
+    elevMax = Math.max(...eles);
+    const range = Math.max(1, elevMax - elevMin);
+    const W = 1000, H = 160, padTop = 8, padBot = 8;
+    const usableH = H - padTop - padBot;
+
+    let gainM = 0;
+    for (let i = 1; i < gpxPoints.length; i++) {
+      const dz = gpxPoints[i].ele - gpxPoints[i - 1].ele;
+      if (dz > 0) gainM += dz;
+    }
+    const gainPerLapFt = Math.round(metersToFeet(gainM));
+
+    const points = gpxPoints.map(p => {
+      const x = (p.dist / totalDistance) * W;
+      const y = padTop + usableH - ((p.ele - elevMin) / range) * usableH;
+      return [x, y];
+    });
+    const lineD = points.map((p, i) => (i === 0 ? 'M' : 'L') + p[0].toFixed(1) + ',' + p[1].toFixed(1)).join(' ');
+    const fillD = lineD + ` L${W},${H} L0,${H} Z`;
+
+    const svg = document.getElementById('elevation');
+    svg.innerHTML = `
+      <defs>
+        <linearGradient id="elev-grad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="rgba(255, 107, 61, 0.28)" />
+          <stop offset="100%" stop-color="rgba(255, 107, 61, 0.02)" />
+        </linearGradient>
+      </defs>
+      <path d="${fillD}" fill="url(#elev-grad)" />
+      <path d="${lineD}" stroke="#ff6b3d" stroke-width="1.5" fill="none" />
+      <g id="elev-runners"></g>
+    `;
+
+    document.getElementById('elev-stats').innerHTML =
+      `<strong>${metersToMiles(totalDistance).toFixed(2)} mi</strong> loop · ` +
+      `<strong>${gainPerLapFt.toLocaleString()} ft</strong> gain / lap · ` +
+      `<strong>${(gainPerLapFt * 10).toLocaleString()} ft</strong> over 10 laps`;
+  }
+
+  function runnerLapState(runner, race) {
+    const laps = runner.laps || [];
+    const completed = laps.filter(l => l.startTime && l.endTime);
+    const lapDurations = completed.map(l => (new Date(l.endTime) - new Date(l.startTime)) / 1000);
+    const avgLap = lapDurations.length
+      ? lapDurations.reduce((a, b) => a + b, 0) / lapDurations.length : null;
+    const recentLaps = lapDurations.slice(-2);
+    const recentAvgLap = recentLaps.length
+      ? recentLaps.reduce((a, b) => a + b, 0) / recentLaps.length : avgLap;
+    const inProgressLap = laps.find(l => l.startTime && !l.endTime);
+    const lastCompleted = completed[completed.length - 1] || null;
+    const nextStarted = lastCompleted
+      ? laps.some(l => l.startTime && new Date(l.startTime) > new Date(lastCompleted.endTime))
+      : false;
+    const inPit = !!lastCompleted && !nextStarted && completed.length < race.totalLoops;
+    const finished = completed.length >= race.totalLoops;
+    return { laps, completed, lapDurations, avgLap, recentAvgLap, inProgressLap, lastCompleted, inPit, finished };
+  }
+
+  function computeRunnerPosition(runner, race) {
+    const followsId = RUNNER_FOLLOWS[runner.id];
+    if (followsId) {
+      const target = (raceData.runners || []).find(r => r.id === followsId);
+      if (target && !RUNNER_FOLLOWS[target.id]) {
+        const mirrored = computeRunnerPosition(target, race);
+        return { ...mirrored, detail: `${mirrored.detail} · with ${target.name}` };
+      }
+    }
+    const s = runnerLapState(runner, race);
+    if (s.finished) return { state: 'done', lap: race.totalLoops, fraction: 1, point: gpxPoints[0], detail: 'Finished' };
+    if (s.inProgressLap) {
+      const elapsed = Math.max(0, (Date.now() - new Date(s.inProgressLap.startTime).getTime()) / 1000);
+      const lapEstimate = s.recentAvgLap || s.avgLap || 2.75 * 3600;
+      const baseMiles = typeof s.inProgressLap.miles === 'number' ? s.inProgressLap.miles : null;
+      let projectedMiles = null;
+      if (baseMiles != null && race.loopDistance > 0) {
+        const milesAtTs = s.inProgressLap.milesAt ? new Date(s.inProgressLap.milesAt).getTime() : null;
+        const sinceSpotted = milesAtTs ? Math.max(0, (Date.now() - milesAtTs) / 1000) : 0;
+        const milesPerSecond = race.loopDistance / lapEstimate;
+        projectedMiles = Math.min(race.loopDistance * 0.99, baseMiles + sinceSpotted * milesPerSecond);
+      }
+      const fraction = projectedMiles != null
+        ? projectedMiles / race.loopDistance
+        : Math.min(0.99, elapsed / lapEstimate);
+      const distM = fraction * totalDistance;
+      const point = pointAtDistance(distM);
+      const milesLabel = projectedMiles != null
+        ? `${projectedMiles.toFixed(1)} mi (from spot)`
+        : `~${metersToMiles(distM).toFixed(1)} mi`;
+      return {
+        state: 'course', lap: s.inProgressLap.lap, fraction, elapsed, point,
+        detail: `Lap ${s.inProgressLap.lap} · ${milesLabel} · ${fmtDuration(elapsed)}`
+      };
+    }
+    if (s.inPit) {
+      const since = (Date.now() - new Date(s.lastCompleted.endTime).getTime()) / 1000;
+      return {
+        state: 'pit', lap: s.lastCompleted.lap, fraction: 0, point: gpxPoints[0],
+        detail: `In Pit · after lap ${s.lastCompleted.lap} · ${fmtDuration(since)}`
+      };
+    }
+    return { state: 'idle', lap: 0, fraction: 0, point: gpxPoints[0], detail: 'Not started' };
+  }
+
+  function setOrCreateMarker(runner, pos) {
+    const id = runner.id;
+    const color = RUNNER_COLORS[id] || '#fff';
+    const initial = (runner.name || id)[0].toUpperCase();
+    const onCourse = pos.state === 'course';
+    const visible = onCourse;
+    const dLat = RUNNER_LAT_OFFSETS[id] || 0;
+    const lat = pos.point.lat + dLat;
+    const lon = pos.point.lon;
+    if (!runnerMarkers[id]) {
+      const icon = L.divIcon({
+        className: 'runner-pin',
+        html: `<div class="pin" style="color: ${color};"><span>${initial}</span></div>`,
+        iconSize: [28, 28], iconAnchor: [14, 14]
+      });
+      runnerMarkers[id] = L.marker([lat, lon], { icon, zIndexOffset: 800 }).addTo(map);
+    }
+    runnerMarkers[id].setLatLng([lat, lon]);
+    const tip = `${runner.name} · ${pos.detail}`;
+    if (runnerMarkers[id]._tooltip) runnerMarkers[id].setTooltipContent(tip);
+    else runnerMarkers[id].bindTooltip(tip, { direction: 'top', offset: [0, -14] });
+    runnerMarkers[id].setOpacity(visible ? 1 : 0);
+  }
+
+  function updateElevationOverlays(positions) {
+    const g = document.getElementById('elev-runners');
+    if (!g) return;
+    const W = 1000, H = 160, padTop = 8, padBot = 8;
+    const range = Math.max(1, elevMax - elevMin);
+    let html = '';
+    positions.forEach(({ runner, pos }) => {
+      if (pos.state !== 'course') return;
+      const color = RUNNER_COLORS[runner.id] || '#fff';
+      const x = pos.fraction * W;
+      const y = padTop + (H - padTop - padBot) - ((pos.point.ele - elevMin) / range) * (H - padTop - padBot);
+      html += `
+        <line x1="${x.toFixed(1)}" y1="0" x2="${x.toFixed(1)}" y2="${H}"
+              stroke="${color}" stroke-width="1" stroke-dasharray="3,3" opacity="0.55" />
+        <circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="6"
+                fill="${color}" stroke="${color}" stroke-opacity="0.4" stroke-width="6" />
+        <text x="${x.toFixed(1)}" y="${(y - 12).toFixed(1)}" fill="${color}"
+              font-family="JetBrains Mono, monospace" font-size="11" font-weight="700"
+              text-anchor="${x < 60 ? 'start' : x > W - 60 ? 'end' : 'middle'}">
+          ${runner.name[0].toUpperCase()} · L${pos.lap}
+        </text>
+      `;
+    });
+    g.innerHTML = html;
+  }
+
+  function renderRunnerCards(positions) {
+    const html = positions.map(({ runner, pos }) => {
+      const color = RUNNER_COLORS[runner.id] || '#fff';
+      const stateClass = pos.state;
+      const stateLabel = pos.state === 'course' ? 'On Course'
+        : pos.state === 'pit' ? 'In Pit'
+        : pos.state === 'done' ? 'Finished'
+        : 'Not Started';
+      const meta = pos.detail;
+      return `
+        <div class="runner-card" style="--c: ${color}">
+          <span class="swatch" style="background: ${color}; color: ${color};"></span>
+          <div>
+            <div class="name">${runner.name}</div>
+          </div>
+          <span class="state ${stateClass}">${stateLabel}</span>
+          <span class="meta">${meta}</span>
+        </div>
+      `;
+    }).join('');
+    document.getElementById('runners-bar').innerHTML = html;
+  }
+
+  function updateAll() {
+    if (!raceData || !gpxPoints.length || !map) return;
+    const positions = raceData.runners.map(r => ({ runner: r, pos: computeRunnerPosition(r, raceData.race) }));
+    positions.forEach(({ runner, pos }) => setOrCreateMarker(runner, pos));
+    updateElevationOverlays(positions);
+    renderRunnerCards(positions);
+    tickElapsedClock();
+    updateLastUpdatedLabel();
+  }
+
+  function tickElapsedClock() {
+    if (!raceData) return;
+    const now = new Date();
+    const start = new Date(raceData.race.startTime);
+    const cutoffSec = (raceData.race.totalCutoffHours || 38) * 3600;
+    const diff = Math.floor((now - start) / 1000);
+    const el = document.getElementById('elapsed');
+    if (diff < 0) {
+      el.textContent = `-${fmtDuration(-diff)}`;
+      el.style.color = 'var(--text-muted)';
+    } else {
+      const capped = Math.min(diff, cutoffSec);
+      el.textContent = fmtDuration(capped);
+      el.style.color = capped >= cutoffSec ? 'var(--red)' : 'var(--text)';
+    }
+  }
+
+  function updateLastUpdatedLabel() {
+    if (!raceData) return;
+    const lu = raceData.lastUpdated
+      ? `Data updated ${new Date(raceData.lastUpdated).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}`
+      : 'Awaiting start';
+    let live = '';
+    if (lastFetchAt) {
+      const ago = Math.max(0, Math.floor((Date.now() - lastFetchAt.getTime()) / 1000));
+      live = ago < 5 ? ' · live' : ` · checked ${ago}s ago`;
+    }
+    document.getElementById('last-updated').textContent = lu + live;
+  }
+
+  async function loadData() {
+    try {
+      const res = await fetch('data.json?_=' + Date.now(), {
+        cache: 'no-store',
+        headers: { 'Cache-Control': 'no-cache', 'Pragma': 'no-cache' }
+      });
+      if (!res.ok) throw new Error('Failed to load data.json');
+      raceData = await res.json();
+      lastFetchAt = new Date();
+      document.getElementById('error').hidden = true;
+      updateAll();
+    } catch (err) {
+      const e = document.getElementById('error');
+      e.hidden = false;
+      e.textContent = `Error loading race data: ${err.message}`;
+    }
+  }
+
+  async function init() {
+    try {
+      gpxPoints = await loadGPX();
+      totalDistance = gpxPoints[gpxPoints.length - 1].dist;
+      setupMap();
+      setupElevation();
+    } catch (err) {
+      const e = document.getElementById('error');
+      e.hidden = false;
+      e.textContent = `Map init failed: ${err.message}`;
+      return;
+    }
+    await loadData();
+    setInterval(loadData, REFRESH_MS);
+    setInterval(updateAll, 1000);
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible') loadData();
+    });
+  }
+
+  init();
+</script>
+
+</body>
+</html>
