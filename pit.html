@@ -406,6 +406,7 @@
   const CONFIG_KEY = 'pit-board-config-v1';
   let raceData = null;
   let intakeDirty = false;
+  const activeIntakeLeg = {};
 
   function loadStore() {
     try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
@@ -1071,12 +1072,16 @@
     const runnerRemote = (raceData && raceData.runners && raceData.runners.find(x => x.id === runner.id)) || null;
     const runnerLegs = (runnerRemote && runnerRemote.legs) || [];
     const legsWithData = runnerLegs.filter(l => l.startTime).sort((a, b) => b.leg - a.leg);
-    const defaultLegNum = legsWithData.length ? legsWithData[0].leg : null;
-    const defaultLeg = defaultLegNum != null ? runnerLegs.find(l => l.leg === defaultLegNum) : null;
+    const latestLegNum = legsWithData.length ? legsWithData[0].leg : null;
+    const stickyLegNum = activeIntakeLeg[runner.id];
+    const selectedLegNum = stickyLegNum != null && legsWithData.some(l => l.leg === stickyLegNum)
+      ? stickyLegNum
+      : latestLegNum;
+    const defaultLeg = selectedLegNum != null ? runnerLegs.find(l => l.leg === selectedLegNum) : null;
     const legOptions = legsWithData.map(l => {
       const seg = segments[l.leg - 1];
       const label = seg ? `Leg ${l.leg}: ${seg.from} → ${seg.to}` : `Leg ${l.leg}`;
-      return `<option value="${l.leg}"${l.leg === defaultLegNum ? ' selected' : ''}>${label}</option>`;
+      return `<option value="${l.leg}"${l.leg === selectedLegNum ? ' selected' : ''}>${label}</option>`;
     }).join('');
     const existingNote = defaultLeg
       ? [defaultLeg.gearChanges, defaultLeg.meds, defaultLeg.issues, defaultLeg.notes].filter(Boolean).join(' · ')
@@ -1187,6 +1192,7 @@
   document.body.addEventListener('change', (e) => {
     const sel = e.target.closest('.intake-leg-select');
     if (!sel) return;
+    activeIntakeLeg[sel.dataset.runner] = parseInt(sel.value, 10);
     reloadIntakeFormForLeg(sel.dataset.runner);
     intakeDirty = false;
   });
