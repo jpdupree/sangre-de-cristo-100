@@ -276,6 +276,71 @@
   .event-status.synced { color: var(--green); border: 1px solid rgba(110, 231, 168, 0.4); }
   .event-status.queued { color: var(--text-muted); border: 1px solid var(--border); }
   .event-status.error { color: var(--red); border: 1px solid var(--red); cursor: pointer; }
+
+  .intake-form {
+    border-top: 1px solid var(--border);
+    padding: 14px 20px 18px;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .intake-form-title {
+    font-family: 'JetBrains Mono', monospace; font-size: 9px;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted);
+  }
+  .intake-leg-row { display: flex; gap: 8px; align-items: center; }
+  .intake-leg-row label {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted);
+  }
+  .intake-leg-select {
+    flex: 1; background: var(--bg-elevated); color: var(--text);
+    border: 1px solid var(--border-bright); border-radius: 4px;
+    padding: 8px 10px; font-family: 'JetBrains Mono', monospace; font-size: 13px;
+  }
+  .intake-quick {
+    display: flex; gap: 8px; flex-wrap: wrap;
+  }
+  .intake-quick button {
+    flex: 1; min-width: 140px;
+    background: linear-gradient(180deg, rgba(94, 200, 255, 0.16), rgba(94, 200, 255, 0.05));
+    color: var(--blue);
+    border: 1px solid rgba(94, 200, 255, 0.4); border-radius: 4px;
+    padding: 10px 12px;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700;
+    letter-spacing: 0.05em; text-transform: uppercase;
+    cursor: pointer;
+  }
+  .intake-quick button:active { transform: scale(0.98); }
+  .intake-grid {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px;
+  }
+  @media (max-width: 380px) { .intake-grid { grid-template-columns: 1fr 1fr; } }
+  .intake-grid label {
+    display: flex; flex-direction: column; gap: 4px;
+    font-family: 'JetBrains Mono', monospace; font-size: 9px;
+    letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted);
+  }
+  .intake-grid input, .intake-notes textarea {
+    background: var(--bg-elevated); color: var(--text);
+    border: 1px solid var(--border-bright); border-radius: 4px;
+    padding: 8px 10px; font-family: 'JetBrains Mono', monospace; font-size: 14px;
+    width: 100%;
+  }
+  .intake-grid input:focus, .intake-notes textarea:focus { outline: none; border-color: var(--accent); }
+  .intake-notes { display: flex; flex-direction: column; gap: 4px; }
+  .intake-notes label {
+    font-family: 'JetBrains Mono', monospace; font-size: 9px;
+    letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted);
+  }
+  .intake-notes textarea {
+    font-family: 'Inter', sans-serif; font-size: 13px; min-height: 50px; resize: vertical;
+  }
+  .intake-actions { display: flex; gap: 8px; align-items: center; }
+  .intake-save-status {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+  }
+  .intake-save-status.ok { color: var(--green); }
+  .intake-save-status.err { color: var(--red); }
 </style>
 </head>
 <body>
@@ -300,10 +365,11 @@
     <div class="config-help">
       Generate a <strong>fine-grained</strong> personal access token at
       <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">github.com/settings/personal-access-tokens/new</a>
-      with <strong>Repository access → Only select repositories</strong> (this repo) and <strong>Repository permissions → Contents: Read and write</strong>.
+      with <strong>Repository access &rarr; Only select repositories</strong> (this repo) and <strong>Repository permissions &rarr; Contents: Read and write</strong>.
       Set expiration to a few weeks. Revoke after the race.
       The token is stored in this device's localStorage and used only to commit leg times via the GitHub API.
     </div>
+    <div class="row"><label>Marker</label><input type="text" id="cfg-marker" placeholder="e.g. Anna, Jason, JD" autocomplete="off" spellcheck="false" maxlength="20" /></div>
     <div class="row"><label>Token</label><input type="password" id="cfg-token" placeholder="github_pat_..." autocomplete="off" spellcheck="false" /></div>
     <div class="row"><label>Owner</label><input type="text" id="cfg-owner" autocomplete="off" spellcheck="false" /></div>
     <div class="row"><label>Repo</label><input type="text" id="cfg-repo" autocomplete="off" spellcheck="false" /></div>
@@ -339,6 +405,7 @@
   const STORAGE_KEY = 'pit-board-events-v2';
   const CONFIG_KEY = 'pit-board-config-v1';
   let raceData = null;
+  let intakeDirty = false;
 
   function loadStore() {
     try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
@@ -394,7 +461,6 @@
       };
     }
     if (bestAction === 'out') {
-      // Runner is on leg `bestLeg`, going toward segment.to.
       const seg = segments[bestLeg - 1];
       return {
         currentState: 'on-course', currentLeg: bestLeg,
@@ -402,7 +468,6 @@
         nextSeg: seg, lastTs: bestTs
       };
     }
-    // bestAction === 'in' → runner just finished leg `bestLeg` and is at segment.to.
     if (bestLeg >= totalLegs) {
       return {
         currentState: 'finished', currentLeg: bestLeg,
@@ -442,14 +507,14 @@
           if (leg.startTime) {
             const id = `seed-${r.id}-${leg.leg}-out`;
             if (!events.some(e => e.id === id)) {
-              events.push({ id, ts: leg.startTime, action: 'out', leg: leg.leg, sent: true, syncStatus: 'synced' });
+              events.push({ id, ts: leg.startTime, action: 'out', leg: leg.leg, sent: true, syncStatus: 'synced', markedBy: leg.markedOutBy || '' });
               changed = true;
             }
           }
           if (leg.endTime) {
             const id = `seed-${r.id}-${leg.leg}-in`;
             if (!events.some(e => e.id === id)) {
-              events.push({ id, ts: leg.endTime, action: 'in', leg: leg.leg, sent: true, syncStatus: 'synced' });
+              events.push({ id, ts: leg.endTime, action: 'in', leg: leg.leg, sent: true, syncStatus: 'synced', markedBy: leg.markedInBy || '' });
               changed = true;
             }
           }
@@ -536,15 +601,19 @@
         runner.legs.sort((a, b) => a.leg - b.leg);
       }
       const field = ev.action === 'out' ? 'startTime' : 'endTime';
-      if (leg[field] === ev.ts) return; // already applied
+      if (leg[field] === ev.ts) return;
       leg[field] = ev.ts;
+      if (ev.markedBy) {
+        leg[ev.action === 'out' ? 'markedOutBy' : 'markedInBy'] = ev.markedBy;
+      }
       content.lastUpdated = new Date().toISOString();
 
       const time = new Date(ev.ts).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit', second: '2-digit' });
       const action = ev.action === 'out'
         ? `departed for leg ${ev.leg} (${segLabel})`
         : `arrived at ${seg ? seg.to : 'leg ' + ev.leg}`;
-      const message = `pit-board: ${runnerName} ${action} at ${time}`;
+      const byTag = ev.markedBy ? ` · marked by ${ev.markedBy}` : '';
+      const message = `pit-board: ${runnerName} ${action} at ${time}${byTag}`;
 
       try {
         await ghPutData(config, content, sha, message);
@@ -555,6 +624,119 @@
       }
     }
     throw new Error('Too many sha conflicts');
+  }
+
+  async function commitLegData(runnerId, legNum, data) {
+    const config = loadConfig();
+    if (!config || !config.token) throw new Error('Not connected');
+    const runnerName = (RUNNERS.find(r => r.id === runnerId) || {}).name || runnerId;
+    for (let attempt = 0; attempt < 4; attempt++) {
+      const { sha, content } = await ghGetData(config);
+      const runner = (content.runners || []).find(r => r.id === runnerId);
+      if (!runner) throw new Error(`Runner "${runnerId}" not found in data.json`);
+      if (!runner.legs) runner.legs = [];
+      let leg = runner.legs.find(l => l.leg === legNum);
+      if (!leg) {
+        leg = { leg: legNum };
+        runner.legs.push(leg);
+        runner.legs.sort((a, b) => a.leg - b.leg);
+      }
+      if (data.calories != null) leg.calories = data.calories;
+      if (data.fluidOz != null) leg.fluidOz = data.fluidOz;
+      if (data.sodiumMg != null) leg.sodiumMg = data.sodiumMg;
+      if (data.notes != null) leg.notes = data.notes;
+      if (config.marker) leg.intakeBy = config.marker;
+      content.lastUpdated = new Date().toISOString();
+      const by = config.marker ? ` by ${config.marker}` : '';
+      const message = `pit-board: ${runnerName} leg ${legNum} intake/notes${by}`;
+      try {
+        await ghPutData(config, content, sha, message);
+        return;
+      } catch (err) {
+        if (err.status === 409 && attempt < 3) continue;
+        throw err;
+      }
+    }
+    throw new Error('Too many sha conflicts');
+  }
+
+  function getIntakeForm(runnerId) {
+    return document.querySelector(`.intake-form[data-runner="${runnerId}"]`);
+  }
+
+  function readIntakeForm(runnerId) {
+    const form = getIntakeForm(runnerId);
+    if (!form) return null;
+    const sel = form.querySelector('.intake-leg-select');
+    const cal = form.querySelector('.intake-cal');
+    const fluid = form.querySelector('.intake-fluid');
+    const sodium = form.querySelector('.intake-sodium');
+    const notes = form.querySelector('.intake-notes-input');
+    return {
+      legNum: parseInt(sel.value, 10),
+      calories: cal.value === '' ? null : parseInt(cal.value, 10),
+      fluidOz: fluid.value === '' ? null : parseFloat(fluid.value),
+      sodiumMg: sodium.value === '' ? null : parseInt(sodium.value, 10),
+      notes: notes.value.trim()
+    };
+  }
+
+  function setIntakeStatus(runnerId, text, cls) {
+    const form = getIntakeForm(runnerId);
+    if (!form) return;
+    const el = form.querySelector('.intake-save-status');
+    if (!el) return;
+    el.textContent = text;
+    el.className = 'intake-save-status' + (cls ? ' ' + cls : '');
+  }
+
+  function reloadIntakeFormForLeg(runnerId) {
+    const form = getIntakeForm(runnerId);
+    if (!form || !raceData) return;
+    const sel = form.querySelector('.intake-leg-select');
+    const legNum = parseInt(sel.value, 10);
+    const runner = (raceData.runners || []).find(r => r.id === runnerId);
+    const leg = runner && (runner.legs || []).find(l => l.leg === legNum);
+    form.querySelector('.intake-cal').value = leg && leg.calories != null ? leg.calories : '';
+    form.querySelector('.intake-fluid').value = leg && leg.fluidOz != null ? leg.fluidOz : '';
+    form.querySelector('.intake-sodium').value = leg && leg.sodiumMg != null ? leg.sodiumMg : '';
+    const noteParts = leg ? [leg.gearChanges, leg.meds, leg.issues, leg.notes].filter(Boolean) : [];
+    form.querySelector('.intake-notes-input').value = noteParts.join(' · ');
+    setIntakeStatus(runnerId, '', '');
+  }
+
+  function quickAddTailwind(runnerId) {
+    const form = getIntakeForm(runnerId);
+    if (!form) return;
+    const cal = form.querySelector('.intake-cal');
+    const fluid = form.querySelector('.intake-fluid');
+    const sodium = form.querySelector('.intake-sodium');
+    cal.value = (parseInt(cal.value || 0, 10) || 0) + 200;
+    fluid.value = ((parseFloat(fluid.value || 0) || 0) + 17).toFixed(1).replace(/\.0$/, '');
+    sodium.value = (parseInt(sodium.value || 0, 10) || 0) + 620;
+    intakeDirty = true;
+    setIntakeStatus(runnerId, '+ 1 flask — remember to save', '');
+  }
+
+  async function saveIntake(runnerId) {
+    const data = readIntakeForm(runnerId);
+    if (!data) return;
+    if (!hasToken()) {
+      setIntakeStatus(runnerId, 'not connected', 'err');
+      alert('Connect a GitHub token first (Setup button at top).');
+      return;
+    }
+    setIntakeStatus(runnerId, 'saving…', '');
+    try {
+      await commitLegData(runnerId, data.legNum, data);
+      setIntakeStatus(runnerId, 'saved ✓', 'ok');
+      intakeDirty = false;
+      await loadRaceData();
+      render();
+    } catch (err) {
+      setIntakeStatus(runnerId, 'error', 'err');
+      alert(`Save failed:\n${err.message || err}`);
+    }
   }
 
   async function syncEvent(runnerId, eventId) {
@@ -603,10 +785,13 @@
     const action = remote.nextAction;
     const leg = remote.nextLeg;
     const now = new Date();
+    const config = loadConfig();
+    const marker = (config && config.marker) || '';
     const ev = {
       id: now.getTime() + '-' + Math.random().toString(36).slice(2, 6),
       ts: now.toISOString(),
       action, leg, sent: false,
+      markedBy: marker,
       syncStatus: hasToken() ? 'syncing' : 'queued'
     };
     const store = loadStore();
@@ -735,8 +920,9 @@
     const text = document.getElementById('config-text');
     if (c && c.token) {
       const masked = c.token.length > 8 ? c.token.slice(0, 4) + '…' + c.token.slice(-4) : '••••';
+      const who = c.marker ? ` · marker <strong>${c.marker}</strong>` : ' · <em style="color: var(--yellow);">no marker set</em>';
       dot.className = 'status-dot connected';
-      text.innerHTML = `Connected · <strong>${c.owner}/${c.repo}</strong> @ <strong>${c.branch}</strong> · token ${masked}`;
+      text.innerHTML = `Connected · <strong>${c.owner}/${c.repo}</strong> @ <strong>${c.branch}</strong> · token ${masked}${who}`;
     } else {
       dot.className = 'status-dot';
       text.textContent = 'Not connected · button presses will be queued for copy-paste.';
@@ -746,6 +932,7 @@
   function openConfigForm() {
     const form = document.getElementById('config-form');
     const c = loadConfig() || detectDefaults();
+    document.getElementById('cfg-marker').value = c.marker || '';
     document.getElementById('cfg-token').value = c.token || '';
     document.getElementById('cfg-owner').value = c.owner || '';
     document.getElementById('cfg-repo').value = c.repo || '';
@@ -756,6 +943,7 @@
 
   async function saveConfigFromForm() {
     const c = {
+      marker: document.getElementById('cfg-marker').value.trim().slice(0, 20),
       token: document.getElementById('cfg-token').value.trim(),
       owner: document.getElementById('cfg-owner').value.trim(),
       repo: document.getElementById('cfg-repo').value.trim(),
@@ -865,9 +1053,12 @@
       ? '<div class="empty">No events yet</div>'
       : recent.map(e => {
           const seg = segments[e.leg - 1];
-          const label = e.action === 'out'
+          const byTag = e.markedBy
+            ? ` <span style="color: var(--text-muted); font-size: 10px;">· by ${e.markedBy}</span>`
+            : '';
+          const label = (e.action === 'out'
             ? `→ Depart, leg ${e.leg}${seg ? ' → ' + seg.to : ''}`
-            : `← Arrive, leg ${e.leg}${seg ? ' at ' + seg.to : ''}`;
+            : `← Arrive, leg ${e.leg}${seg ? ' at ' + seg.to : ''}`) + byTag;
           return `
             <div class="event ${e.sent ? 'sent' : ''}">
               <span class="event-action ${e.action}">${label}${statusBadge(e)}</span>
@@ -877,6 +1068,46 @@
           `;
         }).join('');
 
+    const runnerRemote = (raceData && raceData.runners && raceData.runners.find(x => x.id === runner.id)) || null;
+    const runnerLegs = (runnerRemote && runnerRemote.legs) || [];
+    const legsWithData = runnerLegs.filter(l => l.startTime).sort((a, b) => b.leg - a.leg);
+    const defaultLegNum = legsWithData.length ? legsWithData[0].leg : null;
+    const defaultLeg = defaultLegNum != null ? runnerLegs.find(l => l.leg === defaultLegNum) : null;
+    const legOptions = legsWithData.map(l => {
+      const seg = segments[l.leg - 1];
+      const label = seg ? `Leg ${l.leg}: ${seg.from} → ${seg.to}` : `Leg ${l.leg}`;
+      return `<option value="${l.leg}"${l.leg === defaultLegNum ? ' selected' : ''}>${label}</option>`;
+    }).join('');
+    const existingNote = defaultLeg
+      ? [defaultLeg.gearChanges, defaultLeg.meds, defaultLeg.issues, defaultLeg.notes].filter(Boolean).join(' · ')
+      : '';
+    const intakeForm = legsWithData.length === 0 ? '' : `
+      <div class="intake-form" data-runner="${runner.id}">
+        <div class="intake-form-title">Intake &amp; Notes</div>
+        <div class="intake-leg-row">
+          <label for="intake-leg-${runner.id}">Leg</label>
+          <select class="intake-leg-select" id="intake-leg-${runner.id}" data-runner="${runner.id}">
+            ${legOptions}
+          </select>
+        </div>
+        <div class="intake-quick">
+          <button data-action="quick-tailwind" data-runner="${runner.id}">+1 Flask Tailwind</button>
+        </div>
+        <div class="intake-grid">
+          <label>Cal<input type="number" inputmode="numeric" min="0" step="1" class="intake-cal" value="${defaultLeg && defaultLeg.calories != null ? defaultLeg.calories : ''}" /></label>
+          <label>Fluid oz<input type="number" inputmode="decimal" min="0" step="0.5" class="intake-fluid" value="${defaultLeg && defaultLeg.fluidOz != null ? defaultLeg.fluidOz : ''}" /></label>
+          <label>Sodium mg<input type="number" inputmode="numeric" min="0" step="10" class="intake-sodium" value="${defaultLeg && defaultLeg.sodiumMg != null ? defaultLeg.sodiumMg : ''}" /></label>
+        </div>
+        <div class="intake-notes">
+          <label>Notes</label>
+          <textarea class="intake-notes-input" placeholder="gear, meds, issues, anything…">${existingNote}</textarea>
+        </div>
+        <div class="intake-actions">
+          <button class="ctrl-btn primary" data-action="save-intake" data-runner="${runner.id}">Save leg</button>
+          <span class="intake-save-status"></span>
+        </div>
+      </div>
+    `;
     return `
       <article class="runner ${stateClass}">
         <div class="runner-head">
@@ -895,6 +1126,7 @@
           <div class="event-list-title">Recent (tap time to edit, × to delete)</div>
           ${recentHtml}
         </div>
+        ${intakeForm}
       </article>
     `;
   }
@@ -948,6 +1180,19 @@
     else if (action === 'edit') editEventTime(t.dataset.runner, t.dataset.event);
     else if (action === 'del') deleteEvent(t.dataset.runner, t.dataset.event);
     else if (action === 'resync') syncEvent(t.dataset.runner, t.dataset.event);
+    else if (action === 'quick-tailwind') quickAddTailwind(t.dataset.runner);
+    else if (action === 'save-intake') saveIntake(t.dataset.runner);
+  });
+
+  document.body.addEventListener('change', (e) => {
+    const sel = e.target.closest('.intake-leg-select');
+    if (!sel) return;
+    reloadIntakeFormForLeg(sel.dataset.runner);
+    intakeDirty = false;
+  });
+
+  document.body.addEventListener('input', (e) => {
+    if (e.target.closest('.intake-form')) intakeDirty = true;
   });
 
   document.getElementById('copy-all').addEventListener('click', copyAll);
@@ -974,7 +1219,11 @@
     await syncFromDataJson();
     render();
   })();
-  setInterval(async () => { await loadRaceData(); render(); }, 15000);
+  setInterval(async () => {
+    if (intakeDirty) { await loadRaceData(); return; }
+    await loadRaceData();
+    render();
+  }, 15000);
   setInterval(tick, 1000);
 </script>
 
