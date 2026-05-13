@@ -258,10 +258,12 @@
   .leglog tr:last-child td { border-bottom: none; }
   .leglog .leg-num {
     font-family: 'Fraunces', serif; font-size: 18px; font-weight: 600;
-    color: var(--accent); width: 30px;
+    color: var(--accent); width: 30px; vertical-align: top;
   }
-  .leglog .leg-route { font-size: 11px; color: var(--text); }
-  .leglog .leg-route .sep { color: var(--text-muted); margin: 0 4px; }
+  .leglog .leg-route { font-size: 13px; color: var(--text); font-weight: 600; }
+  .leglog .leg-route .sep { color: var(--text-muted); margin: 0 6px; }
+  .leglog tr.leg-route-row td { border-bottom: none; padding-bottom: 4px; padding-top: 14px; }
+  .leglog tr.leg-row td { padding-top: 0; }
   .leglog tr.leg-row:has(+ tr.note-row) td { border-bottom: none; padding-bottom: 6px; }
   .leglog tr.note-row td {
     padding: 0 8px 12px 8px; padding-left: 38px;
@@ -761,7 +763,7 @@
     }).join('');
 
     const legRows = (runner.legs || []).length === 0
-      ? `<tr class="empty"><td colspan="9" style="text-align:center; padding: 24px;">Awaiting first leg</td></tr>`
+      ? `<tr class="empty"><td colspan="8" style="text-align:center; padding: 24px;">Awaiting first leg</td></tr>`
       : (runner.legs || []).map((l, i) => {
           const seg = course[l.leg - 1];
           const dur = (l.startTime && l.endTime)
@@ -787,15 +789,17 @@
           const oldCls = isOld ? ' leg-old' : '';
           const noteOldCls = isOld ? ' note-old' : '';
           const noteRow = noteParts.length
-            ? `<tr class="note-row${noteOldCls}"><td colspan="9">${noteParts.join(' · ')}</td></tr>`
+            ? `<tr class="note-row${noteOldCls}"><td colspan="8">${noteParts.join(' · ')}</td></tr>`
             : '';
           const route = seg
             ? `<span class="leg-route">${seg.from}<span class="sep">→</span>${seg.to}</span>`
             : '—';
           return `
+            <tr class="leg-route-row${oldCls}">
+              <td class="leg-num" rowspan="2">${l.leg}</td>
+              <td colspan="7">${route}</td>
+            </tr>
             <tr class="leg-row${oldCls}">
-              <td class="leg-num">${l.leg}</td>
-              <td>${route}</td>
               <td class="num">${seg ? seg.distance : '—'}</td>
               <td class="num">${fmtClockTime(l.endTime)}</td>
               <td class="num">${dur ? fmtShortDuration(dur) : '—'}</td>
@@ -936,7 +940,7 @@
             <table>
               <thead>
                 <tr>
-                  <th>#</th><th>Route</th><th class="num">Mi</th><th class="num">Done</th>
+                  <th>#</th><th class="num">Mi</th><th class="num">Done</th>
                   <th class="num">Time</th><th class="num">Pace</th><th class="num">Aid</th>
                   <th class="num">Cal</th><th class="num">Fluid</th>
                 </tr>
