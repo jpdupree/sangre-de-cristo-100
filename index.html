@@ -87,7 +87,7 @@
   .cutoffs {
     background: var(--bg-elevated); border: 1px solid var(--border);
     border-radius: 4px; padding: 18px 24px; margin-bottom: 32px;
-    display: grid; grid-template-columns: auto 1fr auto auto auto;
+    display: grid; grid-template-columns: auto 1fr auto auto auto auto;
     gap: 32px; align-items: center;
   }
   .cutoffs-label {
@@ -728,11 +728,17 @@
            <span class="l">${next.seg.to} · M${next.seg.cumMile} · ${next.seg.cutoffHoursFromStart}h</span>
          </div>`
       : `<div class="cutoff-item"><span class="v">—</span><span class="l">No upcoming cutoff</span></div>`;
+    const countdownHtml = next
+      ? `<div class="cutoff-item" id="next-cutoff-countdown" data-target="${next.atIso}">
+           <span class="v">—</span><span class="l">Until next cutoff</span>
+         </div>`
+      : `<div class="cutoff-item"><span class="v">—</span><span class="l">Until next cutoff</span></div>`;
     document.getElementById('cutoffs').innerHTML = `
       <span class="cutoffs-label">Cutoffs</span>
       <div></div>
       <div class="cutoff-item"><span class="v">${startTxt}</span><span class="l">Start</span></div>
       ${nextHtml}
+      ${countdownHtml}
       <div class="cutoff-item danger"><span class="v">${finalTxt}</span><span class="l">Final · ${race.totalCutoffHours}h</span></div>
     `;
   }
@@ -971,6 +977,25 @@
       const seconds = base + Math.max(0, (Date.now() - new Date(since).getTime()) / 1000);
       t.textContent = fmtDuration(seconds);
     });
+    const cd = document.getElementById('next-cutoff-countdown');
+    if (cd && cd.dataset.target) {
+      const remaining = Math.floor((new Date(cd.dataset.target) - now) / 1000);
+      const vEl = cd.querySelector('.v');
+      if (remaining <= 0) {
+        vEl.textContent = 'PASSED';
+        cd.classList.remove('warn');
+        cd.classList.add('danger');
+      } else {
+        const d = Math.floor(remaining / 86400);
+        const h = Math.floor((remaining % 86400) / 3600);
+        const m = Math.floor((remaining % 3600) / 60);
+        const s = Math.floor(remaining % 60);
+        vEl.textContent = d > 0
+          ? `${d}d ${String(h).padStart(2,'0')}h ${String(m).padStart(2,'0')}m`
+          : `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+        cd.classList.toggle('warn', remaining < 3600);
+      }
+    }
   }
 
   async function load() {
