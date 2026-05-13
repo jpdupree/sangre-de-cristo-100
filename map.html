@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="theme-color" content="#0c0d10" />
-<title>Course Map · Bloodroot 100</title>
+<title>Course Map · Sangre de Cristo 100</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -27,8 +27,6 @@
     --yellow: #f5c451;
     --red: #ff5959;
     --blue: #5ec8ff;
-    --jasmine: #ff6b3d;
-    --oppenheimer: #5ec8ff;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body {
@@ -84,16 +82,12 @@
     letter-spacing: -0.02em;
   }
 
-  .runners-bar {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
-    margin-bottom: 20px;
-  }
-  @media (max-width: 760px) { .runners-bar { grid-template-columns: 1fr; } }
   .runner-card {
     background: var(--bg-card); border: 1px solid var(--border);
     border-radius: 6px; padding: 16px 18px;
     display: grid; grid-template-columns: auto 1fr auto auto; gap: 14px;
     align-items: center;
+    margin-bottom: 20px;
   }
   .swatch {
     width: 14px; height: 14px; border-radius: 50%;
@@ -118,7 +112,7 @@
   .runner-card .meta strong { color: var(--text); }
 
   #map {
-    height: 60vh; min-height: 420px;
+    height: 65vh; min-height: 480px;
     border: 1px solid var(--border); border-radius: 6px;
     background: #0c0d10;
     margin-bottom: 22px;
@@ -141,8 +135,6 @@
     font-family: 'JetBrains Mono', monospace; font-size: 11px;
     box-shadow: 0 6px 18px rgba(0,0,0,0.4);
   }
-  .leaflet-tooltip-top:before, .leaflet-tooltip-bottom:before,
-  .leaflet-tooltip-left:before, .leaflet-tooltip-right:before { border-top-color: var(--border-bright); }
 
   .runner-pin .pin {
     width: 28px; height: 28px; border-radius: 50%;
@@ -160,27 +152,37 @@
     50% { box-shadow: 0 0 20px currentColor, 0 4px 8px rgba(0, 0, 0, 0.6); }
   }
 
-  .elev-section {
+  .segment-strip {
     background: var(--bg-card); border: 1px solid var(--border);
-    border-radius: 6px; padding: 18px 20px;
+    border-radius: 6px; padding: 16px 20px;
   }
-  .elev-head {
-    display: flex; justify-content: space-between; align-items: baseline;
-    margin-bottom: 10px; flex-wrap: wrap; gap: 10px;
-  }
-  .elev-title {
+  .segment-strip-title {
     font-family: 'JetBrains Mono', monospace; font-size: 11px;
-    letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted);
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--text-muted); margin-bottom: 12px;
   }
-  .elev-stats {
-    font-family: 'JetBrains Mono', monospace; font-size: 11px;
-    color: var(--text-dim);
+  .segment-bar {
+    position: relative; height: 18px; background: var(--bg-elevated);
+    border: 1px solid var(--border); border-radius: 3px;
+    overflow: hidden;
   }
-  .elev-stats strong { color: var(--text); }
-  #elevation {
-    width: 100%; height: 160px; display: block;
+  .segment-fill {
+    height: 100%; background: linear-gradient(90deg, var(--accent), var(--yellow));
+    transition: width 0.6s ease;
   }
-  .elev-axis {
+  .segment-cutoffs {
+    position: absolute; inset: 0;
+    pointer-events: none;
+  }
+  .segment-cutoff-tick {
+    position: absolute; top: 0; bottom: 0; width: 2px;
+    background: var(--yellow); opacity: 0.6;
+  }
+  .segment-runner-tick {
+    position: absolute; top: -3px; bottom: -3px; width: 3px;
+    background: var(--accent); box-shadow: 0 0 6px var(--accent);
+  }
+  .segment-axis {
     display: flex; justify-content: space-between;
     font-family: 'JetBrains Mono', monospace; font-size: 9px;
     color: var(--text-muted); letter-spacing: 0.1em;
@@ -205,7 +207,7 @@
   @media (max-width: 640px) {
     body { padding: 18px 14px 40px; }
     h1 { font-size: 28px; }
-    #map { height: 50vh; min-height: 320px; }
+    #map { height: 55vh; min-height: 360px; }
     .runner-card { grid-template-columns: auto 1fr; row-gap: 10px; }
     .runner-card .state { grid-column: 2; justify-self: end; }
     .runner-card .meta { grid-column: 1 / -1; text-align: left; }
@@ -219,9 +221,9 @@
     <div class="brand-meta">
       <span class="pulse"></span>
       <span>Course Map</span>
-      <span>· 10 × 10mi loops</span>
+      <span id="course-meta">· 16 legs · 101.3 mi</span>
     </div>
-    <h1>Bloodroot <em>100</em></h1>
+    <h1>Sangre de <em>Cristo</em> 100</h1>
   </div>
   <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 10px;">
     <a class="dash-link" href="index.html">← Dashboard</a>
@@ -234,27 +236,26 @@
 
 <div class="error-banner" id="error" hidden></div>
 
-<section class="runners-bar" id="runners-bar"></section>
+<section id="runner-bar"></section>
 
 <div id="map"></div>
 
-<section class="elev-section">
-  <div class="elev-head">
-    <span class="elev-title">Elevation Profile · per loop</span>
-    <span class="elev-stats" id="elev-stats">—</span>
+<section class="segment-strip">
+  <div class="segment-strip-title">Course Progress</div>
+  <div class="segment-bar" id="segment-bar">
+    <div class="segment-cutoffs" id="segment-cutoffs"></div>
+    <div class="segment-fill" id="segment-fill" style="width:0%"></div>
+    <div class="segment-runner-tick" id="segment-runner-tick" style="left:0%"></div>
   </div>
-  <svg id="elevation" preserveAspectRatio="none" viewBox="0 0 1000 160"></svg>
-  <div class="elev-axis">
-    <span>0 mi · start</span>
-    <span>2.5 mi</span>
-    <span>5 mi · halfway</span>
-    <span>7.5 mi</span>
-    <span>10 mi · finish</span>
+  <div class="segment-axis">
+    <span>0 mi · Start</span>
+    <span id="seg-mid">50.6 mi · Music Meadows 2</span>
+    <span>101.3 mi · Finish</span>
   </div>
 </section>
 
 <footer>
-  <div>Markers are estimated from the last 2 laps' average pace · positions tick every second</div>
+  <div>Position is estimated from recent-2-leg pace from the last sign-out · ticks every second</div>
   <div id="last-updated" class="note">—</div>
 </footer>
 
@@ -262,21 +263,17 @@
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
         crossorigin=""></script>
 <script>
-  const RUNNER_COLORS = { jasmine: '#ff6b3d', oppenheimer: '#5ec8ff' };
-  const RUNNER_LAT_OFFSETS = { jasmine: 0.00007, oppenheimer: -0.00007 };
-  // When a runner is sticking with another, mirror the target's computed position
-  // (own color/marker preserved). Set to null/empty to compute solo.
-  const RUNNER_FOLLOWS = { oppenheimer: 'jasmine' };
+  const RUNNER_COLOR = '#ff6b3d';
   const REFRESH_MS = 15000;
 
-  let gpxPoints = [];        // [{ lat, lon, ele, dist }]
-  let totalDistance = 0;     // meters
+  let gpxTrack = [];          // [{ lat, lon, dist (m) }]
+  let gpxWaypoints = [];      // [{ lat, lon, name }]
+  let totalDistanceMeters = 0;
   let map = null;
   let trackLayer = null;
-  let runnerMarkers = {};    // id -> Leaflet marker
+  let runnerMarker = null;
   let raceData = null;
   let lastFetchAt = null;
-  let elevMin = 0, elevMax = 0;
 
   function haversine(lat1, lon1, lat2, lon2) {
     const R = 6371000;
@@ -287,7 +284,6 @@
       Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon / 2) ** 2;
     return 2 * R * Math.asin(Math.sqrt(a));
   }
-
   function fmtDuration(seconds) {
     if (seconds == null || isNaN(seconds) || seconds < 0) return '—';
     const h = Math.floor(seconds / 3600);
@@ -295,9 +291,16 @@
     const s = Math.floor(seconds % 60);
     return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
   }
-
   function metersToMiles(m) { return m / 1609.344; }
-  function metersToFeet(m) { return m * 3.28084; }
+  function milesToMeters(mi) { return mi * 1609.344; }
+
+  function buildCourseIndex(race) {
+    let cum = 0;
+    return race.segments.map(s => {
+      cum += s.distance;
+      return { ...s, cumMile: +cum.toFixed(2), cumMileStart: +(cum - s.distance).toFixed(2) };
+    });
+  }
 
   async function loadGPX() {
     const res = await fetch('course.gpx?_=' + Date.now(), { cache: 'no-store' });
@@ -307,246 +310,168 @@
     if (xml.querySelector('parsererror')) throw new Error('Invalid GPX');
     const trkpts = Array.from(xml.querySelectorAll('trkpt'));
     if (!trkpts.length) throw new Error('No trkpt elements in GPX');
-    const pts = trkpts.map(p => {
-      const eleEl = p.querySelector('ele');
-      return {
-        lat: parseFloat(p.getAttribute('lat')),
-        lon: parseFloat(p.getAttribute('lon')),
-        ele: eleEl ? parseFloat(eleEl.textContent) : 0
-      };
-    });
+    const pts = trkpts.map(p => ({
+      lat: parseFloat(p.getAttribute('lat')),
+      lon: parseFloat(p.getAttribute('lon'))
+    }));
     let cum = 0; pts[0].dist = 0;
     for (let i = 1; i < pts.length; i++) {
       cum += haversine(pts[i - 1].lat, pts[i - 1].lon, pts[i].lat, pts[i].lon);
       pts[i].dist = cum;
     }
-    return pts;
+    const wpts = Array.from(xml.querySelectorAll('wpt')).map(w => ({
+      lat: parseFloat(w.getAttribute('lat')),
+      lon: parseFloat(w.getAttribute('lon')),
+      name: (w.querySelector('name')?.textContent) || ''
+    }));
+    return { track: pts, waypoints: wpts };
   }
 
-  function pointAtDistance(meters) {
-    if (gpxPoints.length === 0) return null;
-    if (meters <= 0) return gpxPoints[0];
-    if (meters >= totalDistance) return gpxPoints[gpxPoints.length - 1];
-    let lo = 0, hi = gpxPoints.length - 1;
+  // Map "course mile" (0..totalDistance in race.totalDistance) → GPX trackpoint.
+  // GPX cumulative distance and race-chart cumulative distance are roughly equal
+  // but not identical (GPX is haversine of trackpoints, chart is signed mile markers).
+  // We scale linearly: gpxDist = courseMile / race.totalDistance * gpxTotalMeters.
+  function pointAtCourseMile(courseMile, totalRaceMiles) {
+    if (gpxTrack.length === 0) return null;
+    const targetMeters = (courseMile / totalRaceMiles) * totalDistanceMeters;
+    if (targetMeters <= 0) return gpxTrack[0];
+    if (targetMeters >= totalDistanceMeters) return gpxTrack[gpxTrack.length - 1];
+    let lo = 0, hi = gpxTrack.length - 1;
     while (hi - lo > 1) {
       const mid = (lo + hi) >> 1;
-      if (gpxPoints[mid].dist <= meters) lo = mid; else hi = mid;
+      if (gpxTrack[mid].dist <= targetMeters) lo = mid; else hi = mid;
     }
-    const a = gpxPoints[lo], b = gpxPoints[hi];
-    const t = (meters - a.dist) / (b.dist - a.dist);
+    const a = gpxTrack[lo], b = gpxTrack[hi];
+    const t = (targetMeters - a.dist) / (b.dist - a.dist);
     return {
       lat: a.lat + t * (b.lat - a.lat),
       lon: a.lon + t * (b.lon - a.lon),
-      ele: a.ele + t * (b.ele - a.ele),
-      dist: meters
+      dist: targetMeters
     };
   }
 
   function setupMap() {
     map = L.map('map', { zoomControl: true, attributionControl: true })
-      .setView([gpxPoints[0].lat, gpxPoints[0].lon], 14);
+      .setView([gpxTrack[0].lat, gpxTrack[0].lon], 12);
     L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
       subdomains: 'abcd', maxZoom: 19
     }).addTo(map);
+    const latlngs = gpxTrack.map(p => [p.lat, p.lon]);
+    trackLayer = L.polyline(latlngs, { color: '#ff6b3d', weight: 3.5, opacity: 0.85 }).addTo(map);
+    map.fitBounds(trackLayer.getBounds(), { padding: [30, 30] });
 
-    const latlngs = gpxPoints.map(p => [p.lat, p.lon]);
-    trackLayer = L.polyline(latlngs, { color: '#ff6b3d', weight: 4, opacity: 0.85 }).addTo(map);
-    map.fitBounds(trackLayer.getBounds(), { padding: [40, 40] });
-
-    L.circleMarker([gpxPoints[0].lat, gpxPoints[0].lon], {
-      radius: 7, color: '#0c0d10', weight: 2,
-      fillColor: '#f5c451', fillOpacity: 1
-    }).addTo(map).bindTooltip('Start / Finish · Pit', { direction: 'top', offset: [0, -8] });
-  }
-
-  function setupElevation() {
-    const eles = gpxPoints.map(p => p.ele);
-    elevMin = Math.min(...eles);
-    elevMax = Math.max(...eles);
-    const range = Math.max(1, elevMax - elevMin);
-    const W = 1000, H = 160, padTop = 8, padBot = 8;
-    const usableH = H - padTop - padBot;
-
-    let gainM = 0;
-    for (let i = 1; i < gpxPoints.length; i++) {
-      const dz = gpxPoints[i].ele - gpxPoints[i - 1].ele;
-      if (dz > 0) gainM += dz;
-    }
-    const gainPerLapFt = Math.round(metersToFeet(gainM));
-
-    const points = gpxPoints.map(p => {
-      const x = (p.dist / totalDistance) * W;
-      const y = padTop + usableH - ((p.ele - elevMin) / range) * usableH;
-      return [x, y];
+    gpxWaypoints.forEach(w => {
+      const isMM = /Music Meadows/i.test(w.name);
+      L.circleMarker([w.lat, w.lon], {
+        radius: 6, color: '#0c0d10', weight: 2,
+        fillColor: isMM ? '#6ee7a8' : '#f5c451', fillOpacity: 1
+      }).addTo(map).bindTooltip(w.name + (isMM ? ' · CREW' : ''), { direction: 'top', offset: [0, -8] });
     });
-    const lineD = points.map((p, i) => (i === 0 ? 'M' : 'L') + p[0].toFixed(1) + ',' + p[1].toFixed(1)).join(' ');
-    const fillD = lineD + ` L${W},${H} L0,${H} Z`;
-
-    const svg = document.getElementById('elevation');
-    svg.innerHTML = `
-      <defs>
-        <linearGradient id="elev-grad" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="rgba(255, 107, 61, 0.28)" />
-          <stop offset="100%" stop-color="rgba(255, 107, 61, 0.02)" />
-        </linearGradient>
-      </defs>
-      <path d="${fillD}" fill="url(#elev-grad)" />
-      <path d="${lineD}" stroke="#ff6b3d" stroke-width="1.5" fill="none" />
-      <g id="elev-runners"></g>
-    `;
-
-    document.getElementById('elev-stats').innerHTML =
-      `<strong>${metersToMiles(totalDistance).toFixed(2)} mi</strong> loop · ` +
-      `<strong>${gainPerLapFt.toLocaleString()} ft</strong> gain / lap · ` +
-      `<strong>${(gainPerLapFt * 10).toLocaleString()} ft</strong> over 10 laps`;
   }
 
-  function runnerLapState(runner, race) {
-    const laps = runner.laps || [];
-    const completed = laps.filter(l => l.startTime && l.endTime);
-    const lapDurations = completed.map(l => (new Date(l.endTime) - new Date(l.startTime)) / 1000);
-    const avgLap = lapDurations.length
-      ? lapDurations.reduce((a, b) => a + b, 0) / lapDurations.length : null;
-    const recentLaps = lapDurations.slice(-2);
-    const recentAvgLap = recentLaps.length
-      ? recentLaps.reduce((a, b) => a + b, 0) / recentLaps.length : avgLap;
-    const inProgressLap = laps.find(l => l.startTime && !l.endTime);
-    const lastCompleted = completed[completed.length - 1] || null;
-    const nextStarted = lastCompleted
-      ? laps.some(l => l.startTime && new Date(l.startTime) > new Date(lastCompleted.endTime))
-      : false;
-    const inPit = !!lastCompleted && !nextStarted && completed.length < race.totalLoops;
-    const finished = completed.length >= race.totalLoops;
-    return { laps, completed, lapDurations, avgLap, recentAvgLap, inProgressLap, lastCompleted, inPit, finished };
+  function recentAvgPace(runner, course) {
+    const sortedLegs = (runner.legs || []).slice().sort((a, b) => a.leg - b.leg);
+    const completed = sortedLegs.filter(l => l.startTime && l.endTime);
+    if (!completed.length) return null;
+    const recent = completed.slice(-2);
+    let totalDur = 0, totalMi = 0;
+    recent.forEach(l => {
+      const seg = course[l.leg - 1];
+      if (!seg) return;
+      totalDur += (new Date(l.endTime) - new Date(l.startTime)) / 1000;
+      totalMi += seg.distance;
+    });
+    return totalMi > 0 ? totalDur / totalMi : null;
   }
 
-  function computeRunnerPosition(runner, race) {
-    const followsId = RUNNER_FOLLOWS[runner.id];
-    if (followsId) {
-      const target = (raceData.runners || []).find(r => r.id === followsId);
-      if (target && !RUNNER_FOLLOWS[target.id]) {
-        const mirrored = computeRunnerPosition(target, race);
-        return { ...mirrored, detail: `${mirrored.detail} · with ${target.name}` };
-      }
+  function computeRunnerPosition(runner, race, course) {
+    const legs = (runner.legs || []).slice().sort((a, b) => a.leg - b.leg);
+    const totalLegs = course.length;
+    if (!legs.length) {
+      return { state: 'idle', courseMile: 0, point: gpxTrack[0], detail: 'Not started', lastLegNum: 0 };
     }
-    const s = runnerLapState(runner, race);
-    if (s.finished) return { state: 'done', lap: race.totalLoops, fraction: 1, point: gpxPoints[0], detail: 'Finished' };
-    if (s.inProgressLap) {
-      const elapsed = Math.max(0, (Date.now() - new Date(s.inProgressLap.startTime).getTime()) / 1000);
-      const lapEstimate = s.recentAvgLap || s.avgLap || 2.75 * 3600;
-      const baseMiles = typeof s.inProgressLap.miles === 'number' ? s.inProgressLap.miles : null;
-      let projectedMiles = null;
-      if (baseMiles != null && race.loopDistance > 0) {
-        const milesAtTs = s.inProgressLap.milesAt ? new Date(s.inProgressLap.milesAt).getTime() : null;
-        const sinceSpotted = milesAtTs ? Math.max(0, (Date.now() - milesAtTs) / 1000) : 0;
-        const milesPerSecond = race.loopDistance / lapEstimate;
-        projectedMiles = Math.min(race.loopDistance * 0.99, baseMiles + sinceSpotted * milesPerSecond);
-      }
-      const fraction = projectedMiles != null
-        ? projectedMiles / race.loopDistance
-        : Math.min(0.99, elapsed / lapEstimate);
-      const distM = fraction * totalDistance;
-      const point = pointAtDistance(distM);
-      const milesLabel = projectedMiles != null
-        ? `${projectedMiles.toFixed(1)} mi (from spot)`
-        : `~${metersToMiles(distM).toFixed(1)} mi`;
+    const completedLegs = legs.filter(l => l.startTime && l.endTime);
+    const finished = completedLegs.length >= totalLegs;
+    if (finished) {
+      const last = completedLegs[completedLegs.length - 1];
       return {
-        state: 'course', lap: s.inProgressLap.lap, fraction, elapsed, point,
-        detail: `Lap ${s.inProgressLap.lap} · ${milesLabel} · ${fmtDuration(elapsed)}`
+        state: 'done', courseMile: race.totalDistance, point: gpxTrack[0],
+        detail: `Finished · ${fmtDuration((new Date(last.endTime) - new Date(legs[0].startTime)) / 1000)}`,
+        lastLegNum: last.leg
       };
     }
-    if (s.inPit) {
-      const since = (Date.now() - new Date(s.lastCompleted.endTime).getTime()) / 1000;
+    const inProgress = legs.find(l => l.startTime && !l.endTime);
+    if (inProgress) {
+      const seg = course[inProgress.leg - 1];
+      const elapsed = Math.max(0, (Date.now() - new Date(inProgress.startTime).getTime()) / 1000);
+      const paceSecPerMile = recentAvgPace(runner, course) || (race.totalCutoffHours * 3600 / race.totalDistance);
+      const milesIntoLeg = Math.min(seg.distance * 0.99, elapsed / paceSecPerMile);
+      const courseMile = seg.cumMileStart + milesIntoLeg;
       return {
-        state: 'pit', lap: s.lastCompleted.lap, fraction: 0, point: gpxPoints[0],
-        detail: `In Pit · after lap ${s.lastCompleted.lap} · ${fmtDuration(since)}`
+        state: 'course', courseMile,
+        point: pointAtCourseMile(courseMile, race.totalDistance),
+        detail: `Leg ${inProgress.leg} · → ${seg.to} · ~${courseMile.toFixed(1)} mi · ${fmtDuration(elapsed)}`,
+        lastLegNum: inProgress.leg
       };
     }
-    return { state: 'idle', lap: 0, fraction: 0, point: gpxPoints[0], detail: 'Not started' };
+    // In aid, just completed a leg
+    const last = completedLegs[completedLegs.length - 1];
+    const seg = course[last.leg - 1];
+    const since = (Date.now() - new Date(last.endTime).getTime()) / 1000;
+    return {
+      state: 'pit', courseMile: seg.cumMile,
+      point: pointAtCourseMile(seg.cumMile, race.totalDistance),
+      detail: `At ${seg.to} · after leg ${last.leg} · ${fmtDuration(since)}`,
+      lastLegNum: last.leg
+    };
   }
 
   function setOrCreateMarker(runner, pos) {
-    const id = runner.id;
-    const color = RUNNER_COLORS[id] || '#fff';
-    const initial = (runner.name || id)[0].toUpperCase();
-    const onCourse = pos.state === 'course';
-    const visible = onCourse;
-    const dLat = RUNNER_LAT_OFFSETS[id] || 0;
-    const lat = pos.point.lat + dLat;
-    const lon = pos.point.lon;
-    if (!runnerMarkers[id]) {
+    const initial = (runner.name || 'R')[0].toUpperCase();
+    const visible = pos.state === 'course';
+    if (!runnerMarker) {
       const icon = L.divIcon({
         className: 'runner-pin',
-        html: `<div class="pin" style="color: ${color};"><span>${initial}</span></div>`,
+        html: `<div class="pin" style="color: ${RUNNER_COLOR};"><span>${initial}</span></div>`,
         iconSize: [28, 28], iconAnchor: [14, 14]
       });
-      runnerMarkers[id] = L.marker([lat, lon], { icon, zIndexOffset: 800 }).addTo(map);
+      runnerMarker = L.marker([pos.point.lat, pos.point.lon], { icon, zIndexOffset: 800 }).addTo(map);
     }
-    runnerMarkers[id].setLatLng([lat, lon]);
+    runnerMarker.setLatLng([pos.point.lat, pos.point.lon]);
     const tip = `${runner.name} · ${pos.detail}`;
-    if (runnerMarkers[id]._tooltip) runnerMarkers[id].setTooltipContent(tip);
-    else runnerMarkers[id].bindTooltip(tip, { direction: 'top', offset: [0, -14] });
-    runnerMarkers[id].setOpacity(visible ? 1 : 0);
+    if (runnerMarker._tooltip) runnerMarker.setTooltipContent(tip);
+    else runnerMarker.bindTooltip(tip, { direction: 'top', offset: [0, -14] });
+    runnerMarker.setOpacity(visible ? 1 : 0);
   }
 
-  function updateElevationOverlays(positions) {
-    const g = document.getElementById('elev-runners');
-    if (!g) return;
-    const W = 1000, H = 160, padTop = 8, padBot = 8;
-    const range = Math.max(1, elevMax - elevMin);
-    let html = '';
-    positions.forEach(({ runner, pos }) => {
-      if (pos.state !== 'course') return;
-      const color = RUNNER_COLORS[runner.id] || '#fff';
-      const x = pos.fraction * W;
-      const y = padTop + (H - padTop - padBot) - ((pos.point.ele - elevMin) / range) * (H - padTop - padBot);
-      html += `
-        <line x1="${x.toFixed(1)}" y1="0" x2="${x.toFixed(1)}" y2="${H}"
-              stroke="${color}" stroke-width="1" stroke-dasharray="3,3" opacity="0.55" />
-        <circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="6"
-                fill="${color}" stroke="${color}" stroke-opacity="0.4" stroke-width="6" />
-        <text x="${x.toFixed(1)}" y="${(y - 12).toFixed(1)}" fill="${color}"
-              font-family="JetBrains Mono, monospace" font-size="11" font-weight="700"
-              text-anchor="${x < 60 ? 'start' : x > W - 60 ? 'end' : 'middle'}">
-          ${runner.name[0].toUpperCase()} · L${pos.lap}
-        </text>
-      `;
-    });
-    g.innerHTML = html;
+  function renderRunnerBar(runner, pos) {
+    const stateLabel = pos.state === 'course' ? 'On Course'
+      : pos.state === 'pit' ? 'At Aid'
+      : pos.state === 'done' ? 'Finished'
+      : 'Not Started';
+    document.getElementById('runner-bar').innerHTML = `
+      <div class="runner-card">
+        <span class="swatch" style="background: ${RUNNER_COLOR}; color: ${RUNNER_COLOR};"></span>
+        <div><div class="name">${runner.name}</div></div>
+        <span class="state ${pos.state}">${stateLabel}</span>
+        <span class="meta">${pos.detail}</span>
+      </div>`;
   }
 
-  function renderRunnerCards(positions) {
-    const html = positions.map(({ runner, pos }) => {
-      const color = RUNNER_COLORS[runner.id] || '#fff';
-      const stateClass = pos.state;
-      const stateLabel = pos.state === 'course' ? 'On Course'
-        : pos.state === 'pit' ? 'In Pit'
-        : pos.state === 'done' ? 'Finished'
-        : 'Not Started';
-      const meta = pos.detail;
-      return `
-        <div class="runner-card" style="--c: ${color}">
-          <span class="swatch" style="background: ${color}; color: ${color};"></span>
-          <div>
-            <div class="name">${runner.name}</div>
-          </div>
-          <span class="state ${stateClass}">${stateLabel}</span>
-          <span class="meta">${meta}</span>
-        </div>
-      `;
-    }).join('');
-    document.getElementById('runners-bar').innerHTML = html;
-  }
-
-  function updateAll() {
-    if (!raceData || !gpxPoints.length || !map) return;
-    const positions = raceData.runners.map(r => ({ runner: r, pos: computeRunnerPosition(r, raceData.race) }));
-    positions.forEach(({ runner, pos }) => setOrCreateMarker(runner, pos));
-    updateElevationOverlays(positions);
-    renderRunnerCards(positions);
-    tickElapsedClock();
-    updateLastUpdatedLabel();
+  function renderSegmentStrip(race, course, pos) {
+    const totalMi = race.totalDistance;
+    const fill = Math.max(0, Math.min(100, (pos.courseMile / totalMi) * 100));
+    document.getElementById('segment-fill').style.width = `${fill}%`;
+    document.getElementById('segment-runner-tick').style.left = `${fill}%`;
+    const cutoffsEl = document.getElementById('segment-cutoffs');
+    cutoffsEl.innerHTML = course
+      .filter(s => s.cutoffHoursFromStart != null)
+      .map(s => {
+        const pct = (s.cumMile / totalMi) * 100;
+        return `<div class="segment-cutoff-tick" style="left:${pct}%" title="${s.to} · ${s.cutoffHoursFromStart}h"></div>`;
+      })
+      .join('');
   }
 
   function tickElapsedClock() {
@@ -579,6 +504,18 @@
     document.getElementById('last-updated').textContent = lu + live;
   }
 
+  function updateAll() {
+    if (!raceData || !gpxTrack.length || !map) return;
+    const course = buildCourseIndex(raceData.race);
+    const runner = raceData.runners[0];
+    const pos = computeRunnerPosition(runner, raceData.race, course);
+    setOrCreateMarker(runner, pos);
+    renderRunnerBar(runner, pos);
+    renderSegmentStrip(raceData.race, course, pos);
+    tickElapsedClock();
+    updateLastUpdatedLabel();
+  }
+
   async function loadData() {
     try {
       const res = await fetch('data.json?_=' + Date.now(), {
@@ -589,6 +526,8 @@
       raceData = await res.json();
       lastFetchAt = new Date();
       document.getElementById('error').hidden = true;
+      document.getElementById('course-meta').textContent =
+        `· ${raceData.race.segments.length} legs · ${raceData.race.totalDistance} mi`;
       updateAll();
     } catch (err) {
       const e = document.getElementById('error');
@@ -599,10 +538,11 @@
 
   async function init() {
     try {
-      gpxPoints = await loadGPX();
-      totalDistance = gpxPoints[gpxPoints.length - 1].dist;
+      const gpx = await loadGPX();
+      gpxTrack = gpx.track;
+      gpxWaypoints = gpx.waypoints;
+      totalDistanceMeters = gpxTrack[gpxTrack.length - 1].dist;
       setupMap();
-      setupElevation();
     } catch (err) {
       const e = document.getElementById('error');
       e.hidden = false;

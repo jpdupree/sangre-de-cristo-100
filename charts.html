@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="theme-color" content="#0c0d10" />
-<title>Charts · Bloodroot 100</title>
+<title>Charts · Sangre de Cristo 100</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -23,8 +23,6 @@
     --yellow: #f5c451;
     --red: #ff5959;
     --blue: #5ec8ff;
-    --jasmine: #ff6b3d;
-    --oppenheimer: #5ec8ff;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body {
@@ -174,33 +172,27 @@
 <div class="legend" id="legend"></div>
 
 <section class="chart-card">
-  <h2>1. Lap Time Trend</h2>
-  <p class="explainer">Each completed lap's time as a solid line; the dashed line projects the remaining laps using the recent-2-lap average pace. The meta below shows projected finish vs the 38h cutoff using lap+pit cycle time.</p>
-  <svg id="chart-lap-time" class="chart-svg" viewBox="0 0 1000 360"></svg>
-  <div class="meta" id="chart-lap-time-meta">—</div>
+  <h2>1. Leg Pace</h2>
+  <p class="explainer">Each completed leg's pace (min/mi). Solid line is actual; dashed line projects remaining legs using the recent-2-leg average. Bands: green ≤ on-pace, yellow tight, red over.</p>
+  <svg id="chart-leg-pace" class="chart-svg" viewBox="0 0 1000 360"></svg>
+  <div class="meta" id="chart-leg-pace-meta">—</div>
 </section>
 
 <section class="chart-card">
-  <h2>2. Mile Pace</h2>
-  <p class="explainer">Same data as #1 expressed in min/mile — the unit runners actually think in.</p>
-  <svg id="chart-mile-pace" class="chart-svg" viewBox="0 0 1000 280"></svg>
+  <h2>2. Leg-to-Leg Pace Delta</h2>
+  <p class="explainer">How much slower (red, above zero) or faster (green, below) each leg's pace was vs the previous. In min/mi. Yellow = within ±30s. Big positive numbers signal fade.</p>
+  <svg id="chart-leg-delta" class="chart-svg" viewBox="0 0 1000 240"></svg>
 </section>
 
 <section class="chart-card">
-  <h2>3. Lap-to-Lap Delta</h2>
-  <p class="explainer">How much slower (red, above zero) or faster (green, below) each lap was vs the previous. Yellow = within ±1 min. Big positive numbers signal fade.</p>
-  <svg id="chart-lap-delta" class="chart-svg" viewBox="0 0 1000 240"></svg>
+  <h2>3. Aid Station Holds</h2>
+  <p class="explainer">Time at each aid station, labeled with the AS name. Green ≤ 5 min (fast in/out), yellow 5–15 min, red &gt; 15 min.</p>
+  <svg id="chart-aid-time" class="chart-svg" viewBox="0 0 1000 260"></svg>
 </section>
 
 <section class="chart-card">
-  <h2>4. Pit Times</h2>
-  <p class="explainer">Time at each pit stop. Color-coded: green ≤ 15 min, yellow 15-25 min, red &gt; 25 min.</p>
-  <svg id="chart-pit-time" class="chart-svg" viewBox="0 0 1000 240"></svg>
-</section>
-
-<section class="chart-card">
-  <h2>5. Intake Rate (per hour, lap+pit cycle)</h2>
-  <p class="explainer">Per-hour calorie, fluid, and sodium intake by lap, treating each lap+pit as one cycle. Dashed line is the target; trends matter more than any single point.</p>
+  <h2>4. Intake Rate (per hour, leg+aid cycle)</h2>
+  <p class="explainer">Per-hour calorie, fluid, and sodium intake by leg, treating leg + following aid as one cycle. Dashed line is the target.</p>
   <div class="row-3">
     <div><svg id="chart-intake-cal" class="chart-svg" viewBox="0 0 320 220"></svg></div>
     <div><svg id="chart-intake-fluid" class="chart-svg" viewBox="0 0 320 220"></svg></div>
@@ -209,17 +201,17 @@
 </section>
 
 <section class="chart-card">
-  <h2>6. Cumulative Progress vs Cutoffs</h2>
-  <p class="explainer">Miles done over race-clock elapsed. The diagonal is the constant pace that lands at the 38h cutoff; the yellow line is the 35h "lap 10 must start" gate; the red line is the 38h finish cutoff.</p>
+  <h2>5. Cumulative Progress vs Cutoffs</h2>
+  <p class="explainer">Miles done over race-clock elapsed. The dashed diagonal is the minimum constant pace that lands at the final cutoff. Yellow dots mark each intermediate AS cutoff; the red vertical is the 38h finish cutoff.</p>
   <svg id="chart-cumulative" class="chart-svg" viewBox="0 0 1000 360"></svg>
 </section>
 
 <footer>
-  Bloodroot 100 · Charts · auto-refresh 30s
+  Sangre de Cristo 100 · Charts · auto-refresh 30s
 </footer>
 
 <script>
-  const RUNNER_COLORS = { jasmine: '#ff6b3d', oppenheimer: '#5ec8ff' };
+  const RUNNER_COLOR = '#ff6b3d';
   const REFRESH_MS = 30000;
   let raceData = null;
   let lastFetchAt = null;
@@ -246,246 +238,219 @@
     return sign + (h ? `${h}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}` : `${m}:${String(s).padStart(2,'0')}`);
   }
 
-  function lapDurationSec(lap) {
-    if (!lap || !lap.startTime || !lap.endTime) return null;
-    return (new Date(lap.endTime) - new Date(lap.startTime)) / 1000;
+  function fmtPace(secPerMi) {
+    if (secPerMi == null || isNaN(secPerMi)) return '—';
+    const m = Math.floor(secPerMi / 60);
+    const s = Math.floor(secPerMi % 60);
+    return `${m}:${String(s).padStart(2,'0')}`;
   }
 
-  function pitDurationSec(thisLap, nextLap) {
-    if (!thisLap || !thisLap.endTime || !nextLap || !nextLap.startTime) return null;
-    return (new Date(nextLap.startTime) - new Date(thisLap.endTime)) / 1000;
+  function legDurationSec(leg) {
+    if (!leg || !leg.startTime || !leg.endTime) return null;
+    return (new Date(leg.endTime) - new Date(leg.startTime)) / 1000;
   }
-
+  function aidDurationSec(thisLeg, nextLeg) {
+    if (!thisLeg || !thisLeg.endTime || !nextLeg || !nextLeg.startTime) return null;
+    return (new Date(nextLeg.startTime) - new Date(thisLeg.endTime)) / 1000;
+  }
   function recentAvg(arr, n) {
     const tail = arr.slice(-n);
     return tail.length ? tail.reduce((a, b) => a + b, 0) / tail.length : null;
   }
 
-  // ---- 1. Lap Time Trend ----
-  function renderLapTimeChart() {
-    const svg = document.getElementById('chart-lap-time');
-    const W = 1000, H = 360;
-    const m = { left: 60, right: 30, top: 24, bottom: 36 };
-    const innerW = W - m.left - m.right;
-    const innerH = H - m.top - m.bottom;
-    const totalLoops = raceData.race.totalLoops;
-
-    const runners = raceData.runners.map(r => ({
-      runner: r,
-      durations: (r.laps || []).map(lapDurationSec)
-    }));
-
-    const allDurs = runners.flatMap(r => r.durations).filter(d => d != null);
-    if (allDurs.length === 0) { svg.innerHTML = ''; return; }
-    const yMin = Math.floor(Math.min(...allDurs) * 0.9 / 600) * 600;
-    const yMax = Math.ceil(Math.max(...allDurs) * 1.18 / 600) * 600;
-
-    const xScale = i => m.left + (i / (totalLoops - 1)) * innerW;
-    const yScale = sec => m.top + innerH - ((sec - yMin) / (yMax - yMin)) * innerH;
-
-    let html = '';
-
-    // Y grid (every 30 min)
-    for (let t = yMin; t <= yMax; t += 1800) {
-      const y = yScale(t);
-      html += `<line class="grid-line" x1="${m.left}" y1="${y}" x2="${m.left + innerW}" y2="${y}" />`;
-      html += `<text class="axis-label" x="${m.left - 8}" y="${y + 3}" text-anchor="end">${Math.floor(t/3600)}:${String(Math.floor((t%3600)/60)).padStart(2,'0')}</text>`;
-    }
-
-    // X labels
-    for (let i = 0; i < totalLoops; i++) {
-      const x = xScale(i);
-      html += `<text class="axis-label" x="${x}" y="${m.top + innerH + 18}" text-anchor="middle">L${i+1}</text>`;
-    }
-
-    runners.forEach(({ runner, durations }) => {
-      const color = RUNNER_COLORS[runner.id] || '#fff';
-      const completed = durations.filter(d => d != null);
-      if (!completed.length) return;
-      const actualPoints = durations.map((d, i) => d != null ? [xScale(i), yScale(d)] : null).filter(Boolean);
-      const pathD = actualPoints.map((p, i) => (i===0?'M':'L')+p[0].toFixed(1)+','+p[1].toFixed(1)).join(' ');
-      html += `<path d="${pathD}" stroke="${color}" stroke-width="2" fill="none" />`;
-      actualPoints.forEach(p => {
-        html += `<circle cx="${p[0]}" cy="${p[1]}" r="4" fill="${color}" stroke="${color}" stroke-opacity="0.4" stroke-width="4" />`;
-      });
-
-      // Projection line: recent-2 avg, dashed, from last completed lap forward
-      if (completed.length < totalLoops) {
-        const projAvg = recentAvg(completed, 2);
-        const lastIdx = completed.length - 1;
-        const projPoints = [[xScale(lastIdx), yScale(completed[lastIdx])]];
-        for (let i = lastIdx + 1; i < totalLoops; i++) {
-          projPoints.push([xScale(i), yScale(projAvg)]);
-        }
-        const projD = projPoints.map((p, i) => (i===0?'M':'L')+p[0].toFixed(1)+','+p[1].toFixed(1)).join(' ');
-        html += `<path d="${projD}" stroke="${color}" stroke-width="1.5" fill="none" stroke-dasharray="6,4" opacity="0.55" />`;
-      }
+  function buildCourseIndex(race) {
+    let cum = 0;
+    return race.segments.map(s => {
+      cum += s.distance;
+      return { ...s, cumMile: +cum.toFixed(2) };
     });
-
-    html += `<line class="axis-line" x1="${m.left}" y1="${m.top + innerH}" x2="${m.left + innerW}" y2="${m.top + innerH}" />`;
-    html += `<line class="axis-line" x1="${m.left}" y1="${m.top}" x2="${m.left}" y2="${m.top + innerH}" />`;
-
-    svg.innerHTML = html;
-
-    // Meta: projected finish vs cutoff
-    const cutoffSec = raceData.race.totalCutoffHours * 3600;
-    const startMs = new Date(raceData.race.startTime).getTime();
-    const metaParts = runners.map(({ runner, durations }) => {
-      const completed = durations.filter(d => d != null);
-      if (!completed.length) return `<strong>${runner.name}:</strong> not started`;
-      const lapAvg = recentAvg(completed, 2);
-      const completedLaps = (runner.laps || []).filter(l => l.startTime && l.endTime);
-      const pits = [];
-      const allLaps = runner.laps || [];
-      for (let i = 0; i < allLaps.length - 1; i++) {
-        const p = pitDurationSec(allLaps[i], allLaps[i+1]);
-        if (p != null) pits.push(p);
-      }
-      const pitAvg = pits.length ? recentAvg(pits, 2) : 0;
-      const cycle = lapAvg + pitAvg;
-      const lastEnd = completedLaps[completedLaps.length - 1].endTime;
-      const elapsedAtLastEnd = (new Date(lastEnd) - startMs) / 1000;
-      const lapsRemaining = raceData.race.totalLoops - completed.length;
-      // From end-of-lap-N to race finish: (totalLoops - N) laps + (totalLoops - N) pits
-      // (pit N through pit totalLoops-1; no pit after the final lap, but that's already
-      // excluded from the count).
-      const projectedFinishSec = elapsedAtLastEnd + lapsRemaining * cycle;
-      const buffer = cutoffSec - projectedFinishSec;
-      const bufColor = buffer >= 0 ? 'var(--green)' : 'var(--red)';
-      const bufStr = buffer >= 0 ? `+${fmtClock(buffer)} buffer` : `<span style="color:var(--red)">OVER by ${fmtClock(-buffer)}</span>`;
-      return `<strong>${runner.name}:</strong> projected ${fmtClock(projectedFinishSec)} <span style="color:${bufColor}">(${bufStr})</span>`;
-    });
-    document.getElementById('chart-lap-time-meta').innerHTML =
-      metaParts.join(' &nbsp;·&nbsp; ') +
-      ` &nbsp;·&nbsp; cutoff <strong>${raceData.race.totalCutoffHours}:00:00</strong>`;
   }
 
-  // ---- 2. Mile Pace ----
-  function renderMilePaceChart() {
-    const svg = document.getElementById('chart-mile-pace');
-    const W = 1000, H = 280;
-    const m = { left: 60, right: 30, top: 22, bottom: 36 };
+  // ---- 1. Leg Pace ----
+  function renderLegPaceChart() {
+    const svg = document.getElementById('chart-leg-pace');
+    const W = 1000, H = 360;
+    const m = { left: 70, right: 30, top: 24, bottom: 36 };
     const innerW = W - m.left - m.right;
     const innerH = H - m.top - m.bottom;
-    const totalLoops = raceData.race.totalLoops;
-    const loopMi = raceData.race.loopDistance;
+    const course = buildCourseIndex(raceData.race);
+    const totalLegs = course.length;
+    const cutoffPaceSecPerMi = (raceData.race.totalCutoffHours * 3600) / raceData.race.totalDistance;
+    const runner = raceData.runners[0];
 
-    const runners = raceData.runners.map(r => ({
-      runner: r,
-      paces: (r.laps || []).map(l => {
-        const sec = lapDurationSec(l);
-        return sec != null ? (sec / 60) / loopMi : null;
-      })
-    }));
+    const paces = course.map((seg, i) => {
+      const legEntry = (runner.legs || []).find(l => l.leg === seg.leg);
+      const sec = legEntry ? legDurationSec(legEntry) : null;
+      return (sec != null && seg.distance > 0) ? sec / seg.distance : null;
+    });
+    const completed = paces.filter(p => p != null);
+    if (!completed.length) {
+      svg.innerHTML = `<text class="axis-label" x="${W/2}" y="${H/2}" text-anchor="middle">Awaiting first leg</text>`;
+      document.getElementById('chart-leg-pace-meta').textContent = '—';
+      return;
+    }
 
-    const allPaces = runners.flatMap(r => r.paces).filter(p => p != null);
-    if (allPaces.length === 0) { svg.innerHTML = ''; return; }
-    const yMin = Math.floor(Math.min(...allPaces) - 1);
-    const yMax = Math.ceil(Math.max(...allPaces) + 1);
+    const yMaxData = Math.max(...completed, cutoffPaceSecPerMi);
+    const yMinData = Math.min(...completed);
+    const yMin = Math.floor(Math.min(yMinData, cutoffPaceSecPerMi * 0.5) / 120) * 120;
+    const yMax = Math.ceil(yMaxData * 1.15 / 120) * 120;
 
-    const xScale = i => m.left + (i / (totalLoops - 1)) * innerW;
+    const xScale = i => m.left + (i / (totalLegs - 1)) * innerW;
     const yScale = p => m.top + innerH - ((p - yMin) / (yMax - yMin)) * innerH;
 
     let html = '';
-    for (let t = yMin; t <= yMax; t += 2) {
+    for (let t = yMin; t <= yMax; t += 120) {
       const y = yScale(t);
       html += `<line class="grid-line" x1="${m.left}" y1="${y}" x2="${m.left + innerW}" y2="${y}" />`;
-      html += `<text class="axis-label" x="${m.left - 8}" y="${y + 3}" text-anchor="end">${t}:00</text>`;
+      html += `<text class="axis-label" x="${m.left - 8}" y="${y + 3}" text-anchor="end">${fmtPace(t)}/mi</text>`;
     }
-    for (let i = 0; i < totalLoops; i++) {
+    for (let i = 0; i < totalLegs; i++) {
       const x = xScale(i);
       html += `<text class="axis-label" x="${x}" y="${m.top + innerH + 18}" text-anchor="middle">L${i+1}</text>`;
     }
-    runners.forEach(({ runner, paces }) => {
-      const color = RUNNER_COLORS[runner.id] || '#fff';
-      const points = paces.map((p, i) => p != null ? [xScale(i), yScale(p)] : null).filter(Boolean);
-      const pathD = points.map((p, i) => (i===0?'M':'L')+p[0].toFixed(1)+','+p[1].toFixed(1)).join(' ');
-      html += `<path d="${pathD}" stroke="${color}" stroke-width="2" fill="none" />`;
-      points.forEach(p => {
-        html += `<circle cx="${p[0]}" cy="${p[1]}" r="4" fill="${color}" stroke="${color}" stroke-opacity="0.4" stroke-width="4" />`;
-      });
+
+    // Cutoff pace line (= "must average this or slower fails")
+    const cutY = yScale(cutoffPaceSecPerMi);
+    html += `<line class="target-line" x1="${m.left}" y1="${cutY}" x2="${m.left + innerW}" y2="${cutY}" />`;
+    html += `<text class="axis-label" x="${m.left + innerW - 4}" y="${cutY - 4}" text-anchor="end" fill="var(--red)">cutoff pace ${fmtPace(cutoffPaceSecPerMi)}/mi</text>`;
+
+    // Actual line + points
+    const actualPoints = paces.map((p, i) => p != null ? [xScale(i), yScale(p)] : null).filter(Boolean);
+    const pathD = actualPoints.map((p, i) => (i===0?'M':'L')+p[0].toFixed(1)+','+p[1].toFixed(1)).join(' ');
+    html += `<path d="${pathD}" stroke="${RUNNER_COLOR}" stroke-width="2" fill="none" />`;
+    actualPoints.forEach((p, i) => {
+      html += `<circle cx="${p[0]}" cy="${p[1]}" r="4" fill="${RUNNER_COLOR}" stroke="${RUNNER_COLOR}" stroke-opacity="0.4" stroke-width="4" />`;
     });
+
+    // Projection
+    if (completed.length < totalLegs) {
+      const projPace = recentAvg(completed, 2);
+      const lastIdx = paces.findIndex(p => p === completed[completed.length - 1]);
+      const projPoints = [[xScale(lastIdx), yScale(completed[completed.length - 1])]];
+      for (let i = lastIdx + 1; i < totalLegs; i++) {
+        projPoints.push([xScale(i), yScale(projPace)]);
+      }
+      const projD = projPoints.map((p, i) => (i===0?'M':'L')+p[0].toFixed(1)+','+p[1].toFixed(1)).join(' ');
+      html += `<path d="${projD}" stroke="${RUNNER_COLOR}" stroke-width="1.5" fill="none" stroke-dasharray="6,4" opacity="0.55" />`;
+    }
+
     html += `<line class="axis-line" x1="${m.left}" y1="${m.top + innerH}" x2="${m.left + innerW}" y2="${m.top + innerH}" />`;
     html += `<line class="axis-line" x1="${m.left}" y1="${m.top}" x2="${m.left}" y2="${m.top + innerH}" />`;
-    html += `<text class="axis-label" transform="translate(${m.left - 44},${m.top + innerH/2}) rotate(-90)" text-anchor="middle">min/mi</text>`;
     svg.innerHTML = html;
+
+    // Meta: projected finish
+    const cutoffSec = raceData.race.totalCutoffHours * 3600;
+    const milesDone = course.reduce((a, s, i) => paces[i] != null ? a + s.distance : a, 0);
+    const milesLeft = raceData.race.totalDistance - milesDone;
+    const startMs = new Date(raceData.race.startTime).getTime();
+    // Total elapsed at last completed leg's end
+    const lastIdx = paces.findIndex(p => p === completed[completed.length - 1]);
+    const lastLegEntry = (runner.legs || []).find(l => l.leg === course[lastIdx].leg);
+    const elapsedAtLastEnd = (new Date(lastLegEntry.endTime).getTime() - startMs) / 1000;
+    const projPace = recentAvg(completed, 2);
+    // Aid average from existing entries
+    const aidTimes = [];
+    const legs = (runner.legs || []).slice().sort((a, b) => a.leg - b.leg);
+    for (let i = 0; i < legs.length - 1; i++) {
+      const a = aidDurationSec(legs[i], legs[i+1]);
+      if (a != null) aidTimes.push(a);
+    }
+    const aidAvg = aidTimes.length ? recentAvg(aidTimes, 2) : 0;
+    const stopsLeft = Math.max(0, totalLegs - completed.length - 1);
+    const projectedFinishSec = elapsedAtLastEnd + milesLeft * projPace + stopsLeft * aidAvg;
+    const buffer = cutoffSec - projectedFinishSec;
+    const bufColor = buffer >= 0 ? 'var(--green)' : 'var(--red)';
+    const bufStr = buffer >= 0 ? `+${fmtClock(buffer)} buffer` : `<span style="color:var(--red)">OVER by ${fmtClock(-buffer)}</span>`;
+    document.getElementById('chart-leg-pace-meta').innerHTML =
+      `<strong>${runner.name}:</strong> recent-2 pace <strong>${fmtPace(projPace)}/mi</strong> ` +
+      `· projected finish <strong>${fmtClock(projectedFinishSec)}</strong> <span style="color:${bufColor}">(${bufStr})</span> ` +
+      `· cutoff <strong>${raceData.race.totalCutoffHours}:00:00</strong>`;
   }
 
-  // ---- 3. Lap-to-Lap Delta ----
-  function renderLapDeltaChart() {
-    const svg = document.getElementById('chart-lap-delta');
+  // ---- 2. Leg-to-Leg Pace Delta ----
+  function renderLegDeltaChart() {
+    const svg = document.getElementById('chart-leg-delta');
     const W = 1000, H = 240;
-    const m = { left: 60, right: 30, top: 22, bottom: 36 };
+    const m = { left: 70, right: 30, top: 22, bottom: 36 };
     const innerW = W - m.left - m.right;
     const innerH = H - m.top - m.bottom;
-    const totalLoops = raceData.race.totalLoops;
+    const course = buildCourseIndex(raceData.race);
+    const totalLegs = course.length;
+    const runner = raceData.runners[0];
 
-    const runners = raceData.runners.map(r => ({
-      runner: r,
-      deltas: (r.laps || []).map((l, i, arr) => {
-        if (i === 0) return null;
-        const cur = lapDurationSec(l);
-        const prev = lapDurationSec(arr[i-1]);
-        return (cur != null && prev != null) ? cur - prev : null;
-      })
-    }));
-
-    const allDeltas = runners.flatMap(r => r.deltas).filter(d => d != null);
-    if (allDeltas.length === 0) { svg.innerHTML = `<text class="axis-label" x="${W/2}" y="${H/2}" text-anchor="middle">Waiting for lap 2</text>`; return; }
+    const paces = course.map((seg) => {
+      const legEntry = (runner.legs || []).find(l => l.leg === seg.leg);
+      const sec = legEntry ? legDurationSec(legEntry) : null;
+      return (sec != null && seg.distance > 0) ? sec / seg.distance : null;
+    });
+    const deltas = paces.map((p, i) => {
+      if (i === 0) return null;
+      if (p == null || paces[i-1] == null) return null;
+      return p - paces[i-1];
+    });
+    const allDeltas = deltas.filter(d => d != null);
+    if (!allDeltas.length) {
+      svg.innerHTML = `<text class="axis-label" x="${W/2}" y="${H/2}" text-anchor="middle">Waiting for leg 2</text>`;
+      return;
+    }
     const maxAbs = Math.max(120, ...allDeltas.map(Math.abs)) * 1.15;
 
-    const xScale = i => m.left + ((i - 1) / (totalLoops - 2)) * innerW;
+    const xScale = i => m.left + ((i - 1) / (totalLegs - 2)) * innerW;
     const yScale = v => m.top + innerH/2 - (v / maxAbs) * (innerH/2);
 
     let html = '';
     html += `<line class="axis-line" x1="${m.left}" y1="${m.top + innerH/2}" x2="${m.left + innerW}" y2="${m.top + innerH/2}" />`;
-    for (let i = 1; i < totalLoops; i++) {
+    for (let i = 1; i < totalLegs; i++) {
       const x = xScale(i);
       html += `<text class="axis-label" x="${x}" y="${m.top + innerH + 18}" text-anchor="middle">L${i+1}</text>`;
     }
-
-    const barWidth = (innerW / (totalLoops - 1)) * 0.32;
-    runners.forEach(({ runner, deltas }, runnerIdx) => {
-      const color = RUNNER_COLORS[runner.id] || '#fff';
-      deltas.forEach((d, i) => {
-        if (d == null) return;
-        const x = xScale(i);
-        const xOffset = (runnerIdx === 0 ? -1 : 1) * (barWidth/2 + 2);
-        const y0 = m.top + innerH/2;
-        const y1 = yScale(d);
-        const barColor = d > 60 ? 'var(--red)' : d < -60 ? 'var(--green)' : 'var(--yellow)';
-        html += `<rect x="${x + xOffset - barWidth/2}" y="${Math.min(y0, y1)}" width="${barWidth}" height="${Math.abs(y1 - y0)}" fill="${barColor}" opacity="0.65" stroke="${color}" stroke-width="1.5" />`;
-        const sign = d >= 0 ? '+' : '−';
-        const absMin = Math.floor(Math.abs(d) / 60);
-        const absSec = Math.floor(Math.abs(d) % 60);
-        const valStr = absMin ? `${sign}${absMin}:${String(absSec).padStart(2,'0')}` : `${sign}${absSec}s`;
-        const labelY = d > 0 ? y1 - 4 : y1 + 12;
-        html += `<text class="axis-label" x="${x + xOffset}" y="${labelY}" text-anchor="middle" fill="${color}" font-weight="700">${valStr}</text>`;
-      });
+    const barWidth = (innerW / (totalLegs - 1)) * 0.55;
+    deltas.forEach((d, i) => {
+      if (d == null) return;
+      const x = xScale(i);
+      const y0 = m.top + innerH/2;
+      const y1 = yScale(d);
+      const barColor = d > 30 ? 'var(--red)' : d < -30 ? 'var(--green)' : 'var(--yellow)';
+      html += `<rect x="${x - barWidth/2}" y="${Math.min(y0, y1)}" width="${barWidth}" height="${Math.abs(y1 - y0)}" fill="${barColor}" opacity="0.65" stroke="${RUNNER_COLOR}" stroke-width="1.2" />`;
+      const sign = d >= 0 ? '+' : '−';
+      const absMin = Math.floor(Math.abs(d) / 60);
+      const absSec = Math.floor(Math.abs(d) % 60);
+      const valStr = absMin ? `${sign}${absMin}:${String(absSec).padStart(2,'0')}` : `${sign}${absSec}s`;
+      const labelY = d > 0 ? y1 - 4 : y1 + 12;
+      html += `<text class="axis-label" x="${x}" y="${labelY}" text-anchor="middle" fill="${RUNNER_COLOR}" font-weight="700">${valStr}</text>`;
     });
     html += `<text class="axis-label" x="${m.left - 8}" y="${m.top + 8}" text-anchor="end">slower</text>`;
     html += `<text class="axis-label" x="${m.left - 8}" y="${m.top + innerH - 4}" text-anchor="end">faster</text>`;
     svg.innerHTML = html;
   }
 
-  // ---- 4. Pit Times ----
-  function renderPitTimeChart() {
-    const svg = document.getElementById('chart-pit-time');
-    const W = 1000, H = 240;
-    const m = { left: 60, right: 30, top: 22, bottom: 36 };
+  // ---- 3. Aid Station Holds ----
+  function renderAidTimeChart() {
+    const svg = document.getElementById('chart-aid-time');
+    const W = 1000, H = 260;
+    const m = { left: 60, right: 30, top: 28, bottom: 60 };
     const innerW = W - m.left - m.right;
     const innerH = H - m.top - m.bottom;
-    const totalLoops = raceData.race.totalLoops;
+    const course = buildCourseIndex(raceData.race);
+    const totalLegs = course.length;
+    const runner = raceData.runners[0];
 
-    const runners = raceData.runners.map(r => ({
-      runner: r,
-      pits: (r.laps || []).map((l, i, arr) => arr[i+1] ? pitDurationSec(l, arr[i+1]) : null)
-    }));
-    const allPits = runners.flatMap(r => r.pits).filter(p => p != null);
-    if (!allPits.length) { svg.innerHTML = `<text class="axis-label" x="${W/2}" y="${H/2}" text-anchor="middle">Waiting for first pit</text>`; return; }
-    const yMaxMin = Math.max(30, Math.ceil(Math.max(...allPits) / 60 * 1.2 / 5) * 5);
-
-    const xScale = i => m.left + (i / (totalLoops - 1)) * innerW;
+    // Aid hold = pause between leg i end and leg i+1 start. Belongs to the AS at course[i].to.
+    const sortedLegs = (runner.legs || []).slice().sort((a, b) => a.leg - b.leg);
+    const aidStops = [];
+    for (let i = 0; i < totalLegs - 1; i++) {
+      const cur = sortedLegs.find(l => l.leg === course[i].leg);
+      const nxt = sortedLegs.find(l => l.leg === course[i+1].leg);
+      const sec = (cur && nxt) ? aidDurationSec(cur, nxt) : null;
+      aidStops.push({ atLegIdx: i, asName: course[i].to, sec });
+    }
+    const allHolds = aidStops.map(s => s.sec).filter(v => v != null);
+    if (!allHolds.length) {
+      svg.innerHTML = `<text class="axis-label" x="${W/2}" y="${H/2}" text-anchor="middle">Waiting for first aid hold</text>`;
+      return;
+    }
+    const yMaxMin = Math.max(15, Math.ceil(Math.max(...allHolds) / 60 * 1.2 / 5) * 5);
+    const xScale = i => m.left + (i / (totalLegs - 2)) * innerW;
     const yScale = v => m.top + innerH - (v / yMaxMin) * innerH;
 
     let html = '';
@@ -494,68 +459,64 @@
       html += `<line class="grid-line" x1="${m.left}" y1="${y}" x2="${m.left + innerW}" y2="${y}" />`;
       html += `<text class="axis-label" x="${m.left - 8}" y="${y + 3}" text-anchor="end">${t}m</text>`;
     }
-    for (let i = 0; i < totalLoops - 1; i++) {
+    for (let i = 0; i < totalLegs - 1; i++) {
       const x = xScale(i);
-      html += `<text class="axis-label" x="${x}" y="${m.top + innerH + 18}" text-anchor="middle">P${i+1}</text>`;
+      const seg = course[i];
+      const shortName = seg.to.replace(/Music Meadows/, 'MM').replace(/Colony Creek/, 'CC').replace(/Horn Creek/, 'HC').replace(/Venable/, 'V').replace(/Music Pass/, 'MP');
+      html += `<text class="axis-label" x="${x}" y="${m.top + innerH + 14}" text-anchor="middle" transform="rotate(-35, ${x}, ${m.top + innerH + 14})">${shortName}</text>`;
     }
-    const barWidth = (innerW / (totalLoops - 1)) * 0.32;
-    runners.forEach(({ runner, pits }, runnerIdx) => {
-      const color = RUNNER_COLORS[runner.id] || '#fff';
-      pits.forEach((p, i) => {
-        if (p == null) return;
-        const pMin = p / 60;
-        const x = xScale(i);
-        const xOffset = (runnerIdx === 0 ? -1 : 1) * (barWidth/2 + 2);
-        const barX = x + xOffset - barWidth/2;
-        const barY = yScale(pMin);
-        const barH = innerH - (barY - m.top);
-        let barColor = pMin <= 15 ? 'var(--green)' : (pMin <= 25 ? 'var(--yellow)' : 'var(--red)');
-        html += `<rect x="${barX}" y="${barY}" width="${barWidth}" height="${barH}" fill="${barColor}" opacity="0.45" stroke="${color}" stroke-width="1.5" />`;
-        const labelStr = `${Math.floor(pMin)}:${String(Math.floor(p % 60)).padStart(2,'0')}`;
-        html += `<text class="axis-label" x="${x + xOffset}" y="${barY - 4}" text-anchor="middle" fill="${color}" font-weight="700">${labelStr}</text>`;
-      });
+    const barWidth = (innerW / (totalLegs - 1)) * 0.6;
+    aidStops.forEach((stop, i) => {
+      if (stop.sec == null) return;
+      const pMin = stop.sec / 60;
+      const x = xScale(stop.atLegIdx);
+      const barX = x - barWidth/2;
+      const barY = yScale(pMin);
+      const barH = innerH - (barY - m.top);
+      const barColor = pMin <= 5 ? 'var(--green)' : pMin <= 15 ? 'var(--yellow)' : 'var(--red)';
+      html += `<rect x="${barX}" y="${barY}" width="${barWidth}" height="${barH}" fill="${barColor}" opacity="0.45" stroke="${RUNNER_COLOR}" stroke-width="1.5" />`;
+      const labelStr = `${Math.floor(pMin)}:${String(Math.floor(stop.sec % 60)).padStart(2,'0')}`;
+      html += `<text class="axis-label" x="${x}" y="${barY - 4}" text-anchor="middle" fill="${RUNNER_COLOR}" font-weight="700">${labelStr}</text>`;
     });
     html += `<line class="axis-line" x1="${m.left}" y1="${m.top + innerH}" x2="${m.left + innerW}" y2="${m.top + innerH}" />`;
     html += `<line class="axis-line" x1="${m.left}" y1="${m.top}" x2="${m.left}" y2="${m.top + innerH}" />`;
     svg.innerHTML = html;
   }
 
-  // ---- 5. Intake rate (3 sub-charts) ----
+  // ---- 4. Intake rate ----
   function renderIntakeChart(svgId, valueExtractor, target, label) {
     const svg = document.getElementById(svgId);
     const W = 320, H = 220;
     const m = { left: 46, right: 14, top: 24, bottom: 30 };
     const innerW = W - m.left - m.right;
     const innerH = H - m.top - m.bottom;
-    const totalLoops = raceData.race.totalLoops;
+    const course = buildCourseIndex(raceData.race);
+    const totalLegs = course.length;
+    const runner = raceData.runners[0];
+    const sortedLegs = (runner.legs || []).slice().sort((a, b) => a.leg - b.leg);
 
-    const runners = raceData.runners.map(r => ({
-      runner: r,
-      rates: (r.laps || []).map((l, i, arr) => {
-        const lapSec = lapDurationSec(l);
-        if (lapSec == null) return null;
-        const next = arr[i+1];
-        const pitSec = next ? pitDurationSec(l, next) : 0;
-        const cycleSec = lapSec + (pitSec || 0);
-        const cycleHours = cycleSec / 3600;
-        const v = valueExtractor(l);
-        return v != null && cycleHours > 0 ? v / cycleHours : null;
-      })
-    }));
-    const allRates = runners.flatMap(r => r.rates).filter(v => v != null);
+    const rates = course.map((seg, i) => {
+      const cur = sortedLegs.find(l => l.leg === seg.leg);
+      const nxt = sortedLegs.find(l => l.leg === seg.leg + 1);
+      const legSec = cur ? legDurationSec(cur) : null;
+      if (legSec == null) return null;
+      const aidSec = nxt ? (aidDurationSec(cur, nxt) || 0) : 0;
+      const cycleSec = legSec + aidSec;
+      const cycleHours = cycleSec / 3600;
+      const v = valueExtractor(cur);
+      return (v != null && cycleHours > 0) ? v / cycleHours : null;
+    });
+    const allRates = rates.filter(v => v != null);
 
     let html = `<text class="axis-label" x="${W/2}" y="14" text-anchor="middle" font-weight="700" fill="var(--text)">${label}</text>`;
-
     if (!allRates.length) {
       html += `<text class="axis-label" x="${W/2}" y="${H/2}" text-anchor="middle">No data</text>`;
       svg.innerHTML = html; return;
     }
-
     const yMaxData = Math.max(...allRates, target * 1.2);
     const yStep = yMaxData > 1500 ? 500 : yMaxData > 500 ? 200 : yMaxData > 100 ? 50 : yMaxData > 30 ? 10 : 5;
     const yMax = Math.ceil(yMaxData * 1.05 / yStep) * yStep;
-
-    const xScale = i => m.left + (i / (totalLoops - 1)) * innerW;
+    const xScale = i => m.left + (i / (totalLegs - 1)) * innerW;
     const yScale = v => m.top + innerH - (v / yMax) * innerH;
 
     for (let t = 0; t <= yMax; t += yStep) {
@@ -563,51 +524,44 @@
       html += `<line class="grid-line" x1="${m.left}" y1="${y}" x2="${m.left + innerW}" y2="${y}" />`;
       html += `<text class="axis-label" x="${m.left - 4}" y="${y + 3}" text-anchor="end">${t}</text>`;
     }
-    for (let i = 0; i < totalLoops; i += 2) {
+    for (let i = 0; i < totalLegs; i += 2) {
       const x = xScale(i);
       html += `<text class="axis-label" x="${x}" y="${m.top + innerH + 14}" text-anchor="middle">L${i+1}</text>`;
     }
-
-    // Target
     const targetY = yScale(target);
     html += `<line class="target-line" x1="${m.left}" y1="${targetY}" x2="${m.left + innerW}" y2="${targetY}" />`;
     html += `<text class="axis-label" x="${m.left + innerW - 2}" y="${targetY - 3}" text-anchor="end">target ${target}</text>`;
 
-    runners.forEach(({ runner, rates }) => {
-      const color = RUNNER_COLORS[runner.id] || '#fff';
-      const points = rates.map((v, i) => v != null ? [xScale(i), yScale(v)] : null).filter(Boolean);
-      if (!points.length) return;
+    const points = rates.map((v, i) => v != null ? [xScale(i), yScale(v)] : null).filter(Boolean);
+    if (points.length) {
       const pathD = points.map((p, i) => (i===0?'M':'L')+p[0].toFixed(1)+','+p[1].toFixed(1)).join(' ');
-      html += `<path d="${pathD}" stroke="${color}" stroke-width="1.8" fill="none" />`;
+      html += `<path d="${pathD}" stroke="${RUNNER_COLOR}" stroke-width="1.8" fill="none" />`;
       points.forEach(p => {
-        html += `<circle cx="${p[0]}" cy="${p[1]}" r="3" fill="${color}" />`;
+        html += `<circle cx="${p[0]}" cy="${p[1]}" r="3" fill="${RUNNER_COLOR}" />`;
       });
-    });
-
+    }
     html += `<line class="axis-line" x1="${m.left}" y1="${m.top + innerH}" x2="${m.left + innerW}" y2="${m.top + innerH}" />`;
     html += `<line class="axis-line" x1="${m.left}" y1="${m.top}" x2="${m.left}" y2="${m.top + innerH}" />`;
     svg.innerHTML = html;
   }
 
-  // ---- 6. Cumulative Progress ----
+  // ---- 5. Cumulative Progress ----
   function renderCumulativeChart() {
     const svg = document.getElementById('chart-cumulative');
     const W = 1000, H = 360;
     const m = { left: 60, right: 30, top: 24, bottom: 36 };
     const innerW = W - m.left - m.right;
     const innerH = H - m.top - m.bottom;
+    const course = buildCourseIndex(raceData.race);
     const cutoffH = raceData.race.totalCutoffHours;
-    const lastLapStartH = raceData.race.lastLapStartCutoffHours;
-    const totalMi = raceData.race.totalLoops * raceData.race.loopDistance;
+    const totalMi = raceData.race.totalDistance;
     const startMs = new Date(raceData.race.startTime).getTime();
     const xMax = cutoffH;
-
     const xScale = h => m.left + (h / xMax) * innerW;
     const yScale = mi => m.top + innerH - (mi / totalMi) * innerH;
 
     let html = '';
-
-    for (let h = 0; h <= xMax; h += 5) {
+    for (let h = 0; h <= xMax; h += 4) {
       const x = xScale(h);
       html += `<line class="grid-line" x1="${x}" y1="${m.top}" x2="${x}" y2="${m.top + innerH}" />`;
       html += `<text class="axis-label" x="${x}" y="${m.top + innerH + 18}" text-anchor="middle">${h}h</text>`;
@@ -621,36 +575,38 @@
     // Just-barely-make-it diagonal
     html += `<line stroke="var(--text-muted)" stroke-width="1" stroke-dasharray="4,4" x1="${xScale(0)}" y1="${yScale(0)}" x2="${xScale(xMax)}" y2="${yScale(totalMi)}" />`;
 
-    // 35h gate vertical
-    const gateX = xScale(lastLapStartH);
-    html += `<line stroke="var(--yellow)" stroke-width="1.5" stroke-dasharray="4,4" x1="${gateX}" y1="${m.top}" x2="${gateX}" y2="${m.top + innerH}" />`;
-    html += `<text class="axis-label" x="${gateX + 4}" y="${m.top + 12}" fill="var(--yellow)">35h: lap 10 must start</text>`;
+    // Per-AS cutoff dots
+    course.forEach(seg => {
+      if (seg.cutoffHoursFromStart == null) return;
+      const x = xScale(seg.cutoffHoursFromStart);
+      const y = yScale(seg.cumMile);
+      html += `<circle cx="${x}" cy="${y}" r="5" fill="var(--yellow)" stroke="var(--yellow)" stroke-opacity="0.4" stroke-width="4" />`;
+      html += `<text class="axis-label" x="${x + 8}" y="${y - 6}" fill="var(--yellow)">${seg.to} · ${seg.cutoffHoursFromStart}h</text>`;
+    });
 
     // 38h cutoff vertical
     const cutX = xScale(cutoffH);
     html += `<line stroke="var(--red)" stroke-width="1.5" stroke-dasharray="4,4" x1="${cutX}" y1="${m.top}" x2="${cutX}" y2="${m.top + innerH}" />`;
-    html += `<text class="axis-label" x="${cutX - 4}" y="${m.top + 12}" text-anchor="end" fill="var(--red)">38h cutoff</text>`;
-
-    // 100mi horizontal
+    html += `<text class="axis-label" x="${cutX - 4}" y="${m.top + 12}" text-anchor="end" fill="var(--red)">${cutoffH}h cutoff</text>`;
     html += `<line stroke="var(--green)" stroke-width="1" stroke-dasharray="4,4" x1="${m.left}" y1="${yScale(totalMi)}" x2="${m.left + innerW}" y2="${yScale(totalMi)}" />`;
     html += `<text class="axis-label" x="${m.left + 4}" y="${yScale(totalMi) - 3}" fill="var(--green)">${totalMi} mi</text>`;
 
-    // Per runner — step line
-    raceData.runners.forEach(r => {
-      const color = RUNNER_COLORS[r.id] || '#fff';
-      const completedLaps = (r.laps || []).filter(l => l.startTime && l.endTime);
-      const points = [[0, 0]];
-      let cum = 0;
-      completedLaps.forEach(l => {
-        cum += raceData.race.loopDistance;
-        const hElapsed = (new Date(l.endTime) - startMs) / 3600000;
-        points.push([hElapsed, cum]);
-      });
-      const pathD = points.map((p, i) => (i===0?'M':'L')+xScale(p[0]).toFixed(1)+','+yScale(p[1]).toFixed(1)).join(' ');
-      html += `<path d="${pathD}" stroke="${color}" stroke-width="2" fill="none" />`;
-      points.forEach(p => {
-        html += `<circle cx="${xScale(p[0])}" cy="${yScale(p[1])}" r="3" fill="${color}" />`;
-      });
+    // Runner progress step line
+    const runner = raceData.runners[0];
+    const sortedLegs = (runner.legs || []).slice().sort((a, b) => a.leg - b.leg);
+    const points = [[0, 0]];
+    let cum = 0;
+    sortedLegs.forEach(l => {
+      const seg = course[l.leg - 1];
+      if (!seg || !l.endTime) return;
+      cum += seg.distance;
+      const hElapsed = (new Date(l.endTime) - startMs) / 3600000;
+      points.push([hElapsed, cum]);
+    });
+    const pathD = points.map((p, i) => (i===0?'M':'L')+xScale(p[0]).toFixed(1)+','+yScale(p[1]).toFixed(1)).join(' ');
+    html += `<path d="${pathD}" stroke="${RUNNER_COLOR}" stroke-width="2" fill="none" />`;
+    points.forEach(p => {
+      html += `<circle cx="${xScale(p[0])}" cy="${yScale(p[1])}" r="3" fill="${RUNNER_COLOR}" />`;
     });
 
     html += `<line class="axis-line" x1="${m.left}" y1="${m.top + innerH}" x2="${m.left + innerW}" y2="${m.top + innerH}" />`;
@@ -659,12 +615,11 @@
   }
 
   function renderLegend() {
-    const html = raceData.runners.map(r => {
-      const color = RUNNER_COLORS[r.id] || '#fff';
-      return `<span class="legend-item"><span class="legend-dot" style="background:${color};color:${color}"></span>${r.name}</span>`;
-    }).join('') +
+    const html =
+      `<span class="legend-item"><span class="legend-dot" style="background:${RUNNER_COLOR};color:${RUNNER_COLOR}"></span>${raceData.runners[0].name}</span>` +
       `<span class="legend-item" style="color:var(--text-muted)">— actual</span>` +
-      `<span class="legend-item" style="color:var(--text-muted)">- - projected (recent-2 avg)</span>`;
+      `<span class="legend-item" style="color:var(--text-muted)">- - projected (recent-2 avg)</span>` +
+      `<span class="legend-item" style="color:var(--yellow)">● AS cutoff</span>`;
     document.getElementById('legend').innerHTML = html;
   }
 
@@ -680,10 +635,9 @@
   function renderAll() {
     if (!raceData) return;
     renderLegend();
-    renderLapTimeChart();
-    renderMilePaceChart();
-    renderLapDeltaChart();
-    renderPitTimeChart();
+    renderLegPaceChart();
+    renderLegDeltaChart();
+    renderAidTimeChart();
     renderIntakeChart('chart-intake-cal', l => l.calories, raceData.race.targets.caloriesPerHour, 'Calories / hour');
     renderIntakeChart('chart-intake-fluid', l => l.fluidOz, raceData.race.targets.fluidOzPerHour, 'Fluid (oz) / hour');
     renderIntakeChart('chart-intake-sodium', l => l.sodiumMg, raceData.race.targets.sodiumMgPerHour, 'Sodium (mg) / hour');
