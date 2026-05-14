@@ -740,6 +740,14 @@
     }
   }
 
+  function resyncWithErrorView(runnerId, eventId) {
+    const store = loadStore();
+    const ev = (store[runnerId]?.events || []).find(e => e.id === eventId);
+    const errText = ev && ev.error ? String(ev.error) : '(no error captured)';
+    if (!confirm(`Sync failed for this event.\n\n${errText}\n\nTap OK to retry, Cancel to leave it.`)) return;
+    syncEvent(runnerId, eventId);
+  }
+
   async function syncEvent(runnerId, eventId) {
     const store = loadStore();
     const ev = (store[runnerId]?.events || []).find(e => e.id === eventId);
@@ -1184,7 +1192,7 @@
     if (action === 'press') press(t.dataset.runner);
     else if (action === 'edit') editEventTime(t.dataset.runner, t.dataset.event);
     else if (action === 'del') deleteEvent(t.dataset.runner, t.dataset.event);
-    else if (action === 'resync') syncEvent(t.dataset.runner, t.dataset.event);
+    else if (action === 'resync') resyncWithErrorView(t.dataset.runner, t.dataset.event);
     else if (action === 'quick-tailwind') quickAddTailwind(t.dataset.runner);
     else if (action === 'save-intake') saveIntake(t.dataset.runner);
   });
