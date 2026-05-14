@@ -287,10 +287,6 @@
     letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted);
   }
   .intake-leg-row { display: flex; gap: 8px; align-items: center; }
-  .intake-leg-row label {
-    font-family: 'JetBrains Mono', monospace; font-size: 10px;
-    letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted);
-  }
   .intake-leg-select {
     flex: 1; background: var(--bg-elevated); color: var(--text);
     border: 1px solid var(--border-bright); border-radius: 4px;
@@ -1098,7 +1094,6 @@
       <div class="intake-form" data-runner="${runner.id}">
         <div class="intake-form-title">Intake &amp; Notes</div>
         <div class="intake-leg-row">
-          <label for="intake-leg-${runner.id}">Leg</label>
           <select class="intake-leg-select" id="intake-leg-${runner.id}" data-runner="${runner.id}">
             ${legOptions}
           </select>
