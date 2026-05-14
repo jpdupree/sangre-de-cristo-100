@@ -587,11 +587,25 @@
     const md = (milesDone == null || isNaN(milesDone)) ? 0 : milesDone;
     const course = raceData ? buildCourseIndex(raceData.race) : [];
     const aidPoints = course.map(s => ({
+      raw: s.cumMile,
       mi: snapAidMileToChart(s.to, s.cumMile),
       name: s.to,
       label: aidAbbrev(s.to),
       crew: s.crewAccess && s.crewAccess !== 'none'
     }));
+    const anchors = [[0, 0], ...aidPoints.map(a => [a.raw, a.mi]), [total, total]];
+    const chartMile = raw => {
+      if (raw <= anchors[0][0]) return anchors[0][1];
+      for (let i = 1; i < anchors.length; i++) {
+        const [r0, c0] = anchors[i - 1], [r1, c1] = anchors[i];
+        if (raw <= r1) {
+          const t = r1 === r0 ? 0 : (raw - r0) / (r1 - r0);
+          return c0 + t * (c1 - c0);
+        }
+      }
+      return anchors[anchors.length - 1][1];
+    };
+    const mdChart = chartMile(md);
     const segments = 4;
     const segMi = total / segments;
     const W = 200, H = 80;
@@ -614,9 +628,9 @@
                   <text x="${x}" y="${H - 1}" class="elevation-aid-label${cls}">${a.label}</text>`;
         }).join('');
       let currentMark = '';
-      if (md >= segStart && md <= segEnd) {
-        const cx = xScale(md);
-        const cy = yScale(elevationAt(md) || eMin);
+      if (md > 0 && mdChart >= segStart && mdChart <= segEnd) {
+        const cx = xScale(mdChart);
+        const cy = yScale(elevationAt(mdChart) || eMin);
         currentMark = `<line x1="${cx.toFixed(1)}" y1="0" x2="${cx.toFixed(1)}" y2="${H}" class="elevation-current" /><circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="3.5" class="elevation-current-dot" />`;
       }
       grid.insertAdjacentHTML('beforeend', `
