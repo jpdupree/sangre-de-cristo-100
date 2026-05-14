@@ -201,10 +201,15 @@
           "startTime": "2026-05-13T23:00:00Z",
           "markedOutBy": "JD",
           "endTime": "2026-05-14T00:12:32.478Z",
-          "markedInBy": "Jason"
+          "markedInBy": "Jason",
+          "calories": 300,
+          "fluidOz": 16,
+          "sodiumMg": 100,
+          "notes": "Redbull",
+          "intakeBy": "Jason"
         }
       ]
     }
   ],
-  "lastUpdated": "2026-05-14T00:12:32.649Z"
+  "lastUpdated": "2026-05-14T00:13:24.623Z"
 }
