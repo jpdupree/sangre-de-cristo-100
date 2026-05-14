@@ -184,6 +184,13 @@
   .elevation-area { fill: rgba(255, 107, 61, 0.12); stroke: none; }
   .elevation-current { stroke: var(--green); stroke-width: 1.5; vector-effect: non-scaling-stroke; }
   .elevation-current-dot { fill: var(--green); }
+  .elevation-aid-tick { stroke: var(--yellow); stroke-width: 1; vector-effect: non-scaling-stroke; opacity: 0.55; }
+  .elevation-aid-tick.crew { stroke: var(--green); opacity: 0.75; }
+  .elevation-aid-label {
+    fill: var(--text-muted); font-family: 'JetBrains Mono', monospace;
+    font-size: 7px; text-anchor: middle;
+  }
+  .elevation-aid-label.crew { fill: var(--green); }
 
   .segment-strip {
     background: var(--bg-card); border: 1px solid var(--border);
@@ -533,6 +540,17 @@
     return s[s.length - 1][1];
   }
 
+  function aidAbbrev(name) {
+    const n = name.replace(/\s*\d+\s*$/, '').trim();
+    if (/^Music Meadows/i.test(n)) return 'MM';
+    if (/^Music Pass/i.test(n)) return 'MP';
+    if (/^Colony Creek/i.test(n)) return 'CC';
+    if (/^Horn Creek/i.test(n)) return 'HC';
+    if (/^Venable/i.test(n)) return 'V';
+    if (/Finish/i.test(n)) return 'F';
+    return n.slice(0, 2).toUpperCase();
+  }
+
   function renderElevation(milesDone) {
     if (!elevationData) return;
     const section = document.getElementById('course-profile');
@@ -544,6 +562,13 @@
     const eMin = elevationData.elevation_min;
     const eMax = elevationData.elevation_max;
     const md = (milesDone == null || isNaN(milesDone)) ? 0 : milesDone;
+    const course = raceData ? buildCourseIndex(raceData.race) : [];
+    const aidPoints = course.map(s => ({
+      mi: s.cumMile,
+      name: s.to,
+      label: aidAbbrev(s.to),
+      crew: s.crewAccess && s.crewAccess !== 'none'
+    }));
     const segments = 4;
     const segMi = total / segments;
     const W = 200, H = 80;
@@ -557,6 +582,14 @@
       const segSamples = samples.filter(([m]) => m >= segStart - 0.1 && m <= segEnd + 0.1);
       const polyPts = segSamples.map(([m, e]) => `${xScale(m).toFixed(1)},${yScale(e).toFixed(1)}`).join(' ');
       const areaPts = polyPts + ` ${W},${H} 0,${H}`;
+      const aidMarks = aidPoints
+        .filter(a => a.mi >= segStart - 0.1 && a.mi <= segEnd + 0.1)
+        .map(a => {
+          const x = xScale(a.mi).toFixed(1);
+          const cls = a.crew ? ' crew' : '';
+          return `<line x1="${x}" y1="2" x2="${x}" y2="${H - 10}" class="elevation-aid-tick${cls}" />
+                  <text x="${x}" y="${H - 1}" class="elevation-aid-label${cls}">${a.label}</text>`;
+        }).join('');
       let currentMark = '';
       if (md >= segStart && md <= segEnd) {
         const cx = xScale(md);
@@ -568,6 +601,7 @@
           <svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none">
             <polygon class="elevation-area" points="${areaPts}" />
             <polyline class="elevation-line" points="${polyPts}" />
+            ${aidMarks}
             ${currentMark}
           </svg>
           <div class="elevation-seg-label">
