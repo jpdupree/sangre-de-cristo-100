@@ -15,22 +15,130 @@
       "sodiumMgPerHour": 1200
     },
     "segments": [
-      { "leg": 1,  "from": "Music Meadows (Start)", "to": "Music Pass",       "distance": 4.3, "crewAccess": "none", "checkpoint": true },
-      { "leg": 2,  "from": "Music Pass",            "to": "Music Meadows 1",  "distance": 4.3, "crewAccess": "all" },
-      { "leg": 3,  "from": "Music Meadows 1",       "to": "Colony Creek 1",   "distance": 6.6, "crewAccess": "none" },
-      { "leg": 4,  "from": "Colony Creek 1",        "to": "Horn Creek 1",     "distance": 8.8, "crewAccess": "C1" },
-      { "leg": 5,  "from": "Horn Creek 1",          "to": "Venable",          "distance": 5.6, "crewAccess": "C2" },
-      { "leg": 6,  "from": "Venable",               "to": "Horn Creek 2",     "distance": 5.7, "crewAccess": "C1" },
-      { "leg": 7,  "from": "Horn Creek 2",          "to": "Colony Creek 2",   "distance": 8.7, "crewAccess": "none" },
-      { "leg": 8,  "from": "Colony Creek 2",        "to": "Music Meadows 2",  "distance": 6.6, "crewAccess": "all", "cutoffHoursFromStart": 18.5,  "pacerEligible": true },
-      { "leg": 9,  "from": "Music Meadows 2",       "to": "Colony Creek 3",   "distance": 6.6, "crewAccess": "none" },
-      { "leg": 10, "from": "Colony Creek 3",        "to": "Horn Creek 3",     "distance": 8.9, "crewAccess": "C2", "pacerEligible": true },
-      { "leg": 11, "from": "Horn Creek 3",          "to": "Venable 2",        "distance": 5.5, "crewAccess": "C1", "cutoffHoursFromStart": 26.5,  "pacerEligible": true },
-      { "leg": 12, "from": "Venable 2",             "to": "Horn Creek 4",     "distance": 5.7, "crewAccess": "C2", "cutoffHoursFromStart": 28.75, "pacerEligible": true },
-      { "leg": 13, "from": "Horn Creek 4",          "to": "Colony Creek 4",   "distance": 8.7, "crewAccess": "none" },
-      { "leg": 14, "from": "Colony Creek 4",        "to": "Music Meadows 3",  "distance": 6.6, "crewAccess": "all", "cutoffHoursFromStart": 34,    "pacerEligible": true },
-      { "leg": 15, "from": "Music Meadows 3",       "to": "Music Pass 2",     "distance": 4.3, "crewAccess": "none", "checkpoint": true },
-      { "leg": 16, "from": "Music Pass 2",          "to": "Finish",           "distance": 4.4, "crewAccess": "all", "cutoffHoursFromStart": 38 }
+      {
+        "leg": 1,
+        "from": "Music Meadows (Start)",
+        "to": "Music Pass",
+        "distance": 4.3,
+        "crewAccess": "none",
+        "checkpoint": true
+      },
+      {
+        "leg": 2,
+        "from": "Music Pass",
+        "to": "Music Meadows 1",
+        "distance": 4.3,
+        "crewAccess": "all"
+      },
+      {
+        "leg": 3,
+        "from": "Music Meadows 1",
+        "to": "Colony Creek 1",
+        "distance": 6.6,
+        "crewAccess": "none"
+      },
+      {
+        "leg": 4,
+        "from": "Colony Creek 1",
+        "to": "Horn Creek 1",
+        "distance": 8.8,
+        "crewAccess": "C1"
+      },
+      {
+        "leg": 5,
+        "from": "Horn Creek 1",
+        "to": "Venable",
+        "distance": 5.6,
+        "crewAccess": "C2"
+      },
+      {
+        "leg": 6,
+        "from": "Venable",
+        "to": "Horn Creek 2",
+        "distance": 5.7,
+        "crewAccess": "C1"
+      },
+      {
+        "leg": 7,
+        "from": "Horn Creek 2",
+        "to": "Colony Creek 2",
+        "distance": 8.7,
+        "crewAccess": "none"
+      },
+      {
+        "leg": 8,
+        "from": "Colony Creek 2",
+        "to": "Music Meadows 2",
+        "distance": 6.6,
+        "crewAccess": "all",
+        "cutoffHoursFromStart": 18.5,
+        "pacerEligible": true
+      },
+      {
+        "leg": 9,
+        "from": "Music Meadows 2",
+        "to": "Colony Creek 3",
+        "distance": 6.6,
+        "crewAccess": "none"
+      },
+      {
+        "leg": 10,
+        "from": "Colony Creek 3",
+        "to": "Horn Creek 3",
+        "distance": 8.9,
+        "crewAccess": "C2",
+        "pacerEligible": true
+      },
+      {
+        "leg": 11,
+        "from": "Horn Creek 3",
+        "to": "Venable 2",
+        "distance": 5.5,
+        "crewAccess": "C1",
+        "cutoffHoursFromStart": 26.5,
+        "pacerEligible": true
+      },
+      {
+        "leg": 12,
+        "from": "Venable 2",
+        "to": "Horn Creek 4",
+        "distance": 5.7,
+        "crewAccess": "C2",
+        "cutoffHoursFromStart": 28.75,
+        "pacerEligible": true
+      },
+      {
+        "leg": 13,
+        "from": "Horn Creek 4",
+        "to": "Colony Creek 4",
+        "distance": 8.7,
+        "crewAccess": "none"
+      },
+      {
+        "leg": 14,
+        "from": "Colony Creek 4",
+        "to": "Music Meadows 3",
+        "distance": 6.6,
+        "crewAccess": "all",
+        "cutoffHoursFromStart": 34,
+        "pacerEligible": true
+      },
+      {
+        "leg": 15,
+        "from": "Music Meadows 3",
+        "to": "Music Pass 2",
+        "distance": 4.3,
+        "crewAccess": "none",
+        "checkpoint": true
+      },
+      {
+        "leg": 16,
+        "from": "Music Pass 2",
+        "to": "Finish",
+        "distance": 4.4,
+        "crewAccess": "all",
+        "cutoffHoursFromStart": 38
+      }
     ]
   },
   "runners": [
@@ -39,13 +147,64 @@
       "name": "Jason",
       "bib": "Jason",
       "legs": [
-        { "leg": 1, "startTime": "2026-05-13T18:00:00Z", "endTime": "2026-05-13T18:55:00Z", "calories": 200, "fluidOz": 17, "sodiumMg": 620, "markedOutBy": "Jason", "markedInBy": "Jason", "intakeBy": "Jason", "notes": "Cool morning at the pass, feeling strong" },
-        { "leg": 2, "startTime": "2026-05-13T18:55:00Z", "endTime": "2026-05-13T19:32:00Z", "calories": 100, "fluidOz": 10, "sodiumMg": 310, "markedOutBy": "Jason", "markedInBy": "Anna", "intakeBy": "Anna", "notes": "Quick down, knees holding up" },
-        { "leg": 3, "startTime": "2026-05-13T19:45:00Z", "endTime": "2026-05-13T20:55:00Z", "calories": 300, "fluidOz": 22, "sodiumMg": 720, "markedOutBy": "Anna", "markedInBy": "Anna", "intakeBy": "Anna", "notes": "Refilled both flasks at MM1, ate a Honey Stinger" },
-        { "leg": 4, "startTime": "2026-05-13T21:02:00Z", "endTime": "2026-05-13T22:45:00Z", "calories": 400, "fluidOz": 34, "sodiumMg": 1240, "markedOutBy": "Anna", "markedInBy": "JD", "intakeBy": "Anna", "issues": "Hot stretch, drank a lot", "gearChanges": "Switched to lighter cap" },
-        { "leg": 5, "startTime": "2026-05-13T23:00:00Z", "markedOutBy": "JD" }
+        {
+          "leg": 1,
+          "startTime": "2026-05-13T18:00:00Z",
+          "endTime": "2026-05-13T18:55:00Z",
+          "calories": 200,
+          "fluidOz": 17,
+          "sodiumMg": 620,
+          "markedOutBy": "Jason",
+          "markedInBy": "Jason",
+          "intakeBy": "Jason",
+          "notes": "Cool morning at the pass, feeling strong"
+        },
+        {
+          "leg": 2,
+          "startTime": "2026-05-13T18:55:00Z",
+          "endTime": "2026-05-13T19:32:00Z",
+          "calories": 100,
+          "fluidOz": 10,
+          "sodiumMg": 310,
+          "markedOutBy": "Jason",
+          "markedInBy": "Anna",
+          "intakeBy": "Anna",
+          "notes": "Quick down, knees holding up"
+        },
+        {
+          "leg": 3,
+          "startTime": "2026-05-13T19:45:00Z",
+          "endTime": "2026-05-13T20:55:00Z",
+          "calories": 300,
+          "fluidOz": 22,
+          "sodiumMg": 720,
+          "markedOutBy": "Anna",
+          "markedInBy": "Anna",
+          "intakeBy": "Anna",
+          "notes": "Refilled both flasks at MM1, ate a Honey Stinger"
+        },
+        {
+          "leg": 4,
+          "startTime": "2026-05-13T21:02:00Z",
+          "endTime": "2026-05-13T22:45:00Z",
+          "calories": 400,
+          "fluidOz": 34,
+          "sodiumMg": 1240,
+          "markedOutBy": "Anna",
+          "markedInBy": "JD",
+          "intakeBy": "Anna",
+          "issues": "Hot stretch, drank a lot",
+          "gearChanges": "Switched to lighter cap"
+        },
+        {
+          "leg": 5,
+          "startTime": "2026-05-13T23:00:00Z",
+          "markedOutBy": "JD",
+          "endTime": "2026-05-14T00:12:32.478Z",
+          "markedInBy": "Jason"
+        }
       ]
     }
   ],
-  "lastUpdated": "2026-05-13T23:27:45Z"
+  "lastUpdated": "2026-05-14T00:12:32.649Z"
 }
