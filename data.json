@@ -218,10 +218,12 @@
         {
           "leg": 7,
           "startTime": "2026-05-14T02:23:30.309Z",
-          "markedOutBy": "Jason"
+          "markedOutBy": "Jason",
+          "endTime": "2026-05-14T11:51:11.857Z",
+          "markedInBy": "Jason"
         }
       ]
     }
   ],
-  "lastUpdated": "2026-05-14T02:23:30.664Z"
+  "lastUpdated": "2026-05-14T11:51:12.226Z"
 }
