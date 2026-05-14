@@ -207,9 +207,14 @@
           "sodiumMg": 100,
           "notes": "Redbull",
           "intakeBy": "Jason"
+        },
+        {
+          "leg": 6,
+          "startTime": "2026-05-14T00:16:47.176Z",
+          "markedOutBy": "Jason"
         }
       ]
     }
   ],
-  "lastUpdated": "2026-05-14T00:13:24.623Z"
+  "lastUpdated": "2026-05-14T00:16:47.510Z"
 }
