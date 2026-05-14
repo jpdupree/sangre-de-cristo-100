@@ -551,6 +551,29 @@
     return n.slice(0, 2).toUpperCase();
   }
 
+  // Snap an aid station's marker x-position to the nearest matching
+  // elevation feature on the trace, so the tick lands on the visual
+  // landmark even when CalTopo's GPX distance disagrees slightly with
+  // the race's published cumulative miles.
+  function snapAidMileToChart(name, raceMile) {
+    if (!elevationData) return raceMile;
+    const s = elevationData.samples;
+    const isPeak = /Music Pass/i.test(name);
+    const isValley = /Music Meadows|Venable|Horn Creek|Colony Creek/i.test(name);
+    if (!isPeak && !isValley) return raceMile;
+    const window = 2.0;
+    let best = raceMile;
+    let bestE = isPeak ? -Infinity : Infinity;
+    for (const [m, e] of s) {
+      if (m < raceMile - window || m > raceMile + window) continue;
+      if (isPeak ? (e > bestE) : (e < bestE)) {
+        bestE = e;
+        best = m;
+      }
+    }
+    return best;
+  }
+
   function renderElevation(milesDone) {
     if (!elevationData) return;
     const section = document.getElementById('course-profile');
@@ -564,7 +587,7 @@
     const md = (milesDone == null || isNaN(milesDone)) ? 0 : milesDone;
     const course = raceData ? buildCourseIndex(raceData.race) : [];
     const aidPoints = course.map(s => ({
-      mi: s.cumMile,
+      mi: snapAidMileToChart(s.to, s.cumMile),
       name: s.to,
       label: aidAbbrev(s.to),
       crew: s.crewAccess && s.crewAccess !== 'none'
