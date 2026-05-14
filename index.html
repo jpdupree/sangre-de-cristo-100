@@ -100,6 +100,38 @@
   .cutoff-item.warn .v { color: var(--yellow); }
   .cutoff-item.danger .v { color: var(--red); }
 
+  .course-profile {
+    background: var(--bg-elevated); border: 1px solid var(--border);
+    border-radius: 4px; padding: 18px 24px; margin-bottom: 32px;
+  }
+  .course-profile-title {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--text-muted); margin-bottom: 12px;
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+  }
+  .course-profile-title em { color: var(--text); font-style: normal; }
+  .elevation-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;
+  }
+  @media (max-width: 800px) { .elevation-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 500px) { .elevation-grid { grid-template-columns: 1fr; } }
+  .elevation-seg {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 3px; padding: 8px;
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .elevation-seg svg { width: 100%; height: 80px; display: block; }
+  .elevation-seg-label {
+    font-family: 'JetBrains Mono', monospace; font-size: 9px;
+    color: var(--text-muted); letter-spacing: 0.1em; text-transform: uppercase;
+    display: flex; justify-content: space-between;
+  }
+  .elevation-line { fill: none; stroke: var(--accent); stroke-width: 1.4; vector-effect: non-scaling-stroke; }
+  .elevation-area { fill: rgba(255, 107, 61, 0.12); stroke: none; }
+  .elevation-current { stroke: var(--green); stroke-width: 1.5; vector-effect: non-scaling-stroke; }
+  .elevation-current-dot { fill: var(--green); }
+
   .runners { display: grid; grid-template-columns: 1fr; gap: 24px; }
 
   .runner {
@@ -491,6 +523,13 @@
 </header>
 
 <div id="cutoffs" class="cutoffs"></div>
+<section class="course-profile" id="course-profile" hidden>
+  <div class="course-profile-title">
+    <span>Course Profile · <em>101.3 mi</em> · <em>9,042′ → 11,420′</em></span>
+    <span id="course-profile-position"></span>
+  </div>
+  <div class="elevation-grid" id="elevation-grid"></div>
+</section>
 <div id="error" style="display:none;"></div>
 <section id="runners" class="runners"></section>
 
@@ -514,6 +553,106 @@
   const REFRESH_MS = 15000;
   let raceData = null;
   let lastFetchAt = null;
+  let elevationData = null;
+
+  async function loadElevation() {
+    try {
+      const res = await fetch('elevation-data.json', { cache: 'force-cache' });
+      if (!res.ok) return;
+      elevationData = await res.json();
+      renderElevation();
+    } catch (e) {}
+  }
+
+  function elevationAt(mi) {
+    if (!elevationData) return null;
+    const s = elevationData.samples;
+    for (let i = 1; i < s.length; i++) {
+      if (s[i][0] >= mi) {
+        const [m0, e0] = s[i - 1], [m1, e1] = s[i];
+        const t = m1 === m0 ? 0 : (mi - m0) / (m1 - m0);
+        return e0 + (e1 - e0) * t;
+      }
+    }
+    return s[s.length - 1][1];
+  }
+
+  function renderElevation() {
+    if (!elevationData) return;
+    const section = document.getElementById('course-profile');
+    const grid = document.getElementById('elevation-grid');
+    if (!section || !grid) return;
+    section.hidden = false;
+    const samples = elevationData.samples;
+    const total = elevationData.distance_total;
+    const eMin = elevationData.elevation_min;
+    const eMax = elevationData.elevation_max;
+    const milesDone = (raceData && raceData.runners && raceData.runners[0])
+      ? (function() {
+          const r = raceData.runners[0];
+          const course = buildCourseIndex(raceData.race);
+          let mi = 0;
+          (r.legs || []).forEach(l => {
+            if (l.startTime && l.endTime) {
+              const seg = course[l.leg - 1];
+              if (seg) mi += seg.distance;
+            }
+          });
+          const ip = (r.legs || []).find(l => l.startTime && !l.endTime);
+          if (ip) {
+            const seg = course[ip.leg - 1];
+            if (seg) {
+              const elapsed = (Date.now() - new Date(ip.startTime).getTime()) / 1000;
+              const completedCourseSec = (r.legs || []).filter(l => l.startTime && l.endTime)
+                .reduce((a, l) => a + (new Date(l.endTime) - new Date(l.startTime)) / 1000, 0);
+              const milesCompleted = mi;
+              const avgPace = milesCompleted > 0 ? completedCourseSec / milesCompleted : 600;
+              mi += Math.min(seg.distance, elapsed / avgPace);
+            }
+          }
+          return mi;
+        })()
+      : 0;
+    const segments = 4;
+    const segMi = total / segments;
+    const W = 200, H = 80;
+    const pad = 2;
+    const yScale = e => H - pad - ((e - eMin) / (eMax - eMin)) * (H - pad * 2);
+    grid.innerHTML = '';
+    for (let i = 0; i < segments; i++) {
+      const segStart = i * segMi;
+      const segEnd = (i + 1) * segMi;
+      const xScale = m => ((m - segStart) / segMi) * W;
+      const segSamples = samples.filter(([m]) => m >= segStart - 0.1 && m <= segEnd + 0.1);
+      const polyPts = segSamples.map(([m, e]) => `${xScale(m).toFixed(1)},${yScale(e).toFixed(1)}`).join(' ');
+      const areaPts = polyPts + ` ${W},${H} 0,${H}`;
+      let currentMark = '';
+      if (milesDone >= segStart && milesDone <= segEnd) {
+        const cx = xScale(milesDone);
+        const cy = yScale(elevationAt(milesDone) || eMin);
+        currentMark = `<line x1="${cx.toFixed(1)}" y1="0" x2="${cx.toFixed(1)}" y2="${H}" class="elevation-current" /><circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="3.5" class="elevation-current-dot" />`;
+      }
+      grid.insertAdjacentHTML('beforeend', `
+        <div class="elevation-seg">
+          <svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none">
+            <polygon class="elevation-area" points="${areaPts}" />
+            <polyline class="elevation-line" points="${polyPts}" />
+            ${currentMark}
+          </svg>
+          <div class="elevation-seg-label">
+            <span>${Math.round(segStart)} mi</span>
+            <span>${Math.round(segEnd)} mi</span>
+          </div>
+        </div>`);
+    }
+    const posEl = document.getElementById('course-profile-position');
+    if (posEl) {
+      posEl.textContent = milesDone > 0
+        ? `at ${milesDone.toFixed(1)} mi · ${Math.round(elevationAt(milesDone))}′`
+        : '';
+    }
+  }
+
 
   function fmtDuration(seconds) {
     if (seconds == null || isNaN(seconds) || seconds < 0) return '—';
@@ -1021,6 +1160,7 @@
       document.getElementById('runners').innerHTML =
         raceData.runners.map(r => renderRunner(r, raceData.race, course)).join('');
       renderRaceStats(raceData.race, course);
+      renderElevation();
       document.getElementById('error').style.display = 'none';
       updateLastUpdatedLabel();
       tick();
@@ -1124,6 +1264,7 @@
     if (document.visibilityState === 'visible') load();
   });
 
+  loadElevation();
   load();
   setInterval(tick, 1000);
   setInterval(updateLastUpdatedLabel, 1000);
