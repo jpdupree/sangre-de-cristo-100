@@ -1,8 +1,9 @@
 {
+  "_sim": "SIMULATED DATA · revert before real race · original startTime 2026-09-26T04:00:00-06:00",
   "race": {
     "name": "Sangre de Cristo 100",
     "location": "Music Meadows Ranch · Westcliffe, CO",
-    "startTime": "2026-09-26T04:00:00-06:00",
+    "startTime": "2026-05-19T11:53:00Z",
     "totalDistance": 101.3,
     "totalGainFt": 18897,
     "totalLossFt": 18909,
@@ -145,8 +146,99 @@
       "id": "jason",
       "name": "Jason",
       "bib": "Jason",
-      "legs": []
+      "legs": [
+        {
+          "leg": 1,
+          "startTime": "2026-05-19T11:53:00Z",
+          "endTime": "2026-05-19T13:08:00Z",
+          "calories": 320,
+          "fluidOz": 30,
+          "sodiumMg": 1300,
+          "markedOutBy": "Jason",
+          "markedInBy": "Jason",
+          "intakeBy": "Jason",
+          "notes": "Steady climb to the pass, cool morning"
+        },
+        {
+          "leg": 2,
+          "startTime": "2026-05-19T13:08:00Z",
+          "endTime": "2026-05-19T14:03:00Z",
+          "calories": 200,
+          "fluidOz": 22,
+          "sodiumMg": 800,
+          "markedOutBy": "Jason",
+          "markedInBy": "Anna",
+          "intakeBy": "Anna",
+          "notes": "Quick descent, legs feel fresh"
+        },
+        {
+          "leg": 3,
+          "startTime": "2026-05-19T14:08:00Z",
+          "endTime": "2026-05-19T15:43:00Z",
+          "calories": 420,
+          "fluidOz": 32,
+          "sodiumMg": 1350,
+          "markedOutBy": "Anna",
+          "markedInBy": "Anna",
+          "intakeBy": "Anna",
+          "notes": "Refilled flasks at MM1, ate a Honey Stinger"
+        },
+        {
+          "leg": 4,
+          "startTime": "2026-05-19T15:47:00Z",
+          "endTime": "2026-05-19T17:52:00Z",
+          "calories": 600,
+          "fluidOz": 42,
+          "sodiumMg": 1750,
+          "markedOutBy": "Anna",
+          "markedInBy": "Anna",
+          "intakeBy": "Anna",
+          "issues": "Warm middle of day, drinking hard",
+          "gearChanges": "Lighter cap, sunglasses"
+        },
+        {
+          "leg": 5,
+          "startTime": "2026-05-19T18:04:00Z",
+          "endTime": "2026-05-19T19:39:00Z",
+          "calories": 300,
+          "fluidOz": 30,
+          "sodiumMg": 1200,
+          "markedOutBy": "Anna",
+          "markedInBy": "Anna",
+          "intakeBy": "Anna",
+          "notes": "Climb to Venable, paced it well"
+        },
+        {
+          "leg": 6,
+          "startTime": "2026-05-19T19:46:00Z",
+          "endTime": "2026-05-19T21:11:00Z",
+          "calories": 350,
+          "fluidOz": 26,
+          "sodiumMg": 1050,
+          "markedOutBy": "Anna",
+          "markedInBy": "Anna",
+          "intakeBy": "Anna",
+          "notes": "Back down to Horn Creek, headlamp on"
+        },
+        {
+          "leg": 7,
+          "startTime": "2026-05-19T21:21:00Z",
+          "endTime": "2026-05-19T23:31:00Z",
+          "calories": 600,
+          "fluidOz": 42,
+          "sodiumMg": 1750,
+          "markedOutBy": "Anna",
+          "markedInBy": "Anna",
+          "intakeBy": "Anna",
+          "notes": "Long pull to CC2, ate a bar"
+        },
+        {
+          "leg": 8,
+          "startTime": "2026-05-19T23:38:00Z",
+          "markedOutBy": "Anna"
+        }
+      ]
     }
   ],
-  "lastUpdated": "2026-05-14T12:05:00Z"
+  "lastUpdated": "2026-05-19T23:38:00Z"
 }
