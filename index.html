@@ -482,6 +482,10 @@
   </div>
   <div style="display: flex; align-items: center; gap: 18px;">
     <div class="race-clock">
+      <span class="label">Time of Day</span>
+      <span class="time" id="clock-now">--:--:--</span>
+    </div>
+    <div class="race-clock">
       <span class="label" id="elapsed-label">Race Time Elapsed</span>
       <span class="time" id="elapsed">--:--:--</span>
     </div>
@@ -956,6 +960,10 @@
   function tick() {
     if (!raceData) return;
     const now = new Date();
+    const clockEl = document.getElementById('clock-now');
+    if (clockEl) {
+      clockEl.textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
+    }
     const start = new Date(raceData.race.startTime);
     const cutoffSec = (raceData.race.totalCutoffHours || 38) * 3600;
     let diff = Math.floor((now - start) / 1000);
