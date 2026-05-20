@@ -491,6 +491,7 @@
     </div>
     <a class="map-link" href="map.html">Course Map →</a>
     <a class="map-link" href="charts.html">Charts →</a>
+    <a class="map-link" id="pit-link" href="pit.html" hidden>Pit →</a>
   </div>
 </header>
 
@@ -1131,6 +1132,14 @@
   document.addEventListener('visibilitychange', () => {
     if (document.visibilityState === 'visible') load();
   });
+
+  function showPitLinkIfConnected() {
+    try {
+      const cfg = JSON.parse(localStorage.getItem('pit-board-config-v1') || 'null');
+      if (cfg && cfg.token) document.getElementById('pit-link').hidden = false;
+    } catch (e) {}
+  }
+  showPitLinkIfConnected();
 
   load();
   setInterval(tick, 1000);
