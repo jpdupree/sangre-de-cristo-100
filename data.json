@@ -3,7 +3,7 @@
   "race": {
     "name": "Sangre de Cristo 100",
     "location": "Music Meadows Ranch · Westcliffe, CO",
-    "startTime": "2026-05-19T11:53:00Z",
+    "startTime": "2026-05-19T04:00:00-06:00",
     "totalDistance": 101.3,
     "totalGainFt": 18897,
     "totalLossFt": 18909,
@@ -149,72 +149,72 @@
       "legs": [
         {
           "leg": 1,
-          "startTime": "2026-05-19T11:53:00Z",
-          "endTime": "2026-05-19T13:08:00Z",
+          "startTime": "2026-05-19T10:00:00Z",
+          "endTime": "2026-05-19T11:25:00Z",
           "calories": 320,
-          "fluidOz": 30,
-          "sodiumMg": 1300,
+          "fluidOz": 28,
+          "sodiumMg": 1200,
           "markedOutBy": "Jason",
           "markedInBy": "Jason",
           "intakeBy": "Jason",
-          "notes": "Steady climb to the pass, cool morning"
+          "notes": "Steady climb to the pass, headlamp off at sunrise"
         },
         {
           "leg": 2,
-          "startTime": "2026-05-19T13:08:00Z",
-          "endTime": "2026-05-19T14:03:00Z",
-          "calories": 200,
-          "fluidOz": 22,
+          "startTime": "2026-05-19T11:25:00Z",
+          "endTime": "2026-05-19T12:25:00Z",
+          "calories": 220,
+          "fluidOz": 20,
           "sodiumMg": 800,
           "markedOutBy": "Jason",
           "markedInBy": "Anna",
           "intakeBy": "Anna",
-          "notes": "Quick descent, legs feel fresh"
+          "notes": "Smooth descent, legs feel good"
         },
         {
           "leg": 3,
-          "startTime": "2026-05-19T14:08:00Z",
-          "endTime": "2026-05-19T15:43:00Z",
-          "calories": 420,
-          "fluidOz": 32,
-          "sodiumMg": 1350,
+          "startTime": "2026-05-19T12:30:00Z",
+          "endTime": "2026-05-19T14:25:00Z",
+          "calories": 480,
+          "fluidOz": 38,
+          "sodiumMg": 1700,
           "markedOutBy": "Anna",
           "markedInBy": "Anna",
           "intakeBy": "Anna",
-          "notes": "Refilled flasks at MM1, ate a Honey Stinger"
+          "notes": "Refilled both flasks at MM1, Honey Stinger waffle"
         },
         {
           "leg": 4,
-          "startTime": "2026-05-19T15:47:00Z",
-          "endTime": "2026-05-19T17:52:00Z",
+          "startTime": "2026-05-19T14:30:00Z",
+          "endTime": "2026-05-19T16:55:00Z",
           "calories": 600,
-          "fluidOz": 42,
-          "sodiumMg": 1750,
+          "fluidOz": 48,
+          "sodiumMg": 2200,
           "markedOutBy": "Anna",
           "markedInBy": "Anna",
           "intakeBy": "Anna",
-          "issues": "Warm middle of day, drinking hard",
+          "issues": "Warmest stretch of the day",
           "gearChanges": "Lighter cap, sunglasses"
         },
         {
           "leg": 5,
-          "startTime": "2026-05-19T18:04:00Z",
-          "endTime": "2026-05-19T19:39:00Z",
-          "calories": 300,
-          "fluidOz": 30,
-          "sodiumMg": 1200,
+          "startTime": "2026-05-19T17:10:00Z",
+          "endTime": "2026-05-19T19:00:00Z",
+          "calories": 400,
+          "fluidOz": 35,
+          "sodiumMg": 1500,
           "markedOutBy": "Anna",
           "markedInBy": "Anna",
           "intakeBy": "Anna",
-          "notes": "Climb to Venable, paced it well"
+          "notes": "Climb to Venable, managed it well"
         },
         {
           "leg": 6,
-          "startTime": "2026-05-19T19:46:00Z",
-          "endTime": "2026-05-19T21:11:00Z",
-          "calories": 350,
-          "fluidOz": 26,
-          "sodiumMg": 1050,
+          "startTime": "2026-05-19T19:08:00Z",
+          "endTime": "2026-05-19T20:43:00Z",
+          "calories": 380,
+          "fluidOz": 30,
+          "sodiumMg": 1300,
           "markedOutBy": "Anna",
           "markedInBy": "Anna",
           "intakeBy": "Anna",
@@ -222,23 +222,23 @@
         },
         {
           "leg": 7,
-          "startTime": "2026-05-19T21:21:00Z",
-          "endTime": "2026-05-19T23:31:00Z",
-          "calories": 600,
-          "fluidOz": 42,
-          "sodiumMg": 1750,
+          "startTime": "2026-05-19T20:55:00Z",
+          "endTime": "2026-05-19T23:25:00Z",
+          "calories": 620,
+          "fluidOz": 50,
+          "sodiumMg": 2200,
           "markedOutBy": "Anna",
           "markedInBy": "Anna",
           "intakeBy": "Anna",
-          "notes": "Long pull to CC2, ate a bar"
+          "notes": "Long night pull to CC2, ate a Pro Bar"
         },
         {
           "leg": 8,
-          "startTime": "2026-05-19T23:38:00Z",
+          "startTime": "2026-05-19T23:35:00Z",
           "markedOutBy": "Anna"
         }
       ]
     }
   ],
-  "lastUpdated": "2026-05-19T23:38:00Z"
+  "lastUpdated": "2026-05-19T23:35:00Z"
 }
