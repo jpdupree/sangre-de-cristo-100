@@ -476,6 +476,7 @@
     <div class="brand-meta">
       <span class="pulse"></span>
       <span>Live Race Command</span>
+      <span id="race-date"></span>
       <span id="course-meta">· 16 legs · 101.3 mi</span>
     </div>
     <h1>Sangre de <em>Cristo</em> 100</h1>
@@ -1026,6 +1027,8 @@
       const computed = raceData.runners.map(r => computeRunner(r, raceData.race, course));
       document.getElementById('course-meta').textContent =
         `· ${course.length} legs · ${raceData.race.totalDistance} mi · +${raceData.race.totalGainFt.toLocaleString()} ft`;
+      document.getElementById('race-date').textContent = '· ' +
+        new Date(raceData.race.startTime).toLocaleDateString([], { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' });
       renderCutoffs(raceData.race, course, computed[0]);
       document.getElementById('runners').innerHTML =
         raceData.runners.map(r => renderRunner(r, raceData.race, course)).join('');
