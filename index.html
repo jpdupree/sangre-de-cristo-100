@@ -74,6 +74,15 @@
     border: 1px solid var(--border); padding: 8px 12px; border-radius: 4px;
   }
   a.map-link:hover { color: var(--accent); border-color: var(--accent); }
+  .header-right {
+    display: flex; flex-direction: column; align-items: flex-end; gap: 12px;
+  }
+  .header-links {
+    display: flex; gap: 10px; flex-wrap: wrap; justify-content: flex-end;
+  }
+  .header-clocks {
+    display: flex; gap: 22px; align-items: flex-end;
+  }
   .race-clock { text-align: right; display: flex; flex-direction: column; gap: 4px; }
   .race-clock .label {
     font-family: 'JetBrains Mono', monospace; font-size: 10px;
@@ -481,18 +490,22 @@
     </div>
     <h1>Sangre de <em>Cristo</em> 100</h1>
   </div>
-  <div style="display: flex; align-items: center; gap: 18px;">
-    <div class="race-clock">
-      <span class="label">Time of Day</span>
-      <span class="time" id="clock-now">--:--:--</span>
+  <div class="header-right">
+    <div class="header-links">
+      <a class="map-link" href="map.html">Course Map →</a>
+      <a class="map-link" href="charts.html">Charts →</a>
+      <a class="map-link" id="pit-link" href="pit.html" hidden>Pit →</a>
     </div>
-    <div class="race-clock">
-      <span class="label" id="elapsed-label">Race Time Elapsed</span>
-      <span class="time" id="elapsed">--:--:--</span>
+    <div class="header-clocks">
+      <div class="race-clock">
+        <span class="label">Time of Day</span>
+        <span class="time" id="clock-now">--:--:--</span>
+      </div>
+      <div class="race-clock">
+        <span class="label" id="elapsed-label">Race Time Elapsed</span>
+        <span class="time" id="elapsed">--:--:--</span>
+      </div>
     </div>
-    <a class="map-link" href="map.html">Course Map →</a>
-    <a class="map-link" href="charts.html">Charts →</a>
-    <a class="map-link" id="pit-link" href="pit.html" hidden>Pit →</a>
   </div>
 </header>
 
