@@ -1,152 +1,54 @@
 {
- "race": {
-  "name": "Sangre de Cristo 100",
-  "location": "Music Meadows Ranch \u00b7 Westcliffe, CO",
-  "startTime": "2026-09-26T04:00:00-06:00",
-  "totalDistance": 101.3,
-  "totalGainFt": 18897,
-  "totalLossFt": 18909,
-  "totalCutoffHours": 38,
-  "crewLot": "any",
-  "targets": {
-   "caloriesPerHour": 275,
-   "fluidOzPerHour": 20,
-   "sodiumMgPerHour": 800
+  "race": {
+    "name": "Sangre de Cristo 100",
+    "location": "Music Meadows Ranch · Westcliffe, CO",
+    "startTime": "2026-09-26T04:00:00-06:00",
+    "totalDistance": 101.3,
+    "totalGainFt": 18897,
+    "totalLossFt": 18909,
+    "totalCutoffHours": 38,
+    "crewLot": "any",
+    "targets": {
+      "caloriesPerHour": 275,
+      "fluidOzPerHour": 20,
+      "sodiumMgPerHour": 800
+    },
+    "phaseTargets": [
+      { "startHour": 0,  "endHour": 3,  "label": "Night · cold",   "fluidOzPerHr": 14, "sodiumMgPerHr": 500 },
+      { "startHour": 3,  "endHour": 4,  "label": "Dawn · cool",    "fluidOzPerHr": 18, "sodiumMgPerHr": 900 },
+      { "startHour": 4,  "endHour": 11, "label": "Day · warm",     "fluidOzPerHr": 22, "sodiumMgPerHr": 1200 },
+      { "startHour": 11, "endHour": 14, "label": "Evening · cool", "fluidOzPerHr": 18, "sodiumMgPerHr": 900 },
+      { "startHour": 14, "endHour": 27, "label": "Night · cold",   "fluidOzPerHr": 14, "sodiumMgPerHr": 500 },
+      { "startHour": 27, "endHour": 28, "label": "Dawn · cool",    "fluidOzPerHr": 18, "sodiumMgPerHr": 900 },
+      { "startHour": 28, "endHour": 35, "label": "Day · warm",     "fluidOzPerHr": 22, "sodiumMgPerHr": 1200 },
+      { "startHour": 35, "endHour": 38, "label": "Evening · cool", "fluidOzPerHr": 18, "sodiumMgPerHr": 900 }
+    ],
+    "segments": [
+      { "leg": 1,  "from": "Music Meadows (Start)", "to": "Music Pass",       "distance": 4.3, "crewAccess": "none", "checkpoint": true },
+      { "leg": 2,  "from": "Music Pass",            "to": "Music Meadows 1",  "distance": 4.3, "crewAccess": "all" },
+      { "leg": 3,  "from": "Music Meadows 1",       "to": "Colony Creek 1",   "distance": 6.6, "crewAccess": "none" },
+      { "leg": 4,  "from": "Colony Creek 1",        "to": "Horn Creek 1",     "distance": 8.8, "crewAccess": "C1" },
+      { "leg": 5,  "from": "Horn Creek 1",          "to": "Venable",          "distance": 5.6, "crewAccess": "C2" },
+      { "leg": 6,  "from": "Venable",               "to": "Horn Creek 2",     "distance": 5.7, "crewAccess": "C1" },
+      { "leg": 7,  "from": "Horn Creek 2",          "to": "Colony Creek 2",   "distance": 8.7, "crewAccess": "none" },
+      { "leg": 8,  "from": "Colony Creek 2",        "to": "Music Meadows 2",  "distance": 6.6, "crewAccess": "all", "cutoffHoursFromStart": 18.5, "pacerEligible": true },
+      { "leg": 9,  "from": "Music Meadows 2",       "to": "Colony Creek 3",   "distance": 6.6, "crewAccess": "none" },
+      { "leg": 10, "from": "Colony Creek 3",        "to": "Horn Creek 3",     "distance": 8.9, "crewAccess": "C2", "pacerEligible": true },
+      { "leg": 11, "from": "Horn Creek 3",          "to": "Venable 2",        "distance": 5.5, "crewAccess": "C1", "cutoffHoursFromStart": 26.5, "pacerEligible": true },
+      { "leg": 12, "from": "Venable 2",             "to": "Horn Creek 4",     "distance": 5.7, "crewAccess": "C2", "cutoffHoursFromStart": 28.75, "pacerEligible": true },
+      { "leg": 13, "from": "Horn Creek 4",          "to": "Colony Creek 4",   "distance": 8.7, "crewAccess": "none" },
+      { "leg": 14, "from": "Colony Creek 4",        "to": "Music Meadows 3",  "distance": 6.6, "crewAccess": "all", "cutoffHoursFromStart": 34, "pacerEligible": true },
+      { "leg": 15, "from": "Music Meadows 3",       "to": "Music Pass 2",     "distance": 4.3, "crewAccess": "none", "checkpoint": true },
+      { "leg": 16, "from": "Music Pass 2",          "to": "Finish",           "distance": 4.4, "crewAccess": "all", "cutoffHoursFromStart": 38 }
+    ]
   },
-  "segments": [
-   {
-    "leg": 1,
-    "from": "Music Meadows (Start)",
-    "to": "Music Pass",
-    "distance": 4.3,
-    "crewAccess": "none",
-    "checkpoint": true
-   },
-   {
-    "leg": 2,
-    "from": "Music Pass",
-    "to": "Music Meadows 1",
-    "distance": 4.3,
-    "crewAccess": "all"
-   },
-   {
-    "leg": 3,
-    "from": "Music Meadows 1",
-    "to": "Colony Creek 1",
-    "distance": 6.6,
-    "crewAccess": "none"
-   },
-   {
-    "leg": 4,
-    "from": "Colony Creek 1",
-    "to": "Horn Creek 1",
-    "distance": 8.8,
-    "crewAccess": "C1"
-   },
-   {
-    "leg": 5,
-    "from": "Horn Creek 1",
-    "to": "Venable",
-    "distance": 5.6,
-    "crewAccess": "C2"
-   },
-   {
-    "leg": 6,
-    "from": "Venable",
-    "to": "Horn Creek 2",
-    "distance": 5.7,
-    "crewAccess": "C1"
-   },
-   {
-    "leg": 7,
-    "from": "Horn Creek 2",
-    "to": "Colony Creek 2",
-    "distance": 8.7,
-    "crewAccess": "none"
-   },
-   {
-    "leg": 8,
-    "from": "Colony Creek 2",
-    "to": "Music Meadows 2",
-    "distance": 6.6,
-    "crewAccess": "all",
-    "cutoffHoursFromStart": 18.5,
-    "pacerEligible": true
-   },
-   {
-    "leg": 9,
-    "from": "Music Meadows 2",
-    "to": "Colony Creek 3",
-    "distance": 6.6,
-    "crewAccess": "none"
-   },
-   {
-    "leg": 10,
-    "from": "Colony Creek 3",
-    "to": "Horn Creek 3",
-    "distance": 8.9,
-    "crewAccess": "C2",
-    "pacerEligible": true
-   },
-   {
-    "leg": 11,
-    "from": "Horn Creek 3",
-    "to": "Venable 2",
-    "distance": 5.5,
-    "crewAccess": "C1",
-    "cutoffHoursFromStart": 26.5,
-    "pacerEligible": true
-   },
-   {
-    "leg": 12,
-    "from": "Venable 2",
-    "to": "Horn Creek 4",
-    "distance": 5.7,
-    "crewAccess": "C2",
-    "cutoffHoursFromStart": 28.75,
-    "pacerEligible": true
-   },
-   {
-    "leg": 13,
-    "from": "Horn Creek 4",
-    "to": "Colony Creek 4",
-    "distance": 8.7,
-    "crewAccess": "none"
-   },
-   {
-    "leg": 14,
-    "from": "Colony Creek 4",
-    "to": "Music Meadows 3",
-    "distance": 6.6,
-    "crewAccess": "all",
-    "cutoffHoursFromStart": 34,
-    "pacerEligible": true
-   },
-   {
-    "leg": 15,
-    "from": "Music Meadows 3",
-    "to": "Music Pass 2",
-    "distance": 4.3,
-    "crewAccess": "none",
-    "checkpoint": true
-   },
-   {
-    "leg": 16,
-    "from": "Music Pass 2",
-    "to": "Finish",
-    "distance": 4.4,
-    "crewAccess": "all",
-    "cutoffHoursFromStart": 38
-   }
-  ]
- },
- "runners": [
-  {
-   "id": "jason",
-   "name": "Jason",
-   "bib": "Jason",
-   "legs": []
-  }
- ],
- "lastUpdated": "2026-05-20T00:50:00Z"
+  "runners": [
+    {
+      "id": "jason",
+      "name": "Jason",
+      "bib": "Jason",
+      "legs": []
+    }
+  ],
+  "lastUpdated": "2026-07-19T17:00:00Z"
 }
