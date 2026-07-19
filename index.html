@@ -494,6 +494,7 @@
     <div class="header-links">
       <a class="map-link" href="map.html">Course Map →</a>
       <a class="map-link" href="charts.html">Charts →</a>
+      <a class="map-link" id="live-tracker-link" href="#" target="_blank" rel="noopener" hidden>Live Tracker →</a>
       <a class="map-link" id="pit-link" href="pit.html" hidden>Pit →</a>
     </div>
     <div class="header-clocks">
@@ -1042,6 +1043,12 @@
         `· ${course.length} legs · ${raceData.race.totalDistance} mi · +${raceData.race.totalGainFt.toLocaleString()} ft`;
       document.getElementById('race-date').textContent = '· ' +
         new Date(raceData.race.startTime).toLocaleDateString([], { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' });
+      const trackerLink = document.getElementById('live-tracker-link');
+      if (trackerLink) {
+        const url = raceData.race.liveTrackerUrl;
+        if (url) { trackerLink.href = url; trackerLink.hidden = false; }
+        else { trackerLink.removeAttribute('href'); trackerLink.hidden = true; }
+      }
       renderCutoffs(raceData.race, course, computed[0]);
       document.getElementById('runners').innerHTML =
         raceData.runners.map(r => renderRunner(r, raceData.race, course)).join('');
