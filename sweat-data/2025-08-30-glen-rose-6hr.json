@@ -1,0 +1,32 @@
+{
+  "note": "Time series truncated in chat paste (~minute 297 of ~372); metadata totals complete and authoritative. Weather fields empty in export.",
+  "metadata": {
+    "name": "Jason Dupree",
+    "weight": 155,
+    "height": 66,
+    "activityStartDate": "2025-08-30T11:58:29Z",
+    "activityEndDate": "2025-08-30T18:10:21Z",
+    "system": "imperial",
+    "activityDurationHours": "6.20",
+    "sweatRate": "0.821",
+    "totalSweatLoss": 5.087,
+    "totalSodium": 6377.001,
+    "totalPotassium": 831.783,
+    "sodiumConcentration": "37.07",
+    "averagehDropScore": 48.42252238284482,
+    "firstSweatDropTime": "2.5",
+    "minhDropScore": 25,
+    "bodyLocation": "Upper Arm (Default)",
+    "minTemperature": 87.57,
+    "maxTemperature": 94.69,
+    "activityType": 3,
+    "latitude": 32.2306528,
+    "longitude": -97.6011064,
+    "altitudeM": 198.4
+  },
+  "derived": {
+    "avgSweatRateOzPerHr": 27.1,
+    "sodiumLossMgPerHr": 1029,
+    "notes": "6.2h trail long run near Glen Rose (likely Dinosaur Valley area), 6 AM start. Lowest sweat rate of the summer dataset."
+  }
+}

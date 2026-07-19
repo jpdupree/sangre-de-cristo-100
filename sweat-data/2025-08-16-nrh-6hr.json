@@ -1,0 +1,37 @@
+{
+  "note": "Time series truncated in chat paste (~minute 297 of 360); metadata totals complete and authoritative.",
+  "metadata": {
+    "name": "Jason Dupree",
+    "weight": 155,
+    "height": 66,
+    "activityStartDate": "2025-08-16T12:20:30Z",
+    "activityEndDate": "2025-08-16T18:20:34Z",
+    "system": "imperial",
+    "activityDurationHours": "6.00",
+    "sweatRate": "1.16",
+    "totalSweatLoss": 6.956,
+    "totalSodium": 9055.211,
+    "totalPotassium": 1181.114,
+    "sodiumConcentration": "38.50",
+    "averagehDropScore": 46.11648366637114,
+    "firstSweatDropTime": "0.0",
+    "minhDropScore": 6,
+    "bodyLocation": "Upper Arm (Default)",
+    "minTemperature": 88.17,
+    "maxTemperature": 110.1,
+    "activityType": 3,
+    "city": "North Richland Hills",
+    "latitude": 32.8624055,
+    "longitude": -97.2156852,
+    "altitudeM": 167.4,
+    "weatherTemperatureC": 26.01,
+    "humidityPct": 83,
+    "windSpeedMs": 2.24,
+    "weatherDescription": "clear sky"
+  },
+  "derived": {
+    "avgSweatRateOzPerHr": 39.2,
+    "sodiumLossMgPerHr": 1509,
+    "notes": "6h long run, 79F/83% humidity morning into midday. Skin temp peaked 110F late morning."
+  }
+}
