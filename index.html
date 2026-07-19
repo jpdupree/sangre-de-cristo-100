@@ -590,6 +590,26 @@
     });
   }
 
+  function currentPhase(race, elapsedHours) {
+    const fallback = {
+      label: null,
+      caloriesPerHr: race.targets.caloriesPerHour,
+      fluidOzPerHr: race.targets.fluidOzPerHour,
+      sodiumMgPerHr: race.targets.sodiumMgPerHour
+    };
+    const phases = race.phaseTargets;
+    if (!Array.isArray(phases) || !phases.length) return fallback;
+    const last = phases[phases.length - 1];
+    const clamped = Math.max(0, Math.min(elapsedHours, last.endHour - 0.0001));
+    const p = phases.find(ph => clamped >= ph.startHour && clamped < ph.endHour) || phases[0];
+    return {
+      label: p.label || null,
+      caloriesPerHr: p.caloriesPerHr != null ? p.caloriesPerHr : race.targets.caloriesPerHour,
+      fluidOzPerHr: p.fluidOzPerHr != null ? p.fluidOzPerHr : race.targets.fluidOzPerHour,
+      sodiumMgPerHr: p.sodiumMgPerHr != null ? p.sodiumMgPerHr : race.targets.sodiumMgPerHour
+    };
+  }
+
   function computeRunner(runner, race, course) {
     const legs = runner.legs || [];
     const now = new Date();
@@ -696,6 +716,9 @@
       liveLegNumber = lastCompleted.leg;
     }
 
+    const elapsedRaceHours = Math.max(0, (now - start) / 3600000);
+    const phase = currentPhase(race, elapsedRaceHours);
+
     return {
       legsDone, milesDone, milesTotal,
       raceSeconds, totalCourseSeconds, totalPitSeconds,
@@ -707,7 +730,8 @@
       status, projectedFinishSec, nextCutoff,
       legDurations, completedDistance, pitDurations,
       inPit, inProgressLeg: !!inProgressLeg, finished,
-      liveSince, liveLegNumber
+      liveSince, liveLegNumber,
+      phase
     };
   }
 
@@ -764,7 +788,6 @@
 
   function renderRunner(runner, race, course) {
     const c = computeRunner(runner, race, course);
-    const t = race.targets;
     const totalLegs = course.length;
     const cutoffPaceSecPerMile = (race.totalCutoffHours * 3600) / race.totalDistance;
 
@@ -918,24 +941,24 @@
         </div>
 
         <div class="intake">
-          <div class="intake-title">Intake / Hour (on course)</div>
+          <div class="intake-title">Intake / Hour${c.phase.label ? ` <span style="color: var(--accent); font-weight: 600;">· ${c.phase.label}</span>` : ' (on course)'}</div>
           <div class="intake-row">
             <span class="name">Calories</span>
-            <div class="bar-track"><div class="bar-fill ${intakeClass(c.calPerHr, t.caloriesPerHour)}" style="width: ${Math.min(100, (c.calPerHr / t.caloriesPerHour) * 100)}%"></div></div>
+            <div class="bar-track"><div class="bar-fill ${intakeClass(c.calPerHr, c.phase.caloriesPerHr)}" style="width: ${Math.min(100, (c.calPerHr / c.phase.caloriesPerHr) * 100)}%"></div></div>
             <span class="num">${Math.round(c.calPerHr)}</span>
-            <span class="target">/ ${t.caloriesPerHour}</span>
+            <span class="target">/ ${c.phase.caloriesPerHr}</span>
           </div>
           <div class="intake-row">
             <span class="name">Fluid</span>
-            <div class="bar-track"><div class="bar-fill ${intakeClass(c.fluidPerHr, t.fluidOzPerHour)}" style="width: ${Math.min(100, (c.fluidPerHr / t.fluidOzPerHour) * 100)}%"></div></div>
+            <div class="bar-track"><div class="bar-fill ${intakeClass(c.fluidPerHr, c.phase.fluidOzPerHr)}" style="width: ${Math.min(100, (c.fluidPerHr / c.phase.fluidOzPerHr) * 100)}%"></div></div>
             <span class="num">${c.fluidPerHr.toFixed(1)} oz</span>
-            <span class="target">/ ${t.fluidOzPerHour} oz</span>
+            <span class="target">/ ${c.phase.fluidOzPerHr} oz</span>
           </div>
           <div class="intake-row">
             <span class="name">Sodium</span>
-            <div class="bar-track"><div class="bar-fill ${intakeClass(c.sodiumPerHr, t.sodiumMgPerHour)}" style="width: ${Math.min(100, (c.sodiumPerHr / t.sodiumMgPerHour) * 100)}%"></div></div>
+            <div class="bar-track"><div class="bar-fill ${intakeClass(c.sodiumPerHr, c.phase.sodiumMgPerHr)}" style="width: ${Math.min(100, (c.sodiumPerHr / c.phase.sodiumMgPerHr) * 100)}%"></div></div>
             <span class="num">${Math.round(c.sodiumPerHr)} mg</span>
-            <span class="target">/ ${t.sodiumMgPerHour} mg</span>
+            <span class="target">/ ${c.phase.sodiumMgPerHr} mg</span>
           </div>
         </div>
 
