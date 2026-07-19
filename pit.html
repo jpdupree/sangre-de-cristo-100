@@ -338,6 +338,38 @@
   }
   .intake-save-status.ok { color: var(--green); }
   .intake-save-status.err { color: var(--red); }
+
+  .tracker {
+    background: var(--bg-elevated); border: 1px solid var(--border);
+    border-radius: 6px; padding: 14px 16px; margin-bottom: 18px;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .tracker-head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    gap: 12px; flex-wrap: wrap;
+  }
+  .tracker-label {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700;
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--text);
+  }
+  .tracker-hint {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted);
+  }
+  .tracker-row { display: flex; gap: 8px; align-items: stretch; flex-wrap: wrap; }
+  .tracker-row input {
+    flex: 1 1 220px; min-width: 0;
+    background: var(--bg); color: var(--text);
+    border: 1px solid var(--border); border-radius: 4px;
+    font-family: 'JetBrains Mono', monospace; font-size: 13px;
+    padding: 8px 10px;
+  }
+  .tracker-status {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    color: var(--text-muted); min-height: 14px;
+  }
+  .tracker-status.ok { color: var(--green); }
+  .tracker-status.err { color: var(--red); }
 </style>
 </head>
 <body>
@@ -377,6 +409,19 @@
       <button class="ctrl-btn" id="cfg-disconnect">Disconnect</button>
     </div>
   </div>
+</section>
+
+<section class="tracker" id="tracker-section">
+  <div class="tracker-head">
+    <span class="tracker-label">Live Tracker URL</span>
+    <span class="tracker-hint">Coros share link — paste on race morning</span>
+  </div>
+  <div class="tracker-row">
+    <input type="url" id="tracker-input" placeholder="https://s.coros.com/..." autocomplete="off" spellcheck="false" />
+    <button class="ctrl-btn primary" id="tracker-save">Save</button>
+    <button class="ctrl-btn" id="tracker-clear">Clear</button>
+  </div>
+  <div class="tracker-status" id="tracker-status"></div>
 </section>
 
 <section id="runners"></section>
@@ -622,6 +667,76 @@
       }
     }
     throw new Error('Too many sha conflicts');
+  }
+
+  async function commitLiveTrackerUrl(url) {
+    const config = loadConfig();
+    if (!config || !config.token) throw new Error('Not connected');
+    for (let attempt = 0; attempt < 4; attempt++) {
+      const { sha, content } = await ghGetData(config);
+      if (!content.race) content.race = {};
+      const prev = content.race.liveTrackerUrl || '';
+      if (prev === url) return;
+      if (url) content.race.liveTrackerUrl = url;
+      else delete content.race.liveTrackerUrl;
+      content.lastUpdated = new Date().toISOString();
+      const message = url
+        ? `pit-board: set live tracker URL`
+        : `pit-board: clear live tracker URL`;
+      try {
+        await ghPutData(config, content, sha, message);
+        return;
+      } catch (err) {
+        if (err.status === 409 && attempt < 3) continue;
+        throw err;
+      }
+    }
+    throw new Error('Too many sha conflicts');
+  }
+
+  function setTrackerStatus(text, cls) {
+    const el = document.getElementById('tracker-status');
+    if (!el) return;
+    el.textContent = text;
+    el.className = 'tracker-status' + (cls ? ' ' + cls : '');
+  }
+
+  async function saveTrackerUrl() {
+    const input = document.getElementById('tracker-input');
+    const url = input.value.trim();
+    if (url && !/^https?:\/\//i.test(url)) {
+      setTrackerStatus('URL must start with http:// or https://', 'err');
+      return;
+    }
+    if (!hasToken()) {
+      setTrackerStatus('not connected', 'err');
+      alert('Connect a GitHub token first (Setup button at top).');
+      return;
+    }
+    setTrackerStatus('saving…', '');
+    try {
+      await commitLiveTrackerUrl(url);
+      setTrackerStatus(url ? 'saved ✓' : 'cleared ✓', 'ok');
+      await loadRaceData();
+      render();
+    } catch (err) {
+      setTrackerStatus('error', 'err');
+      alert(`Save failed:\n${err.message || err}`);
+    }
+  }
+
+  async function clearTrackerUrl() {
+    if (!confirm('Clear the live tracker URL?')) return;
+    const input = document.getElementById('tracker-input');
+    input.value = '';
+    await saveTrackerUrl();
+  }
+
+  function syncTrackerInputFromData() {
+    const input = document.getElementById('tracker-input');
+    if (!input || document.activeElement === input) return;
+    const url = (raceData && raceData.race && raceData.race.liveTrackerUrl) || '';
+    if (input.value !== url) input.value = url;
   }
 
   async function commitLegData(runnerId, legNum, data) {
@@ -1148,6 +1263,7 @@
     document.getElementById('mark-sent').disabled = !unsent;
     document.getElementById('sync-queued').disabled = !hasToken() || !hasQueuedOrError();
     renderConfigStatus();
+    syncTrackerInputFromData();
     tick();
   }
 
@@ -1220,6 +1336,8 @@
   });
   document.getElementById('cfg-save').addEventListener('click', saveConfigFromForm);
   document.getElementById('cfg-disconnect').addEventListener('click', disconnectConfig);
+  document.getElementById('tracker-save').addEventListener('click', saveTrackerUrl);
+  document.getElementById('tracker-clear').addEventListener('click', clearTrackerUrl);
 
   if (!hasToken()) openConfigForm();
 
