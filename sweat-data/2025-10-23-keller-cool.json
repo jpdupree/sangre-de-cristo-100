@@ -1,0 +1,37 @@
+{
+ "metadata": {
+  "name": "Jason Dupree",
+  "weight": 155,
+  "height": 66,
+  "activityStartDate": "2025-10-23T09:03:29Z",
+  "activityEndDate": "2025-10-23T11:23:54Z",
+  "system": "imperial",
+  "activityDurationHours": "2.34",
+  "sweatRate": "1.22",
+  "totalSweatLoss": 2.844,
+  "totalSodium": 2797.366,
+  "totalPotassium": 364.874,
+  "sodiumConcentration": "29.09",
+  "averagehDropScore": 59.96317315648947,
+  "firstSweatDropTime": "0.50",
+  "minhDropScore": 25,
+  "bodyLocation": "Upper Arm (Default)",
+  "minTemperature": 78.96,
+  "maxTemperature": 90.15,
+  "activityType": 3,
+  "city": "Keller",
+  "latitude": 32.9472283,
+  "longitude": -97.278593,
+  "altitudeM": 198.5,
+  "weatherTemperatureC": 17,
+  "humidityPct": 44,
+  "windSpeedMs": 2.57,
+  "weatherDescription": "few clouds"
+ },
+ "derived": {
+  "avgSweatRateOzPerHr": 41.0,
+  "sodiumLossMgPerHr": 1196,
+  "notes": "63F/44pct pre-dawn but includes a hard middle block (57-61 oz/hr, min 60-90) \u2014 effort inflates the average. Easy portions ran 29-37 oz/hr, final cooldown 14-22. Concentration notably lower (~1,040 mg/L) at cool temps."
+ },
+ "note": "Full time series in chat; stored metadata + derived only."
+}

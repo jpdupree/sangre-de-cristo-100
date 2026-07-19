@@ -1,0 +1,37 @@
+{
+ "metadata": {
+  "name": "Jason Dupree",
+  "weight": 155,
+  "height": 66,
+  "activityStartDate": "2025-10-28T16:39:04Z",
+  "activityEndDate": "2025-10-28T17:29:03Z",
+  "system": "imperial",
+  "activityDurationHours": "0.833",
+  "sweatRate": "0.693",
+  "totalSweatLoss": 0.577,
+  "totalSodium": 638.56,
+  "totalPotassium": 83.29,
+  "sodiumConcentration": "32.73",
+  "averagehDropScore": 61.83324086549893,
+  "firstSweatDropTime": "5.3",
+  "minhDropScore": 46,
+  "bodyLocation": "Upper Arm (Default)",
+  "minTemperature": 82.9,
+  "maxTemperature": 91.5,
+  "activityType": 3,
+  "city": "Watauga",
+  "latitude": 32.8742483,
+  "longitude": -97.2169537,
+  "altitudeM": 178.6,
+  "weatherTemperatureC": 22.79,
+  "humidityPct": 76,
+  "windSpeedMs": 4.47,
+  "weatherDescription": "scattered clouds"
+ },
+ "derived": {
+  "avgSweatRateOzPerHr": 21.5,
+  "sodiumLossMgPerHr": 766,
+  "notes": "50-min easy midday run at 73F/76pct. Gentlest sample in the set \u2014 closest analog to easy ultra-hiking effort in mild temps."
+ },
+ "note": "Full time series in chat; stored metadata + derived only."
+}

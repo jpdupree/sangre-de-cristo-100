@@ -1,0 +1,132 @@
+{
+ "builtFrom": "11 hDrop sessions Jul-Oct 2025 (sweat-data/*.json) + Precision sweat test 2023 (1679 mg/L lab ceiling)",
+ "personalConstants": {
+  "sweatSodiumConcentrationMgPerL": {
+   "fieldRange": [
+    1000,
+    1400
+   ],
+   "labCeiling": 1679,
+   "note": "Stable across all sessions; drops toward 1000 at low sweat rates (duct reabsorption), rises toward 1400+ when gushing."
+  },
+  "sweatOnsetDelayCool": "5-15 min below ~70F; sweat rate also falls with heat acclimation across a season"
+ },
+ "sessions": [
+  {
+   "date": "2025-07-16",
+   "tempF": 94,
+   "humidity": 52,
+   "context": "evening tempo-ish",
+   "ozPerHr": 47.0,
+   "sodiumMgPerHr": 1630
+  },
+  {
+   "date": "2025-07-18",
+   "tempF": 77,
+   "humidity": 84,
+   "context": "pre-dawn",
+   "ozPerHr": 47.1,
+   "sodiumMgPerHr": 1893
+  },
+  {
+   "date": "2025-08-02",
+   "tempF": 77,
+   "humidity": 55,
+   "context": "pre-dawn",
+   "ozPerHr": 40.4,
+   "sodiumMgPerHr": 1414
+  },
+  {
+   "date": "2025-08-14",
+   "tempF": 78,
+   "humidity": 81,
+   "context": "pre-dawn",
+   "ozPerHr": 35.7,
+   "sodiumMgPerHr": 1177
+  },
+  {
+   "date": "2025-08-16",
+   "tempF": 79,
+   "humidity": 83,
+   "context": "6h long run",
+   "ozPerHr": 39.2,
+   "sodiumMgPerHr": 1509
+  },
+  {
+   "date": "2025-08-30",
+   "tempF": null,
+   "humidity": null,
+   "context": "6.2h trail long",
+   "ozPerHr": 27.1,
+   "sodiumMgPerHr": 1029
+  },
+  {
+   "date": "2025-09-23",
+   "tempF": 78,
+   "humidity": 82,
+   "context": "pre-dawn",
+   "ozPerHr": 42.0,
+   "sodiumMgPerHr": 1589
+  },
+  {
+   "date": "2025-10-21",
+   "tempF": 68,
+   "humidity": 47,
+   "context": "pre-dawn",
+   "ozPerHr": 29.3,
+   "sodiumMgPerHr": 1049
+  },
+  {
+   "date": "2025-10-23",
+   "tempF": 63,
+   "humidity": 44,
+   "context": "pre-dawn w/ tempo block",
+   "ozPerHr": 41.0,
+   "sodiumMgPerHr": 1196
+  },
+  {
+   "date": "2025-10-28",
+   "tempF": 73,
+   "humidity": 76,
+   "context": "midday easy 50min",
+   "ozPerHr": 21.5,
+   "sodiumMgPerHr": 766
+  },
+  {
+   "date": "2025-10-30",
+   "tempF": 62,
+   "humidity": 46,
+   "context": "midday run, full sun",
+   "ozPerHr": 32.3,
+   "sodiumMgPerHr": 1151
+  }
+ ],
+ "racePhaseTargets": {
+  "note": "Sangre 2026: 4:00 AM MDT start. Westcliffe late Sept: nights ~30s-40s F at altitude, days ~55-75 F. Race effort is easy/hike \u2014 closest analogs are the easy/long-run samples, not tempo runs.",
+  "phases": [
+   {
+    "phase": "night/cold (dark hours, 30s-50s F)",
+    "hours": "0-3 and ~14-27 and any pre-dawn",
+    "sodiumMgPerHr": 500,
+    "fluidOzPerHr": 14,
+    "basis": "Extrapolated below coolest samples; sweat rate and concentration both fall in cold. Round up, don't skip \u2014 respiratory + altitude losses continue."
+   },
+   {
+    "phase": "day cool/mild (55-70 F)",
+    "hours": "morning/evening shoulders",
+    "sodiumMgPerHr": 900,
+    "fluidOzPerHr": 18,
+    "basis": "Bracketed by 10/21 (1049 easy pre-dawn 68F) and 10/28 (766 easy 73F)."
+   },
+   {
+    "phase": "day warm/exposed (70-80 F, sun, climbs)",
+    "hours": "midday both days",
+    "sodiumMgPerHr": 1200,
+    "fluidOzPerHr": 22,
+    "basis": "Matches the 6h long runs (1029-1509) and original app target."
+   }
+  ],
+  "blendedAverageSodiumMgPerHr": 800,
+  "validation": "Wear hDrop at Ragnar (Aug 21-22) \u2014 cool mornings at elevation on tired legs are the missing measured condition."
+ }
+}

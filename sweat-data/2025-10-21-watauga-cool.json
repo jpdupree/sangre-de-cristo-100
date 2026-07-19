@@ -1,0 +1,37 @@
+{
+ "metadata": {
+  "name": "Jason Dupree",
+  "weight": 155,
+  "height": 66,
+  "activityStartDate": "2025-10-21T09:57:06Z",
+  "activityEndDate": "2025-10-21T11:26:05Z",
+  "system": "imperial",
+  "activityDurationHours": "1.48",
+  "sweatRate": "0.898",
+  "totalSweatLoss": 1.332,
+  "totalSodium": 1552.59,
+  "totalPotassium": 202.512,
+  "sodiumConcentration": "34.47",
+  "averagehDropScore": 60.649587782880545,
+  "firstSweatDropTime": "15",
+  "minhDropScore": 26,
+  "bodyLocation": "Upper Arm (Default)",
+  "minTemperature": 82.32,
+  "maxTemperature": 95.03,
+  "activityType": 3,
+  "city": "Watauga",
+  "latitude": 32.8761677,
+  "longitude": -97.2569998,
+  "altitudeM": 171.0,
+  "weatherTemperatureC": 20.03,
+  "humidityPct": 47,
+  "windSpeedMs": 5.36,
+  "weatherDescription": "clear sky"
+ },
+ "derived": {
+  "avgSweatRateOzPerHr": 29.3,
+  "sodiumLossMgPerHr": 1049,
+  "notes": "First genuinely cool sample: 68F/47pct pre-dawn. Sweat onset delayed 15 min (nulls in series). Anchor point for the cool end of the curve."
+ },
+ "note": "Full time series in chat; stored metadata + derived only."
+}
