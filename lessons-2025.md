@@ -20,10 +20,10 @@ Jason's post-race notes from 2025 (mile-86 DNF), triaged against the 2026 plan.
 ## New actions — gear
 | Problem | Action |
 |---|---|
-| Flask bad for aid-station fluids/ice | Collapsible cup (wide brim) — buy |
-| Windbreaker ≠ rain jacket | Real waterproof shell (Sangre Sept = afternoon storms possible) — buy/verify |
-| Stuff in shoes | Trail gaiters — buy, test on Build 3 long run |
-| Breathed a lot of dust | Buff/neck gaiter for dusty stretches; doubles as warmth at night |
+| Flask bad for aid-station fluids/ice | DONE: 2 collapsible cups owned — one carried, one in Horn Creek bag |
+| Windbreaker ≠ rain jacket | TO BUY: true waterproof shell, taped seams — check race required-gear list for spec before buying |
+| Stuff in shoes | TO BUY: trail gaiters — test on Build 3 long run (Aug 8) |
+| Breathed a lot of dust | DONE: buffs owned — one carried, spare in a drop bag |
 | Didn't brush teeth | Travel toothbrush + mini paste in Music Meadows bag — 2 min, night-two morale reset |
 | No wet wipes | Wet wipes in every drop bag |
 | Eye solution (never needed but wondered) | One small bottle in Music Meadows bag — cheap insurance vs dust |
