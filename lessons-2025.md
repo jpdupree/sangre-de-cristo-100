@@ -32,5 +32,5 @@ Jason's post-race notes from 2025 (mile-86 DNF), triaged against the 2026 plan.
 ## New actions — logistics
 | Problem | Action |
 |---|---|
-| Tent camping (bad sleep pre-race) | Book real lodging in/near Westcliffe EARLY (small town, limited rooms) |
+| Tent camping (bad sleep pre-race) | Hybrid: real bed Wed+Thu nights (book Westcliffe EARLY — the sleep that counts is two nights out). Fri night: sleep in the SUV at Music Meadows if RD allows overnight parking — no 2 AM drive, can't be late, wake at 2:45 at the start line. Needs: flat seats + sleeping pad + 20F bag + cracked windows; driveway test in early Sept. Confirm overnight parking with RD |
 | Expedition too big for rental | Mid-size SUV is plenty |
