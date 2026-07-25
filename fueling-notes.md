@@ -20,3 +20,10 @@ Running log of what's tested and decided. Targets come from the training plan
   Fix: gel every 25 min on a timer. TEST on Build 3 long run (Aug 8) with Huma-heavy mix.
 - Aid-station real-food preferences — collect during Ragnar (quesadillas? broth? potatoes?).
 - Caffeine strategy for night two — decide by taper; test any caffeinated gels at Ragnar day 2.
+
+## GI log
+- **Wk of 7/20 (psyllium week 1, half dose):** BMs small/incomplete all week. 7/25 long run:
+  urgency mile 2, finished business by mile 7.5, then 8 clean miles — better than historical
+  baseline but not at goal. Adjustments: full dose (~5 g) from 7/25, full 12 oz water with dose,
+  audit daily rehydration after big sweat days, protect the pre-run clear-out window.
+  Reassess after full-dose week; consider morning/split dosing if still incomplete.
