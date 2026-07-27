@@ -17,7 +17,7 @@ Running log of what's tested and decided. Targets come from the training plan
 
 ## Open items
 - **Calorie cadence** — 7/25 run came in ~210 cal/hr vs 250–300 target (6 gels in 4 hrs).
-  Fix: gel every 25 min on a timer. TEST on Build 3 long run (Aug 8) with Huma-heavy mix.
+  Fix: gel every 25 min on a timer. TEST on the Boston 20-22 (Mon Aug 10, moved for VT conference) with Huma-heavy mix.
 - Aid-station real-food preferences — collect during Ragnar (quesadillas? broth? potatoes?).
 - Caffeine strategy for night two — decide by taper; test any caffeinated gels at Ragnar day 2.
 
