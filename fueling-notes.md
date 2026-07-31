@@ -10,7 +10,7 @@ Running log of what's tested and decided. Targets come from the training plan
   aggressively sugary, stings the teeth. Fails the hour-22 palatability test. Remaining
   stock for short hot efforts only.
 - **Sodium system (PROVEN 7/25, 18.5 mi / 4:03 in 80s–90s heat):** 1 LMNT dissolved per
-  500 mL flask + 225 mg salt pills to hit the model's hourly target. Scored 1,330 mg/hr
+  500 mL flask + salt pills (190 mg each — corrected 7/31; earlier logs assumed 225) to hit the model's hourly target. Scored ~1,280 mg/hr
   vs ~1,500 target. Keep.
 - **Fluid rig (PROVEN same run):** 1.5 L bladder (water) + 500 mL flask (LMNT mix),
   31 oz/hr ≈ 75% of sweat losses. Keep.
