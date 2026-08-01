@@ -19,6 +19,10 @@ Running log of what's tested and decided. Targets come from the training plan
 - **Calorie cadence** — 7/25 run came in ~210 cal/hr vs 250–300 target (6 gels in 4 hrs).
   Fix: gel every 25 min on a timer. TEST on the Boston double (Sun 8/9 evening 11-12 = cadence test; Mon 8/10 dawn = race-morning script + GI test 1) with Huma-heavy mix.
 - Aid-station real-food preferences — collect during Ragnar (quesadillas? broth? potatoes?).
+- **Liquid race-morning breakfast** — testing order: Boost/Ensure Plus (350 cal, zero prep),
+  Tailwind double-strength + 1 Huma (~300 cal, zero novel ingredients), Carnation + whole milk,
+  shelf-stable choc milk + applesauce pouch. Test 45-60 min before early runs; first full-dress
+  test = Boston Mon 8/10 dawn run. Decide by taper.
 - Caffeine strategy for night two — decide by taper; test any caffeinated gels at Ragnar day 2.
 
 ## Race log — CDMX Super (8/1/26)
