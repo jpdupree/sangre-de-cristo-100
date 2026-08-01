@@ -23,7 +23,10 @@ Running log of what's tested and decided. Targets come from the training plan
   Tailwind double-strength + 1 Huma (~300 cal, zero novel ingredients), Carnation + whole milk,
   shelf-stable choc milk + applesauce pouch. Test 45-60 min before early runs; first full-dress
   test = Boston Mon 8/10 dawn run. Decide by taper.
-- Caffeine strategy for night two — decide by taper; test any caffeinated gels at Ragnar day 2.
+- **Caffeine: tablets, not coffee** (Jason dislikes coffee). Race-morning script = 100 mg tab +
+  WARM liquid breakfast (gastrocolic trigger is warmth+food, not coffee itself). Test tab before
+  Boston 8/10 dawn run. Night-two strategy: 50-100 mg doses through the dark hours — low habitual
+  use means strong effect per mg; keep daily life caffeine-free to preserve it. Rehearse at Ragnar day 2.
 
 ## Race log — CDMX Super (8/1/26)
 - 7.0 mi / 1:42:35 at ~9,000 ft, HR 144 (disciplined B-effort). Sodium: LMNT breakfast pre-load,
