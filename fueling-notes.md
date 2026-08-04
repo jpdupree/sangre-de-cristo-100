@@ -15,10 +15,25 @@ Running log of what's tested and decided. Targets come from the training plan
 - **Fluid rig (PROVEN same run):** 1.5 L bladder (water) + 500 mL flask (LMNT mix),
   31 oz/hr ≈ 75% of sweat losses. Keep.
 
+## Race doctrine: metronome + real food (decided 8/4)
+- **Gel every 25 min + 1 salt pill (190 mg) with each gel = the FLOOR, not the ceiling.**
+  One timer, one habit — survives degraded decision-making. With the LMNT flask drip
+  (~500 mg/hr) the metronome alone lands ~950 mg sodium/hr and ~250+ cal/hr.
+- **Aid-station food counts ON TOP and buys slack** — Jason eats real food at stations
+  by design (flavor-fatigue insurance + morale, "I'm not a robot"). ~300 cal of station
+  food = skip the next 1–2 beeps guilt-free; broth can stand in for pills for an hour.
+  Metronome resumes on leaving the station.
+- **Jason reports everything he eats; the ledger is crew/Claude's job** — per-leg intake
+  logged in the race app, running cal/hr + sodium math done for him; he just hears
+  "on target" or "add a gel this leg."
+- First full-dress metronome test: 8/5 night run (4 hrs, ~9 gels + 9 pills, counted
+  container of 10).
+
 ## Open items
 - **Calorie cadence** — 7/25 run came in ~210 cal/hr vs 250–300 target (6 gels in 4 hrs).
-  Fix: gel every 25 min on a timer. TEST on the Boston double (Sun 8/9 evening 11-12 = cadence test; Mon 8/10 dawn = race-morning script + GI test 1) with Huma-heavy mix.
+  Fix: gel every 25 min on a timer. TEST on the 8/5 night run, then the Boston double (Sun 8/9 evening 11-12 = cadence test; Mon 8/10 dawn = race-morning script + GI test 1) with Huma-heavy mix.
 - Aid-station real-food preferences — collect during Ragnar (quesadillas? broth? potatoes?).
+  What works gets pre-staged in the crew plan per station, not left to chance.
 - **Liquid race-morning breakfast** — testing order: Boost/Ensure Plus (350 cal, zero prep),
   Tailwind double-strength + 1 Huma (~300 cal, zero novel ingredients), Carnation + whole milk,
   shelf-stable choc milk + applesauce pouch. Test 45-60 min before early runs; first full-dress
