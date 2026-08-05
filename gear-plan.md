@@ -30,3 +30,16 @@ hard hours started. This plan gives ~3× that margin.
 ## Rehearsals
 - Ragnar (Aug 21–22): run the bank-swap rhythm in between-leg downtime.
 - Build 3 long run (Aug 8): verify phone-only Coros recording; practice cover-screen-only use.
+
+## Shoes (decided 8/4; mileage from Jason's Strava gear tracker, now also in Coros)
+- **Altra Olympus (~50 mi as of 8/4) — RACE-DAY PRIMARY.** Max cushion for 100 mi of rock.
+  Expected ~250–300 mi by race day = sweet spot (broken in, not broken down). Guardrail:
+  don't let them pass ~350 before Sep 26 — if September miles pile up, shift easy runs
+  to the old Merrells.
+- **NEW Merrell Long Sky 2 Matryx — BACKUP, staged at Music Meadows.** Proven model
+  (86 mi on this exact course in 2025). ORDER right after Ragnar (~Aug 24); put 40–60
+  break-in miles on them during September taper so they're race-ready if the Olympus
+  develops issues late.
+- **Old Long Sky 2 Matryx (462 mi as of 8/4, ~600 by race):** short easy runs only through
+  August, then retire. Does NOT go in any drop bag — dead cushion at mile 60 is worse
+  than no swap.
