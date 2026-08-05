@@ -29,6 +29,15 @@ hard hours started. This plan gives ~3× that margin.
 
 ## Rehearsals
 - Ragnar (Aug 21–22): run the bank-swap rhythm in between-leg downtime.
+- **Ragnar: Coros Live Tracking field trial** (feature released 7/29/26, APEX 2 supported).
+  Requires watch–phone Bluetooth + Coros app in background + cellular data — i.e. NO
+  airplane mode, so it directly stresses the power plan. Run tracking on race legs and
+  measure: (1) phone battery drain %/hr with radios on, (2) link reliability/lag.
+  Decision after: radios-on + heavier bank rotation at Sangre, or keep airplane mode
+  and crew tracks via station check-ins as in 2025. If GO: pre-create the race link
+  (scheduled-event mode) and hand it to the app session for a link-out button in
+  pit.html — no embed API exists, link-out only. Factor Wet Mountain Valley dead zones
+  into crew expectations either way (frozen dot ≠ emergency).
 - Build 3 long run (Aug 8): verify phone-only Coros recording; practice cover-screen-only use.
 
 ## Shoes (decided 8/4; mileage from Jason's Strava gear tracker, now also in Coros)
