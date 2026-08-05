@@ -43,3 +43,5 @@ hard hours started. This plan gives ~3× that margin.
 - **Old Long Sky 2 Matryx (462 mi as of 8/4, ~600 by race):** short easy runs only through
   August, then retire. Does NOT go in any drop bag — dead cushion at mile 60 is worse
   than no swap.
+- **Altra Torin 9 (61.4 mi as of 8/4) — ROAD shoe.** Pavement runs (e.g. the Boston double
+  on the Charles) go here, keeping road miles off the Olympus. Not Sangre equipment.
