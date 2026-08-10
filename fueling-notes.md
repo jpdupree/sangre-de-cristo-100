@@ -14,6 +14,13 @@ Running log of what's tested and decided. Targets come from the training plan
   vs ~1,500 target. Keep.
 - **Fluid rig (PROVEN same run):** 1.5 L bladder (water) + 500 mL flask (LMNT mix),
   31 oz/hr ≈ 75% of sweat losses. Keep.
+- **25-min metronome — VALIDATED, Boston double 8/9–8/10.** Sun evening 12.5 mi: 4 gels
+  in 2:17 (~175 cal/hr, one beep short — see note). Mon dawn 8.3 mi on the 8-hr turnaround:
+  4 gels + 4 pills executed perfectly on the timer at 5:30 AM on tired legs — "gels and
+  pills on the timer were perfect." The beep does the thinking under fatigue. Remaining
+  gap is late-run beep compliance, not the system.
+- **Honey Stinger waffle — proven-safe pre-run stopgap** (8/10, ~45 min before): sat fine,
+  but ~150 cal is light — "could have eaten a little more." Race morning wants 300–400.
 
 ## Race doctrine: metronome + real food (decided 8/4)
 - **Gel every 25 min + 1 salt pill (190 mg) with each gel = the FLOOR, not the ceiling.**
@@ -30,18 +37,20 @@ Running log of what's tested and decided. Targets come from the training plan
   container of 10).
 
 ## Open items
-- **Calorie cadence** — 7/25 run came in ~210 cal/hr vs 250–300 target (6 gels in 4 hrs).
-  Fix: gel every 25 min on a timer. TEST on the 8/5 night run, then the Boston double (Sun 8/9 evening 11-12 = cadence test; Mon 8/10 dawn = race-morning script + GI test 1) with Huma-heavy mix.
+- **Late-run beep compliance** — 8/9 evening run went 4-for-5 on beeps (~175 cal/hr vs 250-300
+  target). The habit holds early, slips late. Watch at Ragnar; the fix is treating the beep
+  as non-negotiable, not appetite-dependent.
 - Aid-station real-food preferences — collect during Ragnar (quesadillas? broth? potatoes?).
   What works gets pre-staged in the crew plan per station, not left to chance.
-- **Liquid race-morning breakfast** — testing order: Boost/Ensure Plus (350 cal, zero prep),
-  Tailwind double-strength + 1 Huma (~300 cal, zero novel ingredients), Carnation + whole milk,
-  shelf-stable choc milk + applesauce pouch. Test 45-60 min before early runs; first full-dress
-  test = Boston Mon 8/10 dawn run. Decide by taper.
+- **Liquid race-morning breakfast — STILL UNTESTED** (8/10 test scrubbed: no product on hand
+  in Boston; stinger waffle substituted). Buy Boost Plus this week. New first full-dress test:
+  Sat 8/15 trail run (home logistics, can't fail). Testing order unchanged: Boost/Ensure Plus,
+  Tailwind double-strength + 1 Huma, Carnation + whole milk, choc milk + applesauce. Decide by taper.
 - **Caffeine: tablets, not coffee** (Jason dislikes coffee). Race-morning script = 100 mg tab +
-  WARM liquid breakfast (gastrocolic trigger is warmth+food, not coffee itself). Test tab before
-  Boston 8/10 dawn run. Night-two strategy: 50-100 mg doses through the dark hours — low habitual
-  use means strong effect per mg; keep daily life caffeine-free to preserve it. Rehearse at Ragnar day 2.
+  WARM liquid breakfast (gastrocolic trigger is warmth+food, not coffee itself). Tab status on
+  8/10 unconfirmed — re-test Sat 8/15 with the Boost. Night-two strategy: 50-100 mg doses through
+  the dark hours — low habitual use means strong effect per mg; keep daily life caffeine-free
+  to preserve it. Rehearse at Ragnar day 2.
 
 ## Race log — CDMX Super (8/1/26)
 - 7.0 mi / 1:42:35 at ~9,000 ft, HR 144 (disciplined B-effort). Sodium: LMNT breakfast pre-load,
@@ -58,3 +67,10 @@ Running log of what's tested and decided. Targets come from the training plan
   baseline but not at goal. Adjustments: full dose (~5 g) from 7/25, full 12 oz water with dose,
   audit daily rehydration after big sweat days, protect the pre-run clear-out window.
   Reassess after full-dose week; consider morning/split dosing if still incomplete.
+- **GI test 1 (8/10 Boston dawn, full dose ~3 wks):** good BM the night before, only partial
+  morning clear-out. Run: urgency mile 3.5-4, ONE stop at 4.5, loose back end, then clean.
+  vs 7/25 baseline (urgency mile 2, business through 7.5): later onset + single stop = real
+  progress. Confounders for the looseness: 17-mi day prior, caffeine tab (unconfirmed). Waffle
+  breakfast benign. Pattern (good evening BM, thin morning) argues the dose is peaking overnight —
+  **ADJUSTMENT: shift psyllium to MORNING dosing from 8/11** so transit targets next-day clear-out.
+  Two weeks of new timing before Ragnar. Weigh-ins scrubbed (no scale) — moved to Ragnar.
