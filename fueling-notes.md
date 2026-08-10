@@ -47,8 +47,8 @@ Running log of what's tested and decided. Targets come from the training plan
   Sat 8/15 trail run (home logistics, can't fail). Testing order unchanged: Boost/Ensure Plus,
   Tailwind double-strength + 1 Huma, Carnation + whole milk, choc milk + applesauce. Decide by taper.
 - **Caffeine: tablets, not coffee** (Jason dislikes coffee). Race-morning script = 100 mg tab +
-  WARM liquid breakfast (gastrocolic trigger is warmth+food, not coffee itself). Tab status on
-  8/10 unconfirmed — re-test Sat 8/15 with the Boost. Night-two strategy: 50-100 mg doses through
+  WARM liquid breakfast (gastrocolic trigger is warmth+food, not coffee itself). Tabs NOT acquired by 8/10 —
+  still fully untested; buy this week, first test Sat 8/15 with the Boost. Night-two strategy: 50-100 mg doses through
   the dark hours — low habitual use means strong effect per mg; keep daily life caffeine-free
   to preserve it. Rehearse at Ragnar day 2.
 
@@ -70,7 +70,7 @@ Running log of what's tested and decided. Targets come from the training plan
 - **GI test 1 (8/10 Boston dawn, full dose ~3 wks):** good BM the night before, only partial
   morning clear-out. Run: urgency mile 3.5-4, ONE stop at 4.5, loose back end, then clean.
   vs 7/25 baseline (urgency mile 2, business through 7.5): later onset + single stop = real
-  progress. Confounders for the looseness: 17-mi day prior, caffeine tab (unconfirmed). Waffle
-  breakfast benign. Pattern (good evening BM, thin morning) argues the dose is peaking overnight —
+  progress. Looseness attribution (NO caffeine tab, no novel breakfast — waffle + 10 oz LMNT
+  water preload, both benign): primary suspect is the 17-mi day prior. Cleanest baseline yet. Pattern (good evening BM, thin morning) argues the dose is peaking overnight —
   **ADJUSTMENT: shift psyllium to MORNING dosing from 8/11** so transit targets next-day clear-out.
   Two weeks of new timing before Ragnar. Weigh-ins scrubbed (no scale) — moved to Ragnar.
