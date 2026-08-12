@@ -46,11 +46,19 @@ Running log of what's tested and decided. Targets come from the training plan
   in Boston; stinger waffle substituted). Buy Boost Plus this week. New first full-dress test:
   Sat 8/15 trail run (home logistics, can't fail). Testing order unchanged: Boost/Ensure Plus,
   Tailwind double-strength + 1 Huma, Carnation + whole milk, choc milk + applesauce. Decide by taper.
-- **Caffeine: tablets, not coffee** (Jason dislikes coffee). Race-morning script = 100 mg tab +
-  WARM liquid breakfast (gastrocolic trigger is warmth+food, not coffee itself). Tabs NOT acquired by 8/10 —
-  still fully untested; buy this week, first test Sat 8/15 with the Boost. Night-two strategy: 50-100 mg doses through
-  the dark hours — low habitual use means strong effect per mg; keep daily life caffeine-free
-  to preserve it. Rehearse at Ragnar day 2.
+- **Caffeine — model corrected 8/12:** Jason is NOT caffeine-naive — he's an intermittent
+  energy-drink user (no coffee, not daily). Known comfort zone ~100-150 mg/serving: Amino
+  Energy (~100) and G Fuel powder (~140, often in HOT water on tired days) feel good; Red Bull
+  (~110 + sugar spike) and especially Reign (~300!) = jitters. Jitters track DOSE, not brand magic.
+  - Race-morning script = 100 mg tab + warm Boost. First tab 8/11: no perceived effect, but it
+    was buried under massive sleep debt — not a valid calibration. Re-test Sat 8/15.
+  - **Night-two vehicle: G Fuel scoop in hot water at Music Meadows** (warm + ~140 mg + proven
+    flavor on tired days — already his habit). Thermos with crew, scoops pre-bagged. Tabs carried
+    for precision dosing (100 mg exact, splittable).
+  - Dosing: ~100-150 mg per dose for real effect; NEVER 200+ on course (jitters + HR + gut risk).
+  - **Caffeine-free from Sep 12** (2 weeks out) to maximize race-day response. Before that,
+    intermittent use OK but don't let tabs become the daily tired-afternoon fix.
+  - Rehearse night dosing at Ragnar day 2.
 
 ## Race log — CDMX Super (8/1/26)
 - 7.0 mi / 1:42:35 at ~9,000 ft, HR 144 (disciplined B-effort). Sodium: LMNT breakfast pre-load,
