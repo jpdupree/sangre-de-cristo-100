@@ -98,3 +98,9 @@ Running log of what's tested and decided. Targets come from the training plan
 - **Race-week rule: no alcohol from the Monday before Sangre; deliberate pre-load Thursday
   and Friday (steady water + 1-2 LMNT/day, pale-urine checkpoint each evening).**
 - Same rule applies to Ragnar week (this week): clean from Wednesday, pre-load Thu/Fri.
+- **First weigh-in validation (8/15):** 161.5 pre -> 160 post (after ~0.5 L on the drive).
+  Sweat = 1.5 lb drop + ~7.6 lb fluid in = ~9 lb / ~4 L over 3:09 = **~1.3-1.4 L/hr in hot
+  struggling conditions** — confirms the model's high-end rate. In-run replacement ~75% of
+  losses = the rig performing to spec; the misery was the pre-existing deficit (161.5 was
+  already a dehydrated weight). ACTION: record tomorrow's rested morning weight as true
+  baseline; morning weigh-ins are the standing cheap instrument for Ragnar and race week.
