@@ -22,7 +22,7 @@ Jason's post-race notes from 2025 (mile-86 DNF), triaged against the 2026 plan.
 |---|---|
 | Flask bad for aid-station fluids/ice | DONE: 2 collapsible cups owned — one carried, one in Horn Creek bag |
 | Windbreaker ≠ rain jacket | TO BUY: true waterproof shell, taped seams — check race required-gear list for spec before buying |
-| Stuff in shoes | TO BUY: trail gaiters — test on Aug 15 trail run (Boston long run is pavement) |
+| Stuff in shoes | DONE: Altra Trail Gaiters (L/XL) — tested 8/15, 13 trail mi: "worked fantastic." One pair per drop-bag shoe swap |
 | Breathed a lot of dust | DONE: buffs owned — one carried, spare in a drop bag |
 | Didn't brush teeth | Travel toothbrush + mini paste in Music Meadows bag — 2 min, night-two morale reset |
 | No wet wipes | Wet wipes in every drop bag |
