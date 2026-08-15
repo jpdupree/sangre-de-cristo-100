@@ -42,16 +42,19 @@ Running log of what's tested and decided. Targets come from the training plan
   as non-negotiable, not appetite-dependent.
 - Aid-station real-food preferences — collect during Ragnar (quesadillas? broth? potatoes?).
   What works gets pre-staged in the crew plan per station, not left to chance.
-- **Liquid race-morning breakfast — STILL UNTESTED** (8/10 test scrubbed: no product on hand
-  in Boston; stinger waffle substituted). Buy Boost Plus this week. New first full-dress test:
-  Sat 8/15 trail run (home logistics, can't fail). Testing order unchanged: Boost/Ensure Plus,
-  Tailwind double-strength + 1 Huma, Carnation + whole milk, choc milk + applesauce. Decide by taper.
+- **Liquid race-morning breakfast — Boost Plus first test 8/15: TOLERATED.** Sat fine, no GI
+  complaint on a 13-mi run. Caveats: drunk later than scripted (heating logistics — skinny cup =
+  not enough hot-water contact; use a WIDE container/bowl bath, and race day = thermos poured
+  over it), so the timing + gastrocolic-trigger question is still open. One more on-script test
+  before taper (target: next weekend long run). Backups unchanged: Tailwind double + 1 Huma,
+  Carnation + whole milk, choc milk + applesauce. Decide by taper.
 - **Caffeine — model corrected 8/12:** Jason is NOT caffeine-naive — he's an intermittent
   energy-drink user (no coffee, not daily). Known comfort zone ~100-150 mg/serving: Amino
   Energy (~100) and G Fuel powder (~140, often in HOT water on tired days) feel good; Red Bull
   (~110 + sugar spike) and especially Reign (~300!) = jitters. Jitters track DOSE, not brand magic.
-  - Race-morning script = 100 mg tab + warm Boost. First tab 8/11: no perceived effect, but it
-    was buried under massive sleep debt — not a valid calibration. Re-test Sat 8/15.
+  - Race-morning script = 100 mg tab + warm Boost. Calibration attempts: 8/11 (buried under
+    sleep debt) and 8/15 (buried under dehydration — "felt rough in general") both confounded.
+    Still no clean read on his 100 mg response; try once on a NORMAL rested morning pre-run.
   - **Night-two vehicle: G Fuel scoop in hot water at Music Meadows** (warm + ~140 mg + proven
     flavor on tired days — already his habit). Thermos with crew, scoops pre-bagged. Tabs carried
     for precision dosing (100 mg exact, splittable).
