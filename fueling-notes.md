@@ -70,6 +70,11 @@ Running log of what's tested and decided. Targets come from the training plan
   sharpie; pills remaining = pills taken. Crew can read intake off the returned container.**
 
 ## GI log
+- **GI test 2 (8/15 dress rehearsal, 13 mi trail, morning psyllium day 5):** ZERO stops —
+  best long-run result on record. Clear-out happened at the parking lot (not at home; Boost
+  was drunk late after heating trouble, so the trigger timing slipped). Mild urges on trail
+  that passed on their own, never urgent. The protocol works; the remaining variable is
+  trigger timing, which race-morning logistics (thermos) will fix.
 - **Wk of 7/20 (psyllium week 1, half dose):** BMs small/incomplete all week. 7/25 long run:
   urgency mile 2, finished business by mile 7.5, then 8 clean miles — better than historical
   baseline but not at goal. Adjustments: full dose (~5 g) from 7/25, full 12 oz water with dose,
@@ -82,3 +87,11 @@ Running log of what's tested and decided. Targets come from the training plan
   water preload, both benign): primary suspect is the 17-mi day prior. Cleanest baseline yet. Pattern (good evening BM, thin morning) argues the dose is peaking overnight —
   **ADJUSTMENT: shift psyllium to MORNING dosing from 8/11** so transit targets next-day clear-out.
   Two weeks of new timing before Ragnar. Weigh-ins scrubbed (no scale) — moved to Ragnar.
+
+## Pre-run hydration doctrine (lesson of 8/15)
+- Started the dress rehearsal dehydrated (Thursday drinking + travel) and fought a losing
+  battle for 3+ hours: HR 145 at 14:29/mi — a near-race cardiac cost for an easy-day pace,
+  despite 3 L + 1 LMNT + 9 pills DURING. In-run intake cannot rescue a bad starting tank.
+- **Race-week rule: no alcohol from the Monday before Sangre; deliberate pre-load Thursday
+  and Friday (steady water + 1-2 LMNT/day, pale-urine checkpoint each evening).**
+- Same rule applies to Ragnar week (this week): clean from Wednesday, pre-load Thu/Fri.
