@@ -102,5 +102,8 @@ Running log of what's tested and decided. Targets come from the training plan
   Sweat = 1.5 lb drop + ~7.6 lb fluid in = ~9 lb / ~4 L over 3:09 = **~1.3-1.4 L/hr in hot
   struggling conditions** — confirms the model's high-end rate. In-run replacement ~75% of
   losses = the rig performing to spec; the misery was the pre-existing deficit (161.5 was
-  already a dehydrated weight). ACTION: record tomorrow's rested morning weight as true
-  baseline; morning weigh-ins are the standing cheap instrument for Ragnar and race week.
+  already a dehydrated weight). CAVEAT added 8/16: rested next-morning weight was 161.8 —
+  only +0.3 vs the pre-run 161.5, so either refill is still incomplete (recovery 75% agrees)
+  or Saturday's hole was smaller than it felt and alcohol's non-fluid costs (sleep, metabolic)
+  did more of the damage. ACTION: daily morning weigh-ins all Ragnar week; the post-pre-load
+  Thu/Fri numbers define the true topped-up baseline. 8/16: 161.8.
