@@ -118,4 +118,6 @@ Running log of what's tested and decided. Targets come from the training plan
   only +0.3 vs the pre-run 161.5, so either refill is still incomplete (recovery 75% agrees)
   or Saturday's hole was smaller than it felt and alcohol's non-fluid costs (sleep, metabolic)
   did more of the damage. ACTION: daily morning weigh-ins all Ragnar week; the post-pre-load
-  Thu/Fri numbers define the true topped-up baseline. 8/16: 161.8.
+  Thu/Fri numbers define the true topped-up baseline. Series: 8/16: 161.8, 8/17: 162.6,
+  8/20 (travel day): 163.2 — pre-load working; true baseline ~163+. Saturday 8/15's 161.5
+  start confirmed ~1.5-2 lb low.
