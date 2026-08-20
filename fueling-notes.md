@@ -73,6 +73,18 @@ Running log of what's tested and decided. Targets come from the training plan
   sharpie; pills remaining = pills taken. Crew can read intake off the returned container.**
 
 ## GI log
+- **PSYLLIUM DISCONTINUED 8/19 — standing rule: NO fibre supplements in this plan unless a
+  doctor clears it.** Two weeks of use made things worse: more fullness and bloating, no
+  frequency increase. Jason's working theory: slow transit — bulk-forming fibre was adding
+  volume to a system that wasn't clearing. GI referral pending; being evaluated for delayed
+  gastric emptying and possible IBS-C / slow-transit constipation. Correction to the record:
+  the 8/15 zero-stop run was previously credited to "the protocol working" — that attribution
+  is withdrawn. What SURVIVES psyllium's removal: low-residue final 24-48h before big efforts,
+  warm liquid breakfast + morning routine as the clear-out trigger (liquids also empty a slow
+  stomach faster — consistent with the delayed-emptying hypothesis and the CDMX "sat heavy"
+  data), reactive Imodium, and gel-based on-course calories. Bring race-context history to
+  the GI appointment: 2025 all-race bloating, heavy-sitting solid breakfasts, small/incomplete
+  BM pattern.
 - **GI test 2 (8/15 dress rehearsal, 13 mi trail, morning psyllium day 5):** ZERO stops —
   best long-run result on record. Clear-out happened at the parking lot (not at home; Boost
   was drunk late after heating trouble, so the trigger timing slipped). Mild urges on trail

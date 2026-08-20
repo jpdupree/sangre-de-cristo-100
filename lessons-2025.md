@@ -12,7 +12,7 @@ Jason's post-race notes from 2025 (mile-86 DNF), triaged against the 2026 plan.
 | Problem | Fix in place |
 |---|---|
 | Phone died overnight (music) | gear-plan.md: 2× NB10000 rotation, airplane mode, cover-screen discipline |
-| Pooped a ton | GI protocol: nightly psyllium, low-residue final 24h, morning clear-out, reactive Imodium — tested Build 3 + Ragnar |
+| Pooped a ton | GI protocol (rev 8/19): low-residue final 24-48h, warm liquid breakfast + morning clear-out routine, reactive Imodium. Psyllium discontinued — worsened bloating; GI eval pending (suspected slow transit). No fibre supplements without doctor clearance |
 | Felt bloated all race | Likely fueling/fluid mix — sweat model now sets sodium:fluid ratio per phase; gut-training in Build 3/taper. Watch at Ragnar |
 | No crew | 2026: crew + pit.html crew-chief flow |
 | Too much travel month before race | 2026 September = Seattle film trip (hike only) + taper. One trip, not several. Hold this line |
