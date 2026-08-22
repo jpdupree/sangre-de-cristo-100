@@ -139,3 +139,16 @@ Running log of what's tested and decided. Targets come from the training plan
 - **Live-tracking battery trial:** 73% -> 48% across the yellow leg (~16-18%/hr with radios
   on in weak backcountry signal). Preliminary verdict: airplane mode survives for Sangre;
   tracking is a crew-toggle luxury at most. One more reading (night leg) to close the case.
+
+## Race log — Ragnar Rainier day 2 (8/22/26)
+- Black loop (weather-shortened): 13.5 mi, 3:23, 2,772 ft up / 5,220 ft down at **HR 129** on
+  day-2 legs (morning HRV 43 below range, recovery 26%). Ultra pacing executed exactly:
+  yesterday's legs averaged HR 152-157; today's 13.5 mountain miles came in 20+ beats lower.
+  The 8/15 comparison: 13 mi at HR 145 struggling dehydrated vs 13.5 at 129 feeling fine.
+- Metronome: every beep for 3:23, ONE traded for an Uncrustable at the summit — the
+  real-food-buys-beeps doctrine executed from instinct. Uncrustables -> proven mid-race food,
+  drop-bag candidate. Morning: sourdough + pretzels breakfast + 100 mg tab, gel at the line.
+- GI: one stop mile 8 (loose, controlled, then clean) — same signature as Boston 8/10.
+  At Sangre this is the reactive-Imodium scenario, managed not scary.
+- Weekend: 28.6 mi, ~5,950 ft up, ~10,400 ft down, load ~930, five race-effort legs incl.
+  night descent. Biggest weekend of the season, five weeks out — the 2025-fix spacing, delivered.
