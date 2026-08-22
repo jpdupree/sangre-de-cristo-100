@@ -121,3 +121,21 @@ Running log of what's tested and decided. Targets come from the training plan
   Thu/Fri numbers define the true topped-up baseline. Series: 8/16: 161.8, 8/17: 162.6,
   8/20 (travel day): 163.2 — pre-load working; true baseline ~163+. Saturday 8/15's 161.5
   start confirmed ~1.5-2 lb low.
+
+## Race log — Ragnar Rainier day 1 (8/21/26)
+- Green loop 2.85 mi raced (HR 157); yellow loop 4.95 mi / 2,474 ft climb (HR 154, load 317).
+  Metronome on yellow: 3 beeps = 3 gels + 3 pills, PERFECT compliance on the season's hardest
+  climb. ~880 mg/hr sodium, ~750 mL/hr fluid — on target for cool conditions.
+- **Bloat pattern (2x, matches delayed-emptying hypothesis):** bloated on green after a full
+  fatty breakfast burrito (eggs/bacon/cheese/hash browns), bloated on yellow after shrimp
+  tacos + gel. Fat = slowest gastric emptying; solids too close to efforts = CDMX repeat.
+  Rule reinforced: liquid-leaning + low-fat near efforts; solids need a 2.5-3 hr runway;
+  burrito-class meals are rest-day food only, never race morning.
+- **GI (off psyllium day 5): best stretch on record** — great BM 8/20, more 8/21 AM, top-off
+  pre-loop. Race-weekend rhythm (all-day movement + frequent real food) = system at its best.
+  Tell the GI doc.
+- **Menu data (appealed + went down mid-race):** street-style shrimp tacos, peanut butter
+  cookie, Ritz ranch toasted chips. Sangre crew-plan candidates.
+- **Live-tracking battery trial:** 73% -> 48% across the yellow leg (~16-18%/hr with radios
+  on in weak backcountry signal). Preliminary verdict: airplane mode survives for Sangre;
+  tracking is a crew-toggle luxury at most. One more reading (night leg) to close the case.
