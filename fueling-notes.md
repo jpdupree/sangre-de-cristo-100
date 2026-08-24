@@ -120,7 +120,9 @@ Running log of what's tested and decided. Targets come from the training plan
   did more of the damage. ACTION: daily morning weigh-ins all Ragnar week; the post-pre-load
   Thu/Fri numbers define the true topped-up baseline. Series: 8/16: 161.8, 8/17: 162.6,
   8/20 (travel day): 163.2 — pre-load working; true baseline ~163+. Saturday 8/15's 161.5
-  start confirmed ~1.5-2 lb low.
+  start confirmed ~1.5-2 lb low. 8/24 (2 days post-Ragnar): 166.4 — classic post-race
+  retention (repair inflammation + glycogen refill water + travel sodium), expect drift
+  back to ~163 in 3-5 days. NOTE for Sangre: same post-race bump will appear — expected.
 
 ## Race log — Ragnar Rainier day 1 (8/21/26)
 - Green loop 2.85 mi raced (HR 157); yellow loop 4.95 mi / 2,474 ft climb (HR 154, load 317).
