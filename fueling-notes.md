@@ -154,3 +154,17 @@ Running log of what's tested and decided. Targets come from the training plan
   At Sangre this is the reactive-Imodium scenario, managed not scary.
 - Weekend: 28.6 mi, ~5,950 ft up, ~10,400 ft down, load ~930, five race-effort legs incl.
   night descent. Biggest weekend of the season, five weeks out — the 2025-fix spacing, delivered.
+
+## POSSIBLE BREAKTHROUGH: cold brew as the race-morning clear-out trigger (8/27)
+- Jason dislikes hot coffee, but a **sweetened Starbucks vanilla cold brew is drinkable for
+  him**. 8 oz first thing 8/27 -> bowel movement ~1.5 mi into the run, i.e. roughly 60-90 min
+  after drinking. That is a stronger clear-out response than 2 weeks of psyllium produced.
+- Mechanism: coffee is the strongest known gastrocolic trigger (works even decaf — it is the
+  coffee compounds, not only caffeine). This is the tool the GI plan wanted and could not use.
+- **Timing is the whole fix:** drink 90-120 min BEFORE the start, not 60, and protect the
+  bathroom window. Sangre 4 AM start maps to: cold brew at 2:15 wake, warm Boost ~3:00,
+  business done, on the line at 4:00.
+- Cautions: (1) ~75-100 mg caffeine per 8 oz — it REPLACES the caffeine tab, does not stack,
+  and counts against the caffeine-free-from-Sep-12 rule; (2) if it ever produces urgency
+  rather than a clean clear-out, drop to 4 oz or move it earlier.
+- TEST: Saturday 8/29 long run — cold brew at wake, full window, note timing and quality.
