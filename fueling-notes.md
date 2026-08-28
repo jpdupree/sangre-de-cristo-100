@@ -168,3 +168,17 @@ Running log of what's tested and decided. Targets come from the training plan
   and counts against the caffeine-free-from-Sep-12 rule; (2) if it ever produces urgency
   rather than a clean clear-out, drop to 4 oz or move it earlier.
 - TEST: Saturday 8/29 long run — cold brew at wake, full window, note timing and quality.
+
+## Maintenance eating — the line (8/28)
+- Deficit window CLOSED for the season. From here to Sangre: fully fueled, no exceptions.
+- Weight series confirms he is NOT overeating: 163.2 (8/20 pre-Ragnar) -> 166.4 (8/24, water)
+  -> **162.0 (8/28)**. A week of deliberate extra eating landed at maintenance or slightly under.
+- **Rule for "how much is too much": the scale, weekly average, not daily.** Stable within
+  ~1.5 lb over a week = maintenance. Up 3+ lb across two weeks = trim. Down = eat more.
+  No counting needed.
+- Placement beats amount: put extra calories around training (bigger run-day breakfast,
+  recovery food within the hour), not evening grazing.
+- Eat to "satisfied," not "full" — with suspected delayed gastric emptying, fullness arrives
+  late and overshoots. Smaller, more frequent suits his gut.
+- **Risk asymmetry:** 2 lb of extra weight costs ~nothing over 100 miles; under-fueling costs
+  the race (2025 lesson). When in doubt, err heavy.
