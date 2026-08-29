@@ -182,3 +182,19 @@ Running log of what's tested and decided. Targets come from the training plan
   late and overshoots. Smaller, more frequent suits his gut.
 - **Risk asymmetry:** 2 lb of extra weight costs ~nothing over 100 miles; under-fueling costs
   the race (2025 lesson). When in doubt, err heavy.
+
+## REVISION: the trigger is RUNNING, not coffee timing (8/29)
+- Two data points now: 8/27 cold brew ~1 hr pre-run -> BM at mile 1.5 (~15 min of running).
+  8/29 cold brew ~1:45 pre-run -> BM at mile 5 (~55 min of running). Moving the coffee EARLIER
+  moved the clear-out LATER — so coffee timing is not the controlling variable.
+- What both share: the BM happened AFTER running started, never at rest beforehand. Mechanical
+  jostling + blood-flow shift away from the gut is a known bowel stimulus, and for a slow-transit
+  system it may be the only reliable one. Coffee assists; running drives.
+- **New protocol to test (Six-0 9/5, then Sangre): trigger it with movement while a toilet is
+  still convenient.** Cold brew on schedule, then a genuine 10-min easy jog ~25-30 min before
+  the start, finishing near the bathrooms. If it fires, business is done at the start line.
+  If not, expect the stop in the first hour and plan it at an aid station — which is fine.
+- Consistency note: three straight long efforts with ONE controlled stop, no urgency
+  (8/10 Boston, 8/22 Ragnar d2, 8/29). Predictable and manageable is the goal, not zero.
+- 8/29 conditions: 14 mi, HR 140 in Texas humidity (vs 128-129 in cooler air) — expect the
+  same drift at Six-0; hold the ~130 ceiling deliberately.
