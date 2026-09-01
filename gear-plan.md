@@ -45,7 +45,8 @@ hard hours started. This plan gives ~3× that margin.
   Expected ~250–300 mi by race day = sweet spot (broken in, not broken down). Guardrail:
   don't let them pass ~350 before Sep 26 — if September miles pile up, shift easy runs
   to the old Merrells.
-- **NEW Merrell Long Sky 2 Matryx — BACKUP, staged at Music Meadows.** Proven model
+- **NEW Merrell Long Sky 2 Matryx — BACKUP, staged at Music Meadows. ARRIVED 9/1; first outing
+  same day (4.3 mi trail, 830 ft): "fantastic, no problems whatsoever." No break-in issues.** Proven model
   (86 mi on this exact course in 2025). ORDER right after Ragnar (~Aug 24); put 40–60
   break-in miles on them during September taper so they're race-ready if the Olympus
   develops issues late.
