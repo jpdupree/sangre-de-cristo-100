@@ -198,3 +198,14 @@ Running log of what's tested and decided. Targets come from the training plan
   (8/10 Boston, 8/22 Ragnar d2, 8/29). Predictable and manageable is the goal, not zero.
 - 8/29 conditions: 14 mi, HR 140 in Texas humidity (vs 128-129 in cooler air) — expect the
   same drift at Six-0; hold the ~130 ceiling deliberately.
+
+## WEIGHT DRIFTING DOWN — corrective action (9/4)
+- Series: 163.2 (8/20 baseline) -> 162.0 (8/28) -> **160.8 (9/4)**. Down ~2.5 lb from baseline
+  over two weeks despite the deficit window being closed. Cause: busy weeks (work migration,
+  sendoff, late nights) shrank meals while training continued — unintentional under-eating.
+- **This is the wrong direction 3 weeks out.** Taper is when glycogen stores are supposed to
+  FILL, which requires surplus, not maintenance.
+- ACTION through taper: deliberate +300-500 cal/day over what feels natural. Weigh Mon and Fri.
+  Target back to 163+ by race week; 164 is fine. Under-fueling is the 2025 failure mode.
+- Note: started Six-0 (9/5) at 160.8, i.e. slightly glycogen-light. Fine for a 5-hr easy effort
+  on 13 gels, but not a state to repeat on 9/26.
