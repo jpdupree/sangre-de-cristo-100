@@ -209,3 +209,48 @@ Running log of what's tested and decided. Targets come from the training plan
   Target back to 163+ by race week; 164 is fine. Under-fueling is the 2025 failure mode.
 - Note: started Six-0 (9/5) at 160.8, i.e. slightly glycogen-light. Fine for a 5-hr easy effort
   on 13 gels, but not a state to repeat on 9/26.
+
+## Race log — SIX-0 Cleburne marathon (9/5/26) — final Sangre rehearsal
+25.7 mi, 6:11 elapsed / 5:59 moving, 2,198 ft, avg HR 139 (max 161), 3,624 cal, load 773.
+Loop 1 ~2:48, loop 2 ~3:10. Clean-mile avg: loop 1 ~11:42 @ HR 141, loop 2 ~12:56 @ HR 143.
+Loop 2 slowdown was DELIBERATE (holding HR down, practicing slow purposeful pace).
+
+### What worked
+- **Calories ~310/hr — best on record.** Metronome held all day; gel skipped when an aid
+  station was within ~10 min (aid-food-buys-beeps doctrine, applied unprompted).
+- **COOLING PROTOCOL (new, proven):** two cups of cold water over head/body + ice bandana
+  refill once it got hot = "massive difference." -> crew plan for Sangre warm sections.
+- **Squirrel's Nut Butter: zero chafing over 26 mi.** Settled.
+- **Olympus + gaiters: no problems whatsoever** over 26 trail miles. Settled.
+- Aid food that went down: Oreos, creme pie, PB&J (x2.5 portions), Nutter Butters, watermelon.
+
+### What went wrong — SODIUM (the key lesson)
+- Hit only ~780 mg/hr against the 1,200 target. **It showed:** HR climbing late, tight stomach
+  through much of the race, and an audibly dry/hoarse throat at the finish — his classic
+  dehydration signs. Last mile felt like threshold effort at 12:00/mi pace.
+- **CLAUDE ERROR, CORRECTED:** initially read "780/hr, no cramps, finished" as evidence the
+  1,200 target was too high and proposed lowering it. Jason corrected — it was not fine.
+  **1,200 mg/hr for warm conditions STANDS.**
+- **Mechanism (his insight, and it's right):** under-sodium + dehydration slow gastric emptying
+  -> can't eat -> can't fix the deficit. With suspected delayed emptying already, this is one
+  loop, not two problems. The LMNT flask taken out on loop 2 "is a big part of what carried
+  me through."
+- **FIX: start WITH a full LMNT flask (not plain water), carry a spare packet, refill on course.**
+- Dry food is hard to eat deep into a hot race -> **warm salty liquid food (cup-o-noodles,
+  broth) is a staple at Sangre, not a treat.**
+
+### HR ceiling — recalibrated
+- Claude set ~130; actual 139 avg. **Sub-130 in that heat was not realistic without walking
+  most of it.** Effort ceilings must move with conditions: a cool Colorado night and a hot
+  Colorado afternoon are different numbers. Judge by effort + drift, not one fixed HR.
+
+### GI
+- Pre-start jog attempted but NOT the full 10 min, and no pre-race clear-out. Two stops on
+  course (mile 6.2 and ~23), **both healthy, no diarrhea.** Had not gone for a couple of days
+  prior (slow-transit pattern), so both were warranted.
+- Experiment status: pre-start jog INCONCLUSIVE (under-executed), retest properly.
+- Planning stance for Sangre: expect 2+ stops over 100 mi, plan them at aid stations.
+
+### Misc fix
+- **Sunscreen: reapply FULL body and legs at every drop bag,** not just head. Missed the body
+  at the loop-1 transition. Add tubes to every Sangre drop bag.
