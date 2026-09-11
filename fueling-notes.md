@@ -103,6 +103,31 @@ Running log of what's tested and decided. Targets come from the training plan
   **ADJUSTMENT: shift psyllium to MORNING dosing from 8/11** so transit targets next-day clear-out.
   Two weeks of new timing before Ragnar. Weigh-ins scrubbed (no scale) — moved to Ragnar.
 
+- **Backed up 9/8-9/11 (15 days out).** No good BM for several days; Jason reports the gut
+  feels heavy. Morning weight 163.5 (from 160.8 on 9/8) = +2.7 lb in 3 days, far faster than
+  a ~400 cal/day surplus can build tissue (~0.3 lb). Decomposition: taper glycogen repletion
+  with bound water (volume dropped 9/7, each gram of glycogen holds ~3 g water — this part is
+  DESIRED and is what taper is for), plus retained stool, plus LMNT sodium/fluid. So the
+  163-164 target now reads as met on the scale but NOT as body mass — **do not cut intake
+  because the number arrived.** Glycogen weight going into a 100 is an asset.
+- **Response (no fibre — standing rule; and bulk is what made this worse in August):**
+  aggressive hydration on a rest day (dry stool that sits gets harder to move), warm liquid
+  first thing, 20-30 min easy walk since Jason's own data says MOVEMENT is the trigger, and
+  deliberately NOT going low-residue Friday. Reasoning on the last point: low-residue is a
+  final-24-48h-before-a-100 tool; applying it while already backed up removes the volume that
+  would push existing content along.
+- **Decision on the 9/12 jog test: run it on whatever state the gut is in, do not manipulate
+  the input to get a clean result.** A race morning can easily look exactly like this, so
+  "can 10 min of jogging move a stubborn gut?" is the more useful question than "can it move
+  a normal one?" Record honestly either way.
+- **Strategic reframe for race day.** Pattern across 2026: 8/10 one stop at mile 4.5; 8/15
+  cleared at the lot, zero stops; Ragnar black loop one stop at mile 8; Six-0 two stops
+  (~mile 8 and ~mile 23). Consistent with the slow-transit hypothesis: days of nothing, then
+  it all arrives once running starts. The 15-day plan is NOT to fix transit — it is to
+  **budget for stops**: expect up to two in the first 30 miles at Sangre and treat them as
+  scheduled, not as failures. Consequences: wipes are mandatory carry (not just drop-bag),
+  and aid-station toilet locations go on the crew sheet.
+
 ## Pre-run hydration doctrine (lesson of 8/15)
 - Started the dress rehearsal dehydrated (Thursday drinking + travel) and fought a losing
   battle for 3+ hours: HR 145 at 14:29/mi — a near-race cardiac cost for an easy-day pace,
