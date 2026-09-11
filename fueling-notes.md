@@ -128,6 +128,50 @@ Running log of what's tested and decided. Targets come from the training plan
   scheduled, not as failures. Consequences: wipes are mandatory carry (not just drop-bag),
   and aid-station toilet locations go on the crew sheet.
 
+## Toilet map — Sangre (reported by Jason 9/11)
+Jason: toilets at "mile 8, 22 ish, and 28 or so, which is the end of the first out."
+Mapped onto data.json cumulative miles, those are **Music Meadows (8.6), Horn Creek (24.0),
+Venable (29.6)** — Venable being the first out-and-back turnaround confirms the third. His
+"22 ish" is nearest Horn Creek at 24.0; verify on site. **Colony Creek has NO toilet.**
+
+Because the course is two out-and-backs, each facility recurs. Full list — 9 opportunities:
+
+| Mile | Station | Crew |
+|---|---|---|
+| 8.6 | Music Meadows 1 | all |
+| 24.0 | Horn Creek 1 | C1 |
+| 29.6 | Venable 1 | C2 |
+| 35.3 | Horn Creek 2 | C1 |
+| 50.6 | Music Meadows 2 | all |
+| 66.1 | Horn Creek 3 | C2 |
+| 71.6 | Venable 2 | C1 |
+| 77.3 | Horn Creek 4 | C2 |
+| 92.6 | Music Meadows 3 | all |
+
+**No-toilet gaps (the whole point of the map):**
+- 0 -> 8.6 (8.6 mi) — the 4 AM window; pre-start jog is the only tool
+- **8.6 -> 24.0 (15.4 mi)** — Colony Creek 1 sits mid-gap with nothing
+- **35.3 -> 50.6 (15.3 mi)** — Colony Creek 2 mid-gap
+- **50.6 -> 66.1 (15.5 mi)** — Colony Creek 3 mid-gap
+- **77.3 -> 92.6 (15.3 mi)** — Colony Creek 4 mid-gap
+- 92.6 -> 101.3 (8.7 mi) — final Music Pass spur
+The Venable out-and-backs (24->29.6->35.3, 66->71.6->77.3) are well covered at ~5.5 mi apart.
+
+**Structural finding: every long exposed leg is a Music Meadows <-> Horn Creek leg with
+Colony Creek in the middle, and it repeats four times.** So the operating rule is: attempt a
+stop at every Music Meadows and every Horn Creek, whether or not there is an urge. Venable is
+a bonus. Skipping a station buys a 15-mile commitment.
+
+**Mile 8.6 is the single most important stop of the race.** 4 AM start, 8.6 mi over the Music
+Pass spur puts it around 6:30-7:00 AM — inside Jason's natural morning window, with ~2.5 hrs
+of jogging as the trigger, at the crew hub with his own drop bag and wipes. Given the
+slow-transit pattern (days of nothing, then it all arrives once running starts), this is the
+highest-probability productive stop on the course. **Do not run through Music Meadows 1
+feeling fine — sit down and try.** The next facility is 15.4 miles away.
+Wipes still travel ON him: the 15-mile gaps are exactly where a carried pack matters.
+
+TODO for the app session: add a toilet flag to data.json segments so pit.html can show it.
+
 ## Pre-run hydration doctrine (lesson of 8/15)
 - Started the dress rehearsal dehydrated (Thursday drinking + travel) and fought a losing
   battle for 3+ hours: HR 145 at 14:29/mi — a near-race cardiac cost for an easy-day pace,
