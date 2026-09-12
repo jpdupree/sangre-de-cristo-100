@@ -128,6 +128,36 @@ Running log of what's tested and decided. Targets come from the training plan
   scheduled, not as failures. Consequences: wipes are mandatory carry (not just drop-bag),
   and aid-station toilet locations go on the crew sheet.
 
+- **GI test 3 (9/12, 11 mi trail, 14 days out) — THE FINDING: one clear-out is not enough.**
+  Cleared at home before leaving (first real BM after being backed up 9/8-9/11), then still had
+  to stop in the first 2 miles, then clean for the remaining ~9. Run itself: 11.0 mi, 2:26,
+  1,059 ft, HR 133 at 13:18/mi in heat, TE 4.2 aerobic / 1.2 anaerobic, focus Base.
+- **Pattern across every 2026 test — the predictor is not WHETHER he went, it is HOW RECENTLY
+  and HOW MANY TIMES:**
+  | Date | Pre-run clear-out | On-run stops |
+  |---|---|---|
+  | 7/25 | — | urgency mi 2, business through 7.5 |
+  | 8/10 | good BM night before, thin AM | one at 4.5, loose |
+  | 8/15 | **at the trailhead, minutes before start** | **ZERO** |
+  | Ragnar black | — | one at mile 8 |
+  | Six-0 | jog cut short, could not go | two (~8, ~23) |
+  | 9/12 | at home, then drove | one in first 2 mi |
+  The single zero-stop day is the single day the last evacuation happened AT the start, not at
+  home. Everything else produces an early on-course stop. Revised model: he needs TWO
+  evacuations to settle, the second arrives once running begins, and the only lever is moving
+  it before the gun by being at the start early enough.
+- **RACE PROTOCOL (supersedes "do the 10-min jog"):** the start IS Music Meadows, which has a
+  toilet. So: wake ~2:30, warm Boost + normal routine at lodging = evacuation 1. Be at Music
+  Meadows 45+ min before the 4:00 gun, NOT 5 min before. Jog the full 10 min there. Use the
+  Music Meadows toilet = evacuation 2. Then start. This converts today's mile-2 stop into a
+  pre-gun stop and reproduces 8/15's zero-stop result.
+- **Still untested: the exact race sequence** (early start, away from home, jog at the venue,
+  toilet at the venue, then go). Two remaining chances: Sat 9/19 Seattle Beast (early start,
+  away, venue porta-johns) and — the real one — **Fri 9/25 Westcliffe shakeout: run it as a
+  full dress rehearsal at Music Meadows itself, 24 hrs early.**
+- Contingency if evacuation 2 does not come before the gun: it will arrive inside the 0->8.6
+  dead zone. Wipes on his person, pick a spot, no panic, do not let it become a pace decision.
+
 ## Toilet map — Sangre (reported by Jason 9/11)
 Jason: toilets at "mile 8, 22 ish, and 28 or so, which is the end of the first out."
 Mapped onto data.json cumulative miles, those are **Music Meadows (8.6), Horn Creek (24.0),
