@@ -158,6 +158,66 @@ Running log of what's tested and decided. Targets come from the training plan
 - Contingency if evacuation 2 does not come before the gun: it will arrive inside the 0->8.6
   dead zone. Wipes on his person, pick a spot, no panic, do not let it become a pace decision.
 
+## Session log — 9/12 taper long run (11 mi, 14 days out)
+Run: 11.0 mi, 2:26:28, 1,059 ft, avg HR 133 at 13:18/mi, 1,381 kcal, TE 4.2 aerobic /
+1.2 anaerobic, focus Base. Heat made the low HR hard; everything else felt good.
+**Heat-condition benchmark vs 8/15 (same kind of day): 13:18/mi at HR 133 vs 14:29/mi at
+HR 145 — 71 s/mi faster and 12 beats cheaper.** Taper + a hydrated start, not new fitness.
+
+### Sodium — TARGET HIT for the first time this season
+- Fluid 2.25 L / 2.441 hr = **922 mL/hr (31 oz/hr)**
+- Sodium: 2 LMNT (2,000 mg) + 5-6 salt pills on the 25-min beep (950-1,140 mg at 190 mg each)
+  = 2,950-3,140 mg = **1,208-1,286 mg/hr** vs the 1,200 warm-conditions target.
+- Six-0 comparison: 780 mg/hr with a tight stomach, late HR climb, hoarse finish. Today: on
+  target, no gut complaint. This is the Six-0 lesson executed.
+
+### CONCENTRATION FINDING — flaws the current warm-band pairing in data.json
+- Today's mix: 2,950-3,140 mg in 2.25 L = **~1,310-1,400 mg/L**, i.e. the top of Jason's own
+  sweat concentration (1,000-1,400 mg/L, the stable parameter in the model). Comfortable.
+- data.json warm band pairs 1,200 mg/hr with only 22 oz/hr = **1,843 mg/L** — well above sweat
+  concentration and meaningfully hypertonic. Given the delayed-gastric-emptying hypothesis, a
+  hypertonic drink sitting in a slow stomach is a plausible mechanism for the Six-0 tight
+  stomach.
+- **REVISED DOCTRINE: sodium 1,200 mg/hr stays the warm-conditions target; fluid floats to hold
+  concentration at ~1,300-1,400 mg/L, i.e. roughly 28-32 oz/hr whenever the full 1,200 is going
+  in. If conditions are cool enough that only 22 oz/hr is wanted, sodium scales DOWN with it to
+  ~900 rather than staying at 1,200.** Hold the ratio; move both together with conditions.
+  Sangre is cooler/higher/drier than Texas in September, so this is not a mandate to force
+  31 oz/hr up there — it is a rejection of 22-and-1,200 as a fixed pair.
+  TODO for the app session: the warm bands in data.json need this relationship, not fixed pairs.
+
+### Calories — NOT rehearsed today
+- Only 2 gels, both Spring Energy (Speednut / peanut butter and Awesome Sauce / apple pie),
+  labeled ~180 cal each = ~360 cal = **~147 cal/hr** vs the 250-300 target. Defensible for a
+  2.4-hr run (glycogen covers it, finished feeling good) but it means **the calorie half of the
+  25-min metronome went untested.** Pills went on every beep; gels were skipped at 3-4 of them.
+  The calorie side has had no clean test since Six-0. Put beep discipline on BOTH items on the
+  9/19 Seattle hike or a race-week shakeout.
+- **Spring Energy caution:** independent lab testing in 2024 found Awesome Sauce delivered
+  substantially less than its labeled 180 cal / 45 g carb (reports around half); company
+  acknowledged and reformulated. Current labeling state unverified as of this entry — READ THE
+  PANEL before counting these in any plan. Material because the whole on-course plan is
+  calorie-accounted.
+- **Decision: Spring does NOT displace the ordered stock** (PF90 x10 + Huma Original x24, known
+  cost/cal and known gut record). Role = flavor-fatigue insurance, a handful staged at Music
+  Meadows 2 (mi 50.6) and Music Meadows 3 (mi 92.6). "Cannot face another Huma" at hour 20 is a
+  documented way late calorie intake collapses.
+
+### Weigh-in — UNUSABLE for sweat rate, but informative about the backup
+- 161.4 reported post-run AND post-breakfast AND post-Nesquik AND after two evacuations, vs
+  163.5 Friday fasted with a full day of Friday eating in between. Confounders run in both
+  directions; **no sweat-deficit number can be extracted.** Do not treat -2.1 lb as sweat.
+- What it does show: 161.4 while CARRYING breakfast + Nesquik implies true fasted weight ~159-160,
+  so Friday's 163.5 was ~3-4 lb of food/fluid/retained stool on top. **Confirms 163.5 was not
+  body mass. The 163-164 target is NOT met.** Drift arrested (163.2 late Aug -> ~161 now while
+  eating more) but not reversed — TDEE still outrunning intake. Keep intake up through race week;
+  treat 163-164 as directional, not a milestone. Forcing 3 lb of real gain 14 days out is neither
+  realistic nor useful; not losing another 2 lb is.
+- **PROTOCOL for the two remaining chances (9/19 Seattle hike, 9/25 Westcliffe shakeout): weigh
+  naked immediately before leaving and immediately on return, before any food or fluid.** The
+  8/15 measurement produced the 1.3-1.4 L/hr model and is the most load-bearing number in the
+  fueling plan; one clean repeat at taper weight either confirms it or moves the Sangre bands.
+
 ## Toilet map — Sangre (reported by Jason 9/11)
 Jason: toilets at "mile 8, 22 ish, and 28 or so, which is the end of the first out."
 Mapped onto data.json cumulative miles, those are **Music Meadows (8.6), Horn Creek (24.0),
