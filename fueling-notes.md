@@ -218,6 +218,33 @@ HR 145 — 71 s/mi faster and 12 beats cheaper.** Taper + a hydrated start, not 
   8/15 measurement produced the 1.3-1.4 L/hr model and is the most load-bearing number in the
   fueling plan; one clean repeat at taper weight either confirms it or moves the Sangre bands.
 
+- **Bloated AND GASSY 9/14 (12 days out) — new symptom, likely self-inflicted.** Weight ~164
+  fasted. Like-for-like comparison matters: fasted-and-backed-up 163.5 (9/11) -> 164 (9/14) is
+  +0.5 lb, essentially flat. The 161.4 on 9/12 was post-run, post-breakfast, post-two-evacuations
+  — a different state, not a baseline. Jason did not overeat (one late extra meal ~700-900 cal =
+  ~0.25 lb tissue at most). The weight is content and fluid.
+- **LEADING HYPOTHESIS: withdrawing caffeine removed a colonic motility stimulus.** Caffeine-free
+  window opened Sat 9/12 — the same day this started, and the same day the HRV dropped below
+  range. Coffee reliably stimulates colonic motor activity; losing that daily push in a gut
+  already under evaluation for slow transit means content sits longer, ferments more, and
+  produces gas. This is specifically the GASSY signature, distinct from the merely heavy feeling
+  of 9/8-9/11.
+- **FIX, at zero cost: DECAF coffee, warm, first thing every morning.** The colonic-motility
+  effect of coffee is largely NOT caffeine-dependent — decaf produces much of the response. So it
+  restores the trigger without spending any of the race-day caffeine sensitivity being rebuilt.
+  Folds into the existing "warm liquid breakfast as the clear-out trigger" doctrine.
+- Secondary contributors: (1) the late Saturday meal eaten shortly before a 02:26 sleep onset —
+  worst case for a slow stomach; rule now is nothing substantial within 3 hrs of bed. (2) Possible
+  Spring Energy contribution — Awesome Sauce is apple-based (fructose + sorbitol, both reliably
+  fermentable). Circumstantial only, but reinforces the existing decision to keep Spring as small
+  flavor-variety, not base calories.
+- Response: decaf AM, walking, hydration, no food within 3 hrs of bed, 48-hr de-load on obvious
+  fermenters (beans, cruciferous, onion/garlic-heavy, sugar alcohols, apple/pear), no carbonation.
+  NO fibre — standing rule, and bulk worsens gas.
+- **Pattern note: this is the second back-up/bloat cycle in ~6 days (9/8-9/11, then 9/13-9/14).**
+  Consistent with slow transit and reinforces the race stop-budget rather than any expectation of
+  fixing transit before Sep 26.
+
 ## Toilet map — Sangre (reported by Jason 9/11)
 Jason: toilets at "mile 8, 22 ish, and 28 or so, which is the end of the first out."
 Mapped onto data.json cumulative miles, those are **Music Meadows (8.6), Horn Creek (24.0),
