@@ -223,16 +223,31 @@ HR 145 — 71 s/mi faster and 12 beats cheaper.** Taper + a hydrated start, not 
   +0.5 lb, essentially flat. The 161.4 on 9/12 was post-run, post-breakfast, post-two-evacuations
   — a different state, not a baseline. Jason did not overeat (one late extra meal ~700-900 cal =
   ~0.25 lb tissue at most). The weight is content and fluid.
-- **LEADING HYPOTHESIS: withdrawing caffeine removed a colonic motility stimulus.** Caffeine-free
-  window opened Sat 9/12 — the same day this started, and the same day the HRV dropped below
-  range. Coffee reliably stimulates colonic motor activity; losing that daily push in a gut
-  already under evaluation for slow transit means content sits longer, ferments more, and
-  produces gas. This is specifically the GASSY signature, distinct from the merely heavy feeling
-  of 9/8-9/11.
-- **FIX, at zero cost: DECAF coffee, warm, first thing every morning.** The colonic-motility
-  effect of coffee is largely NOT caffeine-dependent — decaf produces much of the response. So it
-  restores the trigger without spending any of the race-day caffeine sensitivity being rebuilt.
-  Folds into the existing "warm liquid breakfast as the clear-out trigger" doctrine.
+- **CLAUDE ERROR, CORRECTED same day.** I proposed that withdrawing caffeine (window opened
+  9/12) had removed a colonic motility stimulus and slowed transit, and floated shortening the
+  caffeine-free window on that basis. Jason then reported BMs Sat (x2), Sun AND Mon — daily, his
+  best stretch in weeks. **He is not backed up, transit is not slowed, and the hypothesis is
+  dead.** Caffeine-free window stands as planned through race day. Decaf remains worthwhile for
+  the ritual and as a warm-liquid trigger, but it is not a fix for anything.
+- **REVISED READ — two separate phenomena, two causes:**
+  1. **Weight (~164) is NOT retained stool.** With daily BMs it is taper glycogen + bound water +
+     sodium-driven fluid from Saturday's ~3,000 mg. That is the taper working and is an asset for
+     a 100. Half a pound above Friday, gut moving, recovery 100% — this part needs no correction.
+  2. **Bloating/gas IS diet-driven fermentation** — gas being produced, not content sitting. Gas
+     weighs essentially nothing, so it explains the feeling and not the scale.
+- **Most likely driver is an intervention I prescribed:** the deliberate +300-500 cal/day surplus
+  run for weeks to fight the weight drift. More food volume = more fermentable substrate, and in a
+  gut possibly slow to empty that presents as full/bloated/gassy with NO change in frequency —
+  exactly what is observed. Spring gels (apple: fructose + sorbitol) and the late Saturday meal
+  likely stacked on top.
+- **FIX: same calories, different vehicle, smaller portions.** Keep the surplus (still under
+  target). Shift toward low-fermentation density — whole milk, cheese/eggs if dairy sits well,
+  meat, olive oil, white rice, potatoes, sourdough (the Nesquik habit is this done right). Move
+  away from sugar-alcohol protein bars, beans, heavy cruciferous, onion/garlic-heavy dishes,
+  apple/pear, large salads. Smaller and more frequent rather than three big meals — the best
+  single lever for delayed emptying. Nothing substantial within 3 hrs of bed.
+- **Test: 48 hrs on the above.** If bloating eases, eat that way through race week. If not, next
+  step is a 2-day food note.
 - Secondary contributors: (1) the late Saturday meal eaten shortly before a 02:26 sleep onset —
   worst case for a slow stomach; rule now is nothing substantial within 3 hrs of bed. (2) Possible
   Spring Energy contribution — Awesome Sauce is apple-based (fructose + sorbitol, both reliably
