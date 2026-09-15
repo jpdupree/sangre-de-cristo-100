@@ -260,6 +260,21 @@ HR 145 — 71 s/mi faster and 12 beats cheaper.** Taper + a hydrated start, not 
   Consistent with slow transit and reinforces the race stop-budget rather than any expectation of
   fixing transit before Sep 26.
 
+- **GI status 9/16 — best stretch in weeks.** BMs Sat (x2), Sun, Mon, and ~1-hr runs Mon and
+  Tue with ZERO bathroom need. Daily frequency plus no on-run urgency at the 1-hr distance. The
+  bloat/gas of 9/14 was transient; no further report.
+- **CLAUDE OVERREACH, WITHDRAWN.** I prescribed a four-part dress rehearsal for Thu 9/17 (warm
+  Boost, pre/post weigh-in, full 10-min jog test, metronome on both items). Jason declined the
+  rehearsal and was right on every count: (1) metronome discipline is already PROVEN — Ragnar
+  yellow loop was 3 beeps / 3 gels / 3 pills at perfect compliance on the season's hardest climb,
+  repeated on the black loop and at Six-0; (2) spending race gels (PF90 x10 + Huma x24) on a
+  taper run buys nothing; (3) two 1-hr runs with no bathroom need already answer the jog question
+  at that distance better than a third attempt would. My stated justification — "the calorie half
+  is untested" — conflated DISCIPLINE (proven) with SUSTAINED RATE over many hours (untested, and
+  untestable in 75 minutes). Thu 9/17 reduced to: easy 5-6 mi, 60-75 min, HR <=130.
+- **Only surviving ask: the pre/post naked weigh-in** (free, no gels, 30 seconds). The 1.3-1.4
+  L/hr sweat model underpinning every Sangre fluid band still rests on ONE measurement (8/15).
+
 ## Toilet map — Sangre (reported by Jason 9/11)
 Jason: toilets at "mile 8, 22 ish, and 28 or so, which is the end of the first out."
 Mapped onto data.json cumulative miles, those are **Music Meadows (8.6), Horn Creek (24.0),
