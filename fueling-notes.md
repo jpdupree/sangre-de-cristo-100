@@ -275,6 +275,33 @@ HR 145 — 71 s/mi faster and 12 beats cheaper.** Taper + a hydrated start, not 
 - **Only surviving ask: the pre/post naked weigh-in** (free, no gels, 30 seconds). The 1.3-1.4
   L/hr sweat model underpinning every Sangre fluid band still rests on ONE measurement (8/15).
 
+## Weight doctrine change 9/16 — STOP DAILY WEIGH-INS UNTIL AFTER THE RACE
+Jason asked whether stopping caffeine could cause weight gain. Answer: yes, modestly, and as
+WATER not fat. Ranked contributors to the ~164 reading:
+1. **Taper glycogen + bound water — the big one.** Volume dropped 9/7; each gram of glycogen
+   holds ~3 g water; 2-4 lb is routine. Desirable: it is race fuel.
+2. **Caffeine-withdrawal fluid retention — secondary, 1-2 lb at the outside.** Caffeine-free from
+   9/12; 164 by 9/14, so the timeline fits. Calibration: the diuretic effect of caffeine is
+   weaker than popularly believed and largely blunted in habitual users at moderate doses — but
+   Jason is an INTERMITTENT user at 100-150 mg, so less tolerance means more rebound on stopping.
+   Do not overstate this.
+3. **Sodium loading** (Saturday's ~3,000 mg during the run) holds additional water.
+4. **Actual tissue** from the +300-500 cal/day surplus: a few tenths of a pound. Negligible.
+Rejected: the metabolic mechanism. Caffeine raises REE ~20-50 kcal/day at his dose — under a
+quarter pound of theoretical tissue over four days. Not the explanation.
+Unproven but plausible: appetite. Caffeine mildly suppresses it; losing it may have nudged intake
+(the late Saturday meal, which Jason attributed to being awake at 2 AM).
+
+**DOCTRINE CHANGE (reverses the August instruction to weigh Mon and Fri).** Through late August
+the scale tracked a real downward trend (163.2 -> 160.8 while eating more) and was worth watching.
+In taper there are now THREE large water confounders all pushing the same direction, so the scale
+cannot separate signal from noise — it measures noise and generates worry. The concrete risk: a
+rising number 10 days out talks runners into cutting food, and cutting food now is the actual
+mistake. Jason is still under target on body mass and still needs the intake.
+**KEEP the calorie surplus. DROP the daily weigh-in until after Sangre.** Sole exception: the
+pre/post-run naked weigh-in, which is a DIFFERENCE across one run and therefore immune to all of
+the above — still the only weight number that carries information.
+
 ## Toilet map — Sangre (reported by Jason 9/11)
 Jason: toilets at "mile 8, 22 ish, and 28 or so, which is the end of the first out."
 Mapped onto data.json cumulative miles, those are **Music Meadows (8.6), Horn Creek (24.0),
