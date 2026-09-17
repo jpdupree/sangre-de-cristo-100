@@ -302,6 +302,64 @@ mistake. Jason is still under target on body mass and still needs the intake.
 pre/post-run naked weigh-in, which is a DIFFERENCE across one run and therefore immune to all of
 the above — still the only weight number that carries information.
 
+## Drop bag plan — LOCKED 9/17 (Jason: every station takes a bag EXCEPT Colony Creek)
+**CORRECTION to an earlier note:** Colony Creek IS a functioning aid station (food + water). It
+has no crew, no drop bag and no toilet. So the 15-mi Music Meadows<->Horn Creek legs are exposed
+for TOILETS and GEAR only, not for fuel. Earlier framing overstated it.
+
+Two race drop bags go to **Horn Creek** and **Venable**. **Music Meadows is the car** (car-camping
+there Friday night, crewAccess "all", visited at 8.6 / 50.6 / 92.6) so it needs no race bag.
+
+| Mile | Station | Bag | ~Hour (rough) | Conditions |
+|---|---|---|---|---|
+| 8.6 | Music Meadows 1 | car | ~3 | dawn |
+| 15.2 | Colony Creek 1 | none | ~5 | warm |
+| 24.0 | **Horn Creek 1** | BAG | ~8-9 | day warm |
+| 29.6 | **Venable 1** | BAG | ~10-11 | hottest |
+| 35.3 | **Horn Creek 2** | BAG | ~12-13 | evening |
+| 44.0 | Colony Creek 2 | none | ~15 | night |
+| 50.6 | Music Meadows 2 | car | ~18-19 | night cold |
+| 57.2 | Colony Creek 3 | none | ~21 | night cold |
+| 66.1 | **Horn Creek 3** | BAG | ~24-26 | COLDEST |
+| 71.6 | **Venable 2** | BAG | ~27-28 | dawn |
+| 77.3 | **Horn Creek 4** | BAG | ~29-30 | day warm |
+| 86.0 | Colony Creek 4 | none | ~32 | warm |
+| 92.6 | Music Meadows 3 | car | ~33-35 | warm |
+Hour estimates are approximate and will shift with actual pace — do not treat as splits.
+
+**Structural finding: Horn Creek gets FOUR visits straddling both extremes** — hottest afternoon
+(visits 1-2) and coldest night/dawn (visits 3-4). It is the demanding bag and must serve heat and
+cold both. Venable gets two, also split hot/dawn.
+
+### Horn Creek bag (4 visits)
+6 Huma + 2 PF90 · 12 salt pills · 3 LMNT · ONE warm layer + ONE shell (2025 rule: decided in
+advance, no boutique) · light gloves + beanie · **spare headlamp batteries** (visit 3 is deepest
+dark) · full sunscreen tube · wet wipes · chapstick · Squirrel's Nut Butter · buff
+
+### Venable bag (2 visits)
+3 Huma + 1 PF90 · 6 salt pills · 2 LMNT · ONE warm layer + ONE shell (visit 2 is dawn Sunday) ·
+full sunscreen tube · wet wipes · chapstick · lube
+
+### Carry from start
+3 Huma + 1 PF90 · 4 salt pills · **full LMNT flask, NOT plain water** (Six-0 lesson) · spare LMNT
+packet · wipes ON his person (the 15-mi no-toilet legs)
+
+### Music Meadows (car, 3 visits)
+Deep reserve: remaining gels/pills/LMNT, new Merrells, Shokz spares, charging cables, bank
+rotation, full clothing range, sleeping setup. **The 50.6 stop (~10-11 PM) is the night
+transition** — headlamp, tights, gloves, beanie, warm layer all go on there.
+
+### SODIUM RECIPE — simplifies to one rule
+Warm band target 1,200 mg/hr. One LMNT flask (1,000 mg) + one salt pill (190 mg) = **1,190 mg**.
+- **Warm hours: 1 flask + 1 pill per hour.**
+- **Cold night hours: 1 flask every 2 hours, no pills** (= 500 mg/hr, matches the band).
+No arithmetic required on course.
+
+### ACTION — LMNT count is exactly at the line
+Band math: 14 warm hrs @ 1/hr + 8 dawn/evening hrs @ 1/hr + 16 night hrs @ 0.5/hr = **~30
+packets. He ordered 30.** Zero margin for a dropped packet, a spilled flask, or going past 34 hrs.
+**ORDER 10 MORE.**
+
 ## Toilet map — Sangre (reported by Jason 9/11)
 Jason: toilets at "mile 8, 22 ish, and 28 or so, which is the end of the first out."
 Mapped onto data.json cumulative miles, those are **Music Meadows (8.6), Horn Creek (24.0),
