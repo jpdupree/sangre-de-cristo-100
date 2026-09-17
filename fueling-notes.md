@@ -476,6 +476,48 @@ where he will be least able to reason it out.
 Warm, salty, mostly liquid, easy to get down when solid food has turned repulsive — which is where
 2025 went wrong around hour 20. Warm liquid is already his established GI tool. Encourage it.
 
+## SendOff live tracking — preload values, set 9/17
+Jason will log food and pills into SendOff as he goes and watch ahead/behind against the hourly
+rates. **This is the actual fix for Six-0** — he hit 780 mg/hr against a 1,200 target there and
+only found out afterward, from symptoms. Live visibility was the missing piece, not knowledge of
+the target. The tracker is only as good as the values entered, so preload these.
+
+| Item | Sodium (approx) | Calories (approx) |
+|---|---|---|
+| Cup Noodles, with broth | 1,200 mg | 290 |
+| Broth, 1 cup | 850 mg | 30 |
+| Quesadilla / grilled cheese | 500 mg | 300 |
+| Pretzels, 1 oz | 400 mg | 110 |
+| Pickle spear | 300 mg | 5 |
+| Chips, handful | 175 mg | 150 |
+| Boiled potato, salted | 200 mg | 130 |
+| Uncrustable / PB&J | 150 mg | 210 |
+| Coke, 12 oz | 45 mg | 140 |
+| Banana | ~0 | 105 |
+| Candy, handful | ~0 | 100 |
+| LMNT packet | 1,000 mg | 10 |
+| Salt pill | 190 mg | 0 |
+| Huma Original | ~25 mg | 100 |
+| PF90 | **UNVERIFIED — read the packet** | 360 |
+PF90 caveat: Precision Fuel sell sodium as a separate product line so their gels are typically
+low-sodium, but the figure is not confident enough to plan around. Jason to verify from the label.
+
+**Why preloading matters twice over: at hour 25 he will not reliably enter a custom item.** Two
+taps on a saved entry is achievable; typing sodium in mg is not. Whatever is set up before the race
+determines whether the tracker still functions when it matters most.
+
+### Two cautions on reading ahead/behind
+1. **Cumulative average hides late collapse.** "On target" at hour 20 against expected-to-date is
+   compatible with ten excellent hours and five bad ones. Check whether SendOff can show a RECENT
+   rate (last hour / last leg) — late in the race that is the number that predicts trouble; the
+   cumulative figure keeps looking fine long after the trend turns.
+2. **The bands assume conditions.** They were built for expected Westcliffe weather. If race day
+   runs hot, hitting 1,200 mg/hr exactly still leaves him short, because sweat rate rose and the
+   target did not. Keep the CONCENTRATION rule as the cross-check: drinking noticeably more than
+   planned means needing proportionally more sodium than planned. **The two methods agree under
+   expected conditions and diverge when it is hotter — and then the ratio is right and the band
+   is wrong.**
+
 ## Toilet map — Sangre (reported by Jason 9/11)
 Jason: toilets at "mile 8, 22 ish, and 28 or so, which is the end of the first out."
 Mapped onto data.json cumulative miles, those are **Music Meadows (8.6), Horn Creek (24.0),
