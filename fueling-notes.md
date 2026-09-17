@@ -435,6 +435,47 @@ hoarse finish).
 
 **Pill totals stand: ~49 (30 h) to ~95 (38 h cutoff). The 100-pill order covers the cutoff.**
 
+## AID STATION FOOD SODIUM — food DISPLACES pills, set 9/17
+Jason flagged that aid-station food carries real sodium and that he will eat Cup Noodles as soon
+as stations offer them. Correct, and the earlier pill math treated pills + LMNT as the whole
+supply. **Cup Noodles is not a snack in sodium terms — it is roughly a whole LMNT packet.**
+
+Approximate (brands and station prep vary widely — treat as estimates):
+| Food | Sodium | Pill equivalent (190 mg) |
+|---|---|---|
+| **Cup Noodles WITH broth** | **~1,200 mg** | **6** |
+| Cup of broth | ~850 mg | 4-5 |
+| Quesadilla / grilled cheese | ~500 mg | 2-3 |
+| Pretzels, 1 oz | ~400 mg | 2 |
+| Pickle spear / juice | ~300 mg | 1-2 |
+| Chips, small handful | ~175 mg | 1 |
+| Boiled potato, salted | ~100-300 mg | 1 |
+| Coke / banana / candy | negligible | 0 |
+
+**DRINK THE BROTH.** Most of the sodium is in the liquid. Noodles without broth is ~400 mg, not
+~1,200.
+
+### Rule — three states, no arithmetic at mile 66 in the dark
+- **Cup Noodles or broth at the station -> HALVE the pills on that leg** (12 -> 6)
+- **Grazed chips / pretzels / pickle -> drop 2 pills**
+- **Nothing salty -> full count**
+Rationale: 12 pills + Cup Noodles + flask on one leg is ~4,900 mg, well past the concentration
+target. Over-sodium is not free for Jason specifically — a hypertonic load in a possibly
+slow-emptying stomach is the suspected mechanism behind the Six-0 tight stomach.
+
+### The zero-pill case — memorize BEFORE the race
+Stations bring hot food out evening/overnight, exactly when the target drops to 500 mg/hr. A 3-hr
+night leg needs ~1,500 mg. Cup Noodles + a full LMNT flask is already 2,200 mg; against the
+~1.24 L actually drunk at 14 oz/hr that is **~1,770 mg/L — above sweat concentration and into
+sits-heavy territory.**
+**NIGHT LEG + CUP NOODLES = NO PILLS AT ALL, and do not force the whole LMNT flask. Plain water
+is correct on that leg.** This is the one place where doing LESS is right, and it falls exactly
+where he will be least able to reason it out.
+
+### Beyond sodium, Cup Noodles is a strong pick for him
+Warm, salty, mostly liquid, easy to get down when solid food has turned repulsive — which is where
+2025 went wrong around hour 20. Warm liquid is already his established GI tool. Encourage it.
+
 ## Toilet map — Sangre (reported by Jason 9/11)
 Jason: toilets at "mile 8, 22 ish, and 28 or so, which is the end of the first out."
 Mapped onto data.json cumulative miles, those are **Music Meadows (8.6), Horn Creek (24.0),
