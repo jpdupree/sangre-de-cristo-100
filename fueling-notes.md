@@ -395,6 +395,46 @@ near it; same for the four 8.7-mi legs. **Need Jason's actual vest carry (flask 
 volume) at Sangre.** If it is one or two 500 mL flasks he arrives at Horn Creek 3 having been dry
 for ~90 min — on the deep-night leg, the worst place to be behind. Resolve before drop bags ship.
 
+## VOLUME-ANCHORED SODIUM — the operative rule, set 9/17
+**Jason's carry (confirmed): one 500 mL flask with LMNT + 2 L plain water = 2.5 L per leg.**
+Plain water is deliberate, to fight flavor fatigue — a real late-race failure mode. Keep it.
+
+**Capacity: SOLVED.** Worst-case leg is 8.9 mi (Colony Creek 3 -> Horn Creek 3), ~3 hrs, ~2 L at
+22 oz/hr. He carries 2.5 L. No bottleneck. The earlier "fluid capacity may be the real
+bottleneck" concern is resolved.
+
+**But the carry creates a DILUTION problem bigger than the hourly-target one.** 2.5 L containing
+only the LMNT = 1,000 mg / 2.5 L = **400 mg/L**, against sweat at 1,000-1,400 mg/L. That is
+replacing water at under a third of the concentration being lost — progressive dilution, and over
+20+ hrs the classic hyponatremia setup. The plain water is what makes the pills non-optional.
+
+**With pills it resolves correctly.** 3-hr warm leg, all 2.5 L consumed: 1,000 mg LMNT + 14 pills
+(2,660 mg) = **3,660 mg / 2.5 L = 1,464 mg/L**, and 1,220 mg/hr. Validated against the 9/12 run
+(the one where sodium finally worked and the gut was fine): 1,310-1,400 mg/L.
+
+### THE RULE: count pills against the WATER, not the clock
+**Six pills per litre of plain water, plus finish the LMNT flask.**
+| Plain water drunk | Pills |
+|---|---|
+| 0.5 L | 2 |
+| 1.0 L | 5 |
+| 1.5 L | 8 |
+| 2.0 L (full bladder) | **12** |
+Derivation: target 1,300 mg/L overall; P = (1300X - 350)/190 where X = litres of plain water
+(the flask's own 500 mL at 2,000 mg/L subsidises the first part).
+
+**Why this beats the hour bands:** self-correcting. Hot -> drinks more -> takes more. Cold night ->
+drinks less -> takes fewer. Concentration holds without him knowing what hour he is in or guessing
+a sweat rate. It also REPRODUCES the band targets independently — cold-night leg at 14 oz/hr for
+3 hrs is ~1.24 L; at 1,300 mg/L that is the flask + ~3 pills = 538 mg/hr vs the 500 band. The two
+methods agree, which is a real check on both.
+
+**Operational cue: when the 2 L bladder is empty, twelve pills should be gone.** Four means he is
+~1,500 mg down and will feel it the way he did at Six-0 (780 mg/hr, tight stomach, late HR climb,
+hoarse finish).
+
+**Pill totals stand: ~49 (30 h) to ~95 (38 h cutoff). The 100-pill order covers the cutoff.**
+
 ## Toilet map — Sangre (reported by Jason 9/11)
 Jason: toilets at "mile 8, 22 ish, and 28 or so, which is the end of the first out."
 Mapped onto data.json cumulative miles, those are **Music Meadows (8.6), Horn Creek (24.0),
