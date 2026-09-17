@@ -360,6 +360,41 @@ Band math: 14 warm hrs @ 1/hr + 8 dawn/evening hrs @ 1/hr + 16 night hrs @ 0.5/h
 packets. He ordered 30.** Zero margin for a dropped packet, a spilled flask, or going past 34 hrs.
 **ORDER 10 MORE.**
 
+## Sodium delivery recalculated 9/17 — Jason's refill constraint changes everything
+**Jason's constraint:** LMNT can only be mixed at an aid station (needs water). So LMNT doses are
+capped by STATION VISITS, not by hours.
+
+Station visits: Music Meadows x3 + Colony Creek x4 + Horn Creek x4 + Venable x2 = **13 stations,
++ the start = 14 flask fills. 14,000 mg of LMNT sodium is the hard ceiling for the whole race.**
+
+| Finish | Sodium needed (bands) | From LMNT | Shortfall | Pills @190 mg |
+|---|---|---|---|---|
+| 30 h | 23,300 mg | 14,000 | 9,300 | **49** |
+| 32 h | 25,700 mg | 14,000 | 11,700 | **62** |
+| 34 h | 28,100 mg | 14,000 | 14,100 | **74** |
+| 38 h (cutoff) | 32,000 mg | 14,000 | 18,000 | **95** |
+**The 100-pill order covers even the cutoff.**
+
+**CLAUDE ERROR, CORRECTED same day.** Earlier on 9/17 I computed LMNT need as ~1/hr = ~30 packets
+and told him to ORDER 10 MORE. Wrong: with the refill constraint he can deploy only ~14, so the
+30 already ordered is roughly double what is usable. **Retracted — do not order more LMNT.** The
+earlier "LMNT count is exactly at the line / ORDER 10 MORE" note above is superseded.
+
+### REVISED METRONOME — warm legs need TWO pills per beep
+Leaving a station with one flask = 1,000 mg = about ONE hour of the 1,200 mg/hr warm target.
+Everything past that hour on the leg must come from pills. Longest leg is **8.9 mi (Colony Creek 3
+-> Horn Creek 3)**, ~3 hrs on that terrain = 3,600 mg needed, 1,000 from flask, **2,600 from pills
+= ~14 pills over ~7 beeps = 2 per beep.**
+- **Warm hours: flask + TWO pills per 25-min beep.**
+- **Cold night hours: one flask per station (covers 2 hrs at 500 mg/hr), pills only if the leg runs
+  long.**
+
+### OPEN — FLUID CAPACITY may be the real bottleneck
+That same 8.9-mi leg at 22 oz/hr for 3 hrs = **66 oz / ~2 L**. A single 500 mL flask is nowhere
+near it; same for the four 8.7-mi legs. **Need Jason's actual vest carry (flask count / bladder
+volume) at Sangre.** If it is one or two 500 mL flasks he arrives at Horn Creek 3 having been dry
+for ~90 min — on the deep-night leg, the worst place to be behind. Resolve before drop bags ship.
+
 ## Toilet map — Sangre (reported by Jason 9/11)
 Jason: toilets at "mile 8, 22 ish, and 28 or so, which is the end of the first out."
 Mapped onto data.json cumulative miles, those are **Music Meadows (8.6), Horn Creek (24.0),
