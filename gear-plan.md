@@ -51,18 +51,15 @@ thunderstorm chance 20-30%, landing in race hours 8-13, i.e. high on the Venable
 **Above treeline the hazard is lightning, not rain** — jacket stays ON his body through that
 stretch, not in a pack pocket.
 
-### ACTION — two confirmations, on the clock
-**The Salomon Bonatti comes in two very different versions and only one would pass:**
-- **Bonatti Wind** — windbreaker, water-RESISTANT. Fails any waterproof requirement.
-- **Bonatti Waterproof / Bonatti 2.5L** — genuine waterproof shell, sealed seams.
-Typical 100-mile mandatory kit specifies waterproof with taped/welded seams, usually a hood, and
-sometimes a hydrostatic rating (e.g. 10,000 mm). A wind shell fails on every count.
-1. **Which Bonatti does he have?** Check label/seams — visible raw stitching inside (vs taped
-   strips over the seams) means NOT waterproof.
-2. **What does Sangre actually require?** Pull the official required-gear list.
-If it is the Wind version and waterproof is required, there are 8 days to buy one — enough, but
-only if discovered now rather than at Friday 9/25 packet pickup. Being turned away at a gear check
-is an avoidable way to lose a year of work.
+### RESOLVED 9/18 — jacket is compliant
+**Confirmed from the REI receipt: Salomon Bonatti WATERPROOF Jacket, Men's, Burnt Umber, M
+(item #C01452, $200, REI Southlake pickup).** Not the Bonatti Wind. Hooded, taped seams, genuine
+waterproof shell — meets standard 100-mile mandatory-kit spec. **Risk closed.**
+
+Residual (low): a few races specify a minimum hydrostatic rating (10,000 mm is the common figure)
+rather than just "waterproof," and Salomon does not always publish that number for the Bonatti.
+**STILL OPEN: pull Sangre's official required-gear list** — not for the jacket so much as for the
+other items it may mandate (space blanket, whistle, specific light standard, etc.).
 
 ## Shoes (decided 8/4; mileage from Jason's Strava gear tracker, now also in Coros)
 - **Altra Olympus (~50 mi as of 8/4) — RACE-DAY PRIMARY.** Max cushion for 100 mi of rock.
