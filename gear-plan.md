@@ -40,6 +40,30 @@ hard hours started. This plan gives ~3× that margin.
   into crew expectations either way (frozen dot ≠ emergency).
 - Build 3 long run (Aug 8): verify phone-only Coros recording; practice cover-screen-only use.
 
+## Rain shell — DECIDED 9/18: carried the whole way. OPEN RISK: does it meet spec?
+**Jason's call: the rain jacket goes with him start to finish** rather than being staged in a drop
+bag — "not to risk not having it when I need it." Correct, and it also satisfies a mandatory-gear
+rule regardless of what that rule says. 150-200 g. No counter-argument.
+
+Forecast context (9/18, 8 days out): Westcliffe town 67-73F day / 38-46F night at 7,913 ft; high
+country 10-14F colder = ~55-60F day, **25-32F night — at or below freezing**. Afternoon
+thunderstorm chance 20-30%, landing in race hours 8-13, i.e. high on the Venable out-and-back.
+**Above treeline the hazard is lightning, not rain** — jacket stays ON his body through that
+stretch, not in a pack pocket.
+
+### ACTION — two confirmations, on the clock
+**The Salomon Bonatti comes in two very different versions and only one would pass:**
+- **Bonatti Wind** — windbreaker, water-RESISTANT. Fails any waterproof requirement.
+- **Bonatti Waterproof / Bonatti 2.5L** — genuine waterproof shell, sealed seams.
+Typical 100-mile mandatory kit specifies waterproof with taped/welded seams, usually a hood, and
+sometimes a hydrostatic rating (e.g. 10,000 mm). A wind shell fails on every count.
+1. **Which Bonatti does he have?** Check label/seams — visible raw stitching inside (vs taped
+   strips over the seams) means NOT waterproof.
+2. **What does Sangre actually require?** Pull the official required-gear list.
+If it is the Wind version and waterproof is required, there are 8 days to buy one — enough, but
+only if discovered now rather than at Friday 9/25 packet pickup. Being turned away at a gear check
+is an avoidable way to lose a year of work.
+
 ## Shoes (decided 8/4; mileage from Jason's Strava gear tracker, now also in Coros)
 - **Altra Olympus (~50 mi as of 8/4) — RACE-DAY PRIMARY.** Max cushion for 100 mi of rock.
   Expected ~250–300 mi by race day = sweet spot (broken in, not broken down). Guardrail:
