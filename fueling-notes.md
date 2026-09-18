@@ -518,6 +518,44 @@ determines whether the tracker still functions when it matters most.
    expected conditions and diverge when it is hotter — and then the ratio is right and the band
    is wrong.**
 
+## SWEAT RATE REMEASURED 9/17 — higher than the model
+Run: 6.5 mi, 1:15:58, 11:40/mi, avg HR 126, anaerobic TE 0.0. Evening, North Richland Hills, mid-
+September Texas heat. Osprey Hydraulics LT 1.5 L bladder.
+
+**Method (Jason improved on the prescription):** weighed holding the bladder, so body-weight loss
+and fluid consumed both fall inside ONE subtraction.
+- Before: 164.0 body + 4.0 bladder = **168.0**
+- After (toweled off, holding bladder with ~100 mL left): **163.4**
+- **Difference 4.6 lb = 2.09 L over 1.266 hr = 1.65 L/hr**
+Long-way cross-check agrees: ~1.57 L drunk + 1.15 lb body loss = 2.09 L. Two routes, same answer.
+Allowing for scale uncertainty on the 4.0 lb bladder reading (1.5 L + reservoir should be ~3.64 lb),
+the honest range is **1.5-1.65 L/hr**.
+
+**vs the 8/15 model of 1.3-1.4 L/hr — this is materially higher.**
+
+**Anomaly worth flagging: he sweated MORE at HR 126 today than at HR 145 on 8/15.** Lower intensity
+should mean less sweat. So either the evening was hotter than 8/15, or the August figure
+underestimated. Either way the conclusion holds: **hot-weather sweat rate exceeds what the plan
+assumes.**
+
+**OPEN: was the LMNT flask carried on this run?** If he drank from a flask that was in neither
+weighing, true sweat = 4.6 lb PLUS that volume — i.e. 4.6 is a FLOOR, not a ceiling.
+
+### Consequence for the Sangre bands
+Warm band = 22 oz/hr = 0.65 L/hr. He actually drank **1.24 L/hr** and still finished 1.15 lb down
+— replacing ~75% while drinking nearly double the band. NOT rewriting the bands off one Texas
+evening (Westcliffe is cooler, higher, drier and his rate there will genuinely be lower), but the
+instruction changes:
+**Treat 22 oz/hr as a FLOOR for cool conditions, not a ceiling. If race day runs warm, drink to
+need and let the pills follow the volume.**
+This is precisely why volume-anchored sodium matters: 6 pills per litre of plain water means
+drinking more in the heat scales sodium automatically. He never has to decide whether to break the
+plan — drinking to thirst IS the plan, and the sodium self-corrects.
+
+### Replacement discipline — a genuine positive
+Body weight fell only 1.15 lb vs 1.5 lb on 8/15, on a longer-duration higher-sweat run. Drinking
+kept pace better than it did in August. That is the behaviour wanted at Sangre.
+
 ## Toilet map — Sangre (reported by Jason 9/11)
 Jason: toilets at "mile 8, 22 ish, and 28 or so, which is the end of the first out."
 Mapped onto data.json cumulative miles, those are **Music Meadows (8.6), Horn Creek (24.0),
