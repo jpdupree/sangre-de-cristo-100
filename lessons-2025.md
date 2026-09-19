@@ -34,6 +34,13 @@ nothing), but the concern itself was overstated.
 **FUTURE-SEASON RULE:** on any filming weekend inside 3 weeks of an A-race, **drive the camera
 placement and pickup, and decline the post-shoot social miles.** Both, not one.
 
+**CAVEAT — the rule is UNTESTED.** The F3 guys ran a similar overnight on 9/18-19, while Jason was
+in Seattle. **The temptation removed itself by geography; it was not declined.** Driving the camera
+placement WAS a deliberate choice and counts as discipline. Missing the F3 run does not. The 2025
+52.5-mile day did not happen because he weighed it up and chose wrong — it happened because it was
+the DEFAULT (friends are running, you run). Future seasons must assume the temptation is present
+and the decision actually has to be made.
+
 ## Already fixed by 2026 systems
 | Problem | Fix in place |
 |---|---|
