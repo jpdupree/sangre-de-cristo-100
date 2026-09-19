@@ -8,6 +8,32 @@ Jason's post-race notes from 2025 (mile-86 DNF), triaged against the 2026 plan.
 | Chapstick always on body | Pack-list: chapstick in vest pocket + spare in every drop bag |
 | Lube at every drop bag ("more than needed") | Keep — over-lubing has never DNF'd anyone |
 
+## THE UNDOCUMENTED ONE — 52.5 miles two weeks out (added 9/20/26)
+Reported by Jason 9/20/26 and **not previously recorded anywhere.** Possibly the single most
+important pre-race fact about the 2025 DNF.
+
+**~2 weeks before Sangre 2025:** 18.5 mi at the Spartan course (running out to place cameras,
+running with the elites, running back for pickup) — **then 34 more miles overnight with the F3
+guys. ~52.5 miles in roughly 24 hours.** Then DNF at mile 86.
+
+**2026 equivalent (Seattle NA Champs, 9/19, SEVEN days out): 8.4 mi.** He **DROVE** for camera
+placement and pickup — **the first time he has ever done that.** ~49 of 141 min near-stationary.
+**A sixfold reduction at half the distance from race day.**
+
+**This is the plan invariant being lived, not just agreed to:** the biggest weekend sits FIVE weeks
+out (Ragnar), not two. The 2025 pattern is now named, so it can be guarded against in future
+seasons — the risk is not the filming, it is that filming has always MEANT running the course
+twice plus whatever social miles follow.
+
+**CLAUDE PROPORTION ERROR, CORRECTED same day.** On 9/19 I flagged Seattle's anaerobic TE 4.8 and
+load 288 as a concern and adjusted race week for it. The numbers were right; the PROPORTION was
+wrong. Measured against 52.5 miles at two weeks out, 8.4 miles at one week is a small, controlled
+version of the thing that likely broke the 2025 race. Monday's strides stay dropped (costs
+nothing), but the concern itself was overstated.
+
+**FUTURE-SEASON RULE:** on any filming weekend inside 3 weeks of an A-race, **drive the camera
+placement and pickup, and decline the post-shoot social miles.** Both, not one.
+
 ## Already fixed by 2026 systems
 | Problem | Fix in place |
 |---|---|
