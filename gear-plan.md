@@ -40,6 +40,35 @@ hard hours started. This plan gives ~3× that margin.
   into crew expectations either way (frozen dot ≠ emergency).
 - Build 3 long run (Aug 8): verify phone-only Coros recording; practice cover-screen-only use.
 
+## RACE FORECAST — pulled 9/21 from NWS Westcliffe (5 days out, now in range)
+| Day | High | Conditions |
+|---|---|---|
+| Tue 9/22 | 71F | 30% storms after 4pm |
+| Wed 9/23 | 66F | Showers likely, possible storm |
+| Thu 9/24 | 65F | Showers likely, possible storm |
+| Fri 9/25 | 69F | Chance of showers, 30% storms before midnight |
+| **Sat 9/26 (RACE)** | **70F** | **SUNNY** |
+| **Sun 9/27** | **71F** | **Mostly sunny** |
+Overnight lows all week 39-41F in town (Sat night not given explicitly; ~39-40F by pattern).
+High country (+3,000-4,000 ft, ~3.5F/1,000 ft lapse): **~56-58F day, ~26-30F overnight.**
+**The wet weather lands Wed-Fri and CLEARS for the race.**
+
+### Consequences
+1. **Lightning worry is OFF.** The earlier concern — afternoon storms in race hours 8-13 while
+   high on the Venable out-and-back — is removed by a sunny Saturday. **Still carry the jacket**;
+   weather at 12,000 ft does not always follow the valley forecast. Insurance, not expectation.
+2. **SUNSCREEN matters MORE, not less.** Sunny + altitude + thin dry air is the worst UV
+   combination of his season, and Six-0 already taught this (under-sprayed body and legs on loop
+   one). Full body and legs, reapplied at EVERY drop bag and every Music Meadows pass.
+3. **Fluid bands HOLD.** 70F and dry confirms 22 oz/hr is about right for warm hours. The 9/17
+   Texas measurement of ~1.5 L/hr does NOT transfer (85-90F and humid). Drink to need, dose sodium
+   by volume, and the bands are roughly where he lands.
+4. **Friday night car-camping at Music Meadows could be wet and 39F.** Rig handles it (insulating
+   layer UNDER the air mat, winter bag, base layer + beanie) but plan windows-cracked ventilation
+   for rain, and turn in drop bags during a dry window.
+5. **Three days of showers Wed-Fri = wet/muddy trails Saturday morning** and wet rock on the
+   descents. Gaiters already planned; expect reduced traction on the steep sections.
+
 ## Rain shell — DECIDED 9/18: carried the whole way. OPEN RISK: does it meet spec?
 **Jason's call: the rain jacket goes with him start to finish** rather than being staged in a drop
 bag — "not to risk not having it when I need it." Correct, and it also satisfies a mandatory-gear
