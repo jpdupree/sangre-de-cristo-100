@@ -302,6 +302,44 @@ mistake. Jason is still under target on body mass and still needs the intake.
 pre/post-run naked weigh-in, which is a DIFFERENCE across one run and therefore immune to all of
 the above — still the only weight number that carries information.
 
+## DROP BAG PLAN REVISED 9/22 — NO BAG AT VENABLE THIS YEAR
+Jason confirmed (and updated SendOff): **drop bags allowed at Music Meadows and Horn Creek ONLY.**
+Supersedes the 9/17 plan below, which assumed a Venable bag.
+
+**Music Meadows is still the car** (car-camping there; visits 8.6 / 50.6 / 92.6).
+**Horn Creek is now the only non-car bag** — 4 visits (24.0, 35.3, 66.1, 77.3) AND it has to cover
+both Venable out-and-backs.
+
+**Venable is always sandwiched between two Horn Creek visits:**
+24.0 -> 29.6 -> 35.3, and 66.1 -> 71.6 -> 77.3. Each Venable pass is an **11.3-mi out-and-back
+from the only bag.** Venable still has water and food, so FUEL is fine; PERSONAL GEAR is not.
+LMNT fill opportunities are unchanged (13 stations still have water) — he just carries the packets
+from Horn Creek instead of finding them at Venable.
+
+### Revised Horn Creek bag (absorbs the Venable allocation)
+**9 Huma + 3 PF90** (was 6+2) · **36 salt pills** (was 24) · **5 LMNT** (was 3) · one warm layer +
+one shell · light gloves + beanie · spare headlamp batteries · full sunscreen tube · wet wipes
+(MORE than before) · chapstick · lube · spare buff · collapsible cup · spare Shokz
+Music Meadows (car) keeps the rest: 12 Huma, 6 PF90, ~52 pills, ~23 LMNT.
+Carry from start unchanged: 3 Huma + 1 PF90, 12 pills, full LMNT flask + 1 spare packet, wipes.
+Totals close: Huma 24, PF90 10, pills 100, LMNT 30.
+
+### CONSEQUENCE 1 — the cold-weather decision moves to Horn Creek 3, 5.5 mi EARLIER
+Venable 2 (71.6) is ~hour 27: dawn Sunday, high elevation, **~26-30F**. The warm layer used to wait
+there. Now it must come out of the bag at **Horn Creek 3 (66.1), ~hour 25, deepest dark, tired**,
+and be carried or worn through the loop.
+**RULE: default to taking too much on that loop.** Warm layer, BOTH glove pairs, beanie — wear or
+pocket all of it before leaving Horn Creek 3. Coldest, highest stretch of the race; being wrong
+costs far more than the ounces.
+
+### CONSEQUENCE 2 — sunscreen now has an 11-mile gap in the sunniest section
+Venable 1 (29.6) is ~hour 10-11 — hottest part of day one, at altitude, under a sunny forecast.
+A tube used to be there; now there is nothing between Horn Creek 1 and Horn Creek 2.
+**ACTION: buy a travel-size tube or sunscreen packets to CARRY in the vest.** He already
+under-sprayed at Six-0 and paid for it; 11 miles at ~11,000 ft under a clear sky with no option is
+the wrong gap to leave. Apply thoroughly at Horn Creek 1, top up at the Venable turnaround.
+Also carry EXTRA WIPES on that loop — no bag at Venable, and the race plan budgets for stops.
+
 ## Drop bag plan — LOCKED 9/17 (Jason: every station takes a bag EXCEPT Colony Creek)
 **CORRECTION to an earlier note:** Colony Creek IS a functioning aid station (food + water). It
 has no crew, no drop bag and no toilet. So the 15-mi Music Meadows<->Horn Creek legs are exposed
