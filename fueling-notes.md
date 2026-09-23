@@ -433,6 +433,22 @@ near it; same for the four 8.7-mi legs. **Need Jason's actual vest carry (flask 
 volume) at Sangre.** If it is one or two 500 mL flasks he arrives at Horn Creek 3 having been dry
 for ~90 min — on the deep-night leg, the worst place to be behind. Resolve before drop bags ship.
 
+## Carry confirmed 9/23 — 2.5 L, capacity is NOT an issue
+**CLAUDE ERROR, CORRECTED.** On 9/22 I flagged Jason's bladder as possibly 1.5 L (from the photo
+taken during the 9/17 sweat test) and warned capacity was at zero margin. **Wrong — that 1.5 L
+Osprey is his BACKUP bladder.** Race carry is the **2 L bladder + 500 mL LMNT flask = 2.5 L**,
+exactly as he first said and as originally logged. Longest leg (8.9 mi, ~3 hrs, ~2 L at 22 oz/hr)
+is covered with margin. The "capacity may be the real bottleneck" flag is withdrawn.
+
+**Also confirmed 9/23:** headlamp primary + backup + 2 spare batteries (was the biggest open gap —
+now closed). Sunscreen tubes in both drop bags. Sunglasses: Jason does not run in them — his call,
+noted, not pressed; a cap brim does most of the work.
+
+**STILL OPEN — the one real sunscreen gap:** tubes in the bags do NOT cover
+**Horn Creek 1 -> Venable -> Horn Creek 2 = 11.3 mi with no bag**, passing the Venable turnaround
+at ~hour 10-11, the hottest/highest/sunniest point of the race, with no reapplication for ~4 hrs.
+**Fix: one packet or lip-balm-sized tube in the vest.** He already paid for under-spraying at Six-0.
+
 ## VOLUME-ANCHORED SODIUM — the operative rule, set 9/17
 **Jason's carry (confirmed): one 500 mL flask with LMNT + 2 L plain water = 2.5 L per leg.**
 Plain water is deliberate, to fight flavor fatigue — a real late-race failure mode. Keep it.
