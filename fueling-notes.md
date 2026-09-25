@@ -302,6 +302,48 @@ mistake. Jason is still under target on body mass and still needs the intake.
 pre/post-run naked weigh-in, which is a DIFFERENCE across one run and therefore immune to all of
 the above — still the only weight number that carries information.
 
+## DROP BAG PLAN — FINAL, 9/25 (race eve). Supersedes 9/22 and 9/17.
+Bags at **Music Meadows** and **Horn Creek** only. Car is overflow at Music Meadows.
+
+### Horn Creek bag — 4 visits (24.0, 35.3, 66.1, 77.3)
+Also supplies both Venable loops AND the packets carried to Colony Creek 2 and 4 (no bags there).
+- Fuel: 9 Huma + 3 PF90 · 36 salt pills (pre-counted, count written) · **9 LMNT**
+- Night: **warm layer · thicker gloves · backup headlamp** · spare headlamp batteries
+- Care: sunscreen tube · big wipes pack · chapstick · Squirrel's Nut Butter · spare buff ·
+  1 pair socks · collapsible cup · spare Shokz
+
+### Music Meadows bag — 3 visits (8.6 dawn, 50.6 night transition, 92.6)
+- Fuel: 12 Huma + 6 PF90 (+ Spring gels for flavor fatigue) · 52 salt pills · 19 LMNT
+- Night transition @50.6: tights · DRY long sleeve + DRY shirt
+- Shoes: new Merrells + 2 pairs socks
+- Power: Nitecore #2 (swap every pass) · Coros cable · Shokz cable + spare pair
+- Care: sunscreen · wipes · chapstick · lube · toothbrush + paste · eye drops · Imodium · trash bag
+
+### Vest from start
+3 Huma + 1 PF90 · 12 pills · LMNT flask FULL + 1 spare packet · 2 L bladder full ·
+**headlamp — NEVER drop it, not even at MM1 in daylight** · Bonatti · beanie · headband ·
+light gloves · buff · wipes · chapstick · lube · cup · Nitecore #1 + cable · Shokz ·
+2 Imodium · sunscreen packet (Venable loop)
+
+### Car (not a race bag)
+Race-morning Boost + thermos · dry robe · towel · sleep setup · post-race clothes/shoes ·
+junk-drawer bank · spare socks
+Totals close: Huma 24, PF90 10, pills 100, LMNT 30.
+
+### Corrections vs 9/22
+1. **LMNT at Horn Creek 5 -> 9.** The earlier count missed that the HC bag feeds 8 flask fills:
+   HC x4, Venable x2 (refills with carried packets), and the packets carried OUT to Colony Creek 2
+   and 4. Station fills total still = 14 (start 1 + MM-sourced 5 + HC-sourced 8).
+2. **Warm layer comes out at HORN CREEK 2, not HC3.** Darkness (~hr 14-15) falls on the
+   HC2 -> CC2 -> MM2 leg: 15.3 mi, no bag, MM2 ~hr 18-19. Leave HC2 with warm layer + backup
+   headlamp even if it still feels warm; wear the layer continuously from there. At HC3, the
+   thicker gloves come out for the Venable 2 stretch (coldest of the race, ~26-30F up high).
+
+### OPEN RISK flagged 9/25
+Packing list (8/?? inventory) has long sleeve, tights, Bonatti shell — **no insulating midlayer
+(fleece / light puffy).** Long sleeve + shell at 26-30F, hr ~27, hiking pace, is thin. If none
+owned: REI Colorado Springs is on the morning route before the drive to Westcliffe.
+
 ## DROP BAG PLAN REVISED 9/22 — NO BAG AT VENABLE THIS YEAR
 Jason confirmed (and updated SendOff): **drop bags allowed at Music Meadows and Horn Creek ONLY.**
 Supersedes the 9/17 plan below, which assumed a Venable bag.
