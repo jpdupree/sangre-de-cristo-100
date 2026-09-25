@@ -302,6 +302,29 @@ mistake. Jason is still under target on body mass and still needs the intake.
 pre/post-run naked weigh-in, which is a DIFFERENCE across one run and therefore immune to all of
 the above — still the only weight number that carries information.
 
+## GRAB-AND-GO ZIPLOCKS — per visit, packed 9/25
+Each ziplock = what he needs to LEAVE that station and reach the next bag. LMNT: one to fill at the
+station + one to carry out when another aid station falls before the next bag. Sharpie label on
+each; pill rule on the back: "6/L plain water · noodles -> half · night + noodles -> zero."
+
+| Ziplock | Gels | Pills | LMNT | Label |
+|---|---|---|---|---|
+| **HC1** mi 24.0 ~hr 8-9 | 2 Huma + 1 PF90 | 10 | 2 (here + Venable 1) | SUNSCREEN full body. Toilet. Venable loop = 11 mi, no bag. |
+| **HC2** mi 35.3 ~hr 12-13 | 2 Huma + 1 PF90 | 10 | 2 (here + CC2) | NIGHT FALLS ON THIS LEG. Warm layer + backup headlamp. Toilet — next is 15 mi. |
+| **HC3** mi 66.1 ~hr 24-26 | 3 Huma | 6 | 2 (here + Venable 2) | COLDEST STRETCH. Thicker gloves + beanie ON. Wear everything. Toilet. |
+| **HC4** mi 77.3 ~hr 29-30 | 2 Huma + 1 PF90 | 10 | 2 (here + CC4) | Day again — shed layers, sunscreen. Toilet — next is 15 mi. |
+| **MM1** mi 8.6 ~hr 3 | 3 Huma + 2 PF90 | 14 | 2 (here + CC1) | SIT DOWN AND TRY — next toilet 15 mi. Sunscreen. Shed layers. |
+| **MM2** mi 50.6 ~hr 18-19 | 3 Huma + 2 PF90 | 10 | 2 (here + CC3) | Night transition: tights, dry LS, dry shirt. Swap Nitecore. Brush teeth. Toilet. |
+| **MM3** mi 92.6 ~hr 33-35 | 3 Huma + 1 PF90 | 8 | 1 | Last one. 8.7 to finish. Sunscreen. Toilet. |
+Every ziplock also gets a small wipes pack.
+
+**Loose in HC bag:** 1 spare LMNT · sunscreen tube · big wipes · chapstick · lube · buff · cup ·
+spare Shokz · headlamp batteries.
+**Loose in MM bag (reserve):** 3 Huma + 1 PF90 + Spring gels · 20 pills · 14 LMNT.
+**Gallon bundles:** HC2 = warm layer + backup headlamp · HC3 = thicker gloves + dry socks ·
+MM2 = tights + dry long sleeve + dry shirt + toothbrush/paste.
+Totals reconcile: 24 Huma, 10 PF90, 100 pills, 30 LMNT.
+
 ## DROP BAG PLAN — FINAL, 9/25 (race eve). Supersedes 9/22 and 9/17.
 Bags at **Music Meadows** and **Horn Creek** only. Car is overflow at Music Meadows.
 
