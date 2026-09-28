@@ -162,7 +162,10 @@ Jason tracked until the Venable nap. SendOff showed him "close to fuelled or jus
 everything, but as a solo racer it was hard to keep switching to the race page to check, and he
 only logged fluid when the bladder was empty, so the fluid picture lagged. Ideas worth handing over:
 1. **One-tap "beep done" button** logging the standard combo (gel + pill) — ideally from a
-   lock-screen widget or the watch, no unlock.
+   lock-screen widget or the watch, no unlock. **Refinement from Jason:** the sodium part of the
+   combo changes day vs night (1 pill at night, 2 in warm hours), so a fixed combo doesn't fit —
+   make it **band-aware** (the app already knows the hour bands) or let the racer set a combo per
+   band. Tapping "Huma" + "1 pill" separately was fine in practice.
 2. **Fluid by refill, not by sip:** log "refilled 2 L at station X" and estimate intake from
    elapsed time, confirmed at the next refill.
 3. **One glanceable status line** — e.g. "last hour: sodium −400 mg, calories −150" — instead of
@@ -171,3 +174,41 @@ only logged fluid when the bladder was empty, so the fluid picture lagged. Ideas
 5. **Aid-station card:** arriving at a station shows that station's ziplock contents and
    checklist (fill flask, carry-out LMNT, sunscreen, toilet).
 6. **Solo mode:** assume no crew; drop crew-dependent steps.
+
+
+---
+
+## Debrief round 3 (9/28)
+
+### KEEP — what worked
+- **Shoe choice:** Olympus start, switch to the new Merrells + fresh socks at MM3.
+- **Toe socks** (or two pairs — to confirm).
+- **Bonatti Waterproof** carried the whole way — right call, though never tested in rain.
+- **Battery bank on the body with the short cable.**
+- **Pacing:** walk the climbs, run the flats and downhills, and let heavy legs keep it honest.
+- **SendOff racer page:** aid-station check-in/out, one-tap items, adding photos — "all fantastic."
+
+### Didn't go well
+- **Forgot to brush his teeth at every Horn Creek visit**, despite reminding himself. Fix: write it
+  on the label of the ziplock at whichever station actually holds the toothbrush — the label system
+  worked for everything else.
+
+### The finish — last 4.4 mi down from Music Pass
+Felt really good at first, then it hit: **no food left and an empty stomach** (the MM3 under-fuel,
+see above). Plus the **left ankle** (below). Descended slower than hoped for both reasons.
+
+### INJURY WATCH — left ankle, front
+Something happened to the tendon/muscle at the front of the left ankle — the one that lifts the
+foot and toes — within the first 50 miles. Mildly painful then; **much worse on the steep final
+descent.** This sounds like the front-of-ankle tendons (tibialis anterior / toe-extensor tendons),
+commonly irritated in long races by **laces tied tight across the top of the foot** or by lots of
+steep downhill braking. Not a diagnosis. Watch for: swelling, redness, a **creaking or crunching
+feeling when the ankle moves**, or pain when walking → see a doctor or PT. **No NSAIDs** (black
+stool) — ice, elevation, rest. Next race: loosen or skip an eyelet over the sore spot.
+**Gate added to the plan: pain-free walking before the first recovery jog.**
+
+### Rio del Lago (Nov 7-8) — Jason's call
+Still planning to run it, **with no expectations** — no need to finish, mainly to see a friend
+and find out how a non-altitude 100 feels; no self-criticism if he drops. Matches the plan's
+"social-pace" RDL option. **Gates, confirmed in decision week (10/19):** doctor has looked at the
+black stool; ankle pain-free on easy runs.
