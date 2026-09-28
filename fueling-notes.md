@@ -79,8 +79,22 @@ Running log of what's tested and decided. Targets come from the training plan
 reported live:
 - **Pre-race:** BM right before the gun, and again at Music Meadows 1 (mile 8.6, ~hr 3). The
   two-evacuation start protocol worked exactly as designed.
-- **~Midnight Sat/Sun (~hr 20):** next BM, described as **dark green** under a headlamp. Stomach
-  "really rough," little appetite, getting worse over the following hour.
+- **STOOL TIMELINE BY STATION (Jason's reconstruction 9/28 — supersedes the live 'midnight' note):**
+  | Where | Mile | Colour / notes |
+  |---|---|---|
+  | Pre-gun | 0 | normal — start protocol evacuation 1 |
+  | Music Meadows 1 | 8.6 | normal — evacuation 2 |
+  | Horn Creek 3 | 66.1 | after dark, dark camp bathroom — colour NOT seen |
+  | Venable 2 | 71.6 | **dark green** on the paper (~midnight) |
+  | Horn Creek 4 | 77.3 | probable BM ("pretty sure") |
+  | Top of Music Pass 2 | 96.9 | in the woods, daylight — **clearly BLACK** |
+  Nothing between mile 8.6 and 66.1 (~58 miles). Then **4 BMs in the last ~31 miles** — transit
+  sped up sharply late. Fast transit would explain the GREEN (bile not broken down); BLACK in
+  daylight is the most reliable observation and is the one for the doctor. Green -> black
+  progression over ~25 miles. Music Pass has no aid station, so the 20-min car nap must have come
+  BEFORE the black stool.
+- **~Midnight (~hr 20), Venable 2:** stomach "really rough," little appetite, worsening over the
+  next hour.
 - **Response:** cup noodles + broth + 3 salt pills (~1,700-1,800 mg Na), slow walking, water sips.
   Breathing felt fast at a slow walk but **settled fully at rest**; watch HR not elevated; urine
   light yellow. Dry throat (cold dry altitude air + recent salt). Improved after ~3 AM aid station
