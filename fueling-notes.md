@@ -590,6 +590,25 @@ noted, not pressed; a cap brim does most of the work.
 at ~hour 10-11, the hottest/highest/sunniest point of the race, with no reapplication for ~4 hrs.
 **Fix: one packet or lip-balm-sized tube in the vest.** He already paid for under-spraying at Six-0.
 
+## PEE AS A LIVE GAUGE — lesson from Sangre (9/28)
+Jason noticed that **when he was "up on sodium" he peed a lot — more than he felt he was
+drinking.** Real effect: when sodium intake exceeds sweat losses, the kidneys excrete the surplus
+and water goes with it. Overnight and in the cold morning he was walking and barely sweating but
+still taking pills on the beep, so he was likely ahead of need. Contributors at the same time:
+cold (cold diuresis), altitude, and caffeine after two weeks off (Monster at HC4 just before the
+frequent-peeing stretch). Urine stayed light yellow throughout, so it was self-correction, not a
+problem.
+
+**Rule change: at night and when walking, the WATER rule leads, not the beep** — 6 pills per litre
+of plain water actually drunk. The beep kept adding pills after drinking and sweating had dropped.
+
+| Observation | Likely meaning |
+|---|---|
+| Frequent + pale, barely drinking | Ahead on sodium — fewer pills |
+| Frequent + clear, drinking a lot | Over-drinking — sip to thirst |
+| Every 2-3 hrs, light yellow | On target |
+| Rare + dark | Behind on fluid — drink, sodium with it |
+
 ## VOLUME-ANCHORED SODIUM — the operative rule, set 9/17
 **Jason's carry (confirmed): one 500 mL flask with LMNT + 2 L plain water = 2.5 L per leg.**
 Plain water is deliberate, to fight flavor fatigue — a real late-race failure mode. Keep it.
