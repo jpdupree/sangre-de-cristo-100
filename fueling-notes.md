@@ -602,6 +602,17 @@ weeks off) and **more fluid than it felt like** (broth, Coke, watermelon, pineap
 bladder sips). Sodium surplus may have played a smaller part.
 **Reassuring:** dangerously low sodium during exercise usually REDUCES urine output. Frequent
 clear urine argued against the overnight hyponatremia worry.
+**UPDATE (same day): the frequent clear urine continued into the HEAT, including the last leg** —
+so cold can't be the main cause. Better fits for the whole race:
+1. **Altitude diuresis** — the body sheds fluid in the first days at altitude regardless of
+   temperature. He arrived Thu, raced Sat-Sun at 8,000-12,000 ft: right in that window.
+2. **Drinking more than he was sweating** — the day was cooler and cloudier than forecast and he
+   walked a lot, so sweat was likely well below the 1.5 L/hr measured in Texas. Bladder + broth +
+   Coke + fruit probably exceeded need; "not drinking much" is hard to judge hours in.
+Cold and caffeine likely added overnight. Net: never dehydrated.
+**For RDL (low altitude, early November near Sacramento, usually cool):** altitude effect gone,
+over-drinking risk remains. **Drink to thirst, not to a target. Frequent clear pee = ease water,
+NOT sodium.**
 
 **RULE REPLACED (Jason, 9/28): dosing pills by litres drunk is near-impossible with a bladder on
 your back** — intake is only knowable at a refill (which is why he only logged fluid when the
@@ -618,7 +629,7 @@ bladder, stomach fine). Keep the LMNT flask separate as the flavoured option.
 
 | Observation | Likely meaning | Do |
 |---|---|---|
-| Frequent + CLEAR, not drinking much, cold | Cold diuresis (+ caffeine) | Keep sodium steady, add layers, drink to thirst |
+| Frequent + CLEAR, any temperature | Altitude and/or drinking more than sweating (+ cold, caffeine at night) | Keep sodium steady, ease water to thirst; add layers if cold |
 | Frequent + clear, drinking a lot | Over-drinking | Sip to thirst |
 | Frequent + pale yellow, barely drinking, warm | Possibly ahead on sodium | Ease pills |
 | Every 2-3 hrs, light yellow | On target | Nothing |
