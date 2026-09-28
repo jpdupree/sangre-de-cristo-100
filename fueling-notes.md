@@ -590,24 +590,29 @@ noted, not pressed; a cap brim does most of the work.
 at ~hour 10-11, the hottest/highest/sunniest point of the race, with no reapplication for ~4 hrs.
 **Fix: one packet or lip-balm-sized tube in the vest.** He already paid for under-spraying at Six-0.
 
-## PEE AS A LIVE GAUGE — lesson from Sangre (9/28)
-Jason noticed that **when he was "up on sodium" he peed a lot — more than he felt he was
-drinking.** Real effect: when sodium intake exceeds sweat losses, the kidneys excrete the surplus
-and water goes with it. Overnight and in the cold morning he was walking and barely sweating but
-still taking pills on the beep, so he was likely ahead of need. Contributors at the same time:
-cold (cold diuresis), altitude, and caffeine after two weeks off (Monster at HC4 just before the
-frequent-peeing stretch). Urine stayed light yellow throughout, so it was self-correction, not a
-problem.
+## PEE AS A LIVE GAUGE — lesson from Sangre (9/28, corrected same day)
+Jason noticed he peed a lot — roughly every 30 min — more than he felt he was drinking, and
+**confirmed the urine was CLEAR every time** (not pale yellow).
+**CLAUDE CORRECTION:** my first read was "sodium surplus, kidneys flushing it." Clear urine points
+elsewhere: clear = the kidneys dumping excess WATER, not salt. The most likely driver is
+**cold diuresis** — in the cold, blood shifts from the skin to the core, the body reads that as
+fluid overload and increases urine output even without over-drinking. He was walking slowly
+overnight into a cold morning, layered up. Contributors: **caffeine** (Monster at HC4, after two
+weeks off) and **more fluid than it felt like** (broth, Coke, watermelon, pineapple — not just
+bladder sips). Sodium surplus may have played a smaller part.
+**Reassuring:** dangerously low sodium during exercise usually REDUCES urine output. Frequent
+clear urine argued against the overnight hyponatremia worry.
 
-**Rule change: at night and when walking, the WATER rule leads, not the beep** — 6 pills per litre
-of plain water actually drunk. The beep kept adding pills after drinking and sweating had dropped.
+**Rule still stands: at night and when walking, the WATER rule leads, not the beep** — 6 pills
+per litre of plain water actually drunk.
 
-| Observation | Likely meaning |
-|---|---|
-| Frequent + pale, barely drinking | Ahead on sodium — fewer pills |
-| Frequent + clear, drinking a lot | Over-drinking — sip to thirst |
-| Every 2-3 hrs, light yellow | On target |
-| Rare + dark | Behind on fluid — drink, sodium with it |
+| Observation | Likely meaning | Do |
+|---|---|---|
+| Frequent + CLEAR, not drinking much, cold | Cold diuresis (+ caffeine) | Keep sodium steady, add layers, drink to thirst |
+| Frequent + clear, drinking a lot | Over-drinking | Sip to thirst |
+| Frequent + pale yellow, barely drinking, warm | Possibly ahead on sodium | Ease pills |
+| Every 2-3 hrs, light yellow | On target | Nothing |
+| Rare + dark | Behind on fluid | Drink, sodium with it |
 
 ## VOLUME-ANCHORED SODIUM — the operative rule, set 9/17
 **Jason's carry (confirmed): one 500 mL flask with LMNT + 2 L plain water = 2.5 L per leg.**
