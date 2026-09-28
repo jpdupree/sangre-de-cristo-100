@@ -73,6 +73,35 @@ Running log of what's tested and decided. Targets come from the training plan
   sharpie; pills remaining = pills taken. Crew can read intake off the returned container.**
 
 ## GI log
+
+### SANGRE 2026 RACE — GI TIMELINE (for the GI appointment / doctor)
+**Result: FINISHED, 35:39:21** (start Sat 9/26 04:00 MDT, finish ~Sun 9/27 15:39). Timeline as
+reported live:
+- **Pre-race:** BM right before the gun, and again at Music Meadows 1 (mile 8.6, ~hr 3). The
+  two-evacuation start protocol worked exactly as designed.
+- **~Midnight Sat/Sun (~hr 20):** next BM, described as **dark green** under a headlamp. Stomach
+  "really rough," little appetite, getting worse over the following hour.
+- **Response:** cup noodles + broth + 3 salt pills (~1,700-1,800 mg Na), slow walking, water sips.
+  Breathing felt fast at a slow walk but **settled fully at rest**; watch HR not elevated; urine
+  light yellow. Dry throat (cold dry altitude air + recent salt). Improved after ~3 AM aid station
+  (Coke, half broth); resumed half gels, then 1 salt pill per beep from ~4-7 AM.
+- **Morning (~hr 27+):** peeing roughly every 30 min; **bloating** persisted despite cutting to
+  half gels + pills with minimal water. Likely contributors: intake paced for running while walking,
+  gas expansion at altitude, carbonated Coke.
+- **Later morning:** BM in daylight — **BLACK.** Advised: medic at next aid station; stop and call
+  for help if lightheaded, HR racing, pale/clammy, weak, or vomiting blood / coffee-ground material.
+- **Post-race (9/27-28):** no other symptoms reported. Urine clear through the day, pale yellow in
+  the evening. No further BM yet. **UNKNOWN / to confirm:** whether an aid-station medic assessed
+  him; whether any Pepto-Bismol, iron or NSAIDs were taken (Pepto alone would explain black stool).
+- **Plan:** watch the next BMs (note: blood from the upper GI tract can take 1-2 days to clear, so
+  one more dark stool is not by itself proof of ongoing bleeding — the trend and symptoms matter);
+  **call his doctor within a couple of days of getting home** (likely a blood count); **inform the
+  pending GI referral** — directly relevant to the delayed-emptying / slow-transit evaluation.
+  **Tylenol only** for soreness — no ibuprofen/naproxen. ER if lightheaded/faint, resting HR racing,
+  pale and weak, vomiting dark material, or cola-coloured / scant urine.
+- Context for the specialist: this repeats the 2025 pattern (bloated all race) and matches the
+  training-block pattern of days without a BM followed by urgency once running starts.
+
 - **PSYLLIUM DISCONTINUED 8/19 — standing rule: NO fibre supplements in this plan unless a
   doctor clears it.** Two weeks of use made things worse: more fullness and bloating, no
   frequency increase. Jason's working theory: slow transit — bulk-forming fibre was adding
