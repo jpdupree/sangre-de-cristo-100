@@ -603,8 +603,18 @@ bladder sips). Sodium surplus may have played a smaller part.
 **Reassuring:** dangerously low sodium during exercise usually REDUCES urine output. Frequent
 clear urine argued against the overnight hyponatremia worry.
 
-**Rule still stands: at night and when walking, the WATER rule leads, not the beep** — 6 pills
-per litre of plain water actually drunk.
+**RULE REPLACED (Jason, 9/28): dosing pills by litres drunk is near-impossible with a bladder on
+your back** — intake is only knowable at a refill (which is why he only logged fluid when the
+bladder was empty). The per-litre rule stays as the PHYSIOLOGY (target ~1,300-1,400 mg/L), not the
+on-course method. **Practical method:**
+1. **Default — pills on the beep, set by conditions** (what he found workable):
+   night or walking = 1 pill every other beep; warm or running = 1-2 per beep.
+2. **Correct at each refill** (the only moment intake is known): bladder near-empty since the last
+   station → take 2-3 extra pills there; barely touched → skip the next few beeps' pills.
+3. **Pee gauge in between** (table below).
+**TEST BEFORE RDL:** a weak, unflavoured electrolyte mix IN the bladder so sodium automatically
+follows how much he drinks — no counting. Already tolerated on the 9/17 test (1 LMNT in the 1.5 L
+bladder, stomach fine). Keep the LMNT flask separate as the flavoured option.
 
 | Observation | Likely meaning | Do |
 |---|---|---|
@@ -615,6 +625,8 @@ per litre of plain water actually drunk.
 | Rare + dark | Behind on fluid | Drink, sodium with it |
 
 ## VOLUME-ANCHORED SODIUM — the operative rule, set 9/17
+> **Superseded in practice 9/28:** the per-litre counting below can't be done live with a bladder.
+> It remains the target concentration. See "PEE AS A LIVE GAUGE" above for the practical method.
 **Jason's carry (confirmed): one 500 mL flask with LMNT + 2 L plain water = 2.5 L per leg.**
 Plain water is deliberate, to fight flavor fatigue — a real late-race failure mode. Keep it.
 
