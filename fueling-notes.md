@@ -93,6 +93,18 @@ reported live:
 - **Post-race (9/27-28):** no other symptoms reported. Urine clear through the day, pale yellow in
   the evening. No further BM yet. **UNKNOWN / to confirm:** whether an aid-station medic assessed
   him; whether any Pepto-Bismol, iron or NSAIDs were taken (Pepto alone would explain black stool).
+- **CONFIRMED 9/28: NO Pepto-Bismol. NO medic assessment on course.** With bismuth ruled out, the
+  black stool was most likely blood — the doctor call is MORE important, not less.
+- **THE TURNAROUND — a 20-min sleep in a volunteer's car at an aid station.** Jason's read: sitting
+  still let blood return to the gut and fixed what slow walking could not. Plausible and coherent:
+  exercise (walking included) diverts blood from the gut to the legs; ~20 hrs of reduced gut blood
+  flow explains the stalled emptying (nausea, bloating) and is also the usual explanation for GI
+  bleeding in ultras. Full rest — sleep especially — shifts the body into digestion in a way easy
+  walking cannot. One data point; the nausea may have been easing anyway. Timing/location of the
+  nap vs the black stool: TO CONFIRM.
+- **RACE-RULE REVISION:** plan said "Do not sit." Revised: *Don't sit by default. But when the
+  stomach has shut down, a timed 15-20 min stop — asleep if possible — is a legitimate fix, not a
+  failure.* Test deliberately in future long efforts.
 - **Plan:** watch the next BMs (note: blood from the upper GI tract can take 1-2 days to clear, so
   one more dark stool is not by itself proof of ongoing bleeding — the trend and symptoms matter);
   **call his doctor within a couple of days of getting home** (likely a blood count); **inform the
