@@ -27,6 +27,18 @@ hard hours started. This plan gives ~3× that margin.
    Pre-download generous offline library before race week: night-two playlist + podcast/audiobook.
 8. 25W charging: a ~30-min aid stop restores ~50% phone if ever needed beyond swaps.
 
+## RESULT AT SANGRE 2026 — the power problem is solved
+2025: phone died ~7 AM day two (~27 hrs in). 2026: phone ran down to ~60%, one charge back to
+100% from a bank, then **Samsung "Maximum Power Saving" mode** (phone limited to selected apps)
+for most of the race — finished without needing the banks again. Banks were barely used.
+Implications for next time:
+- **Maximum Power Saving mode is the primary tool**, the banks are backup. Set it up and choose
+  the allowed apps BEFORE the race.
+- **One bank is probably enough**; carry the second only if weight doesn't matter.
+- **The watch is now the weak link**: APEX 2 finished at 4-6%, never charged. Charge it ~20 min
+  at a Music Meadows pass if below 50%.
+- Open: which apps were allowed, did music work in that mode, finishing phone %.
+
 ## Rehearsals
 - Ragnar (Aug 21–22): run the bank-swap rhythm in between-leg downtime.
 - **Ragnar: Coros Live Tracking field trial** (feature released 7/29/26, APEX 2 supported).

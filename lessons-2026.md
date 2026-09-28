@@ -86,7 +86,8 @@ used 2 Huma up + 1 down.)
 - **Vest too small:** jacket OR shirt+tights fit, not both. Carried things around the waist; the
   jacket's pockets helped. **Wants a vest with more back storage.**
 - Power: phone went to ~60%, charged to 100%, then phone battery alone for the rest.
-  **Battery-saver mode that restricts to selected apps** — new discovery, keep. Banks barely used.
+  **Samsung "Maximum Power Saving" mode** (restricts the phone to selected apps) — new discovery,
+  used most of the race. Keep. Banks barely used.
 - **Watch finished at 4-6%, never charged.** Too close — at the 38-hr cutoff it would likely have
   died. Follow the gear-plan rule next time: below 50% at any MM pass → charge ~20 min while
   hiking out.
