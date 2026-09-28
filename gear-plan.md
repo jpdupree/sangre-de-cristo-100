@@ -35,9 +35,17 @@ Implications for next time:
 - **Maximum Power Saving mode is the primary tool**, the banks are backup. Set it up and choose
   the allowed apps BEFORE the race.
 - **One bank is probably enough**; carry the second only if weight doesn't matter.
-- **The watch is now the weak link**: APEX 2 finished at 4-6%, never charged. Charge it ~20 min
-  at a Music Meadows pass if below 50%.
-- Open: which apps were allowed, did music work in that mode, finishing phone %.
+- **Phone finished at ~13%.**
+- **Allowed apps in Maximum Power Saving:** Chrome, Messages, YouTube Music, SendOff (runs in
+  Chrome), Claude, Photos, Camera.
+- **Voice-to-text did NOT work in that mode** — he had to switch the mode off to dictate. Likely
+  cause: dictation runs on a background speech service (on most Samsung setups, Google's speech
+  service inside the **Google** app, or Samsung's own voice input depending on the keyboard
+  setting), which the mode blocks. **Test at home before RDL:** add the Google app to the allowed
+  list and try dictating; also try the mic inside the Claude app itself. Not confirmed.
+- **Watch:** Jason's figure is ~40 hrs, so he knew it would outlast the cutoff. Data point: 4-6% at
+  35:39 ≈ empty around 37-38 hrs at the average burn — close to the 38-hr cutoff. Fine for RDL;
+  top it up at a crew/drop-bag stop if a race runs long.
 
 ## Rehearsals
 - Ragnar (Aug 21–22): run the bank-swap rhythm in between-leg downtime.
