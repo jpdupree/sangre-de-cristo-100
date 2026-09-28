@@ -84,15 +84,24 @@ reported live:
   |---|---|---|
   | Pre-gun | 0 | normal — start protocol evacuation 1 |
   | Music Meadows 1 | 8.6 | normal — evacuation 2 |
-  | Horn Creek 3 | 66.1 | after dark, dark camp bathroom — colour NOT seen |
-  | Venable 2 | 71.6 | **dark green** on the paper (~midnight) |
-  | Horn Creek 4 | 77.3 | probable BM ("pretty sure") |
-  | Top of Music Pass 2 | 96.9 | in the woods, daylight — **clearly BLACK** |
+  | Horn Creek 3 | 66.1 | **Sat 11:42 PM** (hr 19.7) — dark camp bathroom, colour NOT seen |
+  | Venable 2 | 71.6 | **Sun 2:48 AM** (hr 22.8) — **dark green** on the paper. **20-MIN CAR NAP HERE.** |
+  | Horn Creek 4 | 77.3 | **Sun 5:24 AM** (hr 25.4) — probable BM ("pretty sure") |
+  | Top of Music Pass 2 | 96.9 | **Sun 2:11 PM** (hr 34.2) — in the woods, daylight — **clearly BLACK** |
+  | Finish | 101.3 | Sun ~3:39 PM (35:39:21) |
+  Note: the live 00:22 message described a dark-green BM "about midnight"; the reconstruction puts
+  the dark-green sighting at Venable 2 (2:48 AM). Either way: dark green overnight, black next
+  afternoon.
   Nothing between mile 8.6 and 66.1 (~58 miles). Then **4 BMs in the last ~31 miles** — transit
   sped up sharply late. Fast transit would explain the GREEN (bile not broken down); BLACK in
   daylight is the most reliable observation and is the one for the doctor. Green -> black
-  progression over ~25 miles. Music Pass has no aid station, so the 20-min car nap must have come
-  BEFORE the black stool.
+  progression over ~25 miles.
+  **Timeline read:** HC3 -> Venable 2 took **3h06 for 5.5 mi** — the slowest leg, when the stomach
+  was at its worst. **Nap at Venable 2 (~2:48 AM)**, and his next message was "back on the trails
+  feeling a little better" — the timing supports his theory that full rest restored gut function.
+  The black stool came ~11 hours after that worst stretch, which fits blood from overnight gut
+  stress taking hours to pass through. That is the sequence to describe to the doctor — the doctor
+  interprets it, not us.
 - **~Midnight (~hr 20), Venable 2:** stomach "really rough," little appetite, worsening over the
   next hour.
 - **Response:** cup noodles + broth + 3 salt pills (~1,700-1,800 mg Na), slow walking, water sips.
@@ -114,8 +123,8 @@ reported live:
   exercise (walking included) diverts blood from the gut to the legs; ~20 hrs of reduced gut blood
   flow explains the stalled emptying (nausea, bloating) and is also the usual explanation for GI
   bleeding in ultras. Full rest — sleep especially — shifts the body into digestion in a way easy
-  walking cannot. One data point; the nausea may have been easing anyway. Timing/location of the
-  nap vs the black stool: TO CONFIRM.
+  walking cannot. One data point; the nausea may have been easing anyway. **Confirmed: nap at
+  Venable 2, ~2:48 AM — 11+ hours before the black stool.**
 - **RACE-RULE REVISION:** plan said "Do not sit." Revised: *Don't sit by default. But when the
   stomach has shut down, a timed 15-20 min stop — asleep if possible — is a legitimate fix, not a
   failure.* Test deliberately in future long efforts.
