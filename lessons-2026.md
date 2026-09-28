@@ -96,3 +96,78 @@ used 2 Huma up + 1 down.)
    of time banked → troubleshoot → nap → recovered.
 2. **Final climb to Music Pass 2** — very slow, altitude hitting his breathing hard, doing bad
    pace math, and under-fuelled for the descent.
+
+---
+
+## Debrief round 2 (9/28)
+
+### THE BIG ONE: he raced SOLO
+**His crew person couldn't make it because of a work issue — no crew, no pacers.** Everything
+crew-dependent in the plan (bank rotation with crew, crew-chief pit flow, C1/C2 handoffs) didn't
+happen, and he adapted: charged the phone himself, used battery-saver mode, managed all drop bags
+alone. Support came from runners at a similar pace (a lot of back-and-forth camaraderie), his mom
+calling several times, and friend group texts. **Plan future races for solo by default; treat
+crew as a bonus.**
+
+### Day one — well executed
+- Legs felt heavy and it felt slow, but it was **very consistent — first 50 an HOUR faster than
+  2025**. He credits much better pit times; he climbed every hill steadily, ran almost all flats
+  and downhills, and never pushed.
+- **Music Meadows 2 at ~6:15 PM (hr 14.25)**; headlamp not needed until a little after leaving.
+- Cooler than forecast, lots of cloud; Friday's rain kept the dust down.
+- **Forgot to go to two pills per beep** in the warm hours — lower need on a cool day softened it.
+- **CLAUDE PLANNING ERROR:** my hour estimates were too slow — I had MM2 at ~hr 18-19; he arrived
+  at hr 14.25. The 9/25 change to take the warm layer out at HC2 (assuming dark fell on the
+  HC2→MM2 leg) was based on that. Night actually fell after MM2, as the original plan had it.
+  **Next year: build time-of-day plans from his 2026 splits, not from estimates.**
+
+### Stomach — bloated most of the race, with a distinct phase
+- Felt bloated / "fat" (stomach poking out) for most of the race.
+- **Descending to Horn Creek 3: a heavy weight he could feel jolting with every running step.**
+  Food and fluid sitting in the stomach while running — **this is the delayed-gastric-emptying
+  symptom his GI evaluation is about.** Added to the GI log for the doctor.
+- Food at Colony Creek: pizza (probably CC2), noodles at CC3 — drank all the broth, couldn't
+  finish the noodles. Ate **watermelon and pineapple** once the stomach went rough. (Note:
+  watermelon is high in fermentable sugars — fructose and mannitol — so it can add gas when the gut
+  is already struggling. Minor.)
+
+### Caffeine
+- Monsters were **zero-calorie (Monster Ultra)** — chosen because they don't make him jittery.
+  His own verdict: "pretty goofy, I needed the calories." They gave caffeine but no calories at
+  the point he was shortest on calories, plus carbonation, plus erythritol.
+- **Caffeine itself helped**, and it was less noticeable than expected after 2+ weeks off. His
+  conclusion: **the detox isn't worth it.** Reasonable on this evidence (one race, no comparison);
+  at most, a short reduction rather than two weeks at zero.
+- **Caffeine pills were on the plan but forgotten.** Add to the vest packing list.
+- **Next time: non-carbonated caffeine (G Fuel hot, or tabs) + calories from a separate source.**
+
+### Clothing / cold
+- **The puffy was used at Music Meadows** (kept there, not in the HC3 bundle): he arrived at MM
+  shirtless and cooled fast while standing still sorting gear. **Lesson: at MM stops after dark, put
+  a dry top + puffy on FIRST, then sort the bag.**
+
+### No real sleepiness
+Nothing like the strong sleepiness of 2025. The sleep banking in race week, caffeine and the
+Venable nap all plausibly contributed.
+
+### Altitude
+He doesn't see a practical way to acclimatise while living in Texas, so plans to save
+high-altitude 100s for after a future move to altitude. Mentioned **Swiss Alps 100** (starts
+~3,000 ft, high point a little over 9,000 ft) as a lower alternative. For the record: the main
+at-home option is a hypoxic (altitude) tent — expensive, with mixed-to-positive evidence over
+weeks of use; the other option is arriving ~2 weeks early.
+
+### SendOff — solo-racer feedback (hand to the SendOff/app session)
+Jason tracked until the Venable nap. SendOff showed him "close to fuelled or just under" on
+everything, but as a solo racer it was hard to keep switching to the race page to check, and he
+only logged fluid when the bladder was empty, so the fluid picture lagged. Ideas worth handing over:
+1. **One-tap "beep done" button** logging the standard combo (gel + pill) — ideally from a
+   lock-screen widget or the watch, no unlock.
+2. **Fluid by refill, not by sip:** log "refilled 2 L at station X" and estimate intake from
+   elapsed time, confirmed at the next refill.
+3. **One glanceable status line** — e.g. "last hour: sodium −400 mg, calories −150" — instead of
+   having to open the race page.
+4. **Recent rate (last hour / last leg), not just cumulative** — cumulative hides a late collapse.
+5. **Aid-station card:** arriving at a station shows that station's ziplock contents and
+   checklist (fill flask, carry-out LMNT, sunscreen, toilet).
+6. **Solo mode:** assume no crew; drop crew-dependent steps.

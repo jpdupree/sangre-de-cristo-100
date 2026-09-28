@@ -104,6 +104,9 @@ reported live:
   interprets it, not us.
 - **~Midnight (~hr 20), Venable 2:** stomach "really rough," little appetite, worsening over the
   next hour.
+- **For the doctor — the sloshing symptom:** bloated most of the race, but **descending to Horn
+  Creek 3 he felt a heavy weight in his stomach jolting with every running step** — food and fluid
+  not emptying. That is the delayed-gastric-emptying picture his GI evaluation is about.
 - **Response:** cup noodles + broth + 3 salt pills (~1,700-1,800 mg Na), slow walking, water sips.
   Breathing felt fast at a slow walk but **settled fully at rest**; watch HR not elevated; urine
   light yellow. Dry throat (cold dry altitude air + recent salt). Improved after ~3 AM aid station
