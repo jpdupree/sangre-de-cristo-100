@@ -35,14 +35,16 @@ Implications for next time:
 - **Maximum Power Saving mode is the primary tool**, the banks are backup. Set it up and choose
   the allowed apps BEFORE the race.
 - **One bank is probably enough**; carry the second only if weight doesn't matter.
-- **Phone finished at ~13%.**
+- **Phone finished at ~13% — with a nearly full bank still on him and the spare untouched in the
+  Music Meadows bag.** The power plan was heavily over-provisioned: one bank is enough.
 - **Allowed apps in Maximum Power Saving:** Chrome, Messages, YouTube Music, SendOff (runs in
   Chrome), Claude, Photos, Camera.
 - **Voice-to-text did NOT work in that mode** — he had to switch the mode off to dictate. Likely
-  cause: dictation runs on a background speech service (on most Samsung setups, Google's speech
-  service inside the **Google** app, or Samsung's own voice input depending on the keyboard
-  setting), which the mode blocks. **Test at home before RDL:** add the Google app to the allowed
-  list and try dictating; also try the mic inside the Claude app itself. Not confirmed.
+  cause: dictation runs on a background speech service the mode blocks. **Keyboard confirmed:
+  Gboard**, whose voice typing runs on Google's speech service (part of the **Google** app).
+  **Test at home before RDL:** add the Google app (and Gboard, if the mode lists it) to the
+  allowed apps and try dictating; also try the mic inside the Claude app. If the mode blocks the
+  service regardless, the fallback is what he did at Sangre — exit the mode briefly to dictate.
 - **Watch:** Jason's figure is ~40 hrs, so he knew it would outlast the cutoff. Data point: 4-6% at
   35:39 ≈ empty around 37-38 hrs at the average burn — close to the 38-hr cutoff. Fine for RDL;
   top it up at a crew/drop-bag stop if a race runs long.
