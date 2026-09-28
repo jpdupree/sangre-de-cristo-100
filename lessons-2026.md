@@ -182,7 +182,8 @@ only logged fluid when the bladder was empty, so the fluid picture lagged. Ideas
 
 ### KEEP — what worked
 - **Shoe choice:** Olympus start, switch to the new Merrells + fresh socks at MM3.
-- **Toe socks** (or two pairs — to confirm).
+- **Two pairs of socks / fresh-sock changes** (HC3 and MM3). Not toe socks — Jason has tried toe
+  socks before and didn't find them helpful. Don't recommend them.
 - **Bonatti Waterproof** carried the whole way — right call, though never tested in rain.
 - **Battery bank on the body with the short cable.**
 - **Pacing:** walk the climbs, run the flats and downhills, and let heavy legs keep it honest.
@@ -206,6 +207,22 @@ steep downhill braking. Not a diagnosis. Watch for: swelling, redness, a **creak
 feeling when the ankle moves**, or pain when walking → see a doctor or PT. **No NSAIDs** (black
 stool) — ice, elevation, rest. Next race: loosen or skip an eyelet over the sore spot.
 **Gate added to the plan: pain-free walking before the first recovery jog.**
+
+**Status 9/28 (morning after, photo):** minor swelling on the front of the left ankle. **Still
+painful to lift the foot.** Walking is fine but he compensates with **extra knee lift on the left**
+to clear the toes. Photo (lifting toes as far as pain allows on the left, fully on the right): left
+foot looks fuller across the top and front of the ankle, and the toe-lifting tendons that stand out
+clearly on the right aren't visible on the left — consistent with mild swelling over those tendons
+plus pain-limited lifting. Read from a photo, not an exam.
+**Rule-outs given (urgent care / ER same day if any):** numbness or tingling on top of the foot,
+especially the web between big and second toe; front of the shin tight, hard or swollen; severe
+pain when pointing the toes down; foot that feels weak or floppy rather than just painful; pain
+getting worse rather than better. These point to nerve involvement or anterior compartment
+syndrome — rare but urgent. His report ("as far as I can without pain", walking fine, ~40 hrs
+post-finish) is reassuring against them.
+**Care:** rest, ice 15-20 min a few times a day, elevate, laces loose over the swelling, gentle
+pain-free range of motion, **no NSAIDs**. Ask the doctor to look at the ankle at the same visit as
+the black stool. If it isn't clearly improving within about a week, get it seen regardless.
 
 ### Rio del Lago (Nov 7-8) — Jason's call
 Still planning to run it, **with no expectations** — no need to finish, mainly to see a friend
