@@ -623,9 +623,13 @@ on-course method. **Practical method:**
 2. **Correct at each refill** (the only moment intake is known): bladder near-empty since the last
    station → take 2-3 extra pills there; barely touched → skip the next few beeps' pills.
 3. **Pee gauge in between** (table below).
-**TEST BEFORE RDL:** a weak, unflavoured electrolyte mix IN the bladder so sodium automatically
-follows how much he drinks — no counting. Already tolerated on the 9/17 test (1 LMNT in the 1.5 L
-bladder, stomach fine). Keep the LMNT flask separate as the flavoured option.
+**TEST BEFORE RDL:** a weak mix IN the bladder so a sodium FLOOR automatically follows how much he
+drinks — less counting; pills and food top up the rest. **Not an unflavoured electrolyte** — Jason
+finds those taste bad (the potassium/magnesium are bitter/metallic). Options:
+(a) **1 flavoured LMNT in the full 2 L bladder** (~500 mg/L, a quarter of flask strength — faint
+flavour; he already ran 9/17 with 1 LMNT in 1.5 L without complaint), or
+(b) **plain table salt, ~1/4 tsp per litre** (~575 mg Na/L) — tastes only faintly salty.
+Fallback: plain water + the refill check. Keep the LMNT flask separate as the flavoured option.
 
 | Observation | Likely meaning | Do |
 |---|---|---|
