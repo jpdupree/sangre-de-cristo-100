@@ -17,6 +17,24 @@ on the watch (course 101.3 mi). Avg HR 115. 2h20 inside the 38-hr cutoff. **2025
 | Music Pass 2 | 96.9 | 2:11 PM | black stool here. Knew the finish was certain at the top — stopped for the views |
 | Finish | 101.3 | ~3:39 PM | |
 
+## What the stomach cost (analysis 9/30)
+Loop 2 (MM2 → MM3) runs the same ground as loop 1 (MM1 → MM2), so each loop-2 leg can be compared
+with its loop-1 twin. Anchors are the known station times; loop-1 HC1/V1/HC2/CC2 are estimated from
+the watch's mile laps scaled between CC1 and MM2 (±~15 min).
+
+| Stretch | Loop-2 time ÷ loop-1 time |
+|---|---|
+| MM2 → HC3 (pre-crisis; includes night pit at MM2) | **1.31x** |
+| HC3 → V2 (crisis + nap) | 1.90x |
+| V2 → HC4, HC4 → CC4 (after the turnaround) | ~1.65x |
+| HC3 → finish overall (incl. Music Pass climb + descent vs the fresh start legs) | 1.58x |
+
+Counterfactual finish if the crisis hadn't happened:
+- **Held 1.31x from HC3:** ~33:00 (≈1 PM Sunday) — the ceiling; assumes no further fade.
+- **Normal extra fade to ~1.45x** (second night, falling altitude HR ceiling): **~34:20** — best estimate.
+- Actual 35:39. **The stomach cost roughly 1.5–2.5 hours**, ~1 hr of it on HC3 → V2 alone.
+Separate from the stomach: the altitude ceiling (HR 145 → 117) slowed the last climb regardless.
+
 ## Jason's one change
 "Not running at altitude." First 50 OK; after that, breathing couldn't keep up and climbing got
 progressively harder. Max achievable HR on climbs fell across the race: **~145 → 135 → 120 → ~117
