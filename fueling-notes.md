@@ -139,6 +139,11 @@ reported live:
   pale and weak, vomiting dark material, or cola-coloured / scant urine.
 - Context for the specialist: this repeats the 2025 pattern (bloated all race) and matches the
   training-block pattern of days without a BM followed by urgency once running starts.
+- **Follow-up (9/30):** blood drawn 9/29 — results pending. Last BM 9/29 morning (colour: to
+  confirm); none since (~24+ hrs, within his normal pattern). Coros resting HR, a rough proxy for
+  ongoing blood loss (not diagnostic): 49 race eve → 58 on 9/28 → 51 → 48 on 9/30, back to his
+  45-49 baseline. HRV back in range 9/30 (53), sleep 8h04. Reassuring trend; the blood count is
+  the real answer.
 
 - **PSYLLIUM DISCONTINUED 8/19 — standing rule: NO fibre supplements in this plan unless a
   doctor clears it.** Two weeks of use made things worse: more fullness and bloating, no
