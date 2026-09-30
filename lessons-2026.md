@@ -35,6 +35,12 @@ Counterfactual finish if the crisis hadn't happened:
 - Actual 35:39. **The stomach cost roughly 1.5–2.5 hours**, ~1 hr of it on HC3 → V2 alone.
 Separate from the stomach: the altitude ceiling (HR 145 → 117) slowed the last climb regardless.
 
+**Translated to Rio del Lago (9/30):** Coros effort pace puts Sangre at 123.5 flat-equivalent miles
+(his laps: ~1.14 extra mi per 1,000 ft climbed); RDL (~100 mi, ~13,500 ft published ≈ ~11,600 on
+his watch, near sea level) ≈ 115 → ×0.93. Remove altitude (~8–15% for a lowlander at 9–11k ft).
+Clean-stomach RDL ≈ **28–30 hrs, best guess ~29** — vs a **30-hr cutoff** (5 AM start, 11 AM Sun).
+A Sangre-sized stomach crisis (~1.5–2 hrs) would push him past it. Six weeks post-100 adds risk.
+
 ## Jason's one change
 "Not running at altitude." First 50 OK; after that, breathing couldn't keep up and climbing got
 progressively harder. Max achievable HR on climbs fell across the race: **~145 → 135 → 120 → ~117
