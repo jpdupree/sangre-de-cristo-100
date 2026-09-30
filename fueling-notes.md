@@ -144,6 +144,8 @@ reported live:
   ongoing blood loss (not diagnostic): 49 race eve → 58 on 9/28 → 51 → 48 on 9/30, back to his
   45-49 baseline. HRV back in range 9/30 (53), sleep 8h04. Reassuring trend; the blood count is
   the real answer.
+- **9/30: BROWN BM** — first confirmed normal colour since the race (last black: 9/27 2:11 PM,
+  Music Pass 2). Fits the bleed having stopped and cleared. Blood count still pending.
 
 - **PSYLLIUM DISCONTINUED 8/19 — standing rule: NO fibre supplements in this plan unless a
   doctor clears it.** Two weeks of use made things worse: more fullness and bloating, no
