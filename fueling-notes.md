@@ -159,6 +159,14 @@ reported live:
     — prior labs would settle it. No iron studies done.
   - **Questions for Dr. Seignon:** repeat CBC in ~2 weeks? ferritin/iron panel? does the Hb drop
     change the GI referral urgency (scope)? repeat lipase? when is running OK?
+  - **BASELINE FOUND (CBC 2/21/2026, Dr. Stanley, "blood counts are normal"):** Hb **14.0**, Hct
+    42.1, RBC 4.75, platelets 199, MCV 88.6, absolute lymphocytes 790 (low then too — that's his
+    normal, not a race effect). **Drop 14.0 → 11.1 = 2.9 g/dL (~21%).** Different labs, so allow
+    ~0.3 noise. Minus ~1-1.5 from post-ultra plasma expansion → **~1.5-2 g/dL real loss, roughly
+    what 1.5-2 whole-blood donations would do.** Platelets 199 → 148 also down (still normal).
+    Donation-style recovery: red cells rebuild over ~4-8 weeks, faster if iron stores are good —
+    so ferritin matters. The dilution part clears in ~1-2 weeks; a repeat CBC ~mid-Oct shows the
+    true number.
   - Do NOT start iron supplements without the doctor: iron turns stool black (masks a re-bleed)
     and constipates. No alcohol until lipase/stomach are cleared.
 
