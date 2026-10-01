@@ -146,6 +146,21 @@ reported live:
   the real answer.
 - **9/30: BROWN BM** — first confirmed normal colour since the race (last black: 9/27 2:11 PM,
   Music Pass 2). Fits the bleed having stopped and cleared. Blood count still pending.
+- **LABS (drawn 9/29 = race +2 days, reported 10/1):**
+  - **CBC: Hemoglobin 11.1 L (13.5-17.0), Hematocrit 34.6 L, RBC 3.90 L.** MCV 88.7, RDW 13.5
+    normal (red cells normal size → a recent loss, not long-standing iron deficiency). Platelets 148
+    (low-normal). WBC 3.9 normal; absolute lymphocytes 0.65 L (typical post-ultra stress response).
+  - **Lipase 82 H (13-60)** ~1.4x upper limit; amylase 83 normal. Mild lipase rises are reported
+    after ultras; pancreatitis is usually >3x with pain. For the doctor/GI referral to interpret.
+  - CMP otherwise normal: sodium 140, potassium 4.6, BUN 14, creatinine 1.03, AST 46 / ALT 38
+    (high-normal, fits post-race muscle damage), albumin 4.5, globulin 1.8 (slightly low).
+  - **Read:** post-ultra plasma expansion lowers Hb ~1-1.5 g/dL on its own; a drop to 11.1 is
+    probably more than that → fits real blood loss from the race-day GI bleed. Baseline Hb unknown
+    — prior labs would settle it. No iron studies done.
+  - **Questions for Dr. Seignon:** repeat CBC in ~2 weeks? ferritin/iron panel? does the Hb drop
+    change the GI referral urgency (scope)? repeat lipase? when is running OK?
+  - Do NOT start iron supplements without the doctor: iron turns stool black (masks a re-bleed)
+    and constipates. No alcohol until lipase/stomach are cleared.
 
 - **PSYLLIUM DISCONTINUED 8/19 — standing rule: NO fibre supplements in this plan unless a
   doctor clears it.** Two weeks of use made things worse: more fullness and bloating, no
