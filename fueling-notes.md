@@ -169,6 +169,16 @@ reported live:
     true number.
   - Do NOT start iron supplements without the doctor: iron turns stool black (masks a re-bleed)
     and constipates. No alcohol until lipase/stomach are cleared.
+- **DOCTOR'S NOTE (10/5, Dr. Seignon):** "Low RBC, hemoglobin and hematocrit. Suggesting mild iron
+  deficiency anemia. Needs to take a multivitamin with iron." → start a multivitamin with iron.
+  - Open questions the note doesn't cover: did she factor in the race-day black stools (the labs
+    alone show normal-size red cells and no iron test was run)? Repeat CBC + ferritin, when?
+    Lipase 82? GI referral urgency? Any running restriction?
+  - **Iron changes the stool check.** Iron stool = dark green/grey-black, formed, ordinary smell.
+    A re-bleed (melena) = jet black, sticky/tarry, unusually foul — plus maybe lightheadedness.
+    Tarry/sticky = call the doctor same day regardless of the iron.
+  - Absorption: take with food + vitamin C, not within ~2 h of coffee/tea/calcium/dairy.
+    Constipation watch (slow-transit history): if it bites, tell the doctor — NOT fibre.
 
 - **PSYLLIUM DISCONTINUED 8/19 — standing rule: NO fibre supplements in this plan unless a
   doctor clears it.** Two weeks of use made things worse: more fullness and bloating, no
