@@ -180,7 +180,9 @@ reported live:
   - Absorption: take with food + vitamin C, not within ~2 h of coffee/tea/calcium/dairy.
     Constipation watch (slow-transit history): if it bites, tell the doctor — NOT fibre.
 - **10/10:** no good BM in ~2 days, bloated, heavy lunch + dinner 10/9 (no alcohol). HRV 37 (below),
-  resting HR 52 (from 48), HRV lowest in the first 2 h of sleep. Iron start date: to confirm.
+  resting HR 52 (from 48), HRV lowest in the first 2 h of sleep. Iron: multivitamin started ~Wed 10/7, taken
+  about every other day since — constipation began ~2 days later, so timing fits. Raise with the
+  doctor at the 10/14 draw (alternate-day dosing is a recognised option; ask before changing).
 
 - **PSYLLIUM DISCONTINUED 8/19 — standing rule: NO fibre supplements in this plan unless a
   doctor clears it.** Two weeks of use made things worse: more fullness and bloating, no
