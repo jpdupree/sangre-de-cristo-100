@@ -183,6 +183,7 @@ reported live:
   resting HR 52 (from 48), HRV lowest in the first 2 h of sleep. Iron: multivitamin started ~Wed 10/7, taken
   about every other day since — constipation began ~2 days later, so timing fits. Raise with the
   doctor at the 10/14 draw (alternate-day dosing is a recognised option; ask before changing).
+  Resolved same day: good BM after the 10/10 trail run (urgency late in the run), normal colour.
 
 - **PSYLLIUM DISCONTINUED 8/19 — standing rule: NO fibre supplements in this plan unless a
   doctor clears it.** Two weeks of use made things worse: more fullness and bloating, no
