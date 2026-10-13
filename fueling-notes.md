@@ -189,6 +189,8 @@ reported live:
   in recovery. Test: compare a fasted morning photo (same angle) with bedtime. Raise at the 10/14
   draw with both photos; ask whether the GI referral can be expedited (distension + race-day bleed
   + Hb 11.1 + lipase 82).
+- **10/13 (morning, fasted):** 163.8 lb (−1.8 overnight). Same-angle photo: belly clearly smaller
+  than at bedtime — most of the bedtime size is daily distension. Some soft fat remains (modest).
 
 - **PSYLLIUM DISCONTINUED 8/19 — standing rule: NO fibre supplements in this plan unless a
   doctor clears it.** Two weeks of use made things worse: more fullness and bloating, no
