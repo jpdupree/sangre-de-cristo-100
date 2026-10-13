@@ -184,6 +184,11 @@ reported live:
   about every other day since — constipation began ~2 days later, so timing fits. Raise with the
   doctor at the 10/14 draw (alternate-day dosing is a recognised option; ask before changing).
   Resolved same day: good BM after the 10/10 trail run (urgency late in the run), normal colour.
+- **10/12 (bedtime):** 165.6 lb; visibly distended, round belly while chest/arms/face stay lean —
+  looks like distension more than fat. Jason feels "heavy and bigger in the belly" since eating more
+  in recovery. Test: compare a fasted morning photo (same angle) with bedtime. Raise at the 10/14
+  draw with both photos; ask whether the GI referral can be expedited (distension + race-day bleed
+  + Hb 11.1 + lipase 82).
 
 - **PSYLLIUM DISCONTINUED 8/19 — standing rule: NO fibre supplements in this plan unless a
   doctor clears it.** Two weeks of use made things worse: more fullness and bloating, no
