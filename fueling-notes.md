@@ -191,6 +191,25 @@ reported live:
   + Hb 11.1 + lipase 82).
 - **10/13 (morning, fasted):** 163.8 lb (−1.8 overnight). Same-angle photo: belly clearly smaller
   than at bedtime — most of the bedtime size is daily distension. Some soft fat remains (modest).
+- **LABS 10/14 (reported 10/16)** — day after a hard 5-mi hilly trail run (load 190):
+  | | Feb 21 | Sep 29 | **Oct 14** |
+  |---|---|---|---|
+  | Hemoglobin | 14.0 | 11.1 | **13.2** (lab range 13.5-17.0) |
+  | Hematocrit | 42.1 | 34.6 | **42.1** |
+  | RBC | 4.75 | 3.90 | **4.68** |
+  | Platelets | 199 | 148 | **208** |
+  | WBC | 5.3 | 3.9 | **3.1 L** |
+  | Abs lymphocytes | 790 L | 650 L | **810 L** (his normal) |
+  - **Ferritin 88** (30-400), serum iron 85, TIBC 342, **iron sat 25%** — iron stores NORMAL.
+    Ferritin rises with inflammation/hard exercise, but 88 is well clear of deficiency (<30).
+  - BMP: glucose 91, sodium 139, potassium 4.8. **Creatinine 1.29 (was 1.03), BUN 19 (was 14),
+    eGFR 70 (was 92)** — still in range; fits hard run the day before + fasted/possibly dry. Recheck
+    rested and hydrated. No NSAIDs.
+  - TSH, testosterone, lipase not run.
+  - **Read:** anemia essentially resolved in 15 days. Much of the 9/29 drop was post-ultra plasma
+    expansion on top of the bleed. Normal ferritin argues against "iron deficiency anemia" —
+    ask the doctor whether the multivitamin with iron is still needed (it coincided with
+    constipation). WBC 3.1 mild — ask about a recheck.
 
 - **PSYLLIUM DISCONTINUED 8/19 — standing rule: NO fibre supplements in this plan unless a
   doctor clears it.** Two weeks of use made things worse: more fullness and bloating, no
