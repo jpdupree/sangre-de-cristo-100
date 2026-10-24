@@ -1068,3 +1068,15 @@ Loop 2 slowdown was DELIBERATE (holding HR down, practicing slow purposeful pace
 ### Misc fix
 - **Sunscreen: reapply FULL body and legs at every drop bag,** not just head. Missed the body
   at the loop-1 transition. Add tubes to every Sangre drop bag.
+
+## Rehearsal log — RDL long run (10/24/26)
+- 16.1 mi trail, 3:41:59, 2,198 ft, avg HR 143, load 409. Cool morning. Full race kit: **spot on.**
+- **Fuel:** Boost before. In-run: flask of Tailwind-type powder (200 cal, ~500 mg Na),
+  2 Huma Ultra (160 each), 1 regular Huma (100) = **~620 cal, ~170 cal/hr** (target 250-300).
+  Knowingly short because breakfast followed. Fine for training; **does not prove the race rate.**
+  Over ~29 h at RDL, 170/hr is ~4,900 cal vs ~7,250-8,700 needed: the Sangre failure path.
+- **Sodium:** no LMNT in the bladder (test not run). Pills + powder. 3 pees, all clear: fluid fine in the cool.
+- **GI:** no BM for a couple of days before, then **two healthy stops on course, no urgency.**
+  Same pattern as Six-0 (9/5). Running is the trigger. For the RDL 5 AM start: retest the
+  10-min pre-start jog near the bathrooms, and plan 1-2 stops at aid stations.
+- Next: the 10/31 8-10 mi run eats at the full race rate from mile 1 to prove the stomach takes it.
