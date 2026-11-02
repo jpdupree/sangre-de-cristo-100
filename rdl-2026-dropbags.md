@@ -31,6 +31,24 @@ number written in sharpie. LMNT: 2 per ziplock unless noted.
 
 Totals: 23 Huma, 12 PF90, 68 pills, ~14 LMNT. Add a reserve (3 Huma + 1 PF90 + 10 pills) in Beals Point.
 
+### REVISED 11/2 (forecast Sat 71F sunny, nights mid-40s) — supersedes gel/pill/LMNT columns above
+Sodium bands: cool 400-600 mg/hr, warm day 700-900, night 400-600. LMNT 1,000 mg, pill 190 mg.
++1 PF90 added to Rattlesnake 1 and ALT (weakest calorie legs).
+
+| # | Ziplock | Leg (h) | Gels | Cal | LMNT | Pills | Na total |
+|---|---|---|---|---|---|---|---|
+| 0 | Carry from start | 0→21.7 (4.5, cool) | 3 Huma + 2 PF90 | 1,020 | 1 | 7 | ~2,330 |
+| 1 | Beals Point | →34.8 (4.5, warm) | 3 Huma + 2 PF90 | 1,020 | 2 | 8 | ~3,520 |
+| 2 | Rattlesnake 1 | →44.0 (3.5, warm, Cardiac) | 3 Huma + 2 PF90 | 1,020 | 2 | 4 | ~2,760 |
+| 3 | Overlook 1 | →58.6 (5, dusk/night) | 3 Huma + 2 PF90 | 1,020 | 1 | 8 | ~2,520 |
+| 4 | ALT | →77.7 (6, night) | 4 Huma + 3 PF90 | 1,480 | 1 | 10 | ~2,900 |
+| 5 | Overlook 2 | →86.9 (3, coldest) | 3 Huma + 1 PF90 | 660 | 1 | 2 | ~1,380 |
+| 6 | Rattlesnake 2 | →100 (4.5, warming) | 4 Huma + 2 PF90 | 1,120 | 1 | 9 | ~2,710 |
+
+Totals: 23 Huma, 14 PF90, 7,340 cal; 9 LMNT; 48 pills. Reserve in Beals: 3 Huma + 1 PF90 + 1 LMNT + 6 pills.
+Rules on the back of each ziplock: noodles/broth at a station -> skip 2 pills. Pee gauge: frequent + clear ->
+ease water, keep sodium; rare + dark -> drink more. Recheck forecast Thu 11/5.
+
 ## Every bag also gets
 Wipes · lube (undercarriage) · spare socks (two pairs, NOT toe socks) · silicone toe sleeve ·
 toothbrush + paste · Tylenol (NO ibuprofen/naproxen) · Imodium · ziplock for trash.
